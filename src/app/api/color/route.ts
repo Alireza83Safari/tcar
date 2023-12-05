@@ -3,14 +3,26 @@ import connectToDB from "@/utils/database";
 import colorValidator from "@/validator/server/color";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const param = searchParams.get("q");
+
   try {
     await connectToDB();
-    const colors = await Color.find({}, "-__v");
-    return NextResponse.json(colors);
+    if (param) {
+      const colorQuery = await Color.find({ name: { $regex: param } }, "-__v");
+      if (colorQuery.length) {
+        return NextResponse.json(colorQuery);
+      } else {
+        return NextResponse.json({ message: "رنگ یافت نشد" }, { status: 404 });
+      }
+    } else {
+      const colors = await Color.find({}, "-__v");
+      return NextResponse.json(colors);
+    }
   } catch (error) {
     return NextResponse.json(
-      { message: "Error processing request" },
+      { message: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
@@ -32,7 +44,7 @@ export async function POST(req: NextRequest) {
 
     if (existingColor) {
       return NextResponse.json(
-        { error: "Color code already exists" },
+        { error: "کد رنگ از قبل وجود دارد" },
         { status: 409 }
       );
     }
@@ -41,18 +53,15 @@ export async function POST(req: NextRequest) {
 
     if (createdColor) {
       return NextResponse.json(
-        { message: "create color successfully" },
+        { message: "رنگ با موفقیت ایجاد شد" },
         { status: 201 }
       );
     }
 
-    return NextResponse.json(
-      { error: "Error creating color" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "خطا در ایجاد رنگ" }, { status: 500 });
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }

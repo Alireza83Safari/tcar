@@ -20,7 +20,7 @@ export async function PUT(
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "Color ID is not a valid ObjectID" },
+        { error: "شناسه رنگ معتبر نیست" },
         { status: 422 }
       );
     }
@@ -29,7 +29,7 @@ export async function PUT(
 
     if (!existingColor) {
       return NextResponse.json(
-        { error: "Color ID does not exist" },
+        { error: "شناسه رنگ وجود ندارد" },
         { status: 404 }
       );
     }
@@ -39,13 +39,16 @@ export async function PUT(
     });
 
     if (updatedColor) {
-      return NextResponse.json({ message: "Color edited successfully" });
+      return NextResponse.json({ message: "رنگ با موفقیت ویرایش شد" });
     } else {
-      return NextResponse.json({ error: "Color edit failed" }, { status: 409 });
+      return NextResponse.json(
+        { error: "ویرایش رنگ با شکست مواجه شد" },
+        { status: 409 }
+      );
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
@@ -60,7 +63,7 @@ export async function DELETE(
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "Color ID is not a valid ObjectID" },
+        { error: "شناسه رنگ معتبر نیست" },
         { status: 422 }
       );
     }
@@ -68,7 +71,7 @@ export async function DELETE(
     const findColor = await Color.findById(params.id);
     if (!findColor) {
       return NextResponse.json(
-        { error: "Color ID does not exist" },
+        { error: "شناسه رنگ وجود ندارد" },
         { status: 404 }
       );
     }
@@ -76,13 +79,13 @@ export async function DELETE(
     const deleteColor = await Color.findOneAndDelete({ _id: params.id });
     if (deleteColor) {
       return NextResponse.json(
-        { message: "delete color successfully" },
+        { message: "رنگ با موفقیت حذف شد" },
         { status: 200 }
       );
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
@@ -97,7 +100,7 @@ export async function GET(
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "Color ID is not a valid ObjectID" },
+        { error: "شناسه رنگ معتبر نیست" },
         { status: 422 }
       );
     }
@@ -106,7 +109,7 @@ export async function GET(
 
     if (!findColor) {
       return NextResponse.json(
-        { error: "Color ID does not exist" },
+        { error: "شناسه رنگ وجود ندارد" },
         { status: 404 }
       );
     }
@@ -116,7 +119,7 @@ export async function GET(
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }

@@ -4,37 +4,37 @@ import platformValidator from "@/validator/server/platform";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const params = searchParams.get("q");
   try {
     await connectToDB();
-
-    const { searchParams } = new URL(req.url);
-    const param = searchParams.get("q");
-
-    if (param !== "") {
-      const carQuery = await Platform.find({ name: { $regex: param } }, "-__v");
-      if (carQuery.length) {
-        return NextResponse.json(carQuery);
+    if (params) {
+      const platformQuery = await Platform.find(
+        { name: { $regex: params } },
+        "-__v"
+      );
+      if (platformQuery.length) {
+        return NextResponse.json(platformQuery);
       } else {
         return NextResponse.json(
-          { message: "platform not found!!" },
+          { message: "پلتفرم پیدا نشد!" },
           { status: 404 }
         );
       }
-    }
-
-    const platforms = await Platform.find({}, "-__v");
-
-    if (platforms) {
-      return NextResponse.json(platforms);
     } else {
-      return NextResponse.json(
-        { error: "get platforms faild" },
-        { status: 422 }
-      );
+      const platforms = await Platform.find({}, "-__v");
+      if (platforms) {
+        return NextResponse.json(platforms);
+      } else {
+        return NextResponse.json(
+          { error: "دریافت پلتفرم‌ها با شکست مواجه شد" },
+          { status: 422 }
+        );
+      }
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
     const findPlatformByName = await Platform.findOne({ name: data.name });
     if (findPlatformByName) {
       return NextResponse.json(
-        { error: "name already exist" },
+        { error: "نام قبلا استفاده شده است" },
         { status: 422 }
       );
     }
@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     const findPlatformByCode = await Platform.findOne({ code: data.code });
     if (findPlatformByCode) {
       return NextResponse.json(
-        { error: "code already exist" },
+        { error: "کد قبلا استفاده شده است" },
         { status: 422 }
       );
     }
@@ -71,13 +71,13 @@ export async function POST(req: NextRequest) {
 
     if (createPlatform) {
       return NextResponse.json(
-        { message: "create platform successfully" },
+        { message: "پلتفرم با موفقیت ایجاد شد" },
         { status: 201 }
       );
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }

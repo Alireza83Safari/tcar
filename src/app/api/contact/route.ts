@@ -31,20 +31,26 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const params = searchParams.get("q");
   try {
     await connectToDB();
 
-    const contacts = await Contact.find({});
-
-    if (!contacts) {
-      return NextResponse.json(
-        { error: "مشکلی در بازیابی تماس‌ها رخ داده است" },
-        { status: 404 }
+    if (params) {
+      const contactQuery = await Contact.find(
+        { email: { $regex: params } },
+        "-__v"
       );
+      if (contactQuery.length) {
+        return NextResponse.json(contactQuery);
+      } else {
+        return NextResponse.json({ message: "هیچ تماسی یافت نشد" });
+      }
+    } else {
+      const contacts = await Contact.find({});
+      return NextResponse.json(contacts);
     }
-
-    return NextResponse.json(contacts);
   } catch (error) {
     return NextResponse.json(
       { error: "خطای ناشناخته در هنگام بازیابی تماس‌ها رخ داده است" },

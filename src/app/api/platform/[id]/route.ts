@@ -12,7 +12,7 @@ export async function DELETE(
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "platform ID is not a valid ObjectID" },
+        { error: "شناسه پلتفرم معتبر نمی‌باشد" },
         { status: 422 }
       );
     }
@@ -20,7 +20,7 @@ export async function DELETE(
     const findPlatform = await Platform.findOne({ _id: params.id });
     if (!findPlatform) {
       return NextResponse.json(
-        { error: "platform ID does not exist" },
+        { error: "شناسه پلتفرم وجود ندارد" },
         { status: 404 }
       );
     }
@@ -28,13 +28,13 @@ export async function DELETE(
     const deletePlatform = await Platform.findOneAndDelete({ _id: params.id });
     if (deletePlatform) {
       return NextResponse.json(
-        { message: "delete platform successfully" },
+        { message: "پلتفرم با موفقیت حذف شد" },
         { status: 200 }
       );
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
@@ -49,7 +49,7 @@ export async function PUT(
     const data = await req.json();
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "platform ID is not a valid ObjectID" },
+        { error: "شناسه پلتفرم معتبر نمی‌باشد" },
         { status: 422 }
       );
     }
@@ -57,7 +57,7 @@ export async function PUT(
     const findPlatform = await Platform.findOne({ _id: params.id });
     if (!findPlatform) {
       return NextResponse.json(
-        { error: "platform ID does not exist" },
+        { error: "شناسه پلتفرم وجود ندارد" },
         { status: 404 }
       );
     }
@@ -67,13 +67,13 @@ export async function PUT(
     });
     if (updatedPlatform) {
       return NextResponse.json(
-        { message: "edit platform successfully" },
+        { message: "پلتفرم با موفقیت ویرایش شد" },
         { status: 200 }
       );
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
@@ -88,7 +88,7 @@ export async function GET(
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "platform ID is not a valid ObjectID" },
+        { error: "شناسه پلتفرم معتبر نمی‌باشد" },
         { status: 422 }
       );
     }
@@ -96,7 +96,7 @@ export async function GET(
     const findPlatform = await Platform.findOne({ _id: params.id }, "-__v");
     if (!findPlatform) {
       return NextResponse.json(
-        { error: "platform ID does not exist" },
+        { error: "شناسه پلتفرم وجود ندارد" },
         { status: 404 }
       );
     }
@@ -106,7 +106,7 @@ export async function GET(
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }

@@ -1,6 +1,7 @@
 import Car from "@/models/car";
 import connectToDB from "@/utils/database";
-import { NextResponse } from "next/server";
+import mongoose from "mongoose";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function DELETE(
   req: Request,
@@ -12,14 +13,14 @@ export async function DELETE(
     const editCar = await Car.findByIdAndDelete(params.id);
 
     if (!editCar) {
-      return NextResponse.json({ message: "Car not found" }, { status: 404 });
+      return NextResponse.json({ message: "خودرو پیدا نشد" }, { status: 404 });
     }
 
-    return NextResponse.json({ message: "Car deleted successfully" });
+    return NextResponse.json({ message: "خودرو با موفقیت حذف شد" });
   } catch (error) {
     console.error("Error:", error);
     return NextResponse.json(
-      { message: "Error processing request" },
+      { message: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
@@ -32,24 +33,52 @@ export async function PUT(
   connectToDB();
   const data = await req.json();
   try {
-    const findCar = await Car.findOne({ _id: params.id });
-    
-    if (!findCar) {
-      return NextResponse.json({ message: "car not found!!" }, { status: 404 });
+    const findCar = await Car.findById(params.id);
+    if (findCar) {
+      const editCar = await Car.findOneAndUpdate({ _id: params.id }, data, {
+        new: true,
+      });
+      if (editCar) {
+        return NextResponse.json({ message: "خودرو با موفقیت ویرایش شد" });
+      } else {
+        return NextResponse.json(
+          { message: "خودرو پیدا نشد" },
+          { status: 404 }
+        );
+      }
+    } else {
+      return NextResponse.json({ message: "خودرو پیدا نشد" }, { status: 404 });
     }
-
-    const editCar = await Car.findOneAndUpdate({ _id: params.id }, { data });
-
-    if (!editCar) {
-      return NextResponse.json({ message: "Car not found" }, { status: 404 });
-    }
-
-    return NextResponse.json({ message: "Car edit successfully" });
   } catch (error) {
     console.error("Error:", error);
     return NextResponse.json(
-      { message: "Error processing request" },
+      { message: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
+}
+
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    await connectToDB();
+
+    if (!mongoose.Types.ObjectId.isValid(params.id)) {
+      return NextResponse.json(
+        { error: "شناسه خودرو معتبر نیست" },
+        { status: 422 }
+      );
+    }
+
+    const findCar = await Car.findOne({ _id: params.id }, "-__v");
+
+    if (!findCar) {
+      return NextResponse.json({ message: "خودرو پیدا نشد" }, { status: 404 });
+    }
+    if (findCar) {
+      return NextResponse.json(findCar);
+    }
+  } catch (error) {}
 }

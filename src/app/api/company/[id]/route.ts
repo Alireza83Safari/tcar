@@ -12,7 +12,7 @@ export async function GET(
     await connectToDB();
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "company ID is not a valid ObjectID" },
+        { error: "شناسه شرکت معتبر نیست" },
         { status: 422 }
       );
     }
@@ -20,7 +20,7 @@ export async function GET(
 
     if (!findCompany) {
       return NextResponse.json(
-        { error: "company ID does not exist" },
+        { error: "شناسه شرکت وجود ندارد" },
         { status: 404 }
       );
     }
@@ -30,7 +30,7 @@ export async function GET(
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
@@ -45,14 +45,14 @@ export async function DELETE(
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "company ID is not a valid ObjectID" },
+        { error: "شناسه شرکت معتبر نیست" },
         { status: 422 }
       );
     }
     const findCompany = await Company.findOne({ _id: params.id });
     if (!findCompany) {
       return NextResponse.json(
-        { error: "company ID does not exist" },
+        { error: "شناسه شرکت وجود ندارد" },
         { status: 404 }
       );
     }
@@ -60,13 +60,13 @@ export async function DELETE(
 
     if (deleteCompany) {
       return NextResponse.json(
-        { message: "delete company successfully" },
+        { message: "شرکت با موفقیت حذف شد" },
         { status: 200 }
       );
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
@@ -79,7 +79,6 @@ export async function PUT(
   try {
     await connectToDB();
     const data = await req.json();
-    console.log(data);
 
     const validationResult = companyValidator(data);
 
@@ -89,30 +88,36 @@ export async function PUT(
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "company ID is not a valid ObjectID" },
+        { error: "شناسه شرکت معتبر نیست" },
         { status: 422 }
       );
     }
 
-    const findCompany = await Company.findOne({ _id: params.id });
+    const findCompany = await Company.findOne({ _id: params.id }, { data });
     if (!findCompany) {
       return NextResponse.json(
-        { error: "company ID does not exist" },
+        { error: "شناسه شرکت وجود ندارد" },
         { status: 404 }
       );
     }
 
-    const updateCompany = await Company.findByIdAndUpdate(params.id, data);
+    const updateCompany = await Company.findOneAndUpdate(
+      { _id: params.id },
+      data,
+      {
+        new: true,
+      }
+    );
 
     if (updateCompany) {
       return NextResponse.json(
-        { message: "edit company successfully" },
+        { message: "شرکت با موفقیت ویرایش شد" },
         { status: 200 }
       );
     }
   } catch (error) {
     return NextResponse.json(
-      { error: "Error processing request" },
+      { error: "خطا در پردازش درخواست" },
       { status: 500 }
     );
   }
