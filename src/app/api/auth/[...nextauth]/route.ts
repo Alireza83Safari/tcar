@@ -7,7 +7,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { randomBytes, randomUUID } from "crypto";
 import { AuthOptions } from "next-auth";
 
-const authOptions: AuthOptions = {
+export const authOptions: AuthOptions = {
   providers: [
     CredentialsProvider({
       name: "credentials",
@@ -46,14 +46,38 @@ const authOptions: AuthOptions = {
       },
     }),
   ],
+
+  callbacks: {
+    async jwt({ token, user, session, trigger }) {
+      if (trigger === "update") {
+        return { ...token, ...session };
+      }
+      if (user) {
+        return {
+          ...token,
+          id: user?.id,
+          email: user?.email,
+        };
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      return {
+        ...session,
+        id: token?.id,
+        email: token?.email,
+      };
+    },
+  },
+
   session: {
     strategy: "jwt",
-  },
-  maxAge: 30 * 24 * 60 * 60,
-  updateAge: 24 * 60 * 60,
+    maxAge: 30 * 24 * 60 * 60,
+    updateAge: 24 * 60 * 60,
 
-  generateSessionToken: () => {
-    return randomUUID?.() ?? randomBytes(32).toString("hex");
+    generateSessionToken: () => {
+      return randomUUID?.() ?? randomBytes(32).toString("hex");
+    },
   },
 
   secret: process.env.NEXTAUTH_SECRET,
