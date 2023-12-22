@@ -9,7 +9,7 @@ import { getUserCars } from "@/app/actions/profile";
 export default async function page() {
   const session = await getServerSession(authOptions);
   const cars = await getUserCars(session?.id);
-  console.log(session);
+  //console.log(session);
 
   return (
     <>

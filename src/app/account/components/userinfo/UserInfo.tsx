@@ -1,21 +1,19 @@
 "use client";
 
-import axiosInstance from "@/services/axios/axios";
 import Accordion from "../../../../components/Accordion";
 import Input from "../../../../components/Form/Input";
 import { useState, useEffect } from "react";
+import { editUser } from "@/app/actions/user";
 import { TbCameraPlus } from "react-icons/tb";
-import { useSession } from "next-auth/react";
-import toast from "react-hot-toast";
+import Menu from "../Menu";
 
-const UserInfo = ({ user, session }: any) => {
-  const { update } = useSession();
+const UserInfo = ({ user, session }) => {
   const [userInfos, setUserInfo] = useState({
     firstname: "",
     lastname: "",
     email: "",
     phone: 0,
-  });
+  }) as any;
 
   useEffect(() => {
     if (user) {
@@ -29,37 +27,21 @@ const UserInfo = ({ user, session }: any) => {
     }
   }, [user]);
 
-  const setInputValue = (e: any) => {
-    const { name, value } = e.target;
-
-    setUserInfo({
-      ...userInfos,
-      [name]: value,
-    });
+  const editUserInfo = () => {
+    // editUser(session?.id, userInfos);
   };
-
-  const editUser = async () => {
-    const res = await axiosInstance.put(`/user/${session.id}`, userInfos);
-    if (res.status === 200) {
-      await update({
-        ...session?.user,
-        email: userInfos.email,
-      });
-      toast.success("پروفایل با موفقیت ویرایش شد");
-    }
-  };
-
   return (
     <div className="col-span-8 mx-5 grid grid-cols-11">
-      <form className="col-span-8">
+      <form action={editUserInfo} className="col-span-8">
         <h1 className="text-2xl font-semibold mb-5">اطلاعات فردی</h1>
         <Accordion title="نام" titleValue={userInfos?.firstname}>
           <div className="flex justify-center">
             <Input
               name="firstname"
               placeholder="نام"
-              value={userInfos.firstname}
-              onChange={setInputValue}
+              defaultValue={userInfos.firstname}
+              //  error={errors?.title}
+              //   onfocus={() => setErrors("" as any)}
             />
           </div>
         </Accordion>
@@ -70,7 +52,8 @@ const UserInfo = ({ user, session }: any) => {
               name="lastname"
               placeholder="نام خانوادگی"
               value={userInfos.lastname}
-              onChange={setInputValue}
+              //  error={errors?.title}
+              //   onfocus={() => setErrors("" as any)}
             />
           </div>
         </Accordion>
@@ -81,26 +64,25 @@ const UserInfo = ({ user, session }: any) => {
               name="email"
               placeholder="ایمیل"
               defaultValue={userInfos.email}
-              onChange={setInputValue}
+              //  error={errors?.title}
+              //   onfocus={() => setErrors("" as any)}
             />
           </div>
         </Accordion>
 
-        <Accordion title="شماره" titleValue={userInfos?.phone}>
+        <Accordion title="شماره" titleValue={userInfos?.phone || "ثبت نشده"}>
           <div className="flex justify-center">
             <Input
               name="phone"
               placeholder="شماره"
-              value={userInfos.phone}
-              onChange={setInputValue}
+              defaultValue={userInfos.phone}
+              //  error={errors?.title}
+              //   onfocus={() => setErrors("" as any)}
             />
           </div>
         </Accordion>
 
-        <button
-          className=" bg-orange w-full my-3 py-2 rounded-lg"
-          onClick={editUser}
-        >
+        <button className=" bg-orange w-full my-3 py-2 rounded-lg">
           ثبت تغییرات
         </button>
       </form>

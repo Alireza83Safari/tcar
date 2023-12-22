@@ -7,8 +7,13 @@ import Company from "@/models/company";
 import Platform from "@/models/platform";
 import mongoose from "mongoose";
 import User from "@/models/user";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET(req: NextRequest) {
+  const session = await getServerSession(authOptions);
+  console.log(session);
+
   const { searchParams } = new URL(req.url);
   const param = searchParams.get("q");
   const colorQuery = searchParams.get("color");

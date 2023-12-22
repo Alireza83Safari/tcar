@@ -17,6 +17,7 @@ export default async function page() {
         <Menu />
         <UserInfo user={user} session={session} />
       </main>
+
       <Footer />
     </>
   );

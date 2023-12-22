@@ -16,9 +16,10 @@ type accountMenuType = {
 };
 
 const accountMenuItem = [
-  { title: "اطلاعات فردی", href: "/account/userinfo" },
+  { title: "اطلاعات فردی", href: "/account" },
   { title: "خودرو های من", href: "/account/mycar" },
   { title: "لیست مورد علاقه", href: "/account/favorite" },
+  { title: "لیست نظرات", href: "/account/comments" },
   { title: "ثبت نام", href: "/register" },
   { title: "ورود", href: "/login" },
 ];

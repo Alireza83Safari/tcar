@@ -45,6 +45,6 @@ export async function editUser(id, userInfo) {
 export async function getUser(email: string) {
   "use server";
   connectToDB();
-  const user = await User.findOne({ email: email }, "-__v -password _id");
+  const user = await User.findOne({ email: email }, "-__v -password");
   return user;
 }
