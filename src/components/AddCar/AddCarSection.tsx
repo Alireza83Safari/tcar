@@ -1,0 +1,107 @@
+import React, { useMemo } from "react";
+import { FaCheck } from "react-icons/fa6";
+import { createCarType } from "@/types/car.type";
+
+const ChecklistItem = ({
+  isComplete,
+  text,
+}: {
+  isComplete: boolean;
+  text: string;
+}) => {
+  return (
+    <div className="flex items-center my-2">
+      <FaCheck className={`ml-2 ${isComplete ? "text-green" : ""}`} />
+      <p className="">{text}</p>
+    </div>
+  );
+};
+
+const AddCarSection = ({
+  createCarInfos,
+}: {
+  createCarInfos: createCarType;
+}) => {
+  const {
+    title,
+    carStatus,
+    price,
+    company,
+    model,
+    years,
+    work,
+    fuel,
+    color,
+    description,
+    platform,
+    gearbox,
+    firstname,
+    lastname,
+    phone,
+  } = createCarInfos;
+
+  const isBasicInfoComplete = title.length > 0 && carStatus !== null;
+  const isPriceComplete = !!price;
+  const isCarSpecsComplete =
+    company.length > 0 && model.length > 0 && years !== null && work !== null;
+  const isCarInfoComplete =
+    fuel.length > 0 &&
+    color.length > 0 &&
+    description.length > 0 &&
+    platform !== null &&
+    gearbox !== null;
+  const isContactComplete =
+    firstname.length > 0 && lastname.length > 0 && phone !== null;
+
+  const completionPercentage =
+    ((isBasicInfoComplete ? 1 : 0) +
+      (isPriceComplete ? 1 : 0) +
+      (isCarSpecsComplete ? 1 : 0) +
+      (isCarInfoComplete ? 1 : 0) +
+      (isContactComplete ? 1 : 0)) *
+    20;
+
+  const totalPercent = useMemo(() => {
+    switch (completionPercentage) {
+      case 20:
+        return "20";
+      case 40:
+        return "40";
+      case 60:
+        return "60";
+      case 80:
+        return "80";
+      case 100:
+        return "100";
+
+      default:
+        break;
+    }
+  }, [completionPercentage]);
+
+  return (
+    <div className="md:col-span-1 col-span-3 md:px-10 px-4 md:sticky top-24 md:block sm:flex justify-between md:mb-0 mb-10">
+      <div>
+        <p className="mb-3">
+          {totalPercent ? totalPercent : 0}% محتوا تکمیل شده است.{}
+        </p>
+        <div className="w-64 h-2 bg-gray-200 rounded-full">
+          <div
+            className="h-full bg-blue-500 rounded-full bg-green"
+            style={{ width: `${completionPercentage}%` }} // Set the width dynamically
+          ></div>
+        </div>
+      </div>
+
+      <div className="md:mt-6 sm:mt-0 mt-6">
+        <ChecklistItem isComplete={isBasicInfoComplete} text="اطلاعات پایه" />
+        <ChecklistItem isComplete={isPriceComplete} text="قیمت" />
+        <ChecklistItem isComplete={isCarSpecsComplete} text="مشخصات خودرو" />
+        <ChecklistItem isComplete={isCarInfoComplete} text="اطلاعات خودرو" />
+        <ChecklistItem isComplete={isContactComplete} text="تماس با ما" />
+      </div>
+    </div>
+  );
+};
+
+export default AddCarSection;
