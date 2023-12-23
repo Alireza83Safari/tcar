@@ -16,6 +16,7 @@ const ChecklistItem = ({
     </div>
   );
 };
+const MemoizedChecklistItem = React.memo(ChecklistItem);
 
 const AddCarSection = ({
   createCarInfos,
@@ -80,7 +81,7 @@ const AddCarSection = ({
   }, [completionPercentage]);
 
   return (
-    <div className="md:col-span-1 col-span-3 md:px-10 px-4 md:sticky top-24 md:block sm:flex justify-between md:mb-0 mb-10">
+    <div className="md:col-span-1 col-span-3 md:px-10 px-4 md:sticky top-24 md:block sm:flex justify-between md:mb-0 mb-10 md:order-2 order-1">
       <div>
         <p className="mb-3">
           {totalPercent ? totalPercent : 0}% محتوا تکمیل شده است.{}
@@ -94,11 +95,11 @@ const AddCarSection = ({
       </div>
 
       <div className="md:mt-6 sm:mt-0 mt-6">
-        <ChecklistItem isComplete={isBasicInfoComplete} text="اطلاعات پایه" />
-        <ChecklistItem isComplete={isPriceComplete} text="قیمت" />
-        <ChecklistItem isComplete={isCarSpecsComplete} text="مشخصات خودرو" />
-        <ChecklistItem isComplete={isCarInfoComplete} text="اطلاعات خودرو" />
-        <ChecklistItem isComplete={isContactComplete} text="تماس با ما" />
+        <MemoizedChecklistItem isComplete={isBasicInfoComplete} text="اطلاعات پایه" />
+        <MemoizedChecklistItem isComplete={isPriceComplete} text="قیمت" />
+        <MemoizedChecklistItem isComplete={isCarSpecsComplete} text="مشخصات خودرو" />
+        <MemoizedChecklistItem isComplete={isCarInfoComplete} text="اطلاعات خودرو" />
+        <MemoizedChecklistItem isComplete={isContactComplete} text="تماس با ما" />
       </div>
     </div>
   );

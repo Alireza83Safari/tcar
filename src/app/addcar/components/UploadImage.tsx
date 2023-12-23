@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function ImageUpload({ id }: { id: string }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -26,14 +27,10 @@ export default function ImageUpload({ id }: { id: string }) {
 
       if (response.ok) {
         router.push("/");
-        console.log("File uploaded successfully");
+        toast.success("آپلود عکس با موفقیت انجام شد");
         setSelectedFile(null);
-      } else {
-        console.error("File upload failed");
       }
-    } catch (error) {
-      console.error("Error occurred during file upload:", error);
-    }
+    } catch (error) {}
   };
 
   return (

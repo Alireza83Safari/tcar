@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { FaCarSide, FaMoneyBill1Wave, FaPhone } from "react-icons/fa6";
 import { LiaInfoSolid } from "react-icons/lia";
-import Input from "../Form/Input";
-import Select from "../Form/Select";
+import Input from "../../../components/Form/Input";
+import Select from "../../../components/Form/Select";
 import useSWR from "swr";
 import {
   carFuelItem,
@@ -19,6 +19,7 @@ import toast from "react-hot-toast";
 import { initialState } from "./AddCar";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/app/actions/fetcher";
+import { revalidateTag } from "next/cache";
 
 const AddCarForm = ({
   setCreateCarInfos,
@@ -39,7 +40,7 @@ const AddCarForm = ({
       });
     }
   }, [session]);
-  
+
   const [errors, setErrors] = useState<createCarErrorType>();
   const setInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name, type } = e.target;
@@ -69,10 +70,11 @@ const AddCarForm = ({
       if (isValid) {
         const res = await axios.post("/api/car", createCarInfos);
         if (res.status === 201) {
-          setCreateCarInfos(initialState);
           setShowImage(true);
+          setCreateCarInfos(initialState);
           setCarId(res?.data?._id);
           toast.success("آگهی با موفقیت اضافه شد!");
+          revalidateTag("userCar");
         } else {
           toast.error("خطا!!");
         }
@@ -90,7 +92,10 @@ const AddCarForm = ({
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="md:col-span-2 col-span-3 md:order-1 order-2">
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      className="md:col-span-2 col-span-3 md:order-1 order-2"
+    >
       <div className="bg-black-500 sm:p-6 p-3 rounded-xl">
         <div className="flex mb-5">
           <LiaInfoSolid className="text-orange items-center text-xl" />
@@ -145,7 +150,7 @@ const AddCarForm = ({
           <h2 className="text-lg">مشخصات خودرو</h2>
         </div>
         <div className="grid md:grid-cols-2">
-          <div className="md:ml-2">
+          <div className="md:ml-2 md:mt-1 mt-3">
             <Select
               label="سازنده"
               name="company"
@@ -155,18 +160,8 @@ const AddCarForm = ({
               error={errors?.company}
             />
           </div>
-          <div className="md:mr-2 mt-3">
-            <Input
-              label="مدل"
-              name="model"
-              placeholder="مدل"
-              onChange={setInputValue}
-              value={createCarInfos.model}
-              error={errors?.model}
-            />
-          </div>
 
-          <div className="md:ml-2 mt-3">
+          <div className="md:mr-2 md:mt-1 mt-3">
             <Select
               label="سال"
               name="years"
@@ -177,7 +172,18 @@ const AddCarForm = ({
             />
           </div>
 
-          <div className="md:mr-2 mt-3">
+          <div className="md:ml-2 md:mt-1 mt-3">
+            <Input
+              label="مدل"
+              name="model"
+              placeholder="مدل"
+              onChange={setInputValue}
+              value={createCarInfos.model}
+              error={errors?.model}
+            />
+          </div>
+
+          <div className="md:mr-2 md:mt-1 mt-3">
             <Input
               type="number"
               label="کارکرد"

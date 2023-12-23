@@ -1,4 +1,4 @@
-import AddCar from "@/components/AddCar/AddCar";
+import AddCar from "@/app/addcar/components/AddCar";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import React from "react";
