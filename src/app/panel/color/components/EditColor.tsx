@@ -49,9 +49,9 @@ const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
   }, [state]);
 
   return (
-    <Modal isOpen={showColors} onClose={closeModal} title="افزودن رنگ">
+    <Modal isOpen={showColors} onClose={closeModal} title="ویرایش رنگ">
       {loading ? (
-        <div className="min-w-[40%] min-h-[60%]">
+        <div className="min-w-[15rem] min-h-[15rem]">
           <Spinner />
         </div>
       ) : (

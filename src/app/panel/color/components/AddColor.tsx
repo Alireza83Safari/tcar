@@ -10,13 +10,10 @@ import { FaPlus } from "react-icons/fa6";
 
 const AddColor = () => {
   const initialState = {
-    name: "",
-    code: "",
-    hex: "",
+    message: "",
+    status: null,
   } as any;
   const [state, formAction] = useFormState(createColors, initialState);
-
-  
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -27,12 +24,15 @@ const AddColor = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  console.log(state);
 
   useEffect(() => {
-    if (state?.status === 200) {
-      toast.success("ساهت رنگ موفقت آمیز بود");
+    if (state?.status === 201) {
+      toast.success("ساخت رنگ موفقت آمیز بود");
       closeModal();
+    } else {
+      if (state?.message) {
+        toast.error(state?.message);
+      }
     }
   }, [state]);
 
@@ -40,7 +40,7 @@ const AddColor = () => {
     <div>
       <div className="w-full mt-10 mb-4">
         <button
-          className=" bg-orange flex items-center py-2 px-4 rounded-md"
+          className=" bg-orange flex items-center py-2 px-4 rounded-md md:text-base text-sm mr-4"
           onClick={() => openModal()}
         >
           <p>افزودن رنگ جدید</p>
