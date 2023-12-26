@@ -4,7 +4,8 @@ import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import { useState } from "react";
 import Modal from "../../../../components/Modal";
 import EditForm from "./EditForm";
-import axiosInstance from "@/services/axios/axios";
+import { CarType } from "@/types/car.type";
+import { deleteCar } from "@/app/actions/car";
 
 export async function Table({ cars }: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,44 +19,35 @@ export async function Table({ cars }: any) {
     setIsModalOpen(false);
   };
 
-  const deleteCarHandler = async (id: string) => {
-    const res = await axiosInstance.delete(`/car/${id}`);
-    ////
-  };
-
-  const editCarHandler = (id: string) => {
-    ////
-  };
   return (
-    <div className="mt-20">
-      <Modal isOpen={isModalOpen} onClose={closeModal} title="ویراش خودرو.">
+    <div className="md:mt-5 overflow-x-auto">
+      <Modal isOpen={isModalOpen} onClose={closeModal} title="ویرایش خودرو">
         <EditForm editCarId={editCarId} />
       </Modal>
 
-      <table className=" w-full">
+      <table className="min-w-full overflow-x-auto px-4 rounded-lg bg-black-200 mx-4">
         <thead>
-          <tr className="sm:text-xs text-[12px] 2xl:text-lg border-y text-">
-            <th className="w-[5%] py-4">#</th>
-            <th className="w-[10%]">عنوان</th>
-            <th className="w-[10%]">قیمت</th>
-            <th className="w-[10%]">رنگ</th>
-            <th className="w-[10%]">برند</th>
-            <th className="w-[10%]">عضویت</th>
-            <th className="w-[10%]">گیربکس</th>
-            <th className="w-[10%]">وضعیت</th>
-            <th className="w-[10%]">#</th>
+          <tr className="md:text-sm text-xs text-center border-y">
+            <th className="py-3 px-2">#</th>
+            <th className="py-3 px-2">عنوان</th>
+            <th className="py-3 px-2">قیمت</th>
+            <th className="py-3 px-2">رنگ</th>
+            <th className="py-3 px-2">برند</th>
+            <th className="py-3 px-2">گیربکس</th>
+            <th className="py-3 px-2">عضویت</th>
+            <th className="py-3 px-2">وضعیت</th>
+            <th className="py-3 px-2">#</th>
           </tr>
         </thead>
         <tbody>
-          {cars?.map((car: any, index: number) => (
-            <tr className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center">
-              <td className="py-4">{index + 1}</td>
-              <td>{car.title}</td>
-              <td>{car.price}</td>
-              <td>{car.color.name}</td>
-              <td>{car.company.name}</td>
-              {/*    <td>{car.createdAt?.slice(0, 10)}</td> */}
-              <td>
+          {cars?.map((car: CarType, index: number) => (
+            <tr className="2xl:text-sm text-xs text-center" key={car?._id}>
+              <td className="py-3 px-2 truncate">{index + 1}</td>
+              <td className="py-3 px-2 truncate">{car?.title}</td>
+              <td className="py-3 px-2 truncate">{car?.price}</td>
+              <td className="py-3 px-2 truncate">{car?.color?.name}</td>
+              <td className="py-3 px-2 truncate">{car?.company?.name}</td>
+              <td className="py-3 px-2 truncate">
                 <button
                   className={` px-3 py-1 rounded-md ${
                     car.gearbox === 0 ? "bg-orange" : `bg-green`
@@ -64,7 +56,11 @@ export async function Table({ cars }: any) {
                   {car.gearbox === 0 ? `دنده ای` : `اتومات`}
                 </button>
               </td>
-              <td>
+              <td className="py-3 px-2 truncate">
+                {car.createdAt?.slice(0, 10)}
+              </td>
+
+              <td className="py-3 px-2 truncate">
                 <button
                   className={` px-3 py-1 rounded-md ${
                     car.carStatus === 0 ? "bg-orange" : `bg-green`
@@ -73,10 +69,10 @@ export async function Table({ cars }: any) {
                   {car.carStatus === 0 ? `نو` : `کارکرده`}
                 </button>
               </td>
-              <td className="flex items-center justify-center mt-4">
+              <td className="flex justify-center py-3 px-2 truncate">
                 <FaTrashAlt
                   className="text-red mx-2"
-                  onClick={() => deleteCarHandler(car?._id)}
+                  onClick={() => deleteCar(car?._id)}
                 />
                 <FaPenAlt
                   className="text-orange mx-2"

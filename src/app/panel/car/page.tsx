@@ -4,7 +4,7 @@ import Menu from "@/app/panel/components/Menu";
 import { InfoBar } from "./components/InfoBar";
 import { Table } from "./components/Table";
 
-async function CarComponent() {
+export default async function page() {
   const cars = await fetcher("/car");
 
   return (
@@ -12,12 +12,10 @@ async function CarComponent() {
       <Header />
       <Menu />
 
-      <div className="w-[88vw] absolute left-0 bg-[#1F2432]">
+      <div className="md:w-[88vw] w-[82vw] absolute left-0 bg-[#1F2432] mt-10">
         <InfoBar cars={cars} />
         <Table cars={cars} />
       </div>
     </div>
   );
 }
-
-export default CarComponent; // Export the renamed function

@@ -4,16 +4,16 @@ import Select from "@/components/Form/Select";
 import React, { useState } from "react";
 import useSWR from "swr";
 import { useEffect } from "react";
-import axiosInstance from "@/services/axios/axios";
 import Spinner from "@/components/Spinner/Spinner";
 import { yearsItem } from "@/services/apiRequest/apiRequest";
 import { useFormState } from "react-dom";
 import { editCar } from "@/app/actions/car";
 import { useSession } from "next-auth/react";
+import { axiosInstance } from "@/services/axios/axios";
+import toast from "react-hot-toast";
 
 const EditForm = ({ editCarId }: any) => {
   const { data: session } = useSession();
-  console.log(session?.id);
 
   const initialState = {
     title: "",
@@ -61,18 +61,29 @@ const EditForm = ({ editCarId }: any) => {
     setEditCarValue({ ...editCarValue, [name]: value });
   };
 
-  const [state, formAction] = useFormState(editCar, editCarValue);
-  console.log(state);
+  const errorState = {
+    message: "",
+    status: null,
+  } as any;
+  const [state, formAction] = useFormState(editCar, errorState);
+
+  useEffect(() => {
+    if (state.status === 200) {
+      toast.success("ویراش خودرو موفقیت آمیز بود");
+    } else if (state.message) {
+      toast.error(state.message);
+    }
+  }, [state]);
 
   return (
     <div>
       {isLoading ? (
-        <div className="min-w-[40%] min-h-[60%]">
+        <div className="min-w-[24rem] min-h-[24rem">
           <Spinner />
         </div>
       ) : (
         <form className="grid grid-cols-2" action={formAction}>
-          <input type="hidden" name="userId" value={session?.id} />
+          <input type="hidden" name="userId" value={(session as any)?.id} />
           <input type="hidden" name="id" value={editCarId} />
 
           <div className="mx-2 my-1">
@@ -161,7 +172,7 @@ const EditForm = ({ editCarId }: any) => {
               label="رنگ"
               name="color"
               onChange={setInputValue}
-              value={editCarValue.color}
+              value={editCarValue.color?._id}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={colors}
             />
@@ -171,7 +182,7 @@ const EditForm = ({ editCarId }: any) => {
               label="برند"
               name="company"
               onChange={setInputValue}
-              value={editCarValue.company}
+              value={editCarValue.company?._id}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={companies}
             />
@@ -181,7 +192,7 @@ const EditForm = ({ editCarId }: any) => {
               label="پلتفرم"
               name="platform"
               onChange={setInputValue}
-              value={editCarValue.platform}
+              value={editCarValue.platform?._id}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={platform}
             />
