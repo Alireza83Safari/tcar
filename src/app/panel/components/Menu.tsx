@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaCar } from "react-icons/fa6";
+import { FaCar, FaTextSlash } from "react-icons/fa6";
 import { VscSymbolColor } from "react-icons/vsc";
 import { GiFlatPlatform } from "react-icons/gi";
 import { TbBrandIntercom } from "react-icons/tb";
@@ -10,6 +10,12 @@ import { FiUsers } from "react-icons/fi";
 
 const Menu = () => {
   const menuItem = [
+    {
+      id: 0,
+      title: "داشبورد",
+      href: "/panel/dashboard",
+      icon: <FaTextSlash />,
+    },
     { id: 1, title: "خودرو ها", href: "/panel/car", icon: <FaCar /> },
     { id: 2, title: "رنگ ها", href: "/panel/color", icon: <VscSymbolColor /> },
     {
@@ -30,18 +36,20 @@ const Menu = () => {
   const path = usePathname();
 
   return (
-    <div className="w-[12vw] min-h-screen fixed top-0 right-0 bg-[#0C111D]">
-      <ul className=" block">
+    <div className="md:w-[12vw] w-[16vw] min-h-full fixed top-0 right-0 bg-[#0C111D] -z-10">
+      <ul className="block mt-16">
         {menuItem.map((item) => (
           <Link
             href={item.href}
             key={item.id}
-            className={`px-8 py-3 flex items-center ${
-              item.href === path ? ` bg-[#1F2432]` : ``
+            className={`px-2 py-5 flex items-center sm:justify-start justify-center sm:text-base text-sm 2xl:text-xl ${
+              item.href === path ? ` bg-black-200 text-orange sm:mr-4` : ``
             }`}
           >
-            {item.icon}
-            <p className="mr-2">{item.title}</p>
+            <button className="sm:text-base text-xl">
+              {item.icon}
+            </button>
+            <p className="mr-2 sm:block hidden">{item.title}</p>
           </Link>
         ))}
       </ul>
