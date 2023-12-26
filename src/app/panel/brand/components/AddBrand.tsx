@@ -39,14 +39,14 @@ const AddBrand = () => {
     <div>
       <div className="w-full mt-10 mb-4">
         <button
-          className=" bg-orange flex items-center py-2 px-4 rounded-md"
+          className=" bg-orange flex items-center py-2 px-4 rounded-md md:text-base text-sm mr-4"
           onClick={() => openModal()}
         >
           <p>افزودن برند جدید</p>
           <FaPlus />
         </button>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal} title="افزودن رنگ">
+      <Modal isOpen={isModalOpen} onClose={closeModal} title="افزودن برند">
         {!showImage ? (
           <form action={formAction} className="grid grid-cols-1 bg-black-00">
             {false ? (

@@ -10,34 +10,36 @@ export async function Table({ brands }: { brands: getBrandsType[] }) {
   const [editId, setEditID] = useState("");
   const [showEditBrand, setShowEditBrand] = useState(false);
   return (
-    <div className="">
-      <table className=" w-full">
+    <div className="mt-5 overflow-x-auto">
+      <table className="min-w-full overflow-x-auto px-4 rounded-lg bg-black-200 mr-4">
         <thead>
           <tr className="sm:text-xs text-[12px] 2xl:text-lg border-y text-">
-            <th className="w-[10%] py-4">#</th>
-            <th className="w-[20%]">برند</th>
-            <th className="w-[15%]">کد برند</th>
-            <th className="w-[15%]">عکس برند</th>
-            <th className="w-[15%]">عضویت</th>
-            <th className="w-[15%]">#</th>
+            <th className="py-3 px-2">#</th>
+            <th className="py-3 px-2">برند</th>
+            <th className="py-3 px-2">کد برند</th>
+            <th className="py-3 px-2">عکس برند</th>
+            <th className="py-3 px-2">عضویت</th>
+            <th className="py-3 px-2">#</th>
           </tr>
         </thead>
         <tbody>
           {brands?.map((brand: getBrandsType, index: number) => (
             <tr className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center">
-              <td className="py-4">{index + 1}</td>
-              <td>{brand.name}</td>
-              <td>{brand.code}</td>
-              <td>
+              <td className="py-3 px-2 truncate">{index + 1}</td>
+              <td className="py-3 px-2 truncate">{brand.name}</td>
+              <td className="py-3 px-2 truncate">{brand.code}</td>
+              <td className="flex justify-center items-center">
                 <Image
                   src={`/uploads/${brand.image}`}
                   alt="img"
-                  width={30}
-                  height={30}
+                  width={40}
+                  height={40}
                 />
               </td>
-              <td>{brand.createdAt?.slice(0, 10)}</td>
-              <td>
+              <td className="py-3 px-2 truncate">
+                {brand.createdAt?.slice(0, 10)}
+              </td>
+              <td className="py-3 px-2 truncate">
                 <td className="flex items-center justify-center mt-4">
                   <FaTrashAlt
                     className="text-red mx-2"

@@ -1,11 +1,10 @@
 import Header from "@/app/panel/components/Header";
 import Menu from "@/app/panel/components/Menu";
-import { InfoBar } from "./components/InfoBat";
 import { Table } from "./components/Table";
 import { getBrands } from "@/app/actions/brand";
 import AddBrand from "./components/AddBrand";
 
-export const revalidate = 3;
+export const revalidate = 60 * 60;
 
 async function page() {
   const brands = await getBrands();
@@ -14,8 +13,7 @@ async function page() {
       <Header />
       <Menu />
 
-      <div className="w-[88vw] absolute left-0 bg-[#1F2432] px-4">
-        <InfoBar />
+      <div className="md:w-[88vw] w-[84vw] absolute left-0 bg-[#1F2432] md:px-4 mt-12 -z-20">
         <AddBrand />
         <Table brands={brands} />
       </div>

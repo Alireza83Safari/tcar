@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { revalidateTag } from "next/cache";
 
 export default async function AddBrandImage({
   id,
@@ -37,6 +38,7 @@ export default async function AddBrandImage({
         toast.success("افزودن عکس موفقیت آمیز بود");
         closeModal();
         setShowImage(false);
+        revalidateTag("brands");
       } else {
       }
     } catch (error) {}
