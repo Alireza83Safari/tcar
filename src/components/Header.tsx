@@ -5,18 +5,19 @@ import { CiUser } from "react-icons/ci";
 import { FiPlus } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { signOut, useSession } from "next-auth/react";
 import Button from "./Form/Button";
+
 type accountMenuType = {
   title: String;
   href: string;
 };
 
 const accountMenuItem = [
-  { title: "اطلاعات فردی", href: "/account" },
+  { title: "اطلاعات فردی", href: "/account/userinfo" },
   { title: "خودرو های من", href: "/account/mycar" },
   { title: "لیست مورد علاقه", href: "/account/favorite" },
   { title: "لیست نظرات", href: "/account/comments" },
@@ -26,6 +27,7 @@ const accountMenuItem = [
 
 const Header = () => {
   const { data: session } = useSession();
+
   const [accountMenu, setAccountMenu] = useState<accountMenuType[]>([]);
   const menuItemHandler = () => {
     if (session) {
@@ -51,15 +53,31 @@ const Header = () => {
 
   const searchHandler = () => {
     if (searchQuery.trim()) {
-      router.push(`/search?q=${searchQuery}`);
+      router.push(`/car?q=${searchQuery}`);
     }
   };
+
+  const UserInfos = useMemo(
+    () =>
+      session ? (
+        <Link replace={true} href="/account" className="flex items-center">
+          <CiUser className="text-3xl" />
+          <p className="text-sm mr-1 sm:block hidden">{session?.user?.email}</p>
+        </Link>
+      ) : (
+        <Link replace={true} href="/login" className="flex items-center">
+          <p>ورود به حساب کاربری</p>
+          <CiUser className="text-xl" />
+        </Link>
+      ),
+    [session]
+  );
 
   return (
     <header className="xl:container mx-auto md:px-8 px-2 sticky top-0 bg-black-200 z-10">
       <div className="flex justify-between items-center h-[4rem]">
         <div className="lg:flex hidden items-center gap-x-8 ">
-          <Link href="/">
+          <Link href="/" replace={true}>
             <Image
               src="/img/logo/logo-light.svg"
               alt="logo"
@@ -83,6 +101,7 @@ const Header = () => {
               {accountMenu.map((menu) => (
                 <li className="my-2 block">
                   <Link
+                    replace={true}
                     href={menu.href}
                     className="text-gray-200 hover:text-white duration-300"
                   >
@@ -100,13 +119,18 @@ const Header = () => {
               </li>
             </ul>
           </div>
-          <div>درباره ما</div>
+          <Link href="/about">درباره ما</Link>
+          <Link href="/help-center">ارتباط با ما</Link>
         </div>
 
         {showMenu && (
           <div className="lg:hidden block min-w-[10rem] min-h-screen pt-2 absolute bg-black-100 border-r border-borderColor z-10 items-center gap-x-8 left-0 top-0 ">
             <div className="py-2 border-b border-borderColor text-center">
-              <Link href="car" onClick={() => setShowBuy(!showBuy)}>
+              <Link
+                replace={true}
+                href="car"
+                onClick={() => setShowBuy(!showBuy)}
+              >
                 <p className="">خرید خودرو</p>
               </Link>
             </div>
@@ -124,7 +148,7 @@ const Header = () => {
                   <>
                     {accountMenu.map((menu, index) => (
                       <li className=" text-center py-2 border-b border-borderColor">
-                        <Link href={menu.href} key={index}>
+                        <Link replace={true} href={menu.href} key={index}>
                           {menu.title}
                         </Link>
                       </li>
@@ -137,7 +161,9 @@ const Header = () => {
               درباره ما
             </div>
             <div className="text-center py-2 border-b border-borderColor">
-              <Link href="/addcar">ثبت خودرو</Link>
+              <Link replace={true} href="/addcar">
+                ثبت خودرو
+              </Link>
             </div>
           </div>
         )}
@@ -166,21 +192,7 @@ const Header = () => {
         </div>
 
         <div className="flex gap-x-4">
-          <div className="flex items-center">
-            {session ? (
-              <Link href="/account" className="flex items-center">
-                <CiUser className="text-3xl" />
-                <p className="text-sm mr-1 sm:block hidden">
-                  {session?.user?.email}
-                </p>
-              </Link>
-            ) : (
-              <Link href="/login" className="flex items-center">
-                <p>ورود به حساب کاربری</p>
-                <CiUser className="text-xl" />
-              </Link>
-            )}
-          </div>
+          <div className="flex items-center">{UserInfos}</div>
           <Button
             href="addcar"
             className="sm:py-2 py-1 sm:px-4 px-2 sm:text-base test-sm"
