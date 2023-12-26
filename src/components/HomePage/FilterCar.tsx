@@ -17,7 +17,7 @@ const FilterCar = () => {
     year: "",
   });
 
-  const setInputValueHandler = (e) => {
+  const setInputValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
     setFilterValue({
@@ -35,6 +35,9 @@ const FilterCar = () => {
 
     if (filterValue.platform) {
       searchParams.set("platform", filterValue.platform);
+    }
+    if (filterValue.year) {
+      searchParams.set("years", filterValue.year);
     }
 
     router.push(`/car?${searchParams.toString()}`);
