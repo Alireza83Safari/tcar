@@ -1,12 +1,11 @@
 "use client";
-
-import Image from "next/image";
 import { FaHeart, FaShareAlt } from "react-icons/fa";
 import { CarType } from "../../types/car.type";
 import Accordion from "../Accordion";
 import toast from "react-hot-toast";
 import { useSession } from "next-auth/react";
 import { apiUrl } from "@/services/apiUrl";
+import { CldImage } from "next-cloudinary";
 
 const CarDetails = ({ car }: { car: CarType }) => {
   const { data: session } = useSession();
@@ -51,12 +50,11 @@ const CarDetails = ({ car }: { car: CarType }) => {
       </div>
       <div className="grid grid-cols-4">
         <div className="col-span-2 flex justify-center items-center">
-          <Image
-            src={car?.image ? `/uploads/${car?.image}` : "/img/no-image.png"}
-            alt="car"
-            className="min-w-ful rounded-lg"
-            width={300}
-            height={300}
+          <CldImage
+            width="400"
+            height="400"
+            src={String(car?.image)}
+            alt="Description of my image"
           />
         </div>
 

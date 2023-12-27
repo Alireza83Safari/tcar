@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { getPlatformType } from "@/types/platform";
 import Link from "next/link";
 import { apiUrl } from "@/services/apiUrl";
+import { CldImage } from "next-cloudinary";
 
 export const revalidate = 60 * 60;
 
@@ -30,11 +30,11 @@ export default async function Platforms() {
               className="text-center my-3 mx-auto"
               key={car?._id}
             >
-              <Image
-                src={car.image ? `/uploads/${car?.image}` : "/img/no-image.png"}
-                alt="car"
-                width={220}
-                height={220}
+              <CldImage
+                width="220"
+                height="220"
+                src={String(car?.image)}
+                alt="Description of my image"
               />
               <p className="text-gray-200 my-2">{car.name}</p>
             </Link>

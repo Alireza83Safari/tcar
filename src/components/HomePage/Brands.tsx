@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import Image from "next/image";
 import useSWR from "swr";
 import { fetcher } from "@/app/actions/fetcher";
 import { companyType } from "@/types/company.type";
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
 
 const Brands = () => {
   const { data: brands } = useSWR("company", fetcher);
@@ -14,11 +14,12 @@ const Brands = () => {
       {brands?.length &&
         brands?.map((brand: companyType) => (
           <Link href={`/car?company=${brand?._id}`} key={brand.name}>
-            <Image
-              src={ brand?.image?`/uploads/${brand?.image}` :'/img/no-image.png' }
-              width={80}
-              height={80}
-              alt={brand.name}
+            <CldImage
+              width="60"
+              height="60"
+              src={String(brand?.image)}
+              sizes="100vw"
+              alt="Description of my image"
             />
           </Link>
         ))}

@@ -9,7 +9,6 @@ import FilterSkeleton from "@/components/Skeleton/FilterSkeleton";
 import HeaderSkeleton from "@/components/Skeleton/HeaderSkeleton";
 import Trait from "@/components/HomePage/Trait";
 import { Suspense, lazy } from "react";
-import { Toaster } from "react-hot-toast";
 import Options from "@/components/HomePage/Options";
 import Application from "@/components/Application";
 
@@ -34,7 +33,6 @@ export default function Home() {
       <Options />
       <Application />
       <LastBlogs />
-      <Toaster />
       <Footer />
     </div>
   );

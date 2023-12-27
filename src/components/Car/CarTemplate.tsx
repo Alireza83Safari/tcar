@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { CarType } from "@/types/car.type";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 
 const CarTemplate = ({
   image,
@@ -16,12 +16,12 @@ const CarTemplate = ({
       <Link href={`car/${_id}`} key={_id}>
         <div className="bg-black-100 m-3 rounded-lg hover:opacity-70 duration-300">
           <div className="py-7 flex justify-center items-center h-[13rem]">
-            <Image
-              src={image ? `/uploads/${image}` : "/img/no-image.png"}
-              className="object-contain h-5/6 w-8/12"
-              alt="car"
-              width={100}
-              height={100}
+            <CldImage
+              width="960"
+              height="600"
+              src={String(image)}
+              sizes="100vw"
+              alt="Description of my image"
             />
           </div>
 

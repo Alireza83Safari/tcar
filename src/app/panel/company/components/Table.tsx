@@ -1,10 +1,10 @@
 "use client";
 import { deleteBrand } from "@/app/actions/company";
 import { companiesType } from "@/types/brand.type";
-import Image from "next/image";
 import { useState } from "react";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import EditBrand from "./EditCompany";
+import { CldImage } from "next-cloudinary";
 
 export async function Table({ brands }: { brands: companiesType[] }) {
   const [editId, setEditID] = useState("");
@@ -30,11 +30,12 @@ export async function Table({ brands }: { brands: companiesType[] }) {
                 <td className="py-3 px-2 truncate">{brand.name}</td>
                 <td className="py-3 px-2 truncate">{brand.code}</td>
                 <td className="flex justify-center items-center">
-                  <Image
-                    src={`/uploads/${brand.image}`}
-                    alt="img"
-                    width={40}
-                    height={40}
+                  <CldImage
+                    width="50"
+                    height="50"
+                    src={String(brand.image)}
+                    sizes="10vw"
+                    alt="Description of my image"
                   />
                 </td>
                 <td className="py-3 px-2 truncate">

@@ -6,7 +6,7 @@ import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa6";
 import { createPlatform } from "@/app/actions/platform";
-import AddPlatformImage from "./AddPlatformImage";
+import Upload from "../../components/Upload";
 
 const AddPlatform = () => {
   const initialState = {
@@ -73,10 +73,11 @@ const AddPlatform = () => {
             </button>
           </form>
         ) : (
-          <AddPlatformImage
+          <Upload
             id={state?.message?._id}
             closeModal={closeModal}
             setShowImage={setShowImage}
+            type={1}
           />
         )}
       </Modal>
