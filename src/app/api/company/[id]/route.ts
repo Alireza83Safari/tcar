@@ -1,6 +1,6 @@
 import Company from "@/models/company";
 import connectToDB from "@/utils/database";
-import companyValidator from "@/validator/server/company";
+import brandValidator from "@/validator/server/brand";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -12,7 +12,7 @@ export async function GET(
     await connectToDB();
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "شناسه شرکت معتبر نیست" },
+        { error: "شناسه برند معتبر نیست" },
         { status: 422 }
       );
     }
@@ -20,7 +20,7 @@ export async function GET(
 
     if (!findCompany) {
       return NextResponse.json(
-        { error: "شناسه شرکت وجود ندارد" },
+        { error: "شناسه برند وجود ندارد" },
         { status: 404 }
       );
     }
@@ -45,14 +45,14 @@ export async function DELETE(
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "شناسه شرکت معتبر نیست" },
+        { error: "شناسه برند معتبر نیست" },
         { status: 422 }
       );
     }
     const findCompany = await Company.findOne({ _id: params.id });
     if (!findCompany) {
       return NextResponse.json(
-        { error: "شناسه شرکت وجود ندارد" },
+        { error: "شناسه برند وجود ندارد" },
         { status: 404 }
       );
     }
@@ -60,7 +60,7 @@ export async function DELETE(
 
     if (deleteCompany) {
       return NextResponse.json(
-        { message: "شرکت با موفقیت حذف شد" },
+        { message: "برند با موفقیت حذف شد" },
         { status: 200 }
       );
     }
@@ -80,7 +80,7 @@ export async function PUT(
     await connectToDB();
     const data = await req.json();
 
-    const validationResult = companyValidator(data);
+    const validationResult = brandValidator(data);
 
     if (validationResult !== true) {
       return NextResponse.json({ error: validationResult }, { status: 422 });
@@ -88,7 +88,7 @@ export async function PUT(
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(
-        { error: "شناسه شرکت معتبر نیست" },
+        { error: "شناسه برند معتبر نیست" },
         { status: 422 }
       );
     }
@@ -96,7 +96,7 @@ export async function PUT(
     const findCompany = await Company.findOne({ _id: params.id }, { data });
     if (!findCompany) {
       return NextResponse.json(
-        { error: "شناسه شرکت وجود ندارد" },
+        { error: "شناسه برند وجود ندارد" },
         { status: 404 }
       );
     }
@@ -111,7 +111,7 @@ export async function PUT(
 
     if (updateCompany) {
       return NextResponse.json(
-        { message: "شرکت با موفقیت ویرایش شد" },
+        { message: "برند با موفقیت ویرایش شد" },
         { status: 200 }
       );
     }

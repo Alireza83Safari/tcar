@@ -5,7 +5,8 @@ import Spinner from "@/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
-import { editBrands } from "@/app/actions/brand";
+import { editBrands } from "@/app/actions/company";
+import { apiUrl } from "@/services/apiUrl";
 
 const EditBrand = ({ showEditBrand, setShowEditBrand, editId }: any) => {
   const [initialState, setInitialState] = useState({
@@ -19,7 +20,7 @@ const EditBrand = ({ showEditBrand, setShowEditBrand, editId }: any) => {
   const findBrand = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/api/company/${editId}`);
+      const res = await fetch(`${apiUrl}/brand/${editId}`);
       const brand = await res.json();
       setInitialState(brand);
       setLoading(false);
@@ -62,25 +63,25 @@ const EditBrand = ({ showEditBrand, setShowEditBrand, editId }: any) => {
               <div className="mx-2 my-1">
                 <input type="hidden" name="id" value={editId} />
                 <Input
-                  label="نام رنگ"
+                  label="برند برند"
                   name="name"
-                  placeholder="نام رنگ"
+                  placeholder="نام برند"
                   className="border bg-black-500"
                   defaultValue={initialState.name}
                 />
               </div>
               <div className="mx-2 my-1">
                 <Input
-                  label="کد رنگ"
+                  label="کد برند"
                   name="code"
-                  placeholder="کد رنگ"
+                  placeholder="کد برند"
                   className="border bg-black-500"
                   defaultValue={initialState.code}
                 />
               </div>
 
               <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
-                ویرایش رنگ
+                ویرایش برند
               </button>
             </>
           )}

@@ -1,6 +1,6 @@
 import React from "react";
-import Accordion from "./Accordion";
-import Button from "./Form/Button";
+import Accordion from "../../../components/Accordion";
+import Button from "../../../components/Form/Button";
 
 const HelpCenter = () => {
   return (
@@ -59,7 +59,9 @@ const HelpCenter = () => {
         <h1 className="text-2xl my-5">
           پاسخ را پیدا نکردید؟ ما می توانیم کمک کنیم.
         </h1>
-        <p className="text-gray-200">با ما تماس بگیرید و در اسرع وقت با شما تماس خواهیم گرفت.</p>
+        <p className="text-gray-200">
+          با ما تماس بگیرید و در اسرع وقت با شما تماس خواهیم گرفت.
+        </p>
 
         <Button href="/contact">تماس با ما</Button>
       </div>

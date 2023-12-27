@@ -9,7 +9,8 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
-    connectToDB();
+    await connectToDB();
+
     const newData = await req.json();
 
     const validationResult = colorValidator(newData);

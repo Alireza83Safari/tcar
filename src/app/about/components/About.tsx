@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
-import Accordion from "./Accordion";
-import Button from "./Form/Button";
+import Accordion from "../../../components/Accordion";
+import Button from "../../../components/Form/Button";
 import Image from "next/image";
 import { FaAngleLeft } from "react-icons/fa6";
+import Link from "next/link";
 
 const aboutItem = [
   {
@@ -100,7 +101,7 @@ const About = () => {
               فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری
               موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد.
             </p>
-            <Button href="">فروش خودرو</Button>
+            <Button href="/car">فروش خودرو</Button>
           </div>
         </div>
       </div>
@@ -115,7 +116,7 @@ const About = () => {
               در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد
               نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
             </p>
-            <Button href="">جستجو خودرو</Button>
+            <Button href="/car">جستجو خودرو</Button>
           </div>
         </div>
 
@@ -147,7 +148,7 @@ const About = () => {
             پایان رسد.
           </p>
           <Button href="">
-            <p>پشتیبانی</p>
+            <Link href="/help-center">پشتیبانی</Link>
             <FaAngleLeft />
           </Button>
           <Image

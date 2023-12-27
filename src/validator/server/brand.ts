@@ -2,11 +2,11 @@ const Validator = require("fastest-validator");
 
 const v = new Validator();
 
-const companySchema = {
+const brandSchema = {
   name: { type: "string", min: 2, max: 20 },
   code: { type: "string", min: 2, max: 20 },
 };
 
-const companyValidator = v.compile(companySchema);
+const brandValidator = v.compile(brandSchema);
 
-export default companyValidator;
+export default brandValidator;

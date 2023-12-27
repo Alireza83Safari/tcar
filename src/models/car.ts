@@ -1,7 +1,4 @@
 import mongoose from "mongoose";
-import { colorSchema } from "../models/color";
-import { platformShema } from "./platform";
-import { companySchema } from "./company";
 
 const carSchema = new mongoose.Schema(
   {
@@ -25,18 +22,18 @@ const carSchema = new mongoose.Schema(
     },
 
     userId: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
     company: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Company",
       required: true,
     },
 
     color: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Color",
       required: true,
     },
@@ -57,7 +54,7 @@ const carSchema = new mongoose.Schema(
     },
 
     platform: {
-      type: mongoose.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Platform",
       required: true,
     },

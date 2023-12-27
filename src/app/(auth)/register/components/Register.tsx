@@ -2,7 +2,6 @@
 import Footer from "@/components/Footer";
 import Input from "@/components/Form/Input";
 import Header from "@/components/Header";
-import axiosInstance from "@/services/axios/axios";
 import { registerErrorType } from "@/types/error.type";
 import { registerSchema } from "@/validator/client/auth";
 import Image from "next/image";
@@ -10,7 +9,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import Spinner from "../Spinner/Spinner";
+import Spinner from "../../../../components/Spinner/Spinner";
+import { axiosInstance } from "@/services/axios/axios";
 
 const Register = () => {
   const router = useRouter();
@@ -47,8 +47,6 @@ const Register = () => {
         toast.error("Invalid credentials!");
       }
     } catch (error) {
-      console.log(error);
-
       setServerError((error as any)?.response?.data?.message);
     }
   };

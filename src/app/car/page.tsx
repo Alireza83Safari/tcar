@@ -2,28 +2,37 @@ import Cars from "@/app/car/components/CarsContent";
 import { getCars } from "../actions/car";
 
 async function getCarss(searchParams: any) {
-  const { platform, color, company, carStatus } = searchParams;
+  const { platform, color, company, carStatus, years, q } = searchParams;
 
-  let apiUrl = "/car";
+  let APIURL = `car`;
   if (platform) {
-    apiUrl += `?platform=${platform}`;
+    APIURL += `?platform=${platform}`;
   }
   if (color) {
-    apiUrl += `?color=${color}`;
+    APIURL += `?color=${color}`;
   }
   if (company) {
-    apiUrl += `?company=${company}`;
+    APIURL += `?company=${company}`;
   }
   if (carStatus) {
-    apiUrl += `?carStatus=${carStatus}`;
+    APIURL += `?carStatus=${carStatus}`;
+  }
+  if (years) {
+    APIURL += `?years=${years}`;
+  }
+  if (carStatus) {
+    APIURL += `?carStatus=${carStatus}`;
+  }
+  if (q) {
+    APIURL += `?q=${q}`;
   }
 
-  const cars = await getCars(apiUrl);
+  const cars = await getCars(APIURL);
 
   return cars;
 }
 
-export const revalidate = 60;
+export const revalidate = 12;
 
 export default async function page({ searchParams }: any) {
   const cars = await getCarss(searchParams);

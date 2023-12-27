@@ -1,4 +1,4 @@
-import { getCars } from "@/app/actions/car";
+import { getCar, getCars } from "@/app/actions/car";
 import CarDetails from "@/components/Car/CarDetails";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -10,13 +10,13 @@ export async function generateStaticParams() {
 }
 
 export default async function page({ params }: { params: { id: string } }) {
-  const car = await getCars(`car/${params?.id}`);
+  const car = await getCar(params?.id);
 
   return (
     <>
       <Header />
       <div className="xl:container mx-auto px-4 ">
-        <CarDetails {...car} />
+        <CarDetails car={car} />
       </div>
       <Footer />
     </>

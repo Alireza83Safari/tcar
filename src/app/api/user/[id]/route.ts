@@ -35,8 +35,6 @@ export async function PUT(
     await connectToDB();
 
     const data = await req.json();
-    console.log("params", params.id);
-    console.log("data", data);
 
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
       return NextResponse.json(

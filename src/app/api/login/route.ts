@@ -30,11 +30,7 @@ export async function POST(req: NextRequest) {
     );
 
     if (isPasswordCorrect) {
-      return NextResponse.json(
-        //     { message: "ورود موفقیت‌آمیز بود" },
-         foundUser ,
-        { status: 200 }
-      );
+      return NextResponse.json(foundUser, { status: 200 });
     } else {
       return NextResponse.json(
         { message: "رمزعبور اشتباه است" },

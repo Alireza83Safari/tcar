@@ -4,6 +4,7 @@ export interface getUserType {
   lastname: string;
   email: string;
   role: string;
+  phone: number;
   createdAt: string;
   updatedAt: string;
 }

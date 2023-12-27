@@ -1,7 +1,7 @@
 import User from "@/models/user";
 import connectToDB from "@/utils/database";
 import registerValidator from "@/validator/server/register";
-import { hash } from "bcrypt";
+import { hash } from "bcryptjs";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -17,24 +17,21 @@ export async function POST(req: NextRequest) {
       lastname,
       role,
     });
-    console.log(validationResult);
 
     if (validationResult !== true) {
       return NextResponse.json({ message: validationResult }, { status: 422 });
-      
     } else {
       const userExist = await User.findOne({ email });
-      
+
       if (userExist) {
         return NextResponse.json(
           { message: "کاربر از قبل وجود دارد" },
           { status: 409 }
-          );
-        }
+        );
+      }
 
-    
       const hashedPassword = await hash(password, 12);
-    
+
       const newUser = await User.create({
         email,
         firstname,
@@ -42,7 +39,7 @@ export async function POST(req: NextRequest) {
         role: "USER",
         password: hashedPassword,
       });
-    
+
       if (newUser) {
         return NextResponse.json(
           { message: "کاربر با موفقیت ایجاد شد" },
@@ -55,10 +52,7 @@ export async function POST(req: NextRequest) {
         );
       }
     }
-    
   } catch (error) {
-    console.log('hgjjg');
-
     if (error instanceof mongoose.Error.ValidationError) {
       for (let field in error.errors) {
         const msg = error.errors[field].message;

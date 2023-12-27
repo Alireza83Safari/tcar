@@ -35,7 +35,7 @@ const registerSchema = Yup.object().shape({
     )
     .required("رمزعبور الزامی است"),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), null], "رمزعبور با تأییدیه همخوانی ندارد")
+    .oneOf([Yup.ref("password"), ""], "رمزعبور با تأییدیه همخوانی ندارد")
     .required("تأیید رمزعبور الزامی است"),
 });
 

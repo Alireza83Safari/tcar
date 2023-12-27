@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { revalidateTag } from "next/cache";
+import { apiUrl } from "@/services/apiUrl";
 
 export default async function AddBrandImage({
   id,
@@ -28,7 +29,7 @@ export default async function AddBrandImage({
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch(`/api/upload/brand/${id}`, {
+      const response = await fetch(`${apiUrl}/upload/brand/${id}`, {
         method: "POST",
         body: formData,
       });
@@ -38,7 +39,7 @@ export default async function AddBrandImage({
         toast.success("افزودن عکس موفقیت آمیز بود");
         closeModal();
         setShowImage(false);
-        revalidateTag("brands");
+        revalidateTag("company");
       } else {
       }
     } catch (error) {}

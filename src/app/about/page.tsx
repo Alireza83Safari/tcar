@@ -1,11 +1,8 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import About from "@/components/About";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+import About from "@/app/about/components/About";
 
 async function page() {
-
   return (
     <>
       <Header />

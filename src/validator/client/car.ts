@@ -13,7 +13,7 @@ const carSchema = Yup.object().shape({
   fuel: Yup.string().required('این فیلد اجباری است'),
   gearbox: Yup.string().required('این فیلد اجباری است'),
   color: Yup.string().required('این فیلد اجباری است'),
-  description: Yup.string().min(10, 'حداقل باید ۱۰ کاراکتر داشته باشد').max(100, 'حداکثر مجاز ۱۰۰ کاراکتر است').required('این فیلد اجباری است'),
+  description: Yup.string().min(10, 'حداقل باید ۱۰ کاراکتر داشته باشد').max(1000, 'حداکثر مجاز ۱0۰۰ کاراکتر است').required('این فیلد اجباری است'),
   firstname: Yup.string().required('این فیلد اجباری است'),
   lastname: Yup.string().required('این فیلد اجباری است'),
   phone: Yup.number().required('این فیلد اجباری است'),

@@ -1,16 +1,13 @@
 import AddCar from "@/app/addcar/components/AddCar";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import React from "react";
 
-const page = () => {
+export default async function page() {
   return (
-    <div>
+    <>
       <Header />
       <AddCar />
       <Footer />
-    </div>
+    </>
   );
-};
-
-export default page;
+}

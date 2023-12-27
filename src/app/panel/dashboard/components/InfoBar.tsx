@@ -1,24 +1,38 @@
-export async function InfoBar({ cars, colors, platforms, brands, users }: any) {
+interface InfoBarProps {
+  cars: number;
+  colors: number;
+  platforms: number;
+  companies: number;
+  users: number;
+}
+
+export async function InfoBar({
+  cars,
+  colors,
+  platforms,
+  companies,
+  users,
+}: InfoBarProps) {
   const cartData = [
     {
       title: "تعداد رنگ ها",
-      lengthData: cars?.length || 0,
+      lengthData: colors || 0,
     },
     {
       title: "تعداد خودرو ها",
-      lengthData: colors?.length || 0,
+      lengthData: cars || 0,
     },
     {
       title: "تعداد کمپانی ها",
-      lengthData: platforms?.length || 0,
+      lengthData: platforms || 0,
     },
     {
       title: "تعداد پلتفرم ها",
-      lengthData: brands?.length || 0,
+      lengthData: companies || 0,
     },
     {
       title: "تعداد کاربران",
-      lengthData: users?.length || 0,
+      lengthData: users || 0,
     },
   ];
 

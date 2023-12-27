@@ -5,7 +5,7 @@ import { Table } from "./components/Table";
 
 export const revalidate = 60 * 60;
 
-async function page() {
+export default async function page() {
   const users = await getUsers();
 
   return (
@@ -20,4 +20,4 @@ async function page() {
   );
 }
 
-export default page;
+

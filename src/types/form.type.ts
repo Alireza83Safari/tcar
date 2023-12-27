@@ -7,17 +7,17 @@ export interface inputProps {
   type?: string;
   error?: string;
   onfocus?: any;
-  value?: string | number | null;
+  value?: string;
   defaultValue?: string;
 }
 
 export interface selectProps {
   label?: string;
   name: string;
-  onChange: any;
+  onChange?: any;
   options: any;
   defaultValue?: any;
-  value: string | number | null;
+  value?: string;
   error?: string;
   onfocus?: any;
   className?: string;

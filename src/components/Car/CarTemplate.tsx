@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { CarType } from "@/types/car.type";
+import Image from "next/image";
 
 const CarTemplate = ({
   image,
@@ -11,34 +12,37 @@ const CarTemplate = ({
   gearbox,
 }: CarType) => {
   return (
-    <div>
-      <Link
-        href={`car/${_id}`}
-        className="grid grid-cols-3 bg-black-100 m-3 h-[10rem]"
-        key={_id}
-      >
-        <div className="max-h-[10rem] col-span-2">
-          <div className="px-7 py-4">
-            <p className="font-semibold">{title}</p>
-            <div className="flex items-center">
+    <div className=" shadow-md">
+      <Link href={`car/${_id}`} key={_id}>
+        <div className="bg-black-100 m-3 rounded-lg hover:opacity-70 duration-300">
+          <div className="py-7 flex justify-center items-center h-[13rem]">
+            <Image
+              src={image ? `/uploads/${image}` : "/img/no-image.png"}
+              className="object-contain h-5/6 w-8/12"
+              alt="car"
+              width={100}
+              height={100}
+            />
+          </div>
+
+          <div className="px-7 py-4 grid grid-cols-2">
+            <p className="font-semibold text-center text-lg col-span-2">
+              {title}
+            </p>
+            <div className="flex items-center text-sm my-3">
               <p className="text-gray-200 my-2">وضعیت:</p>
               <p className="text-white">{carStatus === 0 ? "نو" : "دست دوم"}</p>
             </div>
-            <p className="text-orange text-sm font-semibold my-2">
-              {price?.toLocaleString()} تومان
-            </p>
-            <div className="flex items-center">
+            <div className="flex items-center text-sm my-3">
               <p className="text-sm text-gray-200 my-2">گیربکس:</p>
               <p className="text-white">{gearbox === 0 ? "دستی" : "اتومات"}</p>
             </div>
+
+            <p className="text-orange text-sm font-semibold col-span-2">
+              {price?.toLocaleString()} تومان
+            </p>
           </div>
         </div>
-
-        <img
-          src={`/uploads/${image}`}
-          className="col-span-1 object-contain h-[10rem]"
-          alt="car"
-        />
       </Link>
     </div>
   );

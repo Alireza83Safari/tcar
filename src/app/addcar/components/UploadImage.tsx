@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { revalidateTag } from "next/cache";
+import { apiUrl } from "@/services/apiUrl";
 
 export default function ImageUpload({ id }: { id: string }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -20,7 +22,7 @@ export default function ImageUpload({ id }: { id: string }) {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch(`/api/upload/car/${id}`, {
+      const response = await fetch(`${apiUrl}/upload/car/${id}`, {
         method: "POST",
         body: formData,
       });
@@ -29,12 +31,13 @@ export default function ImageUpload({ id }: { id: string }) {
         router.push("/");
         toast.success("آپلود عکس با موفقیت انجام شد");
         setSelectedFile(null);
+        revalidateTag("cars");
       }
     } catch (error) {}
   };
 
   return (
-    <div className="min-w-full mx-auto col-span-3">
+    <div className="min-w-full mx-auto col-span-3 mt-12">
       <h1 className="text-2xl text-center">آپلود عکس خودرو</h1>
       <div>
         <input

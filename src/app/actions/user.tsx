@@ -1,13 +1,13 @@
 "use server";
 
 import User from "@/models/user";
-import axiosInstance from "@/services/axios/axios";
+import { apiUrl } from "@/services/apiUrl";
 import connectToDB from "@/utils/database";
-import { useSession } from "next-auth/react";
+import mongoose from "mongoose";
 import { revalidateTag } from "next/cache";
 
 export async function getUsers() {
-  const res = await fetch("http://localhost:3000/api/user", {
+  const res = await fetch(`${apiUrl}/user`, {
     next: { tags: ["user"] },
   });
   const user = await res.json();
@@ -16,35 +16,67 @@ export async function getUsers() {
 
 export async function deleteuser(id: string) {
   "use server";
-  const res = await fetch(`http://localhost:3000/api/user/${id}`, {
+  const res = await fetch(`${apiUrl}/user/${id}`, {
     method: "DELETE",
   });
-
-  revalidateTag("user");
-}
-
-export async function editUser(id, userInfo) {
-  const editResponse = await axiosInstance.put(
-    `/user/${id}`,
-    JSON.stringify(userInfo)
-  );
-  console.log("editResponse", editResponse);
-
-  if (!editResponse) {
-    return {
-      errors: editResponse,
-    };
-  } else {
+  if (res.status === 200) {
     revalidateTag("user");
-    return {
-      status: 200,
-    };
   }
 }
 
-export async function getUser(email: string) {
+export async function createUser(prev: any, formData: FormData) {
+  const data = {
+    firstname: formData.get("firstname"),
+    lasntname: formData.get("lasntname"),
+    email: formData.get("email"),
+  };
+
+  try {
+    await connectToDB();
+
+    const user = await User.create(data);
+
+    if (user) {
+      return { message: "ساخت کاربر با موفقیت انجام شد", status: 200 };
+    } else {
+      return { message: "ساخت کاربر با خطا مواجه شد", status: 404 };
+    }
+  } catch (error) {
+    return { message: "ساخت کاربر با خطا مواجه شد", status: 404 };
+  }
+}
+
+export async function editUser(prev: any, formData: FormData) {
+  const id = formData.get("id");
+  const data = {
+    firstname: formData.get("firstname"),
+    lasntname: formData.get("lasntname"),
+    email: formData.get("email"),
+  };
+
+  try {
+    await connectToDB();
+
+    if (!mongoose.Types.ObjectId.isValid(String(id))) {
+      return { message: "شناسه کاربر معتبر نمی‌باشد", status: 422 };
+    }
+
+    const editUser = await User.findByIdAndUpdate(id, data, {
+      new: true,
+    });
+
+    if (editUser) {
+      revalidateTag("user");
+      return { message: "ویرایش کاربر با موفقیت انجام شد", status: 200 };
+    } else {
+      return { message: " کاربر وجود ندارد", status: 404 };
+    }
+  } catch (error) {}
+}
+
+export async function getUser(id: string) {
   "use server";
-  connectToDB();
-  const user = await User.findOne({ email: email }, "-__v -password");
+  await connectToDB();
+  const user = await User.findOne({ _id: id }, "-__v -password");
   return user;
 }

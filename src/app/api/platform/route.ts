@@ -1,6 +1,5 @@
 import Platform from "@/models/platform";
 import connectToDB from "@/utils/database";
-import platformValidator from "@/validator/server/platform";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -42,14 +41,15 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+
     await connectToDB();
     const data = await req.json();
 
-    const validatorError = platformValidator(data);
+/*     const validatorError = platformValidator(data);
 
     if (validatorError !== true) {
       return NextResponse.json({ error: validatorError }, { status: 422 });
-    }
+    } */
 
     const findPlatformByName = await Platform.findOne({ name: data.name });
     if (findPlatformByName) {

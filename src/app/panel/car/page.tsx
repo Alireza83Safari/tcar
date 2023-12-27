@@ -1,11 +1,11 @@
-import { fetcher } from "@/app/actions/fetcher";
 import Header from "@/app/panel/components/Header";
 import Menu from "@/app/panel/components/Menu";
 import { InfoBar } from "./components/InfoBar";
 import { Table } from "./components/Table";
+import { getCars } from "@/app/actions/car";
 
 export default async function page() {
-  const cars = await fetcher("/car");
+  const cars = await getCars("");
 
   return (
     <div>

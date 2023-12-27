@@ -26,8 +26,8 @@ const Menu = () => {
     },
     {
       id: 4,
-      title: "برند ها",
-      href: "/panel/brand",
+      title: "کمپانی ها",
+      href: "/panel/company",
       icon: <TbBrandIntercom />,
     },
     { id: 5, title: "کاربران", href: "/panel/user", icon: <FiUsers /> },

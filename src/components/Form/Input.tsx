@@ -11,11 +11,11 @@ const Input = ({
   onChange,
   value,
   onfocus,
-  defaultValue
+  defaultValue,
 }: inputProps) => {
   return (
     <>
-      <label htmlFor="" className="bolck text-sm mb-2 px-1">
+      <label className="bolck text-sm mb-2 px-1">
         {label}
       </label>
       <input
@@ -27,6 +27,7 @@ const Input = ({
         value={value}
         onFocus={onfocus}
         defaultValue={defaultValue}
+        required
       />
       <p className="text-red text-sm">{error}</p>
     </>

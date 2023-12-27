@@ -15,7 +15,7 @@ async function page() {
       <Header />
       <Menu />
 
-      <div className="md:w-[88vw] w-[84vw] min-h-screen absolute left-0 bg-[#1F2432] mt-10 md:pr-8 pr- -z-20">
+      <div className="md:w-[88vw] w-[84vw] min-h-screen absolute left-0 bg-[#1F2432] mt-10 md:pr-8 -z-20">
         <Suspense>
           <AddColor />
         </Suspense>

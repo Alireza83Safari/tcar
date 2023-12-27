@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import Input from "./Form/Input";
-import Button from "./Form/Button";
+import Input from "../../../components/Form/Input";
+import Button from "../../../components/Form/Button";
 
 const page = () => {
   const [contactForm, setContactForm] = useState({

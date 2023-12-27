@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { FaCarSide, FaMoneyBill1Wave, FaPhone } from "react-icons/fa6";
 import { LiaInfoSolid } from "react-icons/lia";
 import Input from "../../../components/Form/Input";
@@ -20,6 +20,7 @@ import { initialState } from "./AddCar";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/app/actions/fetcher";
 import { revalidateTag } from "next/cache";
+import { apiUrl } from "@/services/apiUrl";
 
 const AddCarForm = ({
   setCreateCarInfos,
@@ -36,13 +37,13 @@ const AddCarForm = ({
     if (session) {
       setCreateCarInfos({
         ...createCarInfos,
-        userId: session?.id,
+        userId: (session as any)?.id,
       });
     }
   }, [session]);
 
   const [errors, setErrors] = useState<createCarErrorType>();
-  const setInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const setInputValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { value, name, type } = e.target;
 
     setCreateCarInfos({
@@ -68,7 +69,7 @@ const AddCarForm = ({
       });
 
       if (isValid) {
-        const res = await axios.post("/api/car", createCarInfos);
+        const res = await axios.post(`${apiUrl}/car`, createCarInfos);
         if (res.status === 201) {
           setShowImage(true);
           setCreateCarInfos(initialState);
@@ -254,13 +255,13 @@ const AddCarForm = ({
           <textarea
             id="textarea"
             className="w-full py-2 bg-black-100 border border-borderColor rounded-lg px-3"
-            name="textarea"
+            name="description"
             rows={4}
             cols={50}
             onChange={setInputValue}
-            name="description"
             value={createCarInfos.description}
           ></textarea>
+
           <p className="text-red">{errors?.description}</p>
         </div>
       </div>

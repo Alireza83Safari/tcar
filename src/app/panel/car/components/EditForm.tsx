@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import { axiosInstance } from "@/services/axios/axios";
 import toast from "react-hot-toast";
 
-const EditForm = ({ editCarId }: any) => {
+const EditForm = ({ editCarId, closeModal }: any) => {
   const { data: session } = useSession();
 
   const initialState = {
@@ -68,8 +68,9 @@ const EditForm = ({ editCarId }: any) => {
   const [state, formAction] = useFormState(editCar, errorState);
 
   useEffect(() => {
-    if (state.status === 200) {
+    if (state?.status === 200) {
       toast.success("ویراش خودرو موفقیت آمیز بود");
+      closeModal();
     } else if (state.message) {
       toast.error(state.message);
     }
@@ -78,7 +79,7 @@ const EditForm = ({ editCarId }: any) => {
   return (
     <div>
       {isLoading ? (
-        <div className="min-w-[24rem] min-h-[24rem">
+        <div className="min-w-[27rem] min-h-[27rem] flex justify-center items-center">
           <Spinner />
         </div>
       ) : (
@@ -172,17 +173,17 @@ const EditForm = ({ editCarId }: any) => {
               label="رنگ"
               name="color"
               onChange={setInputValue}
-              value={editCarValue.color?._id}
+              value={editCarValue.color}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={colors}
             />
           </div>
           <div className="mx-2 my-1">
             <Select
-              label="برند"
+              label="کمپانی"
               name="company"
               onChange={setInputValue}
-              value={editCarValue.company?._id}
+              value={editCarValue.company}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={companies}
             />
@@ -192,7 +193,7 @@ const EditForm = ({ editCarId }: any) => {
               label="پلتفرم"
               name="platform"
               onChange={setInputValue}
-              value={editCarValue.platform?._id}
+              value={editCarValue.platform}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={platform}
             />

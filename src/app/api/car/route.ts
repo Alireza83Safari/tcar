@@ -7,26 +7,36 @@ import Company from "@/models/company";
 import Platform from "@/models/platform";
 import mongoose from "mongoose";
 import User from "@/models/user";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET(req: NextRequest) {
-  const session = await getServerSession(authOptions);
-  console.log(session);
-
   const { searchParams } = new URL(req.url);
   const param = searchParams.get("q");
   const colorQuery = searchParams.get("color");
   const companyQuery = searchParams.get("company");
   const platformQuery = searchParams.get("platform");
   const statusQuery = searchParams.get("carStatus");
+  const yearsQuery = searchParams.get("years");
 
   try {
     await connectToDB();
+
     let carQuery;
     switch (true) {
+      case !!yearsQuery:
+        carQuery = await Car.find({ years: yearsQuery }, "-__v")
+          .populate("company", "-__v")
+          .populate("color", "-__v")
+          .populate("platform", "-__v");
+        if (carQuery.length === 0) {
+          return NextResponse.json(
+            { message: "No cars found for this platform" },
+            { status: 404 }
+          );
+        }
+        return NextResponse.json(carQuery);
+
       case !!platformQuery:
-        const platformIds = platformQuery.split(",");
+        const platformIds = platformQuery !== null && platformQuery.split(",");
         carQuery = await Car.find({ platform: { $in: platformIds } }, "-__v")
           .populate("company", "-__v")
           .populate("color", "-__v")
@@ -40,7 +50,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(carQuery);
 
       case !!colorQuery:
-        const colorIds = colorQuery.split(",");
+        const colorIds = colorQuery !== null && colorQuery.split(",");
         carQuery = await Car.find({ color: { $in: colorIds } }, "-__v")
           .populate("company", "-__v")
           .populate("color", "-__v")
@@ -54,7 +64,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(carQuery);
 
       case !!companyQuery:
-        const companyIds = companyQuery.split(",");
+        const companyIds = companyQuery !== null && companyQuery.split(",");
         carQuery = await Car.find({ company: { $in: companyIds } }, "-__v")
           .populate("company", "-__v")
           .populate("color", "-__v")
@@ -68,13 +78,13 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(carQuery);
 
       case !!statusQuery:
-        carQuery = await Car.find({ carStatus: +statusQuery }, "-__v")
+        carQuery = await Car.find({ carStatus: statusQuery }, "-__v")
           .populate("company", "-__v")
           .populate("color", "-__v")
           .populate("platform", "-__v");
         if (carQuery.length === 0) {
           return NextResponse.json(
-            { message: "No cars found for this platform" },
+            { message: "No cars found for this status" },
             { status: 404 }
           );
         }
@@ -101,7 +111,6 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(cars);
     }
   } catch (error) {
-    console.error("Error:", error);
     return NextResponse.json(
       { message: "خطا در پردازش درخواست" },
       { status: 500 }
@@ -179,7 +188,6 @@ export async function POST(req: NextRequest) {
     }
     return NextResponse.json(createdCar, { status: 201 });
   } catch (error) {
-    console.error("Error:", error);
     return NextResponse.json(
       { message: "خطا در پردازش درخواست" },
       { status: 500 }

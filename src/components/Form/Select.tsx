@@ -25,15 +25,17 @@ const Select = ({
         onChange={onChange}
         value={value}
       >
-        <option value={defaultValue?.value || ""}>
-          {defaultValue?.name || ""}
-        </option>
+        {!value && (
+          <option value={ ""}>
+            {defaultValue?.name || ""}
+          </option>
+        )}
         {options?.map((item: any) => (
           <option
             key={item?._id || item?.value}
             value={item?._id || item?.value}
           >
-            {item?.name}
+            {item?.name || item?.code}
           </option>
         ))}
       </select>

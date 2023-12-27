@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Input from "@/components/Form/Input";
 import Header from "@/components/Header";
 import Spinner from "@/components/Spinner/Spinner";
-import axiosInstance from "@/services/axios/axios";
+import { axiosInstance } from "@/services/axios/axios";
 import { loginErrorType } from "@/types/error.type";
 import { loginSchema } from "@/validator/client/auth";
 import { signIn, useSession } from "next-auth/react";

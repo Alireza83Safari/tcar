@@ -1,6 +1,6 @@
 import Company from "@/models/company";
 import connectToDB from "@/utils/database";
-import companyValidator from "@/validator/server/company";
+import brandValidator from "@/validator/server/brand";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -9,21 +9,21 @@ export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
 
-    const validatorResult = companyValidator(data);
+    const validatorResult = brandValidator(data);
     if (validatorResult !== true) {
       return NextResponse.json({ validatorResult }, { status: 422 });
     }
 
-    const company = await Company.findOne({ name: data.name });
-    if (company) {
+    const brand = await Company.findOne({ name: data.name });
+    if (brand) {
       return NextResponse.json(
-        { error: "نام شرکت از قبل وجود دارد" },
+        { error: "نام برند از قبل وجود دارد" },
         { status: 409 }
       );
     }
     const createCompany = await Company.create(data);
     if (createCompany) {
-      return NextResponse.json({ message: "شرکت ایجاد شد" }, { status: 201 });
+      return NextResponse.json({ message: "برند ایجاد شد" }, { status: 201 });
     }
   } catch (error) {
     return NextResponse.json(
@@ -40,12 +40,12 @@ export async function GET(req: NextRequest) {
     await connectToDB();
 
     if (params) {
-      const companyQuery = await Company.find(
+      const brandQuery = await Company.find(
         { name: { $regex: params } },
         "-__v"
       );
-      if (companyQuery.length) {
-        return NextResponse.json(companyQuery);
+      if (brandQuery.length) {
+        return NextResponse.json(brandQuery);
       } else {
         return NextResponse.json({ message: "هیچ شرکتی یافت نشد" });
       }

@@ -11,43 +11,61 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
   const [selectedPlatform, setSelectedPlatform] = useState<string[]>([]);
   const [selectedColor, setSelectedColor] = useState<string[]>([]);
   const [selectedCompany, setSelectedCompany] = useState<any>();
+  const [selectedYears, setSelectedYears] = useState<any>(null);
+  const [query, setQuery] = useState("");
 
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const { data: platforms, isLoading: platformLoading } = useSWR("platform",fetcher);
-  const { data: company, isLoading: companyLoading } = useSWR("company", fetcher);
+  const { data: platforms, isLoading: platformLoading } = useSWR(
+    "platform",
+    fetcher
+  );
+  const { data: brands, isLoading: brandLoading } = useSWR("brand", fetcher);
   const { data: colors, isLoading: colorLoading } = useSWR("color", fetcher);
 
-  const companyParams = searchParams.get("company");
+  const brandParams = searchParams.get("brand");
   const colorParams = searchParams.get("color");
   const platformParams = searchParams.get("platform");
+  const yearsParams = searchParams.get("years");
+  const queryParams = searchParams.get("q");
 
   const handleButtonClick = (status: string) => {
     setCarStatus(status);
   };
 
   useEffect(() => {
-    if (companyParams) setSelectedCompany(companyParams);
+    if (brandParams) setSelectedCompany(brandParams);
     if (colorParams) setSelectedColor([colorParams]);
     if (platformParams) setSelectedPlatform([platformParams]);
+    if (yearsParams) setSelectedYears(yearsParams);
+    if (queryParams) setQuery(queryParams);
   }, []);
 
   useEffect(() => {
     const params = new URLSearchParams();
-    
+
     if (carStatus !== null) params.set("carStatus", carStatus?.toString());
     if (selectedPlatform.length > 0)
       params.set("platform", selectedPlatform.join(","));
     if (selectedColor.length > 0) params.set("color", selectedColor.join(","));
-    if (selectedCompany) params.set("company", selectedCompany);
+    if (selectedCompany) params.set("brand", selectedCompany);
+    if (selectedYears) params.set("years", selectedYears);
+    if (query) params.set("q", query);
 
     router.push(`?${params.toString()}`);
-  }, [carStatus, selectedPlatform, selectedColor, selectedCompany]);
+  }, [
+    carStatus,
+    selectedPlatform,
+    selectedColor,
+    selectedCompany,
+    selectedYears,
+    query,
+  ]);
 
   return (
     <div
-      className={`border border-borderColor px-4 md:rounded-lg md:block overflow-auto ${
+      className={`border border-borderColor px-4 md:rounded-lg md:block overflow-auto bg-black-100 ${
         showFilterMenu ? `fixed right-0 top-0 z-10 sm:w-1/4 block` : `hidden`
       }`}
     >
@@ -74,7 +92,7 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
         <h3 className="mb-2">نوع بدنه</h3>
         {platformLoading ? (
           <Spinner />
-        ) : (
+        ) : platforms?.length ? (
           platforms?.map((platform: getPlatformType) => (
             <div key={platform?._id} className="py-1">
               <input
@@ -100,13 +118,20 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
               </label>
             </div>
           ))
+        ) : (
+          <p>پلتفرمی وجود ندارد</p>
         )}
       </div>
 
       <div className="pt-5 mb-4">
-        <select className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor">
+        <select
+          className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor"
+          value={selectedYears}
+          onChange={(e) => setSelectedYears(e.target.value)}
+        >
+          <option value="">مدل</option>
           {yearsItem.map((year) => (
-            <option value={year.value} key={year.name}>
+            <option value={year.value} key={year.name} defaultValue={"مدل"}>
               {year.name}
             </option>
           ))}
@@ -119,14 +144,17 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
           value={selectedCompany}
           onChange={(e) => setSelectedCompany(e.target.value)}
         >
-          {companyLoading ? (
+          <option value="">برند</option>
+          {brandLoading ? (
             <Spinner />
-          ) : (
-            company?.map((item: any) => (
+          ) : brands?.lngth ? (
+            brands?.map((item: any) => (
               <option value={item._id} key={item._id}>
                 {item.name}
               </option>
             ))
+          ) : (
+            <p>پلتفرمی وجود ندارد</p>
           )}
         </select>
       </div>
@@ -135,7 +163,7 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
         <h3>رنگ</h3>
         {colorLoading ? (
           <Spinner />
-        ) : (
+        ) : colors?.length ? (
           colors?.map((color: any) => (
             <div className="py-1" key={color?._id}>
               <input
@@ -159,6 +187,8 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
               </label>
             </div>
           ))
+        ) : (
+          <p>رنگی وجود ندارد</p>
         )}
       </div>
     </div>

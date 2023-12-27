@@ -5,7 +5,7 @@ import { InfoBar } from "./components/InfoBar";
 import Chart from "./components/Chart";
 import { getCars } from "@/app/actions/car";
 import { getColors } from "@/app/actions/color";
-import { getBrands } from "@/app/actions/brand";
+import { getCopmpanies } from "@/app/actions/company";
 import { getUsers } from "@/app/actions/user";
 import { UsersTable } from "./components/UsersTable";
 
@@ -16,15 +16,15 @@ interface DataItem {
   value: number;
 }
 
-async function page() {
+export default async function page() {
   const cars = await getCars("");
   const colors = await getColors();
   const platforms = await getPlatforms("");
-  const brands = await getBrands();
+  const companies = await getCopmpanies();
   const users = await getUsers();
 
   const data: DataItem[] = [
-    { name: "برند", value: brands.length || 0 },
+    { name: "کمپانی", value: companies.length || 0 },
     { name: "رنگ", value: colors.length || 0 },
     { name: "پلتفرم", value: platforms.length || 0 },
     { name: "خودرو", value: cars.length || 0 },
@@ -36,11 +36,11 @@ async function page() {
       <Menu />
       <div className="md:w-[88vw] w-[84vw] min-h-screen absolute left-0 bg-[#1F2432] px-4 mt-10 grid md:grid-cols-4">
         <InfoBar
-          cars={cars}
-          colors={colors}
-          platforms={platforms}
-          brands={brands}
-          users={users}
+          cars={cars?.length || 0}
+          colors={colors?.length || 0}
+          platforms={platforms?.length || 0}
+          companies={companies?.length || 0}
+          users={users?.length || 0}
         />
         <div className="gap-x-10 mb-7 md:col-span-3">
           <Chart data={data} />
@@ -50,5 +50,3 @@ async function page() {
     </div>
   );
 }
-
-export default page;

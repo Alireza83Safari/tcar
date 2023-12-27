@@ -1,4 +1,4 @@
-import Contact from "@/components/Contact";
+import Contact from "@/app/contact/components/Contact";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 

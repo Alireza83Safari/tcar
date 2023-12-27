@@ -8,9 +8,15 @@ export type AccordionPropsType = {
   title: string;
   titleValue?: string;
   children?: React.ReactNode;
+  content?: string;
 };
 
-const Accordion = ({ title, titleValue, children }: AccordionPropsType) => {
+const Accordion = ({
+  title,
+  titleValue,
+  children,
+  content,
+}: AccordionPropsType) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -29,7 +35,11 @@ const Accordion = ({ title, titleValue, children }: AccordionPropsType) => {
           </div>
         </div>
       </div>
-      {isActive && <div className="mt-4 text-gray-200">{children}</div>}
+      {isActive && (
+        <div className="mt-4 text-gray-200">
+          {children ? children : content}
+        </div>
+      )}
     </div>
   );
 };

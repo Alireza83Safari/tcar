@@ -1,30 +1,32 @@
 "use server";
 
 import Company from "@/models/company";
+import { apiUrl } from "@/services/apiUrl";
 import connectToDB from "@/utils/database";
 import { revalidateTag } from "next/cache";
 
-export async function getBrands() {
-  const res = await fetch("http://localhost:3000/api/company", {
-    next: { tags: ["brands"] },
+export async function getCopmpanies() {
+  "use server";
+  const res = await fetch(`${apiUrl}/company`, {
+    next: { tags: ["company"] },
   });
-  const brands = await res.json();
-  return brands;
+  const companies = await res.json();
+  return companies;
 }
 
 export async function deleteBrand(id: string) {
   "use server";
-  const res = await fetch(`http://localhost:3000/api/company/${id}`, {
+  const res = await fetch(`${apiUrl}/company/${id}`, {
     method: "DELETE",
-    next: { tags: ["brands"] },
   });
+  console.log(res);
 
   if (res.status === 200) {
-    revalidateTag("brands");
+    revalidateTag("company");
   }
 }
 
-export async function createBrand(prev: any, formData: FormData) {
+export async function createCompany(prev: any, formData: FormData) {
   "use server";
   await connectToDB();
 
@@ -32,14 +34,13 @@ export async function createBrand(prev: any, formData: FormData) {
     code: formData.get("code"),
     name: formData.get("name"),
   });
-  console.log(validatedFields);
 
   if (!validatedFields) {
     return {
       errors: validatedFields,
     };
   } else {
-    revalidateTag("brands");
+    revalidateTag("company");
     return {
       status: 200,
       message: validatedFields,
@@ -65,7 +66,7 @@ export async function editBrands(prev: any, formData: FormData) {
       errors: validatedFields,
     };
   } else {
-    revalidateTag("brands");
+    revalidateTag("company");
     return {
       status: 200,
     };

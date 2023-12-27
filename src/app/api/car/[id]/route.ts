@@ -7,9 +7,8 @@ export async function DELETE(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  connectToDB();
-
   try {
+    await connectToDB();
     const editCar = await Car.findByIdAndDelete(params.id);
 
     if (!editCar) {
@@ -30,9 +29,9 @@ export async function PUT(
   req: Request,
   { params }: { params: { id: string } }
 ) {
-  connectToDB();
-  const data = await req.json();
   try {
+    await connectToDB();
+    const data = await req.json();
     const findCar = await Car.findById(params.id);
     if (findCar) {
       const editCar = await Car.findOneAndUpdate({ _id: params.id }, data, {
@@ -72,9 +71,13 @@ export async function GET(
       );
     }
 
-    const findCar = await Car.findOne({ _id: params.id }, "-__v");
-    if (!findCar) {
-    }
+    const findCar = await Car.findOne({ _id: params.id }, "-__v")
+      .populate("company", "-__v")
+      .populate("platform", "-__v")
+      .populate("color")
+      .exec();
+
+    // Check if 'findCar' exists and handle accordingly
 
     if (!findCar) {
       return NextResponse.json({ message: "خودرو پیدا نشد" }, { status: 404 });

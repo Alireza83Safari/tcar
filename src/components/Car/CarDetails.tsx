@@ -1,75 +1,102 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
 import { FaHeart, FaShareAlt } from "react-icons/fa";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { CarType } from "../../types/car.type";
+import Accordion from "../Accordion";
+import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import { apiUrl } from "@/services/apiUrl";
 
-const CarDetails = (props: CarType) => {
-  const {
-    image,
-    title,
-    phone,
-    price,
-    work,
-    firstname,
-    lastname,
-    carStatus,
-    description,
-    gearbox,
-    fuel,
-    platform,
-    model,
-    color,
-  } = props;
-  const [showTechnology, setShowTechnology] = useState(false);
-  const [showSafe, setShowSafe] = useState(false);
+const CarDetails = ({ car }: { car: CarType }) => {
+  const { data: session } = useSession();
+
+  const addFavorite = async () => {
+    if (session) {
+      const data = {
+        carId: car._id,
+        user: (session as any)?.id,
+      };
+
+      try {
+        const res = await fetch(`${apiUrl}/favorite`, {
+          method: "POST",
+          body: JSON.stringify(data),
+        });
+        if (res.status === 201) {
+          toast.success("با موفقیت اضاقه شد");
+        }
+      } catch (error) {
+        console.log(error);
+
+        toast.error(String(error));
+      }
+    } else {
+      toast.error("لطفا وارد حساب شوید");
+    }
+  };
+
   return (
     <section className="px-4 mt-10">
       <div className="flex justify-between pb-5">
-        <p>{title}</p>
+        <p className="text-3xl">{car?.title}</p>
         <div className="flex">
-          <FaHeart className="text-xl mx-3" />
+          <FaHeart className="text-xl mx-3" onClick={addFavorite} />
+          lkj
           <FaShareAlt className="text-xl mx-3" />
         </div>
       </div>
-      <div className="grid grid-cols-5">
-        <div className="col-span-3">
+      <div className="grid grid-cols-4">
+        <div className="col-span-2 flex justify-center items-center">
           <Image
-            src={`/uploads/${image}`}
+            src={car?.image ? `/uploads/${car?.image}` : "/img/no-image.png"}
             alt="car"
-            className="min-w-full rounded-lg"
-            width={400}
-            height={400}
+            className="min-w-ful rounded-lg"
+            width={300}
+            height={300}
           />
         </div>
-        <div className="col-span-2 px-7">
+
+        <div className="col-span-2 grid grid-cols-2 px-7">
           <div className="mb-5">
-            {carStatus === 0 ? (
+            {car?.carStatus === 0 ? (
               <button className="px-8 rounded-lg bg-green mx-1">نو</button>
             ) : (
               <button className="px-8 rounded-lg bg-blue mx-1">کارکرده</button>
             )}
           </div>
-          <p className="text-xl mb-4">{price?.toLocaleString()}</p>
-          <div className="flex mb-4">
-            <p className="pl-3">{work} کیلومتر</p>
-            <p className="pr-3 border-r border-borderColor">البرز</p>
-          </div>
+          <span className="text-xl mb-4">
+            قیمت:{car?.price?.toLocaleString()}
+          </span>
+          <span className="text-xl mb-4">رنگ: {(car?.color as any)?.name}</span>
+          <span className="pl-3 mb-4">کارکرد: {car?.work} کیلومتر</span>
+          <span className="pl-3 mb-4">
+            گیربکس:
+            {car?.gearbox === 0 ? "دستی" : "اتومات"}
+          </span>
 
-          <div className="bg-black-100 p-4 rounded-lg mt-8">
+          <span className="pl-3 mb-4">
+            سوخت:
+            {+car?.fuel == 0 ? "بنزینی" : "برقی"}
+          </span>
+
+          <span className="pl-3 mb-4">
+            پلتفرم:
+            {(car?.platform as any)?.name}
+          </span>
+
+          <div className="bg-black-100 p-4 rounded-lg mt-8 col-span-2">
             <p className="mb-4">مشخصات فروشنده</p>
             <div className="mb-4 flex items-center">
               <p>نام:</p>
               <p>
-                {firstname} {lastname}
+                {car?.firstname} {car?.lastname}
               </p>
             </div>
             <div className="mb-4 flex items-center">
               <p className="ml-4">شماره تماس:</p>
               <p className="border border-orange px-4 rounded-lg py-1">
-                {phone}
+                {car?.phone}
               </p>
             </div>
             <div className="flex items-center">
@@ -83,71 +110,45 @@ const CarDetails = (props: CarType) => {
       <div>
         <div className="rounded-lg border-x border-t border-borderColor mt-5">
           <div className="border-b border-borderColor">
-            <div
-              className="flex justify-between items-center p-3"
-              onClick={() => setShowTechnology(!showTechnology)}
-            >
-              <p>تکنولوژی</p>
-              {showTechnology ? <FaAngleDown /> : <FaAngleUp />}
-            </div>
+            <Accordion title="تکنولوژی">
+              <div className="grid grid-cols-2">
+                <div className="text-sm text-gray-200">
+                  <li>کنترل آب و هوا</li>
+                  <li>سیستم ناوبری</li>
+                  <li>بلوتوث</li>
+                  <li>مدیریت از راه دور</li>
+                </div>
+                <div className="text-sm text-gray-200">
+                  <li>کنترل آب و هوا</li>
+                  <li>سیستم ناوبری</li>
+                  <li>بلوتوث</li>
+                  <li>مدیریت از راه دور</li>
+                </div>
+              </div>
+            </Accordion>
 
-            <div
-              className={`  grid grid-cols-2 p-3 ${
-                showTechnology ? `grid` : `hidden`
-              }`}
-            >
-              <div className="text-sm text-gray-200">
-                <li>کنترل آب و هوا</li>
-                <li>سیستم ناوبری</li>
-                <li>بلوتوث</li>
-                <li>مدیریت از راه دور</li>
+            <Accordion title="امنیت">
+              <div className="grid grid-cols-2">
+                <div className="text-sm text-gray-200">
+                  <li>کیسه هوا: راننده</li>
+                  <li>کیسه هوا: مسافر</li>
+                  <li>زنگ هشدار</li>
+                  <li>ترمزهای ضد قفل</li>
+                </div>
+                <div className="text-sm text-gray-200">
+                  <li>کمک ترمز</li>
+                  <li>هشدار خروج از خط</li>
+                  <li>چراغهای مه</li>
+                  <li>قفل درهای برقی</li>
+                </div>
               </div>
-              <div className="text-sm text-gray-200">
-                <li>کنترل آب و هوا</li>
-                <li>سیستم ناوبری</li>
-                <li>بلوتوث</li>
-                <li>مدیریت از راه دور</li>
-              </div>
-            </div>
-          </div>
-          <div className="border-b border-borderColor">
-            <div
-              className="flex justify-between items-center p-3"
-              onClick={() => setShowSafe(!showSafe)}
-            >
-              <p>امنیت</p>
-              {showSafe ? <FaAngleDown /> : <FaAngleUp />}
-            </div>
-
-            <div
-              className={`  grid grid-cols-2 p-3 ${
-                showSafe ? `grid` : `hidden`
-              }`}
-            >
-              <div className="text-sm text-gray-200">
-                <li>کیسه هوا: راننده</li>
-                <li>کیسه هوا: مسافر</li>
-                <li>زنگ هشدار</li>
-                <li>ترمزهای ضد قفل</li>
-              </div>
-              <div className="text-sm text-gray-200">
-                <li>کمک ترمز</li>
-                <li>هشدار خروج از خط</li>
-                <li>چراغهای مه</li>
-                <li>قفل درهای برقی</li>
-              </div>
-            </div>
+            </Accordion>
           </div>
         </div>
 
         <div className="mt-4">
           <h3 className="text-lg">توضیحات فروشنده</h3>
-          <p className="text-sm text-gray-200">
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-            استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در
-            ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و
-            کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.
-          </p>
+          <p className="text-sm text-gray-200">{car?.description}</p>
         </div>
       </div>
     </section>

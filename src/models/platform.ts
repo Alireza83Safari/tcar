@@ -4,11 +4,9 @@ export const platformShema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
     },
     code: {
       type: String,
-      required: true,
     },
     image: {
       type: String,

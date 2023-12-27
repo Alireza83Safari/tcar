@@ -1,11 +1,13 @@
 "use server";
 
 import Color from "@/models/color";
+import { apiUrl } from "@/services/apiUrl";
 import connectToDB from "@/utils/database";
+import colorValidator from "@/validator/server/color";
 import { revalidateTag } from "next/cache";
 
 export async function getColors() {
-  const res = await fetch("http://localhost:3000/api/color", {
+  const res = await fetch(`${apiUrl}/color`, {
     next: { tags: ["colors"] },
   });
   const colors = await res.json();
@@ -14,7 +16,7 @@ export async function getColors() {
 
 export async function deleteColor(id: string) {
   "use server";
-  const res = await fetch(`http://localhost:3000/api/color/${id}`, {
+  const res = await fetch(`${apiUrl}/color/${id}`, {
     method: "DELETE",
   });
 
@@ -24,24 +26,39 @@ export async function deleteColor(id: string) {
 
 export async function createColors(prev: any, formData: FormData) {
   "use server";
-  await connectToDB();
-
-  const validatedFields = await Color.create({
+  const data = {
     code: formData.get("code"),
     name: formData.get("name"),
     hex: formData.get("hex"),
-  });
-  console.log(validatedFields);
+  };
 
-  if (!validatedFields) {
+  try {
+    await connectToDB();
+
+    const validationResult = colorValidator(data);
+
+    if (validationResult !== true) {
+      return { status: 422 };
+    }
+
+    const existingColor = await Color.findOne({ code: data?.code });
+
+    if (existingColor) {
+      return {
+        message: "کد رنگ از قبل وجود دارد",
+        status: 409,
+      };
+    }
+
+    const createdColor = await Color.create(data);
+
+    if (createdColor) {
+      revalidateTag("colors");
+      return { message: "رنگ با موفقیت ایجاد شد", status: 201 };
+    }
+  } catch (error) {
     return {
-      errors: validatedFields,
-    };
-  } else {
-    revalidateTag("colors");
-    return {
-      status: 200,
-      message: validatedFields,
+      message: error,
     };
   }
 }

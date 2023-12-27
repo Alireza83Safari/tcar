@@ -3,22 +3,23 @@ import Modal from "@/components/Modal";
 import Input from "@/components/Form/Input";
 import Spinner from "@/components/Spinner/Spinner";
 import { useState, useEffect } from "react";
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa6";
-import ImageUpload from "./AddBrandImage";
-import { createBrand } from "@/app/actions/brand";
+import ImageUpload from "./AddCompanyImage";
+import { createCompany } from "@/app/actions/company";
 
 const AddBrand = () => {
   const [showImage, setShowImage] = useState(false);
   const initialState = {
-    name: "",
-    code: "",
-    image: null,
+    message: "",
+    status: "",
   } as any;
 
-  const [state, formAction] = useFormState(createBrand, initialState);
+  const { pending } = useFormStatus();
+  const [state, formAction] = useFormState(createCompany, initialState);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  console.log("pending", pending);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -72,7 +73,7 @@ const AddBrand = () => {
                   />
                 </div>
 
-                <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+                <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2"aria-disabled={pending}>
                   افزودن برند
                 </button>
               </>

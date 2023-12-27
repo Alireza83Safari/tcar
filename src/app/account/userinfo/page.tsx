@@ -8,14 +8,14 @@ import Menu from "../components/Menu";
 
 export default async function page() {
   const session = await getServerToken();
-  const user = await getUser((session as any)?.email);
+  const user = await getUser((session as any)?.id);
 
   return (
     <>
       <Header />
       <main className="grid grid-cols-12 mt-12">
         <Menu />
-        <UserInfo user={user} session={session} />
+        <UserInfo user={user} />
       </main>
 
       <Footer />

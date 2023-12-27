@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import { editColors } from "@/app/actions/color";
+import { apiUrl } from "@/services/apiUrl";
 
 const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
   const [initialState, setInitialState] = useState({
@@ -20,7 +21,7 @@ const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
   const findColor = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/api/color/${editId}`);
+      const res = await fetch(`${apiUrl}/color/${editId}`);
       const color = await res.json();
       setInitialState(color);
       setLoading(false);

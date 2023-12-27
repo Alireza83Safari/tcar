@@ -10,7 +10,7 @@ export async function Table({ colors }: { colors: getColorType[] }) {
   const [editId, setEditID] = useState("");
   const [showColors, setShowEditColor] = useState(false);
   return (
-    <div className=" overflow-x-auto">
+    <div className="overflow-x-auto">
       <table className="min-w-full overflow-x-auto rounded-lg mx-4 bg-black-200">
         <thead>
           <tr className="sm:text-xs text-[12px] 2xl:text-lg border-y">

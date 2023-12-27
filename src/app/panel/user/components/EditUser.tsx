@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import { editUser } from "@/app/actions/user";
 import toast from "react-hot-toast";
+import { apiUrl } from "@/services/apiUrl";
 
 const EditUser = ({ showModal, setShowEditModal, editId }: any) => {
   const [initialState, setInitialState] = useState({
@@ -19,7 +20,7 @@ const EditUser = ({ showModal, setShowEditModal, editId }: any) => {
   const findUser = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:3000/api/user/${editId}`);
+      const res = await fetch(`${apiUrl}/user/${editId}`);
       const user = await res.json();
       setInitialState(user[0]);
       setLoading(false);

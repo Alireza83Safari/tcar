@@ -10,7 +10,7 @@ export async function POST(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const formData = await req.formData();
+  const formData = (await req.formData()) as any;
 
   const file = formData.get("file");
   if (!file) {
@@ -39,8 +39,8 @@ export async function POST(
 
     const updatedCar = await Car.findByIdAndUpdate(
       params.id,
-      { image: filename }, // Corrected update object
-      { new: true } // To return the updated document
+      { image: filename },
+      { new: true }
     );
 
     if (!updatedCar) {
@@ -49,7 +49,6 @@ export async function POST(
 
     return NextResponse.json({ Message: "Success", status: 201 });
   } catch (error) {
-    console.log("Error occurred ", error);
     return NextResponse.json({ Message: "Failed", status: 500 });
   }
 }

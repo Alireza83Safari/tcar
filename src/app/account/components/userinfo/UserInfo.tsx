@@ -3,12 +3,16 @@
 import Accordion from "../../../../components/Accordion";
 import Input from "../../../../components/Form/Input";
 import { useState, useEffect } from "react";
-import { editUser } from "@/app/actions/user";
 import { TbCameraPlus } from "react-icons/tb";
-import Menu from "../Menu";
+import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import { axiosInstance } from "@/services/axios/axios";
+import { useRouter } from "next/navigation";
+import { getUserType } from "@/types/user.type";
 
-const UserInfo = ({ user, session }) => {
-  const [userInfos, setUserInfo] = useState({
+const UserInfo = ({ user }: { user: getUserType }) => {
+  const { data: session, update } = useSession();
+  const [userInfos, setUserInfos] = useState({
     firstname: "",
     lastname: "",
     email: "",
@@ -17,7 +21,7 @@ const UserInfo = ({ user, session }) => {
 
   useEffect(() => {
     if (user) {
-      setUserInfo({
+      setUserInfos({
         ...userInfos,
         email: user.email,
         firstname: user.firstname,
@@ -27,9 +31,31 @@ const UserInfo = ({ user, session }) => {
     }
   }, [user]);
 
-  const editUserInfo = () => {
-    // editUser(session?.id, userInfos);
+  const setInputValue = (e:React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setUserInfos({
+      ...userInfos,
+      [name]: value,
+    });
   };
+
+  const editUserInfo = async () => {
+    const res = await axiosInstance.put(`/user/${(session as any)?.id}`, userInfos);
+
+    if (res.status === 200) {
+      update(userInfos);
+      toast.success("ویرایش با موفقیت انجام شد");
+    }
+  };
+
+  const router = useRouter();
+  useEffect(() => {
+    if (!session) {
+      router.push("/");
+    }
+  }, [session]);
+
   return (
     <div className="col-span-8 mx-5 grid grid-cols-11">
       <form action={editUserInfo} className="col-span-8">
@@ -39,9 +65,8 @@ const UserInfo = ({ user, session }) => {
             <Input
               name="firstname"
               placeholder="نام"
-              defaultValue={userInfos.firstname}
-              //  error={errors?.title}
-              //   onfocus={() => setErrors("" as any)}
+              value={userInfos.firstname}
+              onChange={setInputValue}
             />
           </div>
         </Accordion>
@@ -52,8 +77,7 @@ const UserInfo = ({ user, session }) => {
               name="lastname"
               placeholder="نام خانوادگی"
               value={userInfos.lastname}
-              //  error={errors?.title}
-              //   onfocus={() => setErrors("" as any)}
+              onChange={setInputValue}
             />
           </div>
         </Accordion>
@@ -63,9 +87,8 @@ const UserInfo = ({ user, session }) => {
             <Input
               name="email"
               placeholder="ایمیل"
-              defaultValue={userInfos.email}
-              //  error={errors?.title}
-              //   onfocus={() => setErrors("" as any)}
+              value={userInfos.email}
+              onChange={setInputValue}
             />
           </div>
         </Accordion>
@@ -75,9 +98,8 @@ const UserInfo = ({ user, session }) => {
             <Input
               name="phone"
               placeholder="شماره"
-              defaultValue={userInfos.phone}
-              //  error={errors?.title}
-              //   onfocus={() => setErrors("" as any)}
+              value={userInfos.phone}
+              onChange={setInputValue}
             />
           </div>
         </Accordion>
