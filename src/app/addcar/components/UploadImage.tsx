@@ -22,7 +22,10 @@ export default function ImageUpload({ id }: { id: string }) {
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch(`${apiUrl}/upload/car/${id}`, {
+      if (!apiUrl) {
+        return null;
+      }
+      const response = await fetch(`${apiUrl}/api/upload/car/${id}`, {
         method: "POST",
         body: formData,
       });

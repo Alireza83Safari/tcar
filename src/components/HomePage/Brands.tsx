@@ -7,7 +7,7 @@ import { companyType } from "@/types/company.type";
 import Link from "next/link";
 
 const Brands = () => {
-  const { data: brands } = useSWR("/company", fetcher);
+  const { data: brands } = useSWR("company", fetcher);
 
   return (
     <nav className="grid md:grid-cols-10 sm:grid-cols-6 grid-cols-4 md:px-8 px-3 xl:container m-auto gap-y-10">

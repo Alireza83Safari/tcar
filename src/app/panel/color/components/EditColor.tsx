@@ -21,7 +21,7 @@ const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
   const findColor = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${apiUrl}/color/${editId}`);
+      const res = await fetch(`${apiUrl}/api/color/${editId}`);
       const color = await res.json();
       setInitialState(color);
       setLoading(false);

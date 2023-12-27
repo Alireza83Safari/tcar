@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import { fetcher } from "@/app/actions/fetcher";
 
 const FilterCar = () => {
-  const { data: companies } = useSWR("/company", fetcher);
-  const { data: platforms } = useSWR("/platform", fetcher);
+  const { data: companies } = useSWR("company", fetcher);
+  const { data: platforms } = useSWR("platform", fetcher);
 
   const router = useRouter();
   const [filterValue, setFilterValue] = useState({

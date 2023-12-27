@@ -7,7 +7,10 @@ import mongoose from "mongoose";
 import { revalidateTag } from "next/cache";
 
 export async function getUsers() {
-  const res = await fetch(`${apiUrl}/user`, {
+  if (!apiUrl) {
+    return null;
+  }
+  const res = await fetch(`${apiUrl}/api/user`, {
     next: { tags: ["user"] },
   });
   const user = await res.json();
@@ -16,7 +19,10 @@ export async function getUsers() {
 
 export async function deleteuser(id: string) {
   "use server";
-  const res = await fetch(`${apiUrl}/user/${id}`, {
+  if (!apiUrl) {
+    return null;
+  }
+  const res = await fetch(`${apiUrl}/api/user/${id}`, {
     method: "DELETE",
   });
   if (res.status === 200) {
@@ -25,6 +31,9 @@ export async function deleteuser(id: string) {
 }
 
 export async function createUser(prev: any, formData: FormData) {
+  if (!apiUrl) {
+    return null;
+  }
   const data = {
     firstname: formData.get("firstname"),
     lasntname: formData.get("lasntname"),
@@ -47,6 +56,9 @@ export async function createUser(prev: any, formData: FormData) {
 }
 
 export async function editUser(prev: any, formData: FormData) {
+  if (!apiUrl) {
+    return null;
+  }
   const id = formData.get("id");
   const data = {
     firstname: formData.get("firstname"),
@@ -75,7 +87,10 @@ export async function editUser(prev: any, formData: FormData) {
 }
 
 export async function getUser(id: string) {
-  "use server";
+  if (!apiUrl) {
+    return null;
+  }
+  ("use server");
   await connectToDB();
   const user = await User.findOne({ _id: id }, "-__v -password");
   return user;

@@ -22,7 +22,7 @@ const EditPlatform = ({ showModal, setShowEditModal, editId }: any) => {
   const findColor = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${apiUrl}/platform/${editId}`);
+      const res = await fetch(`${apiUrl}/api/platform/${editId}`);
       const color = await res.json();
       setInitialState(color);
       setLoading(false);

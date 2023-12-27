@@ -35,9 +35,9 @@ const EditForm = ({ editCarId, closeModal }: any) => {
   } as any;
   const [isLoading, setLoading] = useState(false);
   const [editCarValue, setEditCarValue] = useState(initialState);
-  const { data: colors } = useSWR("/color", fetcher);
-  const { data: companies } = useSWR("/company", fetcher);
-  const { data: platform } = useSWR("/platform", fetcher);
+  const { data: colors } = useSWR("color", fetcher);
+  const { data: companies } = useSWR("company", fetcher);
+  const { data: platform } = useSWR("platform", fetcher);
 
   const getCarWithId = async () => {
     setLoading(true);

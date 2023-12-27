@@ -19,7 +19,10 @@ const CarDetails = ({ car }: { car: CarType }) => {
       };
 
       try {
-        const res = await fetch(`${apiUrl}/favorite`, {
+        if (!apiUrl) {
+          return null;
+        }
+        const res = await fetch(`${apiUrl}/api/favorite`, {
           method: "POST",
           body: JSON.stringify(data),
         });

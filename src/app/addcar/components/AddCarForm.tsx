@@ -28,9 +28,9 @@ const AddCarForm = ({
   setCarId,
   setShowImage,
 }: any) => {
-  const { data: colors } = useSWR("/color", fetcher);
-  const { data: companies } = useSWR("/company", fetcher);
-  const { data: platform } = useSWR("/platform", fetcher);
+  const { data: colors } = useSWR("color", fetcher);
+  const { data: companies } = useSWR("company", fetcher);
+  const { data: platform } = useSWR("platform", fetcher);
   const { data: session } = useSession();
 
   useEffect(() => {

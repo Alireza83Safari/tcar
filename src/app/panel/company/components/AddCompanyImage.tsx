@@ -29,7 +29,7 @@ export default async function AddBrandImage({
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch(`${apiUrl}/upload/brand/${id}`, {
+      const response = await fetch(`${apiUrl}/api/upload/brand/${id}`, {
         method: "POST",
         body: formData,
       });

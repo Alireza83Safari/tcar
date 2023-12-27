@@ -6,7 +6,10 @@ import { apiUrl } from "@/services/apiUrl";
 export const revalidate = 60 * 60;
 
 const getPlatforms = async () => {
-  const res = await fetch(`${apiUrl}/platform`, {
+  if (!apiUrl) {
+    return null;
+  }
+  const res = await fetch(`${apiUrl}/api/platform`, {
     next: { tags: ["platform"] },
   });
 
@@ -27,7 +30,12 @@ export default async function Platforms() {
               className="text-center my-3 mx-auto"
               key={car?._id}
             >
-              <Image src={car.image ? `/uploads/${car?.image}` : '/img/no-image.png'} alt="car" width={220} height={220} />
+              <Image
+                src={car.image ? `/uploads/${car?.image}` : "/img/no-image.png"}
+                alt="car"
+                width={220}
+                height={220}
+              />
               <p className="text-gray-200 my-2">{car.name}</p>
             </Link>
           ))}

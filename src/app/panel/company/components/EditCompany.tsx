@@ -20,7 +20,7 @@ const EditBrand = ({ showEditBrand, setShowEditBrand, editId }: any) => {
   const findBrand = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${apiUrl}/brand/${editId}`);
+      const res = await fetch(`${apiUrl}/api/brand/${editId}`);
       const brand = await res.json();
       setInitialState(brand);
       setLoading(false);

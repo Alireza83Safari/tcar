@@ -7,7 +7,10 @@ import { revalidateTag } from "next/cache";
 
 export async function getCars(url: string) {
   "use server";
-  const res = await fetch(`${apiUrl}/${url ? url : `car`}`, {
+  if (!apiUrl) {
+    return null;
+  }
+  const res = await fetch(`${apiUrl}/api/${url ? url : `car`}`, {
     next: { tags: ["cars"], revalidate: 60 },
   });
   const cars = await res.json();
@@ -16,13 +19,19 @@ export async function getCars(url: string) {
 
 export async function getCar(id: string) {
   "use server";
-  const cars = await fetch(`${apiUrl}/car/${id}`);
+  if (!apiUrl) {
+    return null;
+  }
+  const cars = await fetch(`${apiUrl}/api/car/${id}`);
   return cars.json();
 }
 
 export async function deleteCar(id: string) {
   "use server";
-  const res = await fetch(`${apiUrl}/car/${id}`, {
+  if (!apiUrl) {
+    return null;
+  }
+  const res = await fetch(`${apiUrl}/api/car/${id}`, {
     method: "DELETE",
   });
   console.log(res);
@@ -34,6 +43,9 @@ export async function deleteCar(id: string) {
 
 export async function editCar(prev: any, formData: FormData) {
   "use server";
+  if (!apiUrl) {
+    return null;
+  }
   await connectToDB();
   const id = formData.get("id");
 
@@ -75,7 +87,10 @@ export async function editCar(prev: any, formData: FormData) {
 
 export async function getUserCars(id: string) {
   "use server";
-  const userCar = await fetch(`${apiUrl}/profile/car/${id}`, {
+  if (!apiUrl) {
+    return null;
+  }
+  const userCar = await fetch(`${apiUrl}/api/profile/car/${id}`, {
     next: { tags: ["userCar"] },
   });
   const data = await userCar.json();

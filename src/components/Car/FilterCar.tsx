@@ -147,7 +147,7 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
           <option value="">برند</option>
           {brandLoading ? (
             <Spinner />
-          ) : brands?.lngth ? (
+          ) : brands?.length ? (
             brands?.map((item: any) => (
               <option value={item._id} key={item._id}>
                 {item.name}

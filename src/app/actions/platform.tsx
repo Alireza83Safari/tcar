@@ -7,21 +7,22 @@ import { revalidateTag } from "next/cache";
 
 export async function getPlatforms(url: string) {
   "use server";
-  const res = await fetch(
-    `${apiUrl}/${url ? url : `platform`}`,
-    {
-      next: { tags: ["platform"] },
-    }
-  );
+  if (!apiUrl) {
+    return null;
+  }
+  const res = await fetch(`${apiUrl}/api/${url ? url : `platform`}`, {
+    next: { tags: ["platform"] },
+  });
   const cars = await res.json();
   return cars;
 }
 
 export async function deletePlatform(platformId: string) {
-  console.log("platformId", platformId);
-  ("use server");
-
-  const res = await fetch(`/api/platform/${platformId}`, {
+  "use server";
+  if (!apiUrl) {
+    return null;
+  }
+  const res = await fetch(`${apiUrl}/api/platform/${platformId}`, {
     method: "DELETE",
   });
 
@@ -34,6 +35,9 @@ export async function deletePlatform(platformId: string) {
 
 export async function createPlatform(prev: any, formData: FormData) {
   "use server";
+  if (!apiUrl) {
+    return null;
+  }
   await connectToDB();
 
   const data = {
@@ -62,6 +66,9 @@ export async function createPlatform(prev: any, formData: FormData) {
 
 export async function editPlatform(prev: any, formData: FormData) {
   "use server";
+  if (!apiUrl) {
+    return null;
+  }
   await connectToDB();
   const id = formData.get("id");
 

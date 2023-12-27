@@ -7,7 +7,10 @@ import { revalidateTag } from "next/cache";
 
 export async function getCopmpanies() {
   "use server";
-  const res = await fetch(`${apiUrl}/company`, {
+  if (!apiUrl) {
+    return null;
+  }
+  const res = await fetch(`${apiUrl}/api/company`, {
     next: { tags: ["company"] },
   });
   const companies = await res.json();
@@ -16,7 +19,10 @@ export async function getCopmpanies() {
 
 export async function deleteBrand(id: string) {
   "use server";
-  const res = await fetch(`${apiUrl}/company/${id}`, {
+  if (!apiUrl) {
+    return null;
+  }
+  const res = await fetch(`${apiUrl}/api/company/${id}`, {
     method: "DELETE",
   });
   console.log(res);
@@ -28,6 +34,9 @@ export async function deleteBrand(id: string) {
 
 export async function createCompany(prev: any, formData: FormData) {
   "use server";
+  if (!apiUrl) {
+    return null;
+  }
   await connectToDB();
 
   const validatedFields = await Company.create({
@@ -50,6 +59,9 @@ export async function createCompany(prev: any, formData: FormData) {
 
 export async function editBrands(prev: any, formData: FormData) {
   "use server";
+  if (!apiUrl) {
+    return null;
+  }
   await connectToDB();
   const id = formData.get("id");
 

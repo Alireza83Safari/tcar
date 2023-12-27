@@ -20,7 +20,7 @@ const EditUser = ({ showModal, setShowEditModal, editId }: any) => {
   const findUser = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${apiUrl}/user/${editId}`);
+      const res = await fetch(`${apiUrl}/api/user/${editId}`);
       const user = await res.json();
       setInitialState(user[0]);
       setLoading(false);

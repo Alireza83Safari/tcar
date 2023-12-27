@@ -29,7 +29,7 @@ export default async function AddPlatformImage({
     formData.append("file", selectedFile);
 
     try {
-      const response = await fetch(`${apiUrl}/upload/platform/${id}`, {
+      const response = await fetch(`${apiUrl}/api/upload/platform/${id}`, {
         method: "POST",
         body: formData,
       });
