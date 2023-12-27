@@ -29,7 +29,7 @@ export const initialState = {
   userId: "",
 };
 
-export default async function AddCar  ()  {
+export default function AddCar() {
   const { data: session } = useSession();
   const router = useRouter();
   useEffect(() => {
@@ -42,8 +42,6 @@ export default async function AddCar  ()  {
   const [createCarInfos, setCreateCarInfos] =
     useState<createCarType>(initialState);
   const [carId, setCarId] = useState("");
-
-
 
   return (
     <main className="xl:container mx-auto md:my-20 my-10 px-4 col-span-2">
@@ -64,9 +62,8 @@ export default async function AddCar  ()  {
           )}
         </div>
       ) : (
-        <>{/* {router.push("/")} */}</>
+        <> {/* {router.push("/")}  */}</>
       )}
     </main>
   );
-};
-
+}
