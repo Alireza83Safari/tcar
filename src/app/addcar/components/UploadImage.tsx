@@ -1,9 +1,9 @@
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { revalidateTag } from "next/cache";
-import { apiUrl } from "@/services/apiUrl";
 
 export default function ImageUpload({ id }: { id: string }) {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -22,10 +22,7 @@ export default function ImageUpload({ id }: { id: string }) {
     formData.append("file", selectedFile);
 
     try {
-      if (!apiUrl) {
-        return null;
-      }
-      const response = await fetch(`${apiUrl}/api/upload/car/${id}`, {
+      const response = await fetch(`/api/upload/car/${id}`, {
         method: "POST",
         body: formData,
       });

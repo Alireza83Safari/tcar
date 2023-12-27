@@ -20,7 +20,6 @@ import { initialState } from "./AddCar";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/app/actions/fetcher";
 import { revalidateTag } from "next/cache";
-import { apiUrl } from "@/services/apiUrl";
 
 const AddCarForm = ({
   setCreateCarInfos,
@@ -69,7 +68,7 @@ const AddCarForm = ({
       });
 
       if (isValid) {
-        const res = await axios.post(`${apiUrl}/car`, createCarInfos);
+        const res = await axios.post(`/api/car`, createCarInfos);
         if (res.status === 201) {
           setShowImage(true);
           setCreateCarInfos(initialState);
