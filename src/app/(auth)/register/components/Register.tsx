@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Spinner from "../../../../components/Spinner/Spinner";
-import { apiUrl } from "@/services/apiUrl";
+import { axiosInstance } from "@/services/axios/axios";
 
 const Register = () => {
   const router = useRouter();
@@ -37,10 +37,7 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      const res = await fetch(`${apiUrl}/api/register`, {
-        method: "POST",
-        body: JSON.stringify(userRegisterInfos),
-      });
+      const res = await axiosInstance.post("/api/register", userRegisterInfos);
 
       if (res.status === 200) {
         router.push("/login");
