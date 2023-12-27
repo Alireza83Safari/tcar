@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import Input from "@/components/Form/Input";
 import Header from "@/components/Header";
 import Spinner from "@/components/Spinner/Spinner";
-import { axiosInstance } from "@/services/axios/axios";
+import { apiUrl } from "@/services/apiUrl";
 import { loginErrorType } from "@/types/error.type";
 import { loginSchema } from "@/validator/client/auth";
 import { signIn, useSession } from "next-auth/react";
@@ -37,12 +37,14 @@ const Login = () => {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const res = await axiosInstance.post("/login", userLoginInfos);
-      console.log(res);
-      console.log(userLoginInfos);
-      setUserLoginInfos({ ...userLoginInfos, userId: res?.data?._id });
+      const res = await fetch(`${apiUrl}/api/login`, {
+        method: "POST",
+        body: JSON.stringify(userLoginInfos),
+      });
+      const response = await res.json();
+      setUserLoginInfos({ ...userLoginInfos, userId: response?.data?._id });
 
-      if (res.status === 200) {
+      if (response.status === 200) {
         signIn("credentials", {
           ...userLoginInfos,
           redirect: false,
