@@ -24,10 +24,10 @@ export default async function page() {
   const users = await getUsers();
 
   const data: DataItem[] = [
-    { name: "کمپانی", value: companies.length || 0 },
-    { name: "رنگ", value: colors.length || 0 },
-    { name: "پلتفرم", value: platforms.length || 0 },
-    { name: "خودرو", value: cars.length || 0 },
+    { name: "کمپانی", value: companies?.length || 0 },
+    { name: "رنگ", value: colors?.length || 0 },
+    { name: "پلتفرم", value: platforms?.length || 0 },
+    { name: "خودرو", value: cars?.length || 0 },
   ];
 
   return (
