@@ -25,17 +25,3 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
-
-@font-face {
-  font-family: "IRANSans";
-  src: url("/fonts/IRANSans/IRANSansWeb.eot");
-  src: url("/fonts/IRANSans/IRANSansWeb.eot") format("embedded-opentype"),
-    url("/fonts/IRANSans/IRANSansWeb(FaNum.html).woff") format("woff"),
-    url("/fonts/IRANSans/IRANSansWeb.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-
-* {
-  font-family: "IRANSans";
-}
