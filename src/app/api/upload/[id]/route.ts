@@ -3,6 +3,7 @@ import connectToDB from "@/utils/database";
 import Car from "@/models/car";
 import Platform from "@/models/platform";
 import Company from "@/models/company";
+import AppPic from "@/models/appPic";
 
 export async function POST(
   req: NextRequest,
@@ -15,7 +16,9 @@ export async function POST(
       ? Car
       : data.type === 1
       ? Platform
-      : Company
+      : data.type === 2
+      ? Company
+      : AppPic
     ).findByIdAndUpdate(params.id, { image: data?.scureId }, { new: true });
 
     if (!updatedCar) {

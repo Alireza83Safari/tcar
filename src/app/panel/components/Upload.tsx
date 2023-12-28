@@ -1,6 +1,8 @@
+"use client";
 import React, { useCallback } from "react";
 import toast from "react-hot-toast";
 import { CldUploadButton } from "next-cloudinary";
+import { revalidateWithTag } from "@/app/actions/global";
 
 export default async function Upload({
   id,
@@ -28,6 +30,9 @@ export default async function Upload({
         closeModal();
         setShowImage(false);
         toast.success("آپلود عکس با موفقیت انجام شد");
+        revalidateWithTag(
+          data?.type === 0 ? "cars" : data?.type === 1 ? "platform" :data?.type === 2 ? "company" : 'appPic'
+        );
       }
     }
   }, []);
@@ -35,7 +40,7 @@ export default async function Upload({
     <div className="mx-auto col-span-3 min-h-[50vh] min-w-[20vw] relative">
       <div className="min-h-[20vh] min-w-[20vw]">
         <CldUploadButton
-          options={{ maxFiles: 1 }}
+          options={{ maxFiles:  1 }}
           onUpload={handleUpload}
           uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET}
         ></CldUploadButton>

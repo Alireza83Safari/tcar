@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaCar, FaTextSlash } from "react-icons/fa6";
 import { VscSymbolColor } from "react-icons/vsc";
-import { GiFlatPlatform } from "react-icons/gi";
+import { GiFlatPlatform, GiKnightBanner } from "react-icons/gi";
 import { TbBrandIntercom } from "react-icons/tb";
 import { FiUsers } from "react-icons/fi";
 
@@ -18,9 +18,10 @@ const Menu = () => {
     },
     { id: 1, title: "خودرو ها", href: "/panel/car", icon: <FaCar /> },
     { id: 2, title: "رنگ ها", href: "/panel/color", icon: <VscSymbolColor /> },
+    { id: 2, title: "بنر ها", href: "/panel/appPic", icon: <GiKnightBanner /> },
     {
       id: 3,
-      title: "بدنه ها",
+      title: "پلتفرم ها",
       href: "/panel/platform",
       icon: <GiFlatPlatform />,
     },
