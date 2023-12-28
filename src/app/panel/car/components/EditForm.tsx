@@ -1,4 +1,4 @@
-import { fetcher } from "@/app/actions/fetcher";
+import { fetcher } from "@/actions/fetcher";
 import Input from "@/components/Form/Input";
 import Select from "@/components/Form/Select";
 import React, { useState } from "react";
@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import Spinner from "@/components/Spinner/Spinner";
 import { yearsItem } from "@/services/apiRequest/apiRequest";
 import { useFormState } from "react-dom";
-import { editCar } from "@/app/actions/car";
+import { editCar } from "@/actions/car";
 import { useSession } from "next-auth/react";
 import { axiosInstance } from "@/services/axios/axios";
 import toast from "react-hot-toast";
@@ -42,8 +42,10 @@ const EditForm = ({ editCarId, closeModal }: any) => {
   const getCarWithId = async () => {
     setLoading(true);
     try {
-      const res = await axiosInstance.get(`/car/${editCarId}`);
-      setEditCarValue(res.data);
+      const res = await fetch(`/api/car/${editCarId}`);
+      const data = await res.json();
+
+      setEditCarValue(data);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -71,8 +73,8 @@ const EditForm = ({ editCarId, closeModal }: any) => {
     if (state?.status === 200) {
       toast.success("ویراش خودرو موفقیت آمیز بود");
       closeModal();
-    } else if (state.message) {
-      toast.error(state.message);
+    } else if (state?.message) {
+      toast.error(state?.message);
     }
   }, [state]);
 
@@ -93,7 +95,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               name="title"
               placeholder="عنوان"
               onChange={setInputValue}
-              value={editCarValue.title}
+              value={editCarValue?.title}
               className="border bg-black-500"
             />
           </div>
@@ -104,7 +106,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               name="price"
               placeholder="قیمت"
               onChange={setInputValue}
-              value={editCarValue.price}
+              value={editCarValue?.price}
               className="border bg-black-500"
             />
           </div>
@@ -114,7 +116,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               name="model"
               placeholder="مدل"
               onChange={setInputValue}
-              value={editCarValue.model}
+              value={editCarValue?.model}
               className="border bg-black-500"
             />
           </div>
@@ -124,7 +126,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               name="work"
               placeholder="کارکرد"
               onChange={setInputValue}
-              value={editCarValue.work}
+              value={editCarValue?.work}
               className="border bg-black-500"
             />
           </div>
@@ -134,7 +136,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               name="description"
               placeholder="توضیخات"
               onChange={setInputValue}
-              value={editCarValue.description}
+              value={editCarValue?.description}
               className="border bg-black-500"
             />
           </div>
@@ -144,7 +146,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               name="firstname"
               placeholder="نام"
               onChange={setInputValue}
-              value={editCarValue.firstname}
+              value={editCarValue?.firstname}
               className="border bg-black-500"
             />
           </div>
@@ -154,7 +156,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               name="lastname"
               placeholder="نام خانوادگی"
               onChange={setInputValue}
-              value={editCarValue.lastname}
+              value={editCarValue?.lastname}
               className="border bg-black-500"
             />
           </div>
@@ -164,7 +166,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               name="phone"
               placeholder="شماره تماس"
               onChange={setInputValue}
-              value={editCarValue.phone}
+              value={editCarValue?.phone}
               className="border bg-black-500"
             />
           </div>
@@ -173,7 +175,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               label="رنگ"
               name="color"
               onChange={setInputValue}
-              value={editCarValue.color}
+              value={editCarValue?.color}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={colors}
             />
@@ -183,7 +185,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               label="کمپانی"
               name="company"
               onChange={setInputValue}
-              value={editCarValue.company}
+              value={editCarValue?.company}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={companies}
             />
@@ -193,7 +195,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               label="پلتفرم"
               name="platform"
               onChange={setInputValue}
-              value={editCarValue.platform}
+              value={editCarValue?.platform}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={platform}
             />
@@ -203,7 +205,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               label="سال"
               name="years"
               onChange={setInputValue}
-              value={editCarValue.years}
+              value={editCarValue?.years}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={yearsItem}
             />
@@ -213,7 +215,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               label="گیربکس"
               name="gearbox"
               onChange={setInputValue}
-              value={editCarValue.gearbox}
+              value={editCarValue?.gearbox}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={[0, 1]}
             />
@@ -223,7 +225,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               label="وضعیت"
               name="carStatus"
               onChange={setInputValue}
-              value={editCarValue.carStatus}
+              value={editCarValue?.carStatus}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={[
                 { name: "نو", value: 0 },

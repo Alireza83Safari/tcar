@@ -1,22 +1,22 @@
 "use client";
 import { getPlatformType } from "@/types/platform";
-import Image from "next/image";
 import { useState } from "react";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import EditPlatform from "./EditPlatform";
-import { deletePlatform } from "@/app/actions/platform";
+import { deletePlatform } from "@/actions/platform";
+import { CldImage } from "next-cloudinary";
 
 export async function Table({ platforms }: { platforms: getPlatformType[] }) {
   const [editId, setEditID] = useState("");
   const [showModal, setShowEditModal] = useState(false);
 
   return (
-    <div className="mt-5 overflow-x-auto min-h-[20rem]">
-      <table className="min-w-full overflow-x-auto px-4 rounded-lg bg-black-200">
+    <div className="mt-5 overflow-x-auto min-h-[36rem]">
+      <table className="min-w-full px-4 rounded-lg bg-black-200">
         {platforms?.length ? (
           <>
             <thead>
-              <tr className="md:text-sm text-xs text-center border-y">
+              <tr className="md:text-sm text-xs text-center border-b">
                 <th className="py-3 px-2">#</th>
                 <th className="py-3 px-2">پلتفرم</th>
                 <th className="py-3 px-2">کد پلتفرم</th>
@@ -28,27 +28,21 @@ export async function Table({ platforms }: { platforms: getPlatformType[] }) {
             <tbody>
               {platforms?.map((platform: any, index: number) => (
                 <tr className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center my-4">
-                  <td className="py-3 px-2 truncate">{index + 1}</td>
-                  <td className="py-3 px-2 truncate">{platform.name}</td>
-                  <td className="py-3 px-2 truncate">{platform.code}</td>
-                  <td className="py-3 px-2 truncate flex justify-center">
-                    {platform.image !== null && (
-                      <Image
-                        src={
-                          platform.image
-                            ? `/uploads/${platform.image}`
-                            : "/img/no-image.png"
-                        }
-                        alt="platform"
-                        width={70}
-                        height={70}
-                      />
-                    )}
+                  <td className="py-3 px-2">{index + 1}</td>
+                  <td className="py-3 px-2">{platform.name}</td>
+                  <td className="py-3 px-2">{platform.code}</td>
+                  <td className="py-3 px-2 flex justify-center">
+                    <CldImage
+                      width="60"
+                      height="60"
+                      src={String(platform.image)}
+                      alt="Description of my image"
+                    />
                   </td>
                   <td className="py-3 px-2 truncate">
                     {platform.createdAt?.slice(0, 10)}
                   </td>
-                  <td className="flex items-center justify-center mt-4">
+                  <td className="flex items-center justify-center">
                     <FaTrashAlt
                       className="text-red mx-2"
                       onClick={() => deletePlatform(platform?._id)}

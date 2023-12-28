@@ -1,6 +1,6 @@
 import Menu from "../components/Menu";
 import Header from "../components/Header";
-import { getUsers } from "@/app/actions/user";
+import { getUsers } from "@/actions/user";
 import { Table } from "./components/Table";
 
 export const revalidate = 60 * 60;
@@ -19,5 +19,3 @@ export default async function page() {
     </div>
   );
 }
-
-

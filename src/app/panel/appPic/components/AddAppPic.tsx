@@ -7,8 +7,8 @@ import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa6";
 import Upload from "../../components/Upload";
-import { createAppPic } from "@/app/actions/appPic";
-import { revalidateWithTag } from "@/app/actions/global";
+import { createAppPic } from "@/actions/appPic";
+import { revalidateWithTag } from "@/actions/revalidateWithTag";
 
 const AddAppPic = () => {
   const [showImage, setShowImage] = useState(false);

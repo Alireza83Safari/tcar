@@ -34,11 +34,12 @@ export async function PUT(
     const data = await req.json();
     const findCar = await Car.findById(params.id);
     if (findCar) {
-      const editCar = await Car.findOneAndUpdate({ _id: params.id }, data, {
-        new: true,
-      });
+      const editCar = await Car.findOneAndUpdate({ _id: params.id }, data);
       if (editCar) {
-        return NextResponse.json({ message: "خودرو با موفقیت ویرایش شد" });
+        return NextResponse.json({
+          message: "خودرو با موفقیت ویرایش شد",
+          status: 200,
+        });
       } else {
         return NextResponse.json(
           { message: "خودرو پیدا نشد" },
@@ -74,10 +75,8 @@ export async function GET(
     const findCar = await Car.findOne({ _id: params.id }, "-__v")
       .populate("company", "-__v")
       .populate("platform", "-__v")
-      .populate("color")
+      .populate("color", "-__v")
       .exec();
-
-    // Check if 'findCar' exists and handle accordingly
 
     if (!findCar) {
       return NextResponse.json({ message: "خودرو پیدا نشد" }, { status: 404 });

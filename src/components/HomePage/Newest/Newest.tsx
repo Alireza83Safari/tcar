@@ -1,5 +1,5 @@
 import React from "react";
-import { getCars } from "@/app/actions/car";
+import { getCars } from "@/actions/car";
 import Slider from "./Slider";
 
 export const revalidate = 60 * 60;

@@ -6,10 +6,11 @@ import { FiPlus } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { useEffect, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { signOut, useSession } from "next-auth/react";
 import Button from "./Form/Button";
+import { log } from "console";
 
 type accountMenuType = {
   title: String;
@@ -98,8 +99,8 @@ const Header = () => {
               <p className="">اکانت</p>
             </button>
             <ul className="hidden group-hover:block absolute bg-black-500 px-4 py-2 rounded-xl">
-              {accountMenu.map((menu) => (
-                <li className="my-2 block">
+              {accountMenu.map((menu, index) => (
+                <li className="my-2 block" key={index}>
                   <Link
                     replace={true}
                     href={menu.href}

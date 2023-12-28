@@ -1,6 +1,6 @@
 import Banner from "@/components/HomePage/Banner";
 import LastBlogs from "@/components/Blog/LastBlogs";
-import Brands from "@/components/HomePage/Brands";
+import Company from "@/components/HomePage/Company";
 import ChoiceCar from "@/components/HomePage/ChoiceCar/ChoiceCar";
 import Footer from "@/components/Footer";
 import Newest from "@/components/HomePage/Newest/Newest";
@@ -27,7 +27,7 @@ export default function Home() {
       </Suspense>
       <Platforms />
       <Newest />
-      <Brands />
+      <Company />
       <Trait />
       <ChoiceCar />
       <Options />

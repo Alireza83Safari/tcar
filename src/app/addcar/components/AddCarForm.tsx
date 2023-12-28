@@ -18,7 +18,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { initialState } from "./AddCar";
 import { useSession } from "next-auth/react";
-import { fetcher } from "@/app/actions/fetcher";
+import { fetcher } from "@/actions/fetcher";
 import { revalidateTag } from "next/cache";
 
 const AddCarForm = ({

@@ -2,8 +2,8 @@
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { revalidateTag } from "next/cache";
 import { CldUploadButton } from "next-cloudinary";
+import { revalidateWithTag } from "@/actions/revalidateWithTag";
 
 export default function ImageUpload({ id }: { id: string }) {
   const router = useRouter();
@@ -16,15 +16,17 @@ export default function ImageUpload({ id }: { id: string }) {
       type: 0,
     };
     if (result?.event === "success") {
-      const response = await fetch(`/api/upload/car/${id}`, {
+      const response = await fetch(`/api/upload/${id}`, {
         method: "POST",
         body: JSON.stringify(data),
       });
+      const res = await response.json();
 
-      if (response.ok) {
+      if (res.status === 201) {
         router.push("/");
         toast.success("آپلود عکس با موفقیت انجام شد");
-       // revalidateTag("cars");
+        revalidateWithTag("cars");
+        revalidateWithTag("userCar");
       }
     }
   }, []);
@@ -37,7 +39,9 @@ export default function ImageUpload({ id }: { id: string }) {
           options={{ maxFiles: 1 }}
           onUpload={handleUpload}
           uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET}
-        ></CldUploadButton>
+        >
+          <button className=" w-full bg-orange py-3 rounded-lg">آپلود</button>
+        </CldUploadButton>
       </div>
     </div>
   );

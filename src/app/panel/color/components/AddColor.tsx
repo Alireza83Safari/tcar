@@ -5,8 +5,9 @@ import Spinner from "@/components/Spinner/Spinner";
 import { useState, useEffect } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
-import { createColors } from "@/app/actions/color";
+import { createColors } from "@/actions/color";
 import { FaPlus } from "react-icons/fa6";
+import "../../components/Style.css";
 
 const AddColor = () => {
   const initialState = {
@@ -55,31 +56,28 @@ const AddColor = () => {
             </div>
           ) : (
             <>
-              <div className="mx-2 my-1">
+              <div className="mx-2 my-3">
                 <Input
                   label="نام رنگ"
                   name="name"
-                  placeholder="نام رنگ"
-                  className="border bg-black-500"
+                  className="border bg-gradient-to-r from-zinc-900 to-slate-800"
                 />
               </div>
-              <div className="mx-2 my-1">
+              <div className="mx-2 my-3">
                 <Input
                   label="کد رنگ"
                   name="code"
-                  placeholder="کد رنگ"
-                  className="border bg-black-500"
+                  className="border bg-gradient-to-r from-zinc-900 to-slate-800"
                 />
               </div>
-              <div className="mx-2 my-1">
+              <div className="mx-2 my-3">
                 <Input
                   label="هکس کد"
                   name="hex"
-                  placeholder="هکس کد"
-                  className="border bg-black-500"
+                  className="border bg-gradient-to-r from-zinc-900 to-slate-800"
                 />
               </div>
-              <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+              <button className="bg-orange w-[95%] rounded-lg py-2 mt-6 mx-2">
                 افزودن رنگ
               </button>
             </>

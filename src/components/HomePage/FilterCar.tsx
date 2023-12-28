@@ -4,7 +4,7 @@ import Select from "../Form/Select";
 import { yearsItem } from "@/services/apiRequest/apiRequest";
 import useSWR from "swr";
 import { useRouter } from "next/navigation";
-import { fetcher } from "@/app/actions/fetcher";
+import { fetcher } from "@/actions/fetcher";
 
 const FilterCar = () => {
   const { data: companies } = useSWR("company", fetcher);

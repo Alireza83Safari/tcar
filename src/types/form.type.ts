@@ -1,7 +1,7 @@
 export interface inputProps {
   label?: string;
   name?: string;
-  placeholder: string;
+  placeholder?: string;
   onChange?: any;
   className?: string;
   type?: string;

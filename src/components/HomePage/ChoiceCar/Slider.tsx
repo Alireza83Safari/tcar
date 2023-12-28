@@ -37,7 +37,7 @@ export default function Slider({ cars }: { cars: CarType[] }) {
           className="mySwiper"
         >
           {cars?.slice(0, 8)?.map((car) => (
-            <SwiperSlide>
+            <SwiperSlide key={car?._id}>
               <CarTemplate {...car} />
             </SwiperSlide>
           ))}

@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Menu from "../components/Menu";
 import { Car } from "../components/mycar/Car";
 import { getServerSession } from "next-auth";
-import { getUserCars } from "@/app/actions/car";
+import { getUserCars } from "@/actions/car";
 import { authOptions } from "@/utils/authOptions";
 
 export default async function page() {

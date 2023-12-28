@@ -1,12 +1,12 @@
 import Header from "@/app/panel/components/Header";
 import Menu from "@/app/panel/components/Menu";
-import { getPlatforms } from "@/app/actions/platform";
+import { getPlatforms } from "@/actions/platform";
 import { InfoBar } from "./components/InfoBar";
 import Chart from "./components/Chart";
-import { getCars } from "@/app/actions/car";
-import { getColors } from "@/app/actions/color";
-import { getCopmpanies } from "@/app/actions/company";
-import { getUsers } from "@/app/actions/user";
+import { getCars } from "@/actions/car";
+import { getColors } from "@/actions/color";
+import { getCopmpanies } from "@/actions/company";
+import { getUsers } from "@/actions/user";
 import { UsersTable } from "./components/UsersTable";
 
 export const revalidate = 60 * 60;

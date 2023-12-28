@@ -2,7 +2,7 @@ import Header from "@/app/panel/components/Header";
 import Menu from "@/app/panel/components/Menu";
 import AddAppPic from "./components/AddAppPic";
 import { Table } from "./components/Table";
-import { getAppPics } from "@/app/actions/appPic";
+import { getAppPics } from "@/actions/appPic";
 
 export const revalidate = 60 * 60;
 

@@ -1,5 +1,4 @@
 import Cars from "@/app/car/components/CarsContent";
-import { getCars } from "../actions/car";
 import { apiUrl } from "@/services/apiUrl";
 
 export const dynamic = "force-dynamic";
@@ -32,10 +31,9 @@ async function getCarss(searchParams: any) {
 
   const res = await fetch(`${apiUrl}/api/${APIURL}`);
   const cars = await res.json();
+
   return cars;
 }
-
-export const revalidate = 12;
 
 export default async function page({ searchParams }: any) {
   const cars = await getCarss(searchParams);

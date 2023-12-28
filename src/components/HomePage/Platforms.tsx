@@ -1,24 +1,14 @@
+"use client";
+
 import { getPlatformType } from "@/types/platform";
 import Link from "next/link";
-import { apiUrl } from "@/services/apiUrl";
 import { CldImage } from "next-cloudinary";
+import useSWR from "swr";
+import { fetcher } from "@/actions/fetcher";
 
-export const revalidate = 60 * 60;
+function Platforms() {
+  const { data: platforms } = useSWR("platform", fetcher);
 
-const getPlatforms = async () => {
-  if (!apiUrl) {
-    return null;
-  }
-  const res = await fetch(`${apiUrl}/api/platform`, {
-    next: { tags: ["platform"] },
-  });
-
-  const data = await res.json();
-  return data;
-};
-
-export default async function Platforms() {
-  const platforms = await getPlatforms();
   return (
     <section className="md:px-8 px-3 xl:container m-auto">
       <p className="text-2xl">جستجو بر اساس بدنه</p>
@@ -27,7 +17,7 @@ export default async function Platforms() {
           platforms?.map((car: getPlatformType) => (
             <Link
               href={`/car?platform=${car._id}`}
-              className="text-center my-3 mx-auto"
+              className="text-center my-3 mx-auto hover:bg-gradient-to-r from-zinc-900 to-slate-900 duration-300 rounded-lg"
               key={car?._id}
             >
               <CldImage
@@ -43,3 +33,5 @@ export default async function Platforms() {
     </section>
   );
 }
+
+export default Platforms;

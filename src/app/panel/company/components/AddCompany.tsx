@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa6";
-import { createCompany } from "@/app/actions/company";
+import { createCompany } from "@/actions/company";
 import Upload from "../../components/Upload";
 
 const AddBrand = () => {
@@ -47,33 +47,29 @@ const AddBrand = () => {
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal} title="افزودن برند">
         {!showImage ? (
-          <form action={formAction} className="grid grid-cols-1 bg-black-00">
+          <form action={formAction} className="grid grid-cols-1">
             {false ? (
               <div className="min-w-[40%] min-h-[60%]">
                 <Spinner />
               </div>
             ) : (
               <>
-                <div className="mx-2 my-1">
+                <div className="mx-2 my-3">
                   <Input
                     label="نام برند"
                     name="name"
-                    placeholder="نام برند"
-                    className="border bg-black-500"
+                    className="border bg-gradient-to-r from-zinc-900 to-slate-800"
                   />
                 </div>
-                <div className="mx-2 my-1">
+                <div className="mx-2 my-3">
                   <Input
                     label="کد برند"
                     name="code"
-                    placeholder="کد برند"
-                    className="border bg-black-500"
+                    className="border bg-gradient-to-r from-zinc-900 to-slate-800"
                   />
                 </div>
 
-                <button
-                  className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2"
-                >
+                <button className="bg-orange w-[95%] rounded-lg py-2 mt-6 mx-2">
                   افزودن برند
                 </button>
               </>

@@ -6,7 +6,7 @@ import Spinner from "@/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
-import { editPlatform } from "@/app/actions/platform";
+import { editPlatform } from "@/actions/platform";
 import { apiUrl } from "@/services/apiUrl";
 
 const EditPlatform = ({ showModal, setShowEditModal, editId }: any) => {

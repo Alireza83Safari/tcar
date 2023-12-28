@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa6";
-import { createPlatform } from "@/app/actions/platform";
+import { createPlatform } from "@/actions/platform";
 import Upload from "../../components/Upload";
 
 const AddPlatform = () => {
@@ -51,24 +51,22 @@ const AddPlatform = () => {
       <Modal isOpen={isModalOpen} onClose={closeModal} title="افزودن پلتفرم">
         {!showImage ? (
           <form action={formAction} className="grid grid-cols-1 bg-black-00">
-            <div className="mx-2 my-1">
+            <div className="mx-2 my-3">
               <Input
                 label="نام پلتفرم"
                 name="name"
-                placeholder="نام پلتفرم"
-                className="border bg-black-500"
+                className="border bg-gradient-to-r from-zinc-900 to-slate-800"
               />
             </div>
-            <div className="mx-2 my-1">
+            <div className="mx-2 my-3">
               <Input
                 label="کد پلتفرم"
                 name="code"
-                placeholder="کد پلتفرم"
-                className="border bg-black-500"
+                className="border bg-gradient-to-r from-zinc-900 to-slate-800"
               />
             </div>
 
-            <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+            <button className="bg-orange w-[95%] rounded-lg py-2 mt-6 mx-2">
               افزودن پلتفرم
             </button>
           </form>

@@ -1,4 +1,4 @@
-import { getCar, getCars } from "@/app/actions/car";
+import { getCar, getCars } from "@/actions/car";
 import CarDetails from "@/components/Car/CarDetails";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";

@@ -1,6 +1,6 @@
 "use client";
 
-import { deleteColor } from "@/app/actions/color";
+import { deleteColor } from "@/actions/color";
 import { getColorType } from "@/types/color.type";
 import { useState } from "react";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
@@ -10,7 +10,7 @@ export async function Table({ colors }: { colors: getColorType[] }) {
   const [editId, setEditID] = useState("");
   const [showColors, setShowEditColor] = useState(false);
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto min-h-[36rem]">
       <table className="min-w-full overflow-x-auto rounded-lg mx-4 bg-black-200">
         <thead>
           <tr className="sm:text-xs text-[12px] 2xl:text-lg border-y">

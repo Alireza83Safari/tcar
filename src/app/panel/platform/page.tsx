@@ -2,7 +2,7 @@ import Header from "@/app/panel/components/Header";
 import Menu from "@/app/panel/components/Menu";
 import { Table } from "./components/Table";
 import AddPlatform from "./components/AddPlatform";
-import { getPlatforms } from "@/app/actions/platform";
+import { getPlatforms } from "@/actions/platform";
 
 export const revalidate = 60 * 60;
 
@@ -19,4 +19,3 @@ export default async function page() {
     </div>
   );
 }
-

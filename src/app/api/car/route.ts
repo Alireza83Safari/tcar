@@ -23,7 +23,7 @@ export async function GET(req: NextRequest) {
     let carQuery;
     switch (true) {
       case !!yearsQuery:
-        carQuery = await Car.find({ years: yearsQuery }, "-__v")
+        carQuery = await Car.find({ years: yearsQuery })
           .populate("company", "-__v")
           .populate("color", "-__v")
           .populate("platform", "-__v");
@@ -94,7 +94,7 @@ export async function GET(req: NextRequest) {
         carQuery = await Car.find({ title: { $regex: param } }, "-__v")
           .populate("company", "-__v")
           .populate("color", "-__v")
-          .populate("platform", "-__v");
+          .populate("platform", "-__v")
         if (carQuery.length === 0) {
           return NextResponse.json(
             { message: "No cars found for this platform" },
@@ -107,7 +107,7 @@ export async function GET(req: NextRequest) {
         const cars = await Car.find({}, "-__v")
           .populate("company", "-__v")
           .populate("color", "-__v")
-          .populate("platform", "-__v");
+          .populate("platform", "-__v")
         return NextResponse.json(cars);
     }
   } catch (error) {

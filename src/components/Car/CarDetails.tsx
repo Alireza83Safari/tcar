@@ -39,26 +39,25 @@ const CarDetails = ({ car }: { car: CarType }) => {
   };
 
   return (
-    <section className="px-4 mt-10">
+    <section className="sm:px-4 px-1 mt-10">
       <div className="flex justify-between pb-5">
-        <p className="text-3xl">{car?.title}</p>
+        <p className="sm:text-3xl text-xl">{car?.title}</p>
         <div className="flex">
           <FaHeart className="text-xl mx-3" onClick={addFavorite} />
-          lkj
           <FaShareAlt className="text-xl mx-3" />
         </div>
       </div>
-      <div className="grid grid-cols-4">
-        <div className="col-span-2 flex justify-center items-center">
+      <div className="grid md:grid-cols-2 grid-cols-1">
+        <div className="flex justify-center items-center md:my-0 my-10">
           <CldImage
-            width="400"
-            height="400"
+            width="500"
+            height="500"
             src={String(car?.image)}
             alt="Description of my image"
           />
         </div>
 
-        <div className="col-span-2 grid grid-cols-2 px-7">
+        <div className="grid grid-cols-2 md:px-7 ">
           <div className="mb-5">
             {car?.carStatus === 0 ? (
               <button className="px-8 rounded-lg bg-green mx-1">نو</button>
@@ -66,41 +65,46 @@ const CarDetails = ({ car }: { car: CarType }) => {
               <button className="px-8 rounded-lg bg-blue mx-1">کارکرده</button>
             )}
           </div>
-          <span className="text-xl mb-4">
-            قیمت:{car?.price?.toLocaleString()}
-          </span>
-          <span className="text-xl mb-4">رنگ: {(car?.color as any)?.name}</span>
-          <span className="pl-3 mb-4">کارکرد: {car?.work} کیلومتر</span>
-          <span className="pl-3 mb-4">
-            گیربکس:
-            {car?.gearbox === 0 ? "دستی" : "اتومات"}
-          </span>
+          <div className="mb-4 flex sm:text-base text-sm">
+            <p className="ml-2  text-gray-200">قیمت:</p>
+            <p> {car?.price?.toLocaleString()}</p>
+          </div>
+          <div className="mb-4 flex sm:text-base text-sm">
+            <p className="ml-2  text-gray-200">رنگ:</p>
+            <p> {(car?.color as any)?.name}</p>
+          </div>
+          <div className="mb-4 flex sm:text-base text-sm">
+            <p className="ml-2  text-gray-200">کیلومتر:</p>
+            <p> {car?.work}</p>
+          </div>
+          <div className="mb-4 flex sm:text-base text-sm">
+            <p className="ml-2  text-gray-200">گیربکس:</p>
+            <p> {car?.gearbox === 0 ? "دستی" : "اتومات"}</p>
+          </div>
+          <div className="mb-4 flex sm:text-base text-sm">
+            <p className="ml-2  text-gray-200">سوخت:</p>
+            <p>{+car?.fuel == 0 ? "بنزینی" : "برقی"}</p>
+          </div>
+          <div className="mb-4 flex sm:text-base text-sm">
+            <p className="ml-2  text-gray-200">سوخت:</p>
+            <p>{(car?.platform as any)?.name}</p>
+          </div>
 
-          <span className="pl-3 mb-4">
-            سوخت:
-            {+car?.fuel == 0 ? "بنزینی" : "برقی"}
-          </span>
-
-          <span className="pl-3 mb-4">
-            پلتفرم:
-            {(car?.platform as any)?.name}
-          </span>
-
-          <div className="bg-black-100 p-4 rounded-lg mt-8 col-span-2">
-            <p className="mb-4">مشخصات فروشنده</p>
-            <div className="mb-4 flex items-center">
+          <div className="bg-gradient-to-r from-neutral-800 to-slate-800 p-4 rounded-lg mt-8 col-span-2">
+            <p className="mb-4 sm:text-base text-sm">مشخصات فروشنده</p>
+            <div className="mb-4 flex items-center sm:text-base text-sm">
               <p>نام:</p>
               <p>
                 {car?.firstname} {car?.lastname}
               </p>
             </div>
-            <div className="mb-4 flex items-center">
+            <div className="mb-4 flex items-center sm:text-base text-sm">
               <p className="ml-4">شماره تماس:</p>
               <p className="border border-orange px-4 rounded-lg py-1">
                 {car?.phone}
               </p>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center sm:text-base text-sm">
               <p className="ml-4">آدرس:</p>
               <p>Lorem ipsum, dolor sit amet consectetur</p>
             </div>

@@ -5,7 +5,7 @@ import { CldImage } from "next-cloudinary";
 import "../../components/Style.css";
 import EditAppPic from "./EditAppPic";
 import { appPicType } from "@/types/appPic.type";
-import { deleteAppPic } from "@/app/actions/appPic";
+import { deleteAppPic } from "@/actions/appPic";
 
 export async function Table({ appPics }: { appPics: appPicType[] }) {
   const [editId, setEditID] = useState("");
@@ -26,9 +26,14 @@ export async function Table({ appPics }: { appPics: appPicType[] }) {
           </thead>
           <tbody>
             {appPics?.map((appPic: appPicType, index: number) => (
-              <tr className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center" key={appPic?._id}>
+              <tr
+                className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center"
+                key={appPic?._id}
+              >
                 <td className="py-3 px-2">{index + 1}</td>
-                <td className="py-3 px-2 truncate">{appPic.title?.slice(0, 40)}...</td>
+                <td className="py-3 px-2 truncate">
+                  {appPic.title?.slice(0, 40)}...
+                </td>
                 <td className="py-3 px-2 truncate">
                   {appPic.description?.slice(0, 50)}...
                 </td>

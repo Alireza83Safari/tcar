@@ -5,7 +5,7 @@ import Spinner from "@/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
-import { editAppPic } from "@/app/actions/appPic";
+import { editAppPic } from "@/actions/appPic";
 
 const EditAppPic = ({ showEditAppPic, setShowEditAppPic, editId }: any) => {
   const initialState = {

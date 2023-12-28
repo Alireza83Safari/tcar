@@ -54,3 +54,29 @@ export async function PUT(
     return NextResponse.json(editUser);
   } catch (error) {}
 }
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    await connectToDB();
+
+    if (!mongoose.Types.ObjectId.isValid(params.id)) {
+      return NextResponse.json(
+        { error: "شناسه کاربر معتبر نمی‌باشد" },
+        { status: 422 }
+      );
+    }
+
+    const editUser = await User.findByIdAndDelete(params.id);
+
+    if (editUser) {
+      return NextResponse.json({
+        message: "حذف کاربر موفقیت آمیز بود",
+        status: 200,
+      });
+    }
+    return NextResponse.json({ error: " کاربر وجود ندارد" }, { status: 404 });
+  } catch (error) {}
+}

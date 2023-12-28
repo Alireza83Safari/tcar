@@ -5,7 +5,7 @@ import Input from "@/components/Form/Input";
 import Spinner from "@/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
-import { editUser } from "@/app/actions/user";
+import { editUser } from "@/actions/user";
 import toast from "react-hot-toast";
 import { apiUrl } from "@/services/apiUrl";
 

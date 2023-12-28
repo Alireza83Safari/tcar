@@ -3,7 +3,7 @@ import useSWR from "swr";
 import { yearsItem } from "@/services/apiRequest/apiRequest";
 import { getPlatformType } from "@/types/platform";
 import { useRouter, useSearchParams } from "next/navigation";
-import { fetcher } from "@/app/actions/fetcher";
+import { fetcher } from "@/actions/fetcher";
 import Spinner from "../Spinner/Spinner";
 
 const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
@@ -21,10 +21,13 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
     "platform",
     fetcher
   );
-  const { data: brands, isLoading: brandLoading } = useSWR("brand", fetcher);
+  const { data: companies, isLoading: companiesLoading } = useSWR(
+    "company",
+    fetcher
+  );
   const { data: colors, isLoading: colorLoading } = useSWR("color", fetcher);
 
-  const brandParams = searchParams.get("brand");
+  const companyParams = searchParams.get("company");
   const colorParams = searchParams.get("color");
   const platformParams = searchParams.get("platform");
   const yearsParams = searchParams.get("years");
@@ -35,7 +38,7 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
   };
 
   useEffect(() => {
-    if (brandParams) setSelectedCompany(brandParams);
+    if (companyParams) setSelectedCompany(companyParams);
     if (colorParams) setSelectedColor([colorParams]);
     if (platformParams) setSelectedPlatform([platformParams]);
     if (yearsParams) setSelectedYears(yearsParams);
@@ -49,7 +52,7 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
     if (selectedPlatform.length > 0)
       params.set("platform", selectedPlatform.join(","));
     if (selectedColor.length > 0) params.set("color", selectedColor.join(","));
-    if (selectedCompany) params.set("brand", selectedCompany);
+    if (selectedCompany) params.set("company", selectedCompany);
     if (selectedYears) params.set("years", selectedYears);
     if (query) params.set("q", query);
 
@@ -65,7 +68,7 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
 
   return (
     <div
-      className={`border border-borderColor px-4 md:rounded-lg md:block overflow-auto bg-black-100 ${
+      className={`border border-borderColor px-4 md:rounded-lg md:block overflow-auto bg-gradient-to-r from-stone-900 to-slate-900 ${
         showFilterMenu ? `fixed right-0 top-0 z-10 sm:w-1/4 block` : `hidden`
       }`}
     >
@@ -145,10 +148,10 @@ const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
           onChange={(e) => setSelectedCompany(e.target.value)}
         >
           <option value="">برند</option>
-          {brandLoading ? (
+          {companiesLoading ? (
             <Spinner />
-          ) : brands?.length ? (
-            brands?.map((item: any) => (
+          ) : companies?.length ? (
+            companies?.map((item: any) => (
               <option value={item._id} key={item._id}>
                 {item.name}
               </option>

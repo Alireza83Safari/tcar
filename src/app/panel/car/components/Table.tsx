@@ -5,7 +5,7 @@ import { useState } from "react";
 import Modal from "../../../../components/Modal";
 import EditForm from "./EditForm";
 import { CarType } from "@/types/car.type";
-import { deleteCar } from "@/app/actions/car";
+import { deleteCar } from "@/actions/car";
 
 export async function Table({ cars }: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,20 +14,19 @@ export async function Table({ cars }: any) {
     setIsModalOpen(true);
     setEditCarId(id);
   };
-console.log(cars);
 
   const closeModal = () => {
     setIsModalOpen(false);
   };
 
   return (
-    <div className="md:mt-5 overflow-x-auto">
+    <div className="md:mt-5 overflow-x-auto min-h-[36rem]">
       <Modal isOpen={isModalOpen} onClose={closeModal} title="ویرایش خودرو">
         <EditForm editCarId={editCarId} closeModal={closeModal} />
       </Modal>
 
       {cars?.length ? (
-        <table className="min-w-full overflow-x-auto px-4 rounded-lg bg-black-200 mx-4">
+        <table className="min-w-full px-4 rounded-lg bg-black-200 mx-4">
           <thead>
             <tr className="md:text-sm text-xs text-center border-y">
               <th className="py-3 px-2">#</th>
@@ -47,8 +46,12 @@ console.log(cars);
                 <td className="py-3 px-2 truncate">{index + 1}</td>
                 <td className="py-3 px-2 truncate">{car?.title}</td>
                 <td className="py-3 px-2 truncate">{car?.price}</td>
-                <td className="py-3 px-2 truncate">{(car?.color as any)?.name}</td>
-                <td className="py-3 px-2 truncate">{(car?.company as any)?.name}</td>
+                <td className="py-3 px-2 truncate">
+                  {(car?.color as any)?.name}
+                </td>
+                <td className="py-3 px-2 truncate">
+                  {(car?.company as any)?.name}
+                </td>
                 <td className="py-3 px-2 truncate">
                   <button
                     className={` px-3 py-1 rounded-md ${

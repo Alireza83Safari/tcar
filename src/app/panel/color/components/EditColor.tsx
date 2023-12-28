@@ -5,8 +5,7 @@ import Spinner from "@/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
-import { editColors } from "@/app/actions/color";
-import { apiUrl } from "@/services/apiUrl";
+import { editColors } from "@/actions/color";
 
 const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
   const [initialState, setInitialState] = useState({
@@ -21,7 +20,7 @@ const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
   const findColor = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`${apiUrl}/api/color/${editId}`);
+      const res = await fetch(`/api/color/${editId}`);
       const color = await res.json();
       setInitialState(color);
       setLoading(false);
@@ -52,7 +51,7 @@ const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
   return (
     <Modal isOpen={showColors} onClose={closeModal} title="ویرایش رنگ">
       {loading ? (
-        <div className="min-w-[15rem] min-h-[15rem]">
+        <div className="min-w-[16rem] min-h-[16rem]">
           <Spinner />
         </div>
       ) : (

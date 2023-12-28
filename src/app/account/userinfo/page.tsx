@@ -2,8 +2,8 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import React from "react";
 import UserInfo from "../components/userinfo/UserInfo";
-import { getServerToken } from "@/app/actions/getServerToken";
-import { getUser } from "@/app/actions/user";
+import { getServerToken } from "@/actions/getServerToken";
+import { getUser } from "@/actions/user";
 import Menu from "../components/Menu";
 
 export default async function page() {

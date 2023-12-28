@@ -5,8 +5,8 @@ import Spinner from "@/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
-import { editBrands } from "@/app/actions/company";
 import { apiUrl } from "@/services/apiUrl";
+import { editCompany } from "@/actions/company";
 
 const EditBrand = ({ showEditBrand, setShowEditBrand, editId }: any) => {
   const [initialState, setInitialState] = useState({
@@ -33,7 +33,7 @@ const EditBrand = ({ showEditBrand, setShowEditBrand, editId }: any) => {
     findBrand();
   }, [editId]);
 
-  const [state, formAction] = useFormState(editBrands, initialState);
+  const [state, formAction] = useFormState(editCompany, initialState);
 
   const closeModal = () => {
     setShowEditBrand(false);

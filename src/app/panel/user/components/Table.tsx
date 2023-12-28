@@ -2,14 +2,14 @@
 import { useState } from "react";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import EditUser from "./EditUser";
-import { deleteuser } from "@/app/actions/user";
+import { deleteuser } from "@/actions/user";
 
 export async function Table({ users }: { users: any }) {
   const [editId, setEditID] = useState("");
   const [showModal, setShowEditModal] = useState(false);
 
   return (
-    <div className=" overflow-x-auto mt-24">
+    <div className=" overflow-x-auto mt-24 min-h-[36rem]">
       <table className="min-w-full overflow-x-auto rounded-lg mx-4">
         <thead>
           <tr className="sm:text-xs text-[12px] 2xl:text-lg border-y">
