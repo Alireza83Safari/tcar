@@ -1,47 +1,46 @@
 "use server";
 
-import Company from "@/models/company";
+import AppPic from "@/models/appPic";
 import { apiUrl } from "@/services/apiUrl";
 import connectToDB from "@/utils/database";
 import { revalidateTag } from "next/cache";
 
-export async function getCopmpanies() {
+export async function getAppPics() {
   "use server";
   if (!apiUrl) {
     return null;
   }
-  const res = await fetch(`${apiUrl}/api/company`, {
-    next: { tags: ["company"] },
+  const res = await fetch(`${apiUrl}/api/appPic`, {
+    cache: "no-cache",
   });
-  const companies = await res.json();
-  return companies;
+  const appPics = await res.json();
+  return appPics;
 }
 
-export async function deleteBrand(id: string) {
+export async function deleteAppPic(id: string) {
   "use server";
   if (!apiUrl) {
     return null;
   }
-  const res = await fetch(`${apiUrl}/api/company/${id}`, {
+  const res = await fetch(`${apiUrl}/api/appPic/${id}`, {
     method: "DELETE",
   });
-  console.log(res);
 
   if (res.status === 200) {
-    revalidateTag("company");
+    revalidateTag("appPic");
   }
 }
 
-export async function createCompany(prev: any, formData: FormData) {
+export async function createAppPic(prev: any, formData: FormData) {
   "use server";
   if (!apiUrl) {
     return null;
   }
   await connectToDB();
 
-  const validatedFields = await Company.create({
-    code: formData.get("code"),
-    name: formData.get("name"),
+  const validatedFields = await AppPic.create({
+    title: formData.get("title"),
+    description: formData.get("description"),
   });
 
   if (!validatedFields) {
@@ -49,7 +48,7 @@ export async function createCompany(prev: any, formData: FormData) {
       errors: validatedFields,
     };
   } else {
-    revalidateTag("company");
+    revalidateTag("appPic");
     return {
       status: 200,
       message: validatedFields,
@@ -57,7 +56,7 @@ export async function createCompany(prev: any, formData: FormData) {
   }
 }
 
-export async function editBrands(prev: any, formData: FormData) {
+export async function editAppPic(prev: any, formData: FormData) {
   "use server";
   if (!apiUrl) {
     return null;
@@ -66,10 +65,10 @@ export async function editBrands(prev: any, formData: FormData) {
   const id = formData.get("id");
 
   const data = {
-    code: formData.get("code"),
-    name: formData.get("name"),
+    title: formData.get("title"),
+    description: formData.get("description"),
   };
-  const validatedFields = await Company.findByIdAndUpdate(id, data, {
+  const validatedFields = await AppPic.findByIdAndUpdate(id, data, {
     new: true,
   });
 
@@ -78,7 +77,7 @@ export async function editBrands(prev: any, formData: FormData) {
       errors: validatedFields,
     };
   } else {
-    revalidateTag("company");
+    revalidateTag("appPic");
     return {
       status: 200,
     };

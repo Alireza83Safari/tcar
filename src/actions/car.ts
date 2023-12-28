@@ -1,6 +1,5 @@
 "use server";
 
-import Car from "@/models/car";
 import { apiUrl } from "@/services/apiUrl";
 import connectToDB from "@/utils/database";
 import { revalidateTag } from "next/cache";
@@ -69,18 +68,16 @@ export async function editCar(prev: any, formData: FormData) {
   };
 
   try {
-    await connectToDB();
-    const findCar = await Car.findById(id);
-    if (findCar) {
-      const editCar = await Car.findOneAndUpdate({ _id: id }, data, {
-        new: true,
-      });
-      if (editCar) {
-        revalidateTag("cars");
-        return { message: "خودرو با موفقیت ویرایش شد", status: 200 };
-      } else {
-        return { message: "خودرو پیدا نشد", status: 404 };
-      }
+    const res = await fetch(`${apiUrl}/api/car/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+    const response = await res.json();
+    if (response?.status === 200) {
+      revalidateTag("cars");
+      return { message: "خودرو با موفقیت ویرایش شد", status: 200 };
+    } else {
+      return { message: "خودرو پیدا نشد", status: 404 };
     }
   } catch (error) {}
 }

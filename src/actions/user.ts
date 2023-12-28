@@ -25,6 +25,7 @@ export async function deleteuser(id: string) {
   const res = await fetch(`${apiUrl}/api/user/${id}`, {
     method: "DELETE",
   });
+
   if (res.status === 200) {
     revalidateTag("user");
   }
