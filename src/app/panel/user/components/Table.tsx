@@ -9,10 +9,10 @@ export async function Table({ users }: { users: any }) {
   const [showModal, setShowEditModal] = useState(false);
 
   return (
-    <div className=" overflow-x-auto mt-24 min-h-[36rem]">
-      <table className="min-w-full overflow-x-auto rounded-lg mx-4">
+    <div className="overflow-x-auto mt-24">
+      <table className="min-w-full overflow-x-auto rounded-lg bg-white text-black-500">
         <thead>
-          <tr className="sm:text-xs text-[12px] 2xl:text-lg border-y">
+          <tr className="sm:text-xs text-[12px] 2xl:text-lg border-b">
             <th className="py-3 px-2">#</th>
             <th className="py-3 px-2">نام</th>
             <th className="py-3 px-2">نام خانوادگی</th>

@@ -26,9 +26,9 @@ export async function Table({ cars }: any) {
       </Modal>
 
       {cars?.length ? (
-        <table className="min-w-full px-4 rounded-lg bg-black-200 mx-4">
+        <table className="min-w-full px-4 rounded-lg bg-white text-black-500 mx-4">
           <thead>
-            <tr className="md:text-sm text-xs text-center border-y">
+            <tr className="md:text-sm text-xs text-center border-b">
               <th className="py-3 px-2">#</th>
               <th className="py-3 px-2">عنوان</th>
               <th className="py-3 px-2">قیمت</th>
@@ -44,7 +44,7 @@ export async function Table({ cars }: any) {
             {cars?.map((car: CarType, index: number) => (
               <tr className="2xl:text-sm text-xs text-center" key={car?._id}>
                 <td className="py-3 px-2 truncate">{index + 1}</td>
-                <td className="py-3 px-2 truncate">{car?.title}</td>
+                <td className="py-3 px-2 truncate">{car?.title?.slice(0,25)}</td>
                 <td className="py-3 px-2 truncate">{car?.price}</td>
                 <td className="py-3 px-2 truncate">
                   {(car?.color as any)?.name}

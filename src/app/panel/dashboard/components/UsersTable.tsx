@@ -1,8 +1,8 @@
 export async function UsersTable({ users }: any) {
   return (
-    <div className="rounded-lg overflow-hidden bg-black-200 ">
+    <div className="rounded-lg overflow-x-auto bg-white text-black-500">
       <p className="text-center py-3">لیست کاربران جدید</p>
-      <table className="min-w-full overflow-x-auto">
+      <table className="min-w-full">
         <thead>
           <tr className="sm:text-xs text-[12px] 2xl:text-lg border-y text">
             <th className="sm:w-[12%]">#</th>

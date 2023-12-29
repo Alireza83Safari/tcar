@@ -9,11 +9,11 @@ export default async function page() {
   const users = await getUsers();
 
   return (
-    <div className="bg-[#1F2432]">
+    <div>
       <Header />
       <Menu />
 
-      <div className="md:w-[88vw] w-[84vw] absolute left-0 bg-[#1F2432] md:pr-8 min-h-screen">
+      <div className="w-[84vw] bg-dGray absolute left-0 md:pr-8 min-h-screen">
         <Table users={users} />
       </div>
     </div>

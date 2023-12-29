@@ -12,7 +12,7 @@ export async function Table({ platforms }: { platforms: getPlatformType[] }) {
 
   return (
     <div className="mt-5 overflow-x-auto min-h-[36rem]">
-      <table className="min-w-full px-4 rounded-lg bg-black-200">
+      <table className="min-w-full px-4 rounded-lg bg-white text-black-500">
         {platforms?.length ? (
           <>
             <thead>

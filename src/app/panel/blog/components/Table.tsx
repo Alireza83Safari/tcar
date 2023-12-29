@@ -1,19 +1,18 @@
 "use client";
-import { companiesType } from "@/types/brand.type";
 import { useState } from "react";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
-import EditBrand from "./EditCompany";
 import { CldImage } from "next-cloudinary";
 import "../../components/Style.css";
 import { deleteCompany } from "@/actions/company";
+import { blogType } from "@/types/blog.type";
 
-export async function Table({ brands }: { brands: companiesType[] }) {
-  const [editId, setEditID] = useState("");
-  const [showEditBrand, setShowEditBrand] = useState(false);
+export async function Table({ blogs }: { blogs: blogType[] }) {
+/*   const [editId, setEditID] = useState("");
+  const [showEditBrand, setShowEditBrand] = useState(false); */
   return (
-    <div className="mt-5 overflow-x-auto mr-4">
-      {brands?.length ? (
-        <table className="min-w-full rounded-lg bg-white text-black-500">
+    <div className="mt-5 overflow-x-auto min-h-[36rem] text-black-500">
+      {/*      {blogs?.length ? (
+        <table className="min-w-full px-4 rounded-lg bg-black-200 mr-4">
           <thead>
             <tr className="sm:text-xs text-[12px] 2xl:text-lg border-b">
               <th className="py-3 px-2">#</th>
@@ -25,7 +24,7 @@ export async function Table({ brands }: { brands: companiesType[] }) {
             </tr>
           </thead>
           <tbody>
-            {brands?.map((brand: companiesType, index: number) => (
+            {blogs?.map((brand: any, index: number) => (
               <tr className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center">
                 <td className="py-3 px-2">{index + 1}</td>
                 <td className="py-3 px-2">{brand.name}</td>
@@ -62,12 +61,15 @@ export async function Table({ brands }: { brands: companiesType[] }) {
         <h2 className=" min-w-full h-[20rem] flex justify-center items-center">
           برندی برای نمایش وجود ندارد
         </h2>
-      )}
-      <EditBrand
+      )} */}
+      <h1 className="text-2xl flex justify-center items-center">
+        دسترسی ندارید!
+      </h1>
+      {/* <EditBrand
         showEditBrand={showEditBrand}
         setShowEditBrand={setShowEditBrand}
         editId={editId}
-      />
+      /> */}
     </div>
   );
 }

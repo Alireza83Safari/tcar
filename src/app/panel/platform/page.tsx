@@ -9,10 +9,10 @@ export const revalidate = 60 * 60;
 export default async function page() {
   const platforms = await getPlatforms("");
   return (
-    <div className="bg-[#1F2432]">
+    <div>
       <Header />
       <Menu />
-      <div className="md:w-[88vw] w-[84vw] absolute left-0 bg-[#1F2432] mt-12 -z-20 md:pr-8 min-h-screen">
+      <div className="w-[84vw] bg-dGray absolute left-0 mt-12 -z-20 md:pr-8 min-h-screen">
         <AddPlatform />
         <Table platforms={platforms} />
       </div>

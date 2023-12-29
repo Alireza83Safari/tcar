@@ -9,11 +9,11 @@ export const revalidate = 60 * 60;
 async function page() {
   const companies = await getCopmpanies();
   return (
-    <div className="bg-[#1F2432]">
+    <div>
       <Header />
       <Menu />
 
-      <div className="md:w-[88vw] w-[84vw] absolute left-0 bg-[#1F2432] md:px-4 mt-12 -z-20">
+      <div className="w-[84vw] bg-dGray absolute left-0 md:px-4 mt-12 -z-20">
         <AddBrand />
         <Table brands={companies} />
       </div>

@@ -11,11 +11,11 @@ async function page() {
   const colors = await getColors();
 
   return (
-    <div className="bg-[#1F2432]">
+    <div>
       <Header />
       <Menu />
 
-      <div className="md:w-[88vw] w-[84vw] min-h-screen absolute left-0 bg-[#1F2432] mt-10 md:pr-8 -z-20">
+      <div className="w-[84vw] bg-dGray min-h-screen absolute left-0 mt-10 md:pr-8 -z-20">
         <Suspense>
           <AddColor />
         </Suspense>

@@ -31,10 +31,10 @@ export default async function page() {
   ];
 
   return (
-    <div className="bg-[#1F2432]">
+    <div>
       <Header />
       <Menu />
-      <div className="md:w-[88vw] w-[84vw] min-h-screen absolute left-0 bg-[#1F2432] px-4 mt-10 grid md:grid-cols-4">
+      <div className="md:w-[84vw] w-[84vw] bg-[#F2F3F5] min-h-screen absolute left-0 px-4 mt-10 grid md:grid-cols-4">
         <InfoBar
           cars={cars?.length || 0}
           colors={colors?.length || 0}

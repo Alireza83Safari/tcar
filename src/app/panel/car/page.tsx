@@ -12,7 +12,7 @@ export default async function page() {
       <Header />
       <Menu />
 
-      <div className="md:w-[88vw] w-[82vw] absolute left-0 bg-[#1F2432] mt-10">
+      <div className="w-[84vw] bg-dGray absolute left-0 mt-10">
         <InfoBar cars={cars} />
         <Table cars={cars} />
       </div>

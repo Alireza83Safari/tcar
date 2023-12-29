@@ -52,44 +52,38 @@ const EditPlatform = ({ showModal, setShowEditModal, editId }: any) => {
 
   return (
     <Modal isOpen={showModal} onClose={closeModal} title="ویراش پلتفرم">
-      {loading ? (
-        <div className="min-w-[40%] min-h-[60%]">
-          <Spinner />
-        </div>
-      ) : (
-        <form action={formAction} className="grid grid-cols-1 bg-black-00">
-          {false ? (
-            <div className="min-w-[40%] min-h-[60%]">
-              <Spinner />
+      <form action={formAction} className="grid grid-cols-1">
+        {false ? (
+          <div className="min-w-[40%] min-h-[60%]">
+            <Spinner />
+          </div>
+        ) : (
+          <>
+            <div className="mx-2 my-1">
+              <input type="hidden" name="id" value={editId} />
+              <Input
+                label="نام پلتفرم"
+                name="name"
+                placeholder="نام پلتفرم"
+                className="border bg-black-500"
+                defaultValue={initialState.name}
+              />
             </div>
-          ) : (
-            <>
-              <div className="mx-2 my-1">
-                <input type="hidden" name="id" value={editId} />
-                <Input
-                  label="نام پلتفرم"
-                  name="name"
-                  placeholder="نام پلتفرم"
-                  className="border bg-black-500"
-                  defaultValue={initialState.name}
-                />
-              </div>
-              <div className="mx-2 my-1">
-                <Input
-                  label="کد پلتفرم"
-                  name="code"
-                  placeholder="کد پلتفرم"
-                  className="border bg-black-500"
-                  defaultValue={initialState.code}
-                />
-              </div>
-              <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
-                ویرایش پلتفرم
-              </button>
-            </>
-          )}
-        </form>
-      )}
+            <div className="mx-2 my-1">
+              <Input
+                label="کد پلتفرم"
+                name="code"
+                placeholder="کد پلتفرم"
+                className="border bg-black-500"
+                defaultValue={initialState.code}
+              />
+            </div>
+            <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+              ویرایش پلتفرم
+            </button>
+          </>
+        )}
+      </form>
     </Modal>
   );
 };

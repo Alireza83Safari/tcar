@@ -56,7 +56,7 @@ const Chart = ({ data }: { data: DataItem[] }) => {
     <ResponsiveContainer
       width="100%"
       height={350}
-      className="bg-black-200 rounded-lg md:mt-12 mt-4 mb-6"
+      className=" bg-white rounded-lg md:mt-12 mt-4 mb-6"
     >
       <PieChart>
         <Pie

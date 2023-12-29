@@ -14,13 +14,14 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
+        dGray: "#F2F3F5",
         orange: "#FD5631",
         gray: {
           200: "#93929B",
         },
         black: {
           100: "#282435",
-          200: "#000000",
+          200: "#1f1b2d",
           500: "#1F1B2D",
         },
         borderColor: "#474553",

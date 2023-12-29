@@ -13,7 +13,7 @@ export async function Table({ appPics }: { appPics: appPicType[] }) {
   return (
     <div className="mt-5 overflow-x-auto min-h-[36rem]">
       {appPics?.length ? (
-        <table className="min-w-full px-4 rounded-lg bg-black-200 mr-4">
+        <table className="min-w-full px-4 rounded-lg bg-white text-black-500 mr-4">
           <thead>
             <tr className="sm:text-xs text-[12px] 2xl:text-lg border-b">
               <th className="py-3 px-2">#</th>

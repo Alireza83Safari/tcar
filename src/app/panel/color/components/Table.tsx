@@ -10,10 +10,10 @@ export async function Table({ colors }: { colors: getColorType[] }) {
   const [editId, setEditID] = useState("");
   const [showColors, setShowEditColor] = useState(false);
   return (
-    <div className="overflow-x-auto min-h-[36rem]">
-      <table className="min-w-full overflow-x-auto rounded-lg mx-4 bg-black-200">
+    <div className="mt-5 overflow-x-auto">
+      <table className="min-w-full rounded-lg bg-white text-black-500 mr-4">
         <thead>
-          <tr className="sm:text-xs text-[12px] 2xl:text-lg border-y">
+          <tr className="sm:text-xs text-[12px] 2xl:text-lg border-b">
             <th className="py-3 px-2">#</th>
             <th className="py-3 px-2">رنگ</th>
             <th className="py-3 px-2">کد رنگ</th>
