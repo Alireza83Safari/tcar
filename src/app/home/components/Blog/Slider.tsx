@@ -2,11 +2,11 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
-import { CarType } from "@/types/car.type";
-import CarTemplate from "@/components/Car/CarTemplate";
 import { FreeMode, Pagination } from "swiper/modules";
+import BlogTemplate from "@/components/Blog/BlogTemplate";
+import { blogType } from "@/types/blog.type";
 
-export default function Slider({ cars }: { cars: CarType[] }) {
+export default function Slider({ blogs }: { blogs: blogType[] }) {
   const breakpoints = {
     320: {
       slidesPerView: 1,
@@ -20,14 +20,10 @@ export default function Slider({ cars }: { cars: CarType[] }) {
       slidesPerView: 3,
       spaceBetween: 10,
     },
-    1300: {
-      slidesPerView: 4,
-      spaceBetween: 10,
-    },
   };
   return (
     <>
-      {cars?.length && (
+      {blogs?.length && (
         <Swiper
           freeMode={true}
           loop={true}
@@ -36,9 +32,9 @@ export default function Slider({ cars }: { cars: CarType[] }) {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          {cars?.slice(3, 8)?.map((car) => (
-            <SwiperSlide key={car?._id}>
-              <CarTemplate {...car} />
+          {blogs?.slice(0, 8)?.map((blog: blogType) => (
+            <SwiperSlide key={blog?._id}>
+              <BlogTemplate {...blog} />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import Select from "../Form/Select";
+import Select from "../../../components/Form/Select";
 import { yearsItem } from "@/services/apiRequest/apiRequest";
 import useSWR from "swr";
 import { useRouter } from "next/navigation";

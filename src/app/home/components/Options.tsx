@@ -12,13 +12,13 @@ const Options = () => {
       <div className="bg-black-100 sm:mx-12 rounded-lg py-4 px-8">
         <Swiper className="mySwiper" loop={true}>
           <SwiperSlide>
-            <div className="grid grid-cols-4">
+            <div className="grid sm:grid-cols-4">
               <div className="col-span-1">
                 <h3 className="sm:text-2xl text-xl">فروشگاه ماشین</h3>
-                <p className="text-gray-200 my-8">
+                <p className="text-gray-200 sm:my-8 my-1">
                   بهترین ماشین خود را انتخاب کنید
                 </p>
-                <button className="flex items-center bg-orange px-4 py-2 rounded-lg">
+                <button className="flex items-center bg-orange px-4 py-2 sm:mb-0 mb-3 rounded-lg">
                   <p className="ml-2">مشاهده فروشگاه</p>
                   <IoIosArrowBack className="text-xl" />
                 </button>
@@ -26,7 +26,7 @@ const Options = () => {
               <div className="col-span-3 grid grid-cols-4 my-auto">
                 <div>
                   <Image
-                    src={"/img/car-finder/categories/04.png"}
+                    src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789497/mmkcpvdklfclalptqmjj.png"
                     width={100}
                     height={100}
                     alt="car"
@@ -35,7 +35,7 @@ const Options = () => {
                 </div>
                 <div>
                   <Image
-                    src={"/img/car-finder/categories/03.png"}
+                    src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789594/hwjs7lzsaohdhwwekrnm.png"
                     width={100}
                     height={100}
                     alt="car"
@@ -44,7 +44,7 @@ const Options = () => {
                 </div>
                 <div>
                   <Image
-                    src={"/img/car-finder/categories/02.png"}
+                    src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789620/je4xwl0m4zqwlcfojpxv.png"
                     width={100}
                     height={100}
                     alt="car"
@@ -53,7 +53,7 @@ const Options = () => {
                 </div>
                 <div>
                   <Image
-                    src={"/img/car-finder/categories/01.png"}
+                    src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789638/hlkg2zyw2jvvplgkl0hi.png"
                     width={100}
                     height={100}
                     alt="car"

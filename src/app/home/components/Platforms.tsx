@@ -12,6 +12,7 @@ function Platforms() {
   return (
     <section className="md:px-8 px-3 xl:container m-auto">
       <p className="text-2xl">جستجو بر اساس بدنه</p>
+
       <div className="grid sm:grid-cols-3 grid-cols-2">
         {platforms?.length &&
           platforms?.map((car: getPlatformType) => (

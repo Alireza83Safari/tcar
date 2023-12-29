@@ -1,5 +1,5 @@
-import Image from "next/image";
-import React from "react";
+"use client";
+import { CldImage } from "next-cloudinary";
 
 const Application = () => {
   return (
@@ -91,11 +91,11 @@ const Application = () => {
           </div>
         </div>
         <div>
-          <Image
-            src={"/img/car-finder/home/mobile-app.png"}
+          <CldImage
+            width="440"
+            height="440"
+            src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703788477/ku5jnjqypc1hodx7f1kr.png"
             alt="application"
-            width={440}
-            height={440}
           />
         </div>
       </div>

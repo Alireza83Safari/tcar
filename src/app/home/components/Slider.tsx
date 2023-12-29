@@ -6,7 +6,15 @@ import { CarType } from "@/types/car.type";
 import CarTemplate from "@/components/Car/CarTemplate";
 import { FreeMode, Pagination } from "swiper/modules";
 
-export default function Slider({ cars }: { cars: CarType[] }) {
+export default function Slider({
+  cars,
+  from,
+  to,
+}: {
+  cars: CarType[];
+  from: number;
+  to: number;
+}) {
   const breakpoints = {
     320: {
       slidesPerView: 1,
@@ -36,7 +44,7 @@ export default function Slider({ cars }: { cars: CarType[] }) {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          {cars?.slice(0, 8)?.map((car) => (
+          {cars?.slice(from, to)?.map((car) => (
             <SwiperSlide key={car?._id}>
               <CarTemplate {...car} />
             </SwiperSlide>

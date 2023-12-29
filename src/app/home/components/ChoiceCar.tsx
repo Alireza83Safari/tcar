@@ -3,8 +3,6 @@ import { getCars } from "@/actions/car";
 import Link from "next/link";
 import Slider from "./Slider";
 
-export const revalidate = 60 * 60;
-
 export default async function ChoiceCar() {
   const cars = await getCars("");
 
@@ -18,7 +16,7 @@ export default async function ChoiceCar() {
         </div>
       </div>
       <div>
-        <Slider cars={cars} />
+        <Slider cars={cars} from={3} to={7} />
       </div>
     </nav>
   );

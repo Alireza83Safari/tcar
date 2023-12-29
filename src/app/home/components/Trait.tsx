@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client";
+import { CldImage } from "next-cloudinary";
 import React from "react";
 import { FaFileAlt, FaSearch } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
@@ -41,10 +42,10 @@ const Trait = () => {
           </div>
         </div>
         <div className="sm:col-span-2 col-span-12 flex justify-center items-center">
-          <Image
-            src={"/img/car-finder/home/car.svg"}
-            width={100}
-            height={200}
+          <CldImage
+            width="100"
+            height="200"
+            src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703788233/kzp09lbywq7ttrs2ojcx.png"
             alt="car"
           />
         </div>
