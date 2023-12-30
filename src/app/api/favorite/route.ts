@@ -9,10 +9,8 @@ export async function POST(req: NextRequest) {
     await connectToDB();
 
     const data = await req.json();
-    console.log("Received data:", data);
 
     if (!data?.user || !mongoose.Types.ObjectId.isValid(data.user)) {
-      console.log("Invalid user ID");
       return NextResponse.json(
         { message: "شناسه کاربر معتبر نیست" },
         { status: 404 }
@@ -20,7 +18,6 @@ export async function POST(req: NextRequest) {
     }
 
     if (!data?.carId || !mongoose.Types.ObjectId.isValid(data.carId)) {
-      console.log("Invalid car ID");
       return NextResponse.json(
         { message: "شناسه خودرو معتبر نیست" },
         { status: 404 }
@@ -28,7 +25,6 @@ export async function POST(req: NextRequest) {
     }
 
     const existingCar = await Car.find({ _id: data?.carId });
-    console.log(!!existingCar);
 
     if (existingCar) {
       return NextResponse.json(
@@ -38,23 +34,19 @@ export async function POST(req: NextRequest) {
     }
 
     const createdFavorite = await Favorite.create(data);
-    console.log("createdFavorite", createdFavorite);
 
     if (!createdFavorite) {
-      console.log("Failed to create favorite");
       return NextResponse.json(
         { error: "مشکلی در ایجاد زیی ایجاد شده است" },
         { status: 409 }
       );
     }
 
-    console.log("Successfully created favorite");
     return NextResponse.json(
       { message: "با موفقیت ایجاد شد" },
       { status: 201 }
     );
   } catch (error) {
-    console.error("Error:", error);
     return NextResponse.json(
       { error: "خطا در پردازش درخواست" },
       { status: 500 }

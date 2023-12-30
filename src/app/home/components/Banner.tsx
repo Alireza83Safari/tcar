@@ -1,15 +1,18 @@
 "use client";
 import { fetcher } from "@/actions/fetcher";
+import LoadingTemplate from "@/components/LoadingTemplate";
 import { appPicType } from "@/types/appPic.type";
 import { CldImage } from "next-cloudinary";
 import useSWR from "swr";
 
 export default function Banner() {
   const { data: banners, isLoading } = useSWR("/appPic", fetcher);
+  console.log(banners);
+
   return (
     <>
       {isLoading ? (
-        <p>loadimg...</p>
+        <LoadingTemplate />
       ) : (
         banners?.length &&
         banners?.map((banner: appPicType) => (

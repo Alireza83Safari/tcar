@@ -4,7 +4,6 @@ import Input from "@/components/Form/Input";
 import Header from "@/components/Header";
 import Spinner from "@/components/Spinner/Spinner";
 import { apiUrl } from "@/services/apiUrl";
-import { axiosInstance } from "@/services/axios/axios";
 import { loginErrorType } from "@/types/error.type";
 import { loginSchema } from "@/validator/client/auth";
 import { signIn, useSession } from "next-auth/react";
@@ -38,8 +37,12 @@ const Login = () => {
   const handleLogin = async () => {
     setLoading(true);
     try {
-      const res = await axiosInstance.post(`/api/login`, userLoginInfos);
-      setUserLoginInfos({ ...userLoginInfos, userId: res?.data?._id });
+      const res = await fetch(`/api/login`, {
+        method: "POST",
+        body: JSON.stringify(userLoginInfos),
+      });
+      const data = await res.json();
+      setUserLoginInfos({ ...userLoginInfos, userId: data?._id });
 
       if (res.status === 200) {
         signIn("credentials", {
@@ -57,6 +60,10 @@ const Login = () => {
         });
         setLoading(false);
       }
+      if (res.status !== 200) {
+        setServerError(data?.message);
+        setLoading(false);
+      }
     } catch (error) {
       setServerError((error as any)?.response?.data?.message);
       setLoading(false);
@@ -64,8 +71,8 @@ const Login = () => {
   };
 
   const formIsValid = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     setLoading(true);
+    e.preventDefault();
     try {
       const isValid = await loginSchema?.validate(userLoginInfos, {
         abortEarly: false,
@@ -99,14 +106,14 @@ const Login = () => {
       <div className="xl:container mx-auto my-20 px-4 grid grid-cols-2">
         <div className="flex justify-center items-center">
           <Image
-            src="/img/car-finder/auth/signin-dark.svg"
+            src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703830631/dzwuo7bkodnrtkwnfkhw.png"
             alt="login"
             width={400}
             height={400}
           />
         </div>
         {isLoading ? (
-          <div className="col-span-2 min-h-[20rem]">
+          <div className="col-span-">
             <Spinner />
           </div>
         ) : (

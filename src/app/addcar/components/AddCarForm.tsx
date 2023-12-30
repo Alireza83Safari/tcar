@@ -14,7 +14,6 @@ import {
 } from "@/services/apiRequest/apiRequest";
 import { createCarErrorType } from "@/types/error.type";
 import carSchema from "@/validator/client/car";
-import axios from "axios";
 import toast from "react-hot-toast";
 import { initialState } from "./AddCar";
 import { useSession } from "next-auth/react";
@@ -68,11 +67,15 @@ const AddCarForm = ({
       });
 
       if (isValid) {
-        const res = await axios.post(`/api/car`, createCarInfos);
-        if (res.status === 201) {
+        const res = await fetch(`/api/car`, {
+          method: "POST",
+          body: createCarInfos,
+        });
+        const data = await res.json();
+        if (data.status === 201) {
           setShowImage(true);
           setCreateCarInfos(initialState);
-          setCarId(res?.data?._id);
+          setCarId(data?.data?._id);
           toast.success("آگهی با موفقیت اضافه شد!");
           revalidateTag("userCar");
         } else {

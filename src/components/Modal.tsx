@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
   if (!isModalOpen) return null;
 
   return (
-    <div className="fixed top-0 left-0 right-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-20 bg-gray-200">
+    <div className="fixed top-0 left-0 right-0 w-full h-full flex items-center justify-center bg-black bg-opacity-70 z-10 bg-gray-300 ">
       <div className="bg-gradient-to-r from-gray-900 to-zinc-900 p-6 rounded-xl max-h-[90%] overflow-auto relative z-0">
         <button
           className=" absolute top-2 right-1 text-red"

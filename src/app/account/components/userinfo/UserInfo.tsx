@@ -1,12 +1,9 @@
 "use client";
-
 import Accordion from "../../../../components/Accordion";
 import Input from "../../../../components/Form/Input";
 import { useState, useEffect } from "react";
-import { TbCameraPlus } from "react-icons/tb";
 import toast from "react-hot-toast";
 import { useSession } from "next-auth/react";
-import { axiosInstance } from "@/services/axios/axios";
 import { useRouter } from "next/navigation";
 import { getUserType } from "@/types/user.type";
 
@@ -31,7 +28,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
     }
   }, [user]);
 
-  const setInputValue = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const setInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setUserInfos({
@@ -41,9 +38,11 @@ const UserInfo = ({ user }: { user: getUserType }) => {
   };
 
   const editUserInfo = async () => {
-    const res = await axiosInstance.put(`/user/${(session as any)?.id}`, userInfos);
-
-    if (res.status === 200) {
+    const res = await fetch(`/api/user/${(session as any)?.id}`, {
+      body: JSON.stringify(userInfos),
+      method: "PUT",
+    });
+    if (res?.status === 200) {
       update(userInfos);
       toast.success("ویرایش با موفقیت انجام شد");
     }
@@ -58,7 +57,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
 
   return (
     <div className="col-span-8 mx-5 grid grid-cols-11">
-      <form action={editUserInfo} className="col-span-8">
+      <form action={editUserInfo} className="col-span-11">
         <h1 className="text-2xl font-semibold mb-5">اطلاعات فردی</h1>
         <Accordion title="نام" titleValue={userInfos?.firstname}>
           <div className="flex justify-center">
@@ -109,7 +108,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
         </button>
       </form>
 
-      <div className="col-span-3 mx-4">
+      {/*    <div className="col-span-3 mx-4">
         <div className="w-[10rem] h-[10rem] bg-black-100 flex justify-center items-center border-2 border-dashed rounded-lg">
           <div className="text-center">
             <TbCameraPlus className="text-3xl m-auto" />
@@ -121,7 +120,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
           مشخصات شما خصوصی است تا زمانی که رزرو تأیید نشود ، هیچ کس دیگری آن را
           نخواهد دید.
         </p>
-      </div>
+      </div> */}
     </div>
   );
 };

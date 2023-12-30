@@ -1,16 +1,5 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import React from "react";
-import Menu from "./components/Menu";
+import { redirect } from "next/navigation";
 
-export default async function page() {
-  return (
-    <>
-      <Header />
-      <main className="grid grid-cols-12 mt-12">
-        <Menu />
-      </main>
-      <Footer />
-    </>
-  );
+export default function page() {
+  redirect("/account/userinfo");
 }

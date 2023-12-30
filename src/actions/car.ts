@@ -9,7 +9,8 @@ export async function getCars(url: string) {
   if (!apiUrl) {
     return null;
   }
-  const res = await fetch(`${apiUrl}/api/${url ? url : `car`}`, {
+
+  const res = await fetch(`${apiUrl}/api/${url?.length ? url : `car`}`, {
     next: { tags: ["cars"], revalidate: 60 },
   });
   const cars = await res.json();
@@ -33,7 +34,6 @@ export async function deleteCar(id: string) {
   const res = await fetch(`${apiUrl}/api/car/${id}`, {
     method: "DELETE",
   });
-  console.log(res);
 
   if (res.status === 200) {
     revalidateTag("cars");
@@ -45,7 +45,8 @@ export async function editCar(prev: any, formData: FormData) {
   if (!apiUrl) {
     return null;
   }
-  await connectToDB();
+
+  // await connectToDB();
   const id = formData.get("id");
 
   const data = {
@@ -72,6 +73,7 @@ export async function editCar(prev: any, formData: FormData) {
       method: "PUT",
       body: JSON.stringify(data),
     });
+
     const response = await res.json();
     if (response?.status === 200) {
       revalidateTag("cars");

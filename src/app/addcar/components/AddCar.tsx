@@ -6,7 +6,6 @@ import AddCarSection from "./AddCarSection";
 import AddCarForm from "./AddCarForm";
 import ImageUpload from "./UploadImage";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 export const initialState = {
@@ -31,7 +30,6 @@ export const initialState = {
 
 export default function AddCar() {
   const { data: session } = useSession();
-  const router = useRouter();
   useEffect(() => {
     if (!session) {
       toast.error("وارد حساب خود شوید");

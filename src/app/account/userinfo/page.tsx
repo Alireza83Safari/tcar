@@ -13,8 +13,8 @@ export default async function page() {
   return (
     <>
       <Header />
-      <main className="grid grid-cols-12 mt-12">
-        <Menu />
+      <main className="grid md:grid-cols-12 grid-cols-1 mt-12 xl:container mx-auto z-10">
+        <Menu user={user} />
         <UserInfo user={user} />
       </main>
 

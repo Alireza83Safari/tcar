@@ -2,11 +2,10 @@ import { getCar, getCars } from "@/actions/car";
 import CarDetails from "@/components/Car/CarDetails";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import React from "react";
 
 export async function generateStaticParams() {
   const cars = await getCars("");
-  return [{ id: cars?.data?._id }];
+  return [{ id: cars?._id }];
 }
 
 export default async function page({ params }: { params: { id: string } }) {

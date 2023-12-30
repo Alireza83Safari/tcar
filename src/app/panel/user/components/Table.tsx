@@ -9,7 +9,7 @@ export async function Table({ users }: { users: any }) {
   const [showModal, setShowEditModal] = useState(false);
 
   return (
-    <div className="overflow-x-auto mt-24">
+    <div className="overflow-x-auto mt-24 min-h-screen">
       <table className="min-w-full overflow-x-auto rounded-lg bg-white text-black-500">
         <thead>
           <tr className="sm:text-xs text-[12px] 2xl:text-lg border-b">

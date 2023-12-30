@@ -9,7 +9,6 @@ import { yearsItem } from "@/services/apiRequest/apiRequest";
 import { useFormState } from "react-dom";
 import { editCar } from "@/actions/car";
 import { useSession } from "next-auth/react";
-import { axiosInstance } from "@/services/axios/axios";
 import toast from "react-hot-toast";
 
 const EditForm = ({ editCarId, closeModal }: any) => {
@@ -68,6 +67,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
     status: null,
   } as any;
   const [state, formAction] = useFormState(editCar, errorState);
+console.log(state);
 
   useEffect(() => {
     if (state?.status === 200) {
@@ -175,7 +175,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               label="رنگ"
               name="color"
               onChange={setInputValue}
-              value={editCarValue?.color}
+              value={editCarValue?.color?._id}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={colors}
             />
@@ -185,7 +185,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               label="کمپانی"
               name="company"
               onChange={setInputValue}
-              value={editCarValue?.company}
+              value={editCarValue?.company?._id}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={companies}
             />
@@ -195,7 +195,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               label="پلتفرم"
               name="platform"
               onChange={setInputValue}
-              value={editCarValue?.platform}
+              value={editCarValue?.platform?._id}
               className="w-full py-[.34rem] bg-black-500 border border-borderColor rounded-lg px-3"
               options={platform}
             />

@@ -8,7 +8,6 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    console.log("param.id", params.id);
 
     await connectToDB();
 

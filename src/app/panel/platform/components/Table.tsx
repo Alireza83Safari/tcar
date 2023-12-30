@@ -11,7 +11,7 @@ export async function Table({ platforms }: { platforms: getPlatformType[] }) {
   const [showModal, setShowEditModal] = useState(false);
 
   return (
-    <div className="mt-5 overflow-x-auto min-h-[36rem]">
+    <div className="mt-5 overflow-x-auto min-h-screen">
       <table className="min-w-full px-4 rounded-lg bg-white text-black-500">
         {platforms?.length ? (
           <>

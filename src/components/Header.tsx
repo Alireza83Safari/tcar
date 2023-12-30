@@ -6,11 +6,10 @@ import { FiPlus } from "react-icons/fi";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { useEffect, useMemo, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { signOut, useSession } from "next-auth/react";
 import Button from "./Form/Button";
-import { log } from "console";
 
 type accountMenuType = {
   title: String;
@@ -61,23 +60,36 @@ const Header = () => {
   const UserInfos = useMemo(
     () =>
       session ? (
-        <Link replace={true} href="/account" className="flex items-center">
+        <Link
+          replace={true}
+          href="/account"
+          className="flex items-center hover:text-orange duration-300"
+        >
           <CiUser className="text-3xl" />
           <p className="text-sm mr-1 sm:block hidden">{session?.user?.email}</p>
         </Link>
       ) : (
-        <Link replace={true} href="/login" className="flex items-center">
-          <p>ورود به حساب کاربری</p>
+        <Link
+          replace={true}
+          href="/login"
+          className="flex items-center hover:text-orange duration-300"
+        >
+          <p className="sm:flex hidden">ورود به حساب کاربری</p>
           <CiUser className="text-xl" />
         </Link>
       ),
     [session]
   );
 
+  const logoutHanlder = () => {
+    signOut();
+    router.push("/");
+  };
+
   return (
     <header className="xl:container mx-auto md:px-8 px-2 sticky top-0 bg-black-200 z-10">
       <div className="flex justify-between items-center h-[4rem]">
-        <div className="lg:flex hidden items-center gap-x-8 ">
+        <div className="lg:flex hidden items-center gap-x-6">
           <Link href="/" replace={true}>
             <Image
               src="/img/logo/logo-light.svg"
@@ -87,16 +99,14 @@ const Header = () => {
             />
           </Link>
 
-          <div>
-            <Link href="/car" className="flex items-center">
-              <p className="">خرید خودرو</p>
-            </Link>
-          </div>
+          <Link replace={true} href="/car" className="flex items-center">
+            <p className="hover:text-orange duration-300">خرید خودرو</p>
+          </Link>
 
           <div className="relaitve group">
             <button className="flex items-center">
               <FaAngleDown className="font-bold ml-1 text-sm" />
-              <p className="">اکانت</p>
+              <p className="hover:text-orange duration-300">اکانت</p>
             </button>
             <ul className="hidden group-hover:block absolute bg-black-500 px-4 py-2 rounded-xl">
               {accountMenu.map((menu, index) => (
@@ -104,7 +114,7 @@ const Header = () => {
                   <Link
                     replace={true}
                     href={menu.href}
-                    className="text-gray-200 hover:text-white duration-300"
+                    className="hover:text-orange duration-300"
                   >
                     {menu.title}
                   </Link>
@@ -113,26 +123,45 @@ const Header = () => {
               <li className={`my-2 ${session ? `block` : `hidden`}`}>
                 <button
                   className="text-gray-200 hover:text-white duration-300"
-                  onClick={() => signOut()}
+                  onClick={() => logoutHanlder()}
                 >
                   خروج
                 </button>
               </li>
             </ul>
           </div>
-          <Link href="/about">درباره ما</Link>
-          <Link href="/help-center">ارتباط با ما</Link>
+          <Link
+            replace={true}
+            href="/about"
+            className="hover:text-orange duration-300"
+          >
+            درباره ما
+          </Link>
+          <Link
+            replace={true}
+            href="/help-center"
+            className="hover:text-orange duration-300 lg:hidden xl:flex flex"
+          >
+            ارتباط با ما
+          </Link>
+          <Link
+            replace={true}
+            href="/panel"
+            className="hover:text-orange duration-300"
+          >
+            پنل
+          </Link>
         </div>
 
         {showMenu && (
-          <div className="lg:hidden block min-w-[10rem] min-h-screen pt-2 absolute bg-black-100 border-r border-borderColor z-10 items-center gap-x-8 left-0 top-0 ">
-            <div className="py-2 border-b border-borderColor text-center">
+          <div className="lg:hidden block min-w-[10rem] min-h-screen pt-2 absolute bg-black-100 border-r border-borderColor z-10 items-center gap-x-8 right-0 top-0 ">
+            <div className="py-2 border-b border-borderColor text-center hover:text-orange duration-300">
               <Link
                 replace={true}
                 href="car"
                 onClick={() => setShowBuy(!showBuy)}
               >
-                <p className="">خرید خودرو</p>
+                خرید خودرو
               </Link>
             </div>
 
@@ -158,14 +187,27 @@ const Header = () => {
                 )}
               </ul>
             </div>
-            <div className="text-center py-2 border-b border-borderColor">
+            <Link
+              replace={true}
+              href="/about"
+              className="text-center py-2 border-b border-borderColor block hover:text-orange duration-300"
+            >
               درباره ما
-            </div>
-            <div className="text-center py-2 border-b border-borderColor">
-              <Link replace={true} href="/addcar">
-                ثبت خودرو
-              </Link>
-            </div>
+            </Link>
+            <Link
+              replace={true}
+              href="/panel"
+              className="text-center py-2 border-b border-borderColor block hover:text-orange duration-300"
+            >
+              پنل
+            </Link>
+            <Link
+              replace={true}
+              href="/addcar"
+              className="text-center py-2 border-b border-borderColor block hover:text-orange duration-300"
+            >
+              ثبت خودرو
+            </Link>
           </div>
         )}
 

@@ -20,7 +20,7 @@ export async function Table({ cars }: any) {
   };
 
   return (
-    <div className="md:mt-5 overflow-x-auto min-h-[36rem]">
+    <div className="md:mt-5 overflow-x-auto min-h-screen">
       <Modal isOpen={isModalOpen} onClose={closeModal} title="ویرایش خودرو">
         <EditForm editCarId={editCarId} closeModal={closeModal} />
       </Modal>

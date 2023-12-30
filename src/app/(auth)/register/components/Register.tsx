@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Spinner from "../../../../components/Spinner/Spinner";
-import { axiosInstance } from "@/services/axios/axios";
 
 const Register = () => {
   const router = useRouter();
@@ -37,7 +36,10 @@ const Register = () => {
 
   const handleRegister = async () => {
     try {
-      const res = await axiosInstance.post("/api/register", userRegisterInfos);
+      const res = await fetch(`/api/register`, {
+        method: "POST",
+        body: JSON.stringify(userRegisterInfos),
+      });
 
       if (res.status === 200) {
         router.push("/login");
@@ -80,7 +82,7 @@ const Register = () => {
       <div className="xl:container mx-auto my-14 px-4 grid grid-cols-2">
         <div className="flex justify-center items-center">
           <Image
-            src="/img/car-finder/auth/signin-dark.svg"
+            src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703830631/dzwuo7bkodnrtkwnfkhw.png"
             alt="login"
             width={400}
             height={400}

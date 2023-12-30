@@ -10,7 +10,7 @@ export async function Table({ blogs }: { blogs: blogType[] }) {
 /*   const [editId, setEditID] = useState("");
   const [showEditBrand, setShowEditBrand] = useState(false); */
   return (
-    <div className="mt-5 overflow-x-auto min-h-[36rem] text-black-500">
+    <div className="mt-5 overflow-x-auto min-h-screen text-black-500">
       {/*      {blogs?.length ? (
         <table className="min-w-full px-4 rounded-lg bg-black-200 mr-4">
           <thead>

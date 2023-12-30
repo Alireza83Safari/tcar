@@ -37,7 +37,9 @@ export default async function Upload({
             ? "platform"
             : data?.type === 2
             ? "company"
-            : "appPic"
+            : data?.type === 3
+            ? "appPic"
+            : "blogs"
         );
       }
     }

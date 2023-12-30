@@ -1,7 +1,7 @@
 import { FaArrowLeft } from "react-icons/fa6";
 import { getCars } from "@/actions/car";
 import Link from "next/link";
-import Slider from "./Slider";
+import Slider from "@/components/Slider";
 
 export default async function ChoiceCar() {
   const cars = await getCars("");
@@ -15,9 +15,7 @@ export default async function ChoiceCar() {
           <FaArrowLeft className="mr-2" />
         </div>
       </div>
-      <div>
-        <Slider cars={cars} from={3} to={7} />
-      </div>
+      <div>{cars?.length && <Slider cars={cars} from={3} to={7} />}</div>
     </nav>
   );
 }

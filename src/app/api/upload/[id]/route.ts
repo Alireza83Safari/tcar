@@ -4,6 +4,7 @@ import Car from "@/models/car";
 import Platform from "@/models/platform";
 import Company from "@/models/company";
 import AppPic from "@/models/appPic";
+import Blog from "@/models/blog";
 
 export async function POST(
   req: NextRequest,
@@ -18,7 +19,9 @@ export async function POST(
       ? Platform
       : data.type === 2
       ? Company
-      : AppPic
+      : data.type === 3
+      ? AppPic
+      : Blog
     ).findByIdAndUpdate(params.id, { image: data?.scureId }, { new: true });
 
     if (!updatedCar) {
@@ -27,7 +30,6 @@ export async function POST(
 
     return NextResponse.json({ Message: "Success", status: 201 });
   } catch (error) {
-    console.log("Error occurred ", error);
     return NextResponse.json({ Message: "Failed", status: 500 });
   }
 }

@@ -15,7 +15,7 @@ export async function Car({ cars }: { cars: CarType[] }) {
     }
   }, [session]);
   return (
-    <div className="grid grid-cols-1 mx-5 col-span-8">
+    <div className="grid md:grid-cols-2 mx-2 md:col-span-8">
       {cars?.length ? (
         cars?.map((car: CarType) => <CarTemplate {...car} />)
       ) : (

@@ -1,27 +1,19 @@
+import { blogType } from "@/types/blog.type";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import { RiGasStationFill } from "react-icons/ri";
-import { TbManualGearbox } from "react-icons/tb";
-import { AiOutlineDashboard } from "react-icons/ai";
 
-const BlogTemplate = () => {
+const BlogTemplate = ({ image, title, category, _id }: blogType) => {
   return (
-    <div className="bg-black-100 mx-4 rounded-lg">
+    <Link href={`/blog/${_id}`} className=" mx-4 rounded-lg">
       <div>
-        <Image
-          src={"/img/car-finder/blog/05.jpg"}
-          width={700}
-          height={700}
-          alt="car"
-        />
+        <Image src={image} width={700} height={700} alt="car" />
       </div>
       <div className="px-7 py-4">
-        <p className="text-orange text-sm font-semibold my-2">رویداد ها</p>
-        <p className="text-sm text-gray-200 my-2">
-          10 رویداد برتر خودروهای کلاسیک
-        </p>
+        <p className="text-orange text-sm font-semibold my-2">{category}</p>
+        <p className="text-sm text-gray-200 my-2">{title}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

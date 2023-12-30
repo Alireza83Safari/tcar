@@ -23,7 +23,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "ایمیل یافت نشد" }, { status: 404 });
     }
 
-    console.log("try");
     const isPasswordCorrect = await bcrypt.compare(
       password,
       foundUser.password

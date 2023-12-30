@@ -5,7 +5,9 @@ export const dynamic = "force-dynamic";
 
 async function getCarss(searchParams: any) {
   const { platform, color, company, carStatus, years, q } = searchParams;
-
+  if (!apiUrl) {
+    return null;
+  }
   let APIURL = `car`;
   if (platform) {
     APIURL += `?platform=${platform}`;

@@ -44,7 +44,7 @@ export default function Slider({
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          {cars?.slice(from, to)?.map((car) => (
+          {cars?.slice(1, 6)?.map((car) => (
             <SwiperSlide key={car?._id}>
               <CarTemplate {...car} />
             </SwiperSlide>

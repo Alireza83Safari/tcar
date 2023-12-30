@@ -11,7 +11,7 @@ export async function Table({ appPics }: { appPics: appPicType[] }) {
   const [editId, setEditID] = useState("");
   const [showEditAppPic, setShowEditAppPic] = useState(false);
   return (
-    <div className="mt-5 overflow-x-auto min-h-[36rem]">
+    <div className="mt-5 overflow-x-auto min-h-screen">
       {appPics?.length ? (
         <table className="min-w-full px-4 rounded-lg bg-white text-black-500 mr-4">
           <thead>

@@ -11,7 +11,7 @@ export async function Table({ brands }: { brands: companiesType[] }) {
   const [editId, setEditID] = useState("");
   const [showEditBrand, setShowEditBrand] = useState(false);
   return (
-    <div className="mt-5 overflow-x-auto mr-4">
+    <div className="mt-5 overflow-x-auto mr-4 min-h-screen">
       {brands?.length ? (
         <table className="min-w-full rounded-lg bg-white text-black-500">
           <thead>
