@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-
 export default function Error({
   error,
   reset,
@@ -9,16 +7,16 @@ export default function Error({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
   return (
-    <div className="flex justify-center items-center">
-      <div>
-        <h2>Something went wrong!</h2>
-        <button onClick={() => reset()}>Try again</button>
-      </div>
+    <div className="flex flex-col items-center justify-center h-screen font-sans">
+      <h2 className="text-2xl font-bold mb-6">اوه! مشکلی پیش آمد!</h2>
+      <p className="text-red-600 text-lg mb-8">خطا: {error.message}</p>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        onClick={() => reset()}
+      >
+        دوباره امتحان کنید
+      </button>
     </div>
   );
 }
