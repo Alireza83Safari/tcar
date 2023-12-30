@@ -7,10 +7,17 @@ import useSWR from "swr";
 
 export default function Banner() {
   const { data: banners, isLoading } = useSWR("/appPic", fetcher);
-  console.log(banners);
 
   return (
-    <>
+    <div
+      className="min-h-full"
+      style={{
+        backgroundImage: `url('https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789411/ktyjoemn9ppwoawhvmxu.png')`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      }}
+    >
       {isLoading ? (
         <LoadingTemplate />
       ) : (
@@ -19,12 +26,6 @@ export default function Banner() {
           <nav
             key={banner._id}
             className="grid md:grid-cols-3 md:py-32 py-20 px-8 xl:container m-auto"
-            style={{
-              backgroundImage: `url('https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789411/ktyjoemn9ppwoawhvmxu.png')`,
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }}
           >
             <div className="col-span-1">
               <h1 className="text-5xl font-bold" style={{ lineHeight: "60px" }}>
@@ -46,6 +47,6 @@ export default function Banner() {
           </nav>
         ))
       )}
-    </>
+    </div>
   );
 }
