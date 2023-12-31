@@ -1,13 +1,8 @@
 "use client";
-import { fetcher } from "@/actions/fetcher";
-import LoadingTemplate from "@/components/LoadingTemplate";
 import { appPicType } from "@/types/appPic.type";
 import { CldImage } from "next-cloudinary";
-import useSWR from "swr";
 
-export default function Banner() {
-  const { data: banners, isLoading } = useSWR("/appPic", fetcher);
-
+export default async function Banner({ banners }: { banners: appPicType[] }) {
   return (
     <div
       className="min-h-full"
@@ -18,10 +13,7 @@ export default function Banner() {
         backgroundPosition: "center",
       }}
     >
-      {isLoading ? (
-        <LoadingTemplate />
-      ) : (
-        banners?.length &&
+      {banners?.length &&
         banners?.map((banner: appPicType) => (
           <nav
             key={banner._id}
@@ -45,8 +37,7 @@ export default function Banner() {
               />
             </div>
           </nav>
-        ))
-      )}
+        ))}
     </div>
   );
 }

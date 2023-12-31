@@ -31,7 +31,7 @@ async function getCarss(searchParams: any) {
     APIURL += `?q=${q}`;
   }
 
-  const res = await fetch(`${apiUrl}/api/${APIURL}`);
+  const res = await fetch(`${apiUrl}/api/${APIURL}`, { cache: "no-store" });
   const cars = await res.json();
 
   return cars;

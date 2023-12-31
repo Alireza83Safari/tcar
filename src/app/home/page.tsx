@@ -10,12 +10,15 @@ import Blog from "./components/Blog/Blog";
 import Header from "@/components/Header";
 import FilterCar from "./components/FilterCar";
 import Company from "./components/Company";
+import { getAppPics } from "@/actions/appPic";
 
-export default function Home() {
+export default async function Home() {
+  const banners = await getAppPics();
+
   return (
     <div>
       <Header />
-      <Banner />
+      <Banner banners={banners} />
       <FilterCar />
       <Platforms />
       <Newest />

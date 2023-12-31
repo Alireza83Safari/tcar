@@ -1,5 +1,12 @@
-import LoadingTemplate from "@/components/LoadingTemplate";
+"use client";
+import ErrorTemplate from "@/components/ErrorTemplate";
 
-export default function Loading() {
-  return <LoadingTemplate />;
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  return <ErrorTemplate error={error} reset={reset} />;
 }

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Spinner from "../../../../components/Spinner/Spinner";
+import { revalidateWithTag } from "@/actions/revalidateWithTag";
 
 const Register = () => {
   const router = useRouter();
@@ -44,6 +45,7 @@ const Register = () => {
       if (res.status === 200) {
         router.push("/login");
         toast.success("ساخت حساب موفقیت آمیز بود");
+        revalidateWithTag("user");
       }
       if (res.status !== 200) {
         toast.error("Invalid credentials!");
