@@ -36,6 +36,10 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const params = searchParams.get("q");
+  const page = parseInt(searchParams.get("page") || "1");
+  const limit = parseInt(searchParams.get("limit") || "10");
+  const skip = (page - 1) * limit;
+
   try {
     await connectToDB();
 
@@ -43,16 +47,23 @@ export async function GET(req: NextRequest) {
       const brandQuery = await Company.find(
         { name: { $regex: params } },
         "-__v"
-      );
+      )
+        .skip(skip)
+        .limit(limit);
+
       if (brandQuery.length) {
         return NextResponse.json(brandQuery);
       } else {
         return NextResponse.json({ message: "هیچ شرکتی یافت نشد" });
       }
     }
-    const companies = await Company.find({}, "-__v");
-    if (companies) {
+
+    const companies = await Company.find({}, "-__v").skip(skip).limit(limit);
+
+    if (companies.length) {
       return NextResponse.json(companies);
+    } else {
+      return NextResponse.json({ message: "هیچ شرکتی یافت نشد" });
     }
   } catch (error) {
     return NextResponse.json(

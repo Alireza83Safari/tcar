@@ -8,99 +8,101 @@ import Platform from "@/models/platform";
 import mongoose from "mongoose";
 import User from "@/models/user";
 
+async function findCars(query: any, skip: number, limit: number) {
+  return await Car.find(query, "-__v")
+    .populate("company", "-__v")
+    .populate("color", "-__v")
+    .populate("platform", "-__v")
+    .skip(skip)
+    .limit(limit);
+}
+
+async function handleOrder(order: any, skip: number, limit: number) {
+  let carQuery;
+  switch (order) {
+    case "expensive":
+      carQuery = await Car.find({}, "-__v")
+        .sort({ price: -1 })
+        .skip(skip)
+        .limit(limit);
+      break;
+    case "cheap":
+      carQuery = await Car.find({}, "-__v")
+        .sort({ price: 1 })
+        .skip(skip)
+        .limit(limit);
+      break;
+    case "newset":
+      carQuery = await Car.find({}, "-__v")
+        .sort({ createdAt: 1 })
+        .skip(skip)
+        .limit(limit);
+      break;
+    case "oldest":
+      carQuery = await Car.find({}, "-__v")
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit);
+      break;
+    case "unused":
+      carQuery = await Car.find({ carStatus: 0 }, "-__v")
+        .skip(skip)
+        .limit(limit);
+      break;
+    case "used":
+      carQuery = await Car.find({ carStatus: 1 }, "-__v")
+        .skip(skip)
+        .limit(limit);
+      break;
+    default:
+      return NextResponse.json(
+        { message: "Invalid order parameter" },
+        { status: 404 }
+      );
+  }
+  return carQuery;
+}
+
 export async function GET(req: NextRequest) {
+  await connectToDB();
   const { searchParams } = new URL(req.url);
-  const param = searchParams.get("q");
+  const cars = await Car.find({});
+  const query = searchParams.get("q");
   const colorQuery = searchParams.get("color");
   const companyQuery = searchParams.get("company");
   const platformQuery = searchParams.get("platform");
-  const statusQuery = searchParams.get("carStatus");
   const yearsQuery = searchParams.get("years");
+  const order = searchParams.get("order");
+  const page = parseInt(searchParams.get("page") || "1");
+  const limit = parseInt(searchParams.get("limit") || String(cars.length));
+  const skip = (page - 1) * limit;
 
   try {
-    await connectToDB();
-
     let carQuery;
+
     switch (true) {
       case !!yearsQuery:
-        carQuery = await Car.find({ years: yearsQuery })
-          .populate("company", "-__v")
-          .populate("color", "-__v")
-          .populate("platform", "-__v");
-        if (carQuery.length === 0) {
-          return NextResponse.json(
-            { message: "No cars found for this platform" },
-            { status: 404 }
-          );
-        }
+        carQuery = await findCars({ years: yearsQuery }, skip, limit);
         return NextResponse.json(carQuery);
 
       case !!platformQuery:
-        const platformIds = platformQuery !== null && platformQuery.split(",");
-        carQuery = await Car.find({ platform: { $in: platformIds } }, "-__v")
-          .populate("company", "-__v")
-          .populate("color", "-__v")
-          .populate("platform", "-__v");
-        if (carQuery.length === 0) {
-          return NextResponse.json(
-            { message: "No cars found for this platform" },
-            { status: 404 }
-          );
-        }
+        carQuery = await findCars({ platform: platformQuery }, skip, limit);
         return NextResponse.json(carQuery);
 
       case !!colorQuery:
-        const colorIds = colorQuery !== null && colorQuery.split(",");
-        carQuery = await Car.find({ color: { $in: colorIds } }, "-__v")
-          .populate("company", "-__v")
-          .populate("color", "-__v")
-          .populate("platform", "-__v");
-        if (carQuery.length === 0) {
-          return NextResponse.json(
-            { message: "No cars found for this platform" },
-            { status: 404 }
-          );
-        }
+        carQuery = await findCars({ color: colorQuery }, skip, limit);
         return NextResponse.json(carQuery);
 
       case !!companyQuery:
-        const companyIds = companyQuery !== null && companyQuery.split(",");
-        carQuery = await Car.find({ company: { $in: companyIds } }, "-__v")
-          .populate("company", "-__v")
-          .populate("color", "-__v")
-          .populate("platform", "-__v");
-        if (carQuery.length === 0) {
-          return NextResponse.json(
-            { message: "No cars found for this platform" },
-            { status: 404 }
-          );
-        }
+        carQuery = await findCars({ company: companyQuery }, skip, limit);
         return NextResponse.json(carQuery);
 
-      case !!statusQuery:
-        carQuery = await Car.find({ carStatus: statusQuery }, "-__v")
-          .populate("company", "-__v")
-          .populate("color", "-__v")
-          .populate("platform", "-__v");
-        if (carQuery.length === 0) {
-          return NextResponse.json(
-            { message: "No cars found for this status" },
-            { status: 404 }
-          );
-        }
+      case !!order:
+        carQuery = await handleOrder(order, skip, limit);
         return NextResponse.json(carQuery);
 
-      case !!param:
-        carQuery = await Car.find({ title: { $regex: param } }, "-__v")
-          .populate("company", "-__v")
-          .populate("color", "-__v")
-          .populate("platform", "-__v")
-        if (carQuery.length === 0) {
-          return NextResponse.json(
-            { message: "No cars found for this platform" },
-            { status: 404 }
-          );
-        }
+      case !!query:
+        carQuery = await findCars({ title: { $regex: query } }, skip, limit);
         return NextResponse.json(carQuery);
 
       default:
@@ -108,6 +110,8 @@ export async function GET(req: NextRequest) {
           .populate("company", "-__v")
           .populate("color", "-__v")
           .populate("platform", "-__v")
+          .skip(skip)
+          .limit(limit);
         return NextResponse.json(cars);
     }
   } catch (error) {
@@ -122,13 +126,11 @@ export async function POST(req: NextRequest) {
   try {
     await connectToDB();
     const data = await req.json();
-
     const validationResult = carValidator(data);
 
     if (validationResult !== true) {
       return NextResponse.json({ message: validationResult }, { status: 422 });
     }
-
     const ObjectId = mongoose.Types.ObjectId;
 
     if (!ObjectId.isValid(data.color)) {

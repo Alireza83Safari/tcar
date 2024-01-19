@@ -5,13 +5,21 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const params = searchParams.get("q");
+  const page = parseInt(searchParams.get("page") || "1");
+  const limit = parseInt(searchParams.get("limit") || "10");
+  const skip = (page - 1) * limit;
+
   try {
     await connectToDB();
+
     if (params) {
       const platformQuery = await Platform.find(
         { name: { $regex: params } },
         "-__v"
-      );
+      )
+        .skip(skip)
+        .limit(limit);
+
       if (platformQuery.length) {
         return NextResponse.json(platformQuery);
       } else {
@@ -21,8 +29,9 @@ export async function GET(req: NextRequest) {
         );
       }
     } else {
-      const platforms = await Platform.find({}, "-__v");
-      if (platforms) {
+      const platforms = await Platform.find({}, "-__v").skip(skip).limit(limit);
+
+      if (platforms.length) {
         return NextResponse.json(platforms);
       } else {
         return NextResponse.json(
@@ -41,15 +50,8 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-
     await connectToDB();
     const data = await req.json();
-
-/*     const validatorError = platformValidator(data);
-
-    if (validatorError !== true) {
-      return NextResponse.json({ error: validatorError }, { status: 422 });
-    } */
 
     const findPlatformByName = await Platform.findOne({ name: data.name });
     if (findPlatformByName) {

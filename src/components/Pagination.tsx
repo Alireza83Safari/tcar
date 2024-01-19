@@ -1,4 +1,6 @@
 "use client";
+import React from "react";
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -10,9 +12,6 @@ const Pagination: React.FC<PaginationProps> = ({
   totalPages,
   onPageChange,
 }) => {
-  const canGoBack = currentPage > 1;
-  const canGoForward = currentPage < totalPages;
-
   const renderPageNumbers = () => {
     const pageNumbers = [];
 
@@ -35,7 +34,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           key={i}
           className={`px-3 py-1 mx-1 border ${
-            currentPage === i ? "bg-black text-white" : "bg-white"
+            currentPage === i ? "bg-black text-white border-orange" : "bg-black"
           }`}
           onClick={() => onPageChange(i)}
         >
@@ -49,25 +48,7 @@ const Pagination: React.FC<PaginationProps> = ({
 
   return (
     <div className="flex items-center justify-center mt-4 min-w-screen">
-      {canGoBack && (
-        <button
-          className="px-3 py-1 mx-1 bg-black text-white"
-          onClick={() => onPageChange(currentPage - 1)}
-        >
-          Previous
-        </button>
-      )}
-
       {renderPageNumbers()}
-
-      {canGoForward && (
-        <button
-          className="px-3 py-1 mx-1 bg-black text-white"
-          onClick={() => onPageChange(currentPage + 1)}
-        >
-          Next
-        </button>
-      )}
     </div>
   );
 };
