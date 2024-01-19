@@ -14,6 +14,8 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "fastest-validator": "^1.17.0",
+    "highcharts": "^11.3.0",
+    "highcharts-react-official": "^3.2.1",
     "jalali-moment": "^3.3.11",
     "mongoose": "^8.0.1",
     "next": "^14.0.2",
