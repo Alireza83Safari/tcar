@@ -1,200 +1,141 @@
 "use client";
-import { useEffect, useState } from "react";
+import React from "react";
 import useSWR from "swr";
-import { yearsItem } from "@/services/apiRequest/apiRequest";
-import { getPlatformType } from "@/types/platform";
+import Select from "../Form/Select";
+import { ordersItem, yearsItem } from "@/services/apiRequest/apiRequest";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetcher } from "@/actions/fetcher";
-import Spinner from "../Spinner/Spinner";
 
-const FilterCar = ({ showFilterMenu }: { showFilterMenu: boolean }) => {
-  const [carStatus, setCarStatus] = useState<string | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<string[]>([]);
-  const [selectedColor, setSelectedColor] = useState<string[]>([]);
-  const [selectedCompany, setSelectedCompany] = useState<any>();
-  const [selectedYears, setSelectedYears] = useState<any>(null);
-  const [query, setQuery] = useState("");
+type FilterCarProps = {
+  showFilterMenu: boolean;
+  page: number;
+};
+
+const FilterCar: React.FC<FilterCarProps> = ({ showFilterMenu, page }) => {
+  const [filterCarValue, setFilterCarValue] = React.useState({
+    platform: "",
+    color: "",
+    company: "",
+    years: "",
+    query: "",
+    order: "",
+  });
+  const { platform, color, company, years, query, order } = filterCarValue;
 
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const { data: platforms, isLoading: platformLoading } = useSWR(
-    "platform",
-    fetcher
-  );
-  const { data: companies, isLoading: companiesLoading } = useSWR(
-    "company",
-    fetcher
-  );
-  const { data: colors, isLoading: colorLoading } = useSWR("color", fetcher);
+  const { data: platforms } = useSWR("platform", fetcher);
+  const { data: companies } = useSWR("company", fetcher);
+  const { data: colors } = useSWR("color", fetcher);
 
+  // Extract URL parameters for initial state
   const companyParams = searchParams.get("company");
   const colorParams = searchParams.get("color");
   const platformParams = searchParams.get("platform");
   const yearsParams = searchParams.get("years");
   const queryParams = searchParams.get("q");
+  const orderParams = searchParams.get("order");
 
-  const handleButtonClick = (status: string) => {
-    setCarStatus(status);
-  };
+  // Effect to initialize state based on URL parameters
+  React.useEffect(() => {
+    const paramsToUpdate = {
+      company: companyParams,
+      color: colorParams,
+      platform: platformParams,
+      years: yearsParams,
+      query: queryParams,
+      order: orderParams,
+    };
 
-  useEffect(() => {
-    if (companyParams) setSelectedCompany(companyParams);
-    if (colorParams) setSelectedColor([colorParams]);
-    if (platformParams) setSelectedPlatform([platformParams]);
-    if (yearsParams) setSelectedYears(yearsParams);
-    if (queryParams) setQuery(queryParams);
-  }, []);
+    const filteredParams = Object.fromEntries(
+      Object.entries(paramsToUpdate).filter(([_, value]) => value !== undefined)
+    );
 
-  useEffect(() => {
+    setFilterCarValue({ ...filterCarValue, ...filteredParams });
+  }, [
+    companyParams,
+    colorParams,
+    platformParams,
+    yearsParams,
+    queryParams,
+    orderParams,
+  ]);
+
+  React.useEffect(() => {
     const params = new URLSearchParams();
 
-    if (carStatus !== null) params.set("carStatus", carStatus?.toString());
-    if (selectedPlatform.length > 0)
-      params.set("platform", selectedPlatform.join(","));
-    if (selectedColor.length > 0) params.set("color", selectedColor.join(","));
-    if (selectedCompany) params.set("company", selectedCompany);
-    if (selectedYears) params.set("years", selectedYears);
+    if (platform) params.set("platform", platform);
+    if (color) params.set("color", color);
+    if (company) params.set("company", company);
+    if (years) params.set("years", years);
     if (query) params.set("q", query);
+    if (order) params.set("order", order);
+    if (page) params.set("page", String(page));
 
     router.push(`?${params.toString()}`);
-  }, [
-    carStatus,
-    selectedPlatform,
-    selectedColor,
-    selectedCompany,
-    selectedYears,
-    query,
-  ]);
+  }, [filterCarValue, page]);
 
   return (
     <div
-      className={`border border-borderColor px-4 md:rounded-lg md:block overflow-auto bg-gradient-to-r from-stone-900 to-slate-900 ${
+      className={`border border-borderColor px-4 md:rounded-lg md:block overflow-auto bg-gradient-to-r from-stone-900 to-slate-900 sticky top-20 py-5 ${
         showFilterMenu ? `fixed right-0 top-0 z-10 sm:w-1/4 block` : `hidden`
       }`}
     >
-      <div className="border-b border-borderColor py-5">
-        <button
-          className={`px-5 py-2 rounded-md bg-black-100 ml-5 border border-borderColor ${
-            carStatus === "1" ? "bg-white text-black-200" : ""
-          }`}
-          onClick={() => handleButtonClick("1")}
-        >
-          نو
-        </button>
-        <button
-          className={`px-5 py-2 rounded-md bg-black-100 border border-borderColor ${
-            carStatus === "0" ? "bg-white text-black-200" : ""
-          }`}
-          onClick={() => handleButtonClick("0")}
-        >
-          دست دوم
-        </button>
-      </div>
+      <Select
+        name="platform"
+        defaultValue="پلتفرم"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor"
+        value={platform}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setFilterCarValue({ ...filterCarValue, platform: e.target.value })
+        }
+        options={platforms}
+      />
 
-      <div className="border-b border-borderColor py-5">
-        <h3 className="mb-2">نوع بدنه</h3>
-        {platformLoading ? (
-          <Spinner />
-        ) : platforms?.length ? (
-          platforms?.map((platform: getPlatformType) => (
-            <div key={platform?._id} className="py-1">
-              <input
-                type="checkbox"
-                value={platform._id}
-                name="platform"
-                checked={selectedPlatform?.includes(platform._id)}
-                onChange={() => {
-                  if (selectedPlatform.includes(platform._id)) {
-                    setSelectedPlatform(
-                      selectedPlatform.filter(
-                        (code: string) => code !== platform._id
-                      )
-                    );
-                  } else {
-                    setSelectedPlatform([...selectedPlatform, platform._id]);
-                  }
-                }}
-                className="mr-1 h-3 w-3 border-orange rounded"
-              />
-              <label htmlFor={platform.name} className="mr-2">
-                {platform.name}
-              </label>
-            </div>
-          ))
-        ) : (
-          <p>پلتفرمی وجود ندارد</p>
-        )}
-      </div>
+      <Select
+        defaultValue="سال"
+        name="years"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor mt-5"
+        value={years}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setFilterCarValue({ ...filterCarValue, years: e.target.value })
+        }
+        options={yearsItem}
+      />
 
-      <div className="pt-5 mb-4">
-        <select
-          className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor"
-          value={selectedYears}
-          onChange={(e) => setSelectedYears(e.target.value)}
-        >
-          <option value="">مدل</option>
-          {yearsItem.map((year) => (
-            <option value={year.value} key={year.name} defaultValue={"مدل"}>
-              {year.name}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Select
+        defaultValue="رنگ"
+        name="color"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor mt-5"
+        value={color}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setFilterCarValue({ ...filterCarValue, color: e.target.value })
+        }
+        options={colors}
+      />
 
-      <div className="border-b border-borderColor pb-5">
-        <select
-          className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor"
-          value={selectedCompany}
-          onChange={(e) => setSelectedCompany(e.target.value)}
-        >
-          <option value="">برند</option>
-          {companiesLoading ? (
-            <Spinner />
-          ) : companies?.length ? (
-            companies?.map((item: any) => (
-              <option value={item._id} key={item._id}>
-                {item.name}
-              </option>
-            ))
-          ) : (
-            <p>پلتفرمی وجود ندارد</p>
-          )}
-        </select>
-      </div>
+      <Select
+        defaultValue="برند"
+        name="company"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor mt-5"
+        value={company}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setFilterCarValue({ ...filterCarValue, company: e.target.value })
+        }
+        options={companies}
+      />
 
-      <div className="py-5">
-        <h3>رنگ</h3>
-        {colorLoading ? (
-          <Spinner />
-        ) : colors?.length ? (
-          colors?.map((color: any) => (
-            <div className="py-1" key={color?._id}>
-              <input
-                type="checkbox"
-                name="color"
-                value={color?._id}
-                checked={selectedColor?.includes(color._id)}
-                onChange={() => {
-                  if (selectedColor?.includes(color._id)) {
-                    setSelectedColor(
-                      selectedColor.filter((code: string) => color._id !== code)
-                    );
-                  } else {
-                    setSelectedColor([...selectedColor, color._id]);
-                  }
-                }}
-                className="mr-1 h-3 w-3 border-orange rounded"
-              />
-              <label htmlFor={color.name} className="mr-2">
-                {color.name}
-              </label>
-            </div>
-          ))
-        ) : (
-          <p>رنگی وجود ندارد</p>
-        )}
-      </div>
+      <Select
+        defaultValue="براساس:"
+        name="order"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor mt-5"
+        value={order}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setFilterCarValue({ ...filterCarValue, order: e.target.value })
+        }
+        options={ordersItem}
+      />
     </div>
   );
 };
