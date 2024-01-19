@@ -27,7 +27,7 @@ export async function Table({ platforms }: { platforms: getPlatformType[] }) {
             </thead>
             <tbody>
               {platforms?.map((platform: any, index: number) => (
-                <tr className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center my-4">
+                <tr className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center my-3">
                   <td className="py-3 px-2">{index + 1}</td>
                   <td className="py-3 px-2">{platform.name}</td>
                   <td className="py-3 px-2">{platform.code}</td>

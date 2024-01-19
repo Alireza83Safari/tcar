@@ -11,7 +11,7 @@ export async function getAppPics() {
     return null;
   }
   const res = await fetch(`${apiUrl}/api/appPic`, {
-    cache: "no-cache",
+    next: { revalidate: 60 * 60 },
   });
   const appPics = await res.json();
   return appPics;

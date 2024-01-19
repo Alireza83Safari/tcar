@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import useSWR from "swr";
 import { useEffect } from "react";
 import Spinner from "@/components/Spinner/Spinner";
-import { yearsItem } from "@/services/apiRequest/apiRequest";
+import { yearsItem } from "@/data/data"; 
 import { useFormState } from "react-dom";
 import { editCar } from "@/actions/car";
 import { useSession } from "next-auth/react";
@@ -32,6 +32,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
     fuel: "",
     carStatus: null,
   } as any;
+
   const [isLoading, setLoading] = useState(false);
   const [editCarValue, setEditCarValue] = useState(initialState);
   const { data: colors } = useSWR("color", fetcher);
@@ -67,7 +68,6 @@ const EditForm = ({ editCarId, closeModal }: any) => {
     status: null,
   } as any;
   const [state, formAction] = useFormState(editCar, errorState);
-console.log(state);
 
   useEffect(() => {
     if (state?.status === 200) {

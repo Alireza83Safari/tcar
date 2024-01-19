@@ -25,11 +25,7 @@ const Select = ({
         onChange={onChange}
         value={value}
       >
-        {!value && (
-          <option value={ ""}>
-            {defaultValue?.name || ""}
-          </option>
-        )}
+        {defaultValue && <option value="">{String(defaultValue)}</option>}
         {options?.map((item: any) => (
           <option
             key={item?._id || item?.value}

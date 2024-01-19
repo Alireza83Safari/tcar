@@ -10,6 +10,7 @@ import { deleteCar } from "@/actions/car";
 export async function Table({ cars }: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editCarId, setEditCarId] = useState("");
+
   const openModal = (id: string) => {
     setIsModalOpen(true);
     setEditCarId(id);
@@ -44,7 +45,9 @@ export async function Table({ cars }: any) {
             {cars?.map((car: CarType, index: number) => (
               <tr className="2xl:text-sm text-xs text-center" key={car?._id}>
                 <td className="py-3 px-2 truncate">{index + 1}</td>
-                <td className="py-3 px-2 truncate">{car?.title?.slice(0,25)}</td>
+                <td className="py-3 px-2 truncate">
+                  {car?.title?.slice(0, 25)}
+                </td>
                 <td className="py-3 px-2 truncate">{car?.price}</td>
                 <td className="py-3 px-2 truncate">
                   {(car?.color as any)?.name}

@@ -5,8 +5,6 @@ const AddColor = lazy(() => import("./components/AddColor"));
 import { getColors } from "@/actions/color";
 import { Suspense, lazy } from "react";
 
-export const revalidate = 60 * 60;
-
 async function page() {
   const colors = await getColors();
 

@@ -11,7 +11,7 @@ export async function getCopmpanies() {
     return null;
   }
   const res = await fetch(`${apiUrl}/api/company`, {
-    next: { tags: ["company"] },
+    next: { tags: ["company"], revalidate: 60 * 60 },
   });
   const companies = await res.json();
   return companies;

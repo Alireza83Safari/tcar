@@ -18,7 +18,7 @@ import toast from "react-hot-toast";
 import { initialState } from "./AddCar";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/actions/fetcher";
-import { revalidateTag } from "next/cache";
+import { revalidateWithTag } from "@/actions/revalidateWithTag";
 
 const AddCarForm = ({
   setCreateCarInfos,
@@ -69,15 +69,17 @@ const AddCarForm = ({
       if (isValid) {
         const res = await fetch(`/api/car`, {
           method: "POST",
-          body: createCarInfos,
+          body: JSON.stringify(createCarInfos),
         });
         const data = await res.json();
-        if (data.status === 201) {
+
+        if (res.status === 201) {
           setShowImage(true);
           setCreateCarInfos(initialState);
-          setCarId(data?.data?._id);
+          setCarId(data?._id);
           toast.success("آگهی با موفقیت اضافه شد!");
-          revalidateTag("userCar");
+          revalidateWithTag("cars");
+          revalidateWithTag("userCar");
         } else {
           toast.error("خطا!!");
         }
@@ -99,7 +101,7 @@ const AddCarForm = ({
       onSubmit={(e) => e.preventDefault()}
       className="md:col-span-2 col-span-3 md:order-1 order-2"
     >
-      <div className="bg-black-500 sm:p-6 p-3 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 rounded-xl">
         <div className="flex mb-5">
           <LiaInfoSolid className="text-orange items-center text-xl" />
           <h2 className="text-lg">اطلاعات پایه</h2>
@@ -129,7 +131,7 @@ const AddCarForm = ({
         </div>
       </div>
 
-      <div className="bg-black-500 sm:p-6 p-3 mt-7 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
         <div className="flex items-center mb-5">
           <FaMoneyBill1Wave className="text-orange text-xl ml-3" />
           <h2 className="text-lg">قیمت</h2>
@@ -147,7 +149,7 @@ const AddCarForm = ({
         </div>
       </div>
 
-      <div className="bg-black-500 sm:p-6 p-3 mt-7 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
         <div className="flex mb-5">
           <FaCarSide className="text-orange items-center text-xl ml-3" />
           <h2 className="text-lg">مشخصات خودرو</h2>
@@ -200,7 +202,7 @@ const AddCarForm = ({
         </div>
       </div>
 
-      <div className="bg-black-500 sm:p-6 p-3 mt-7 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
         <div className="flex mb-5">
           <FaCarSide className="text-orange items-center text-xl ml-3" />
           <h2 className="text-lg">اطلاعات خودرو</h2>
@@ -268,7 +270,7 @@ const AddCarForm = ({
         </div>
       </div>
 
-      <div className="bg-black-500 sm:p-6 p-3 mt-7 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
         <div className="flex items-center mb-5">
           <FaPhone className="text-orange text-xl ml-3" />
           <h2 className="text-lg">تماس با ما</h2>

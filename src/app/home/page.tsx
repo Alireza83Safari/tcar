@@ -11,23 +11,31 @@ import Header from "@/components/Header";
 import FilterCar from "./components/FilterCar";
 import Company from "./components/Company";
 import { getAppPics } from "@/actions/appPic";
+import { getPlatforms } from "@/actions/platform";
+import { getCopmpanies } from "@/actions/company";
+import { getCars } from "@/actions/car";
+import { getBlogs } from "@/actions/blog";
 
 export default async function Home() {
   const banners = await getAppPics();
+  const platformsData = await getPlatforms("");
+  const companies = await getCopmpanies();
+  const cars = await getCars("");
+  const blogs = await getBlogs();
 
   return (
     <div>
       <Header />
       <Banner banners={banners} />
       <FilterCar />
-      <Platforms />
-      <Newest />
-      <Company />
+      <Platforms platforms={platformsData} />
+      <Newest cars={cars} />
+      <Company companies={companies} />
       <Trait />
-      <ChoiceCar />
+      <ChoiceCar cars={cars} />
       <Options />
       <Application />
-      <Blog />
+      <Blog blogs={blogs} />
       <Footer />
     </div>
   );

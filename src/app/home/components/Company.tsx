@@ -3,15 +3,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper/modules";
-import React from "react";
-import useSWR from "swr";
-import { fetcher } from "@/actions/fetcher";
 import { companyType } from "@/types/company.type";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
 
-const Company = () => {
-  const { data: brands } = useSWR("company", fetcher);
+const Company = ({ companies }: { companies: companyType[] }) => {
   const breakpoints = {
     320: {
       slidesPerView: 6,
@@ -32,7 +28,7 @@ const Company = () => {
   };
   return (
     <nav className="md:px-8 px-3 xl:container m-auto gap-y-10">
-      {brands?.length && (
+      {companies?.length && (
         <Swiper
           freeMode={true}
           loop={true}
@@ -41,7 +37,7 @@ const Company = () => {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          {brands?.map((company: companyType) => (
+          {companies?.map((company: companyType) => (
             <SwiperSlide key={company?._id}>
               <Link href={`/car?company=${company?._id}`} key={company.name}>
                 <CldImage

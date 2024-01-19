@@ -3,12 +3,8 @@
 import { getPlatformType } from "@/types/platform";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
-import useSWR from "swr";
-import { fetcher } from "@/actions/fetcher";
 
-function Platforms() {
-  const { data: platforms } = useSWR("platform", fetcher);
-
+function Platforms({ platforms }: { platforms: getPlatformType[] }) {
   return (
     <section className="md:px-8 px-3 xl:container m-auto">
       <p className="text-2xl">جستجو بر اساس بدنه</p>

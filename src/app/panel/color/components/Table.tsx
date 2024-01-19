@@ -35,7 +35,7 @@ export async function Table({ colors }: { colors: getColorType[] }) {
               <td className="py-3 px-2 truncate">
                 {color.createdAt?.slice(0, 10)}
               </td>
-              <td className="py-3 px-2 flex items-center justify-center my-4">
+              <td className="py-3 px-2 flex items-center justify-center my-2">
                 <FaTrashAlt
                   className="text-red mx-2"
                   onClick={() => deleteColor(color._id)}

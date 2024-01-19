@@ -11,8 +11,9 @@ export async function getPlatforms(url: string) {
     return null;
   }
   const res = await fetch(`${apiUrl}/api/${url ? url : `platform`}`, {
-    next: { tags: ["platform"] },
+    next: { tags: ["platform"], revalidate: 60 * 10 },
   });
+
   const cars = await res.json();
   return cars;
 }
@@ -91,4 +92,3 @@ export async function editPlatform(prev: any, formData: FormData) {
     };
   }
 }
-

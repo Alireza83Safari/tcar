@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Select from "../../../components/Form/Select";
-import { yearsItem } from "@/services/apiRequest/apiRequest";
+import { yearsItem } from "@/data/data"; 
 import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import { fetcher } from "@/actions/fetcher";
@@ -52,7 +52,7 @@ const FilterCar = () => {
             name="year"
             value={filterValue.year}
             options={yearsItem}
-            defaultValue={{ name: "سال", value: "" }}
+            defaultValue="سال"
             onChange={setInputValueHandler}
           />
         </div>
@@ -63,7 +63,7 @@ const FilterCar = () => {
             name="company"
             value={filterValue.company}
             options={companies}
-            defaultValue={{ name: "برند", value: "" }}
+            defaultValue="برند"
             onChange={setInputValueHandler}
           />
         </div>
@@ -74,7 +74,7 @@ const FilterCar = () => {
             name="platform"
             value={filterValue.platform}
             options={platforms}
-            defaultValue={{ name: "پلتفرم", value: "" }}
+            defaultValue="پلتفرم"
             onChange={setInputValueHandler}
           />
         </div>

@@ -11,7 +11,7 @@ export async function getColors() {
     return null;
   }
   const res = await fetch(`${apiUrl}/api/color`, {
-    next: { tags: ["colors"] },
+    next: { tags: ["colors"], revalidate: 60 * 60 },
   });
   const colors = await res.json();
   return colors;

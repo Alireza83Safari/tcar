@@ -2,9 +2,9 @@
 import React from "react";
 import useSWR from "swr";
 import Select from "../Form/Select";
-import { ordersItem, yearsItem } from "@/services/apiRequest/apiRequest";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetcher } from "@/actions/fetcher";
+import { yearsItem, ordersItem } from "../../data/data";
 
 type FilterCarProps = {
   showFilterMenu: boolean;

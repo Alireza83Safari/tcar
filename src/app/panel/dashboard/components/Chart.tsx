@@ -1,80 +1,64 @@
 "use client";
-import React, { useMemo } from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer, LabelList } from "recharts";
+import React, { useEffect } from "react";
+import Highcharts from "highcharts";
+import Highcharts3D from "highcharts/highcharts-3d";
+import HighchartsReact from "highcharts-react-official";
 
-interface DataItem {
+Highcharts3D(Highcharts);
+
+type HighchartsDataItem = {
   name: string;
-  value: number;
-}
+  y: number;
+};
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const DountChart: React.FC<{ data: Record<string, number> }> = ({ data }) => {
+  const formattedData: HighchartsDataItem[] = Object.entries(data).map(
+    ([name, y]) => ({
+      name,
+      y,
+    })
+  );
 
-const RADIAN = Math.PI / 180;
-
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-}: {
-  cx: number;
-  cy: number;
-  midAngle: number;
-  innerRadius: number;
-  outerRadius: number;
-  percent: number;
-}) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  const chartOptions: Highcharts.Options = {
+    chart: {
+      type: "pie",
+      options3d: {
+        enabled: true,
+        alpha: 45,
+      },
+      renderTo: "container",
+    },
+    title: {
+      text: "میزان اطلاعات سایت",
+      align: "center",
+    },
+    plotOptions: {
+      pie: {
+        innerSize: 100,
+        depth: 45,
+      },
+    },
+    series: [
+      {
+        type: "pie",
+        name: "Medals",
+        data: formattedData,
+      },
+    ],
+  };
 
   return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central"
+    <div
+      id="container"
+      className="width-[100%] height-[400px] mt-[50px] mb-[20px] rounded-xl"
     >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
+      <HighchartsReact
+        key={JSON.stringify(data)}
+        highcharts={Highcharts}
+        options={chartOptions}
+      />
+    </div>
   );
 };
 
-const Chart = ({ data }: { data: DataItem[] }) => {
-  const pieChartData = useMemo(
-    () =>
-      data.map((_, index) => (
-        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-      )),
-    []
-  );
-
-  return (
-    <ResponsiveContainer
-      width="100%"
-      height={350}
-      className=" bg-white rounded-lg md:mt-12 mt-4 mb-6"
-    >
-      <PieChart>
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          label={renderCustomizedLabel}
-          outerRadius={130}
-          fill="#8884d8"
-          dataKey="value"
-        >
-          {pieChartData}
-          <LabelList dataKey="name" position="outside" />
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
-  );
-};
-
-export default Chart;
+export default DountChart;

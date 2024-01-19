@@ -1,7 +1,6 @@
 "use server";
 
 import { apiUrl } from "@/services/apiUrl";
-import connectToDB from "@/utils/database";
 import { revalidateTag } from "next/cache";
 
 export async function getCars(url: string) {
@@ -11,7 +10,7 @@ export async function getCars(url: string) {
   }
 
   const res = await fetch(`${apiUrl}/api/${url?.length ? url : `car`}`, {
-    next: { tags: ["cars"], revalidate: 60 },
+    next: { tags: ["cars"], revalidate: 60 * 60 },
   });
   const cars = await res.json();
   return cars;
@@ -46,7 +45,6 @@ export async function editCar(prev: any, formData: FormData) {
     return null;
   }
 
-  // await connectToDB();
   const id = formData.get("id");
 
   const data = {
@@ -69,12 +67,11 @@ export async function editCar(prev: any, formData: FormData) {
   };
 
   try {
-    const res = await fetch(`${apiUrl}/api/car/${id}`, {
+    const response = await fetch(`${apiUrl}/api/car/${id}`, {
       method: "PUT",
       body: JSON.stringify(data),
     });
 
-    const response = await res.json();
     if (response?.status === 200) {
       revalidateTag("cars");
       return { message: "خودرو با موفقیت ویرایش شد", status: 200 };

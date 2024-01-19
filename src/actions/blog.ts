@@ -10,7 +10,7 @@ export async function getBlogs() {
     return null;
   }
   const res = await fetch(`${apiUrl}/api/blog`, {
-    next: { tags: ["blogs"] },
+    next: { tags: ["blogs"], revalidate: 60 * 60 },
   });
   if (res.status === 404) {
     return [];

@@ -1,11 +1,7 @@
-"use client";
-import useSWR from "swr";
 import Slider from "./Slider";
-import { fetcher } from "@/actions/fetcher";
+import { blogType } from "@/types/blog.type";
 
-export default async function Blog() {
-  const { data: blogs } = useSWR("blog", fetcher);
-
+export default async function Blog({ blogs }: { blogs: blogType[] }) {
   return (
     <section className="md:px-8 px-3 xl:container m-auto my-12">
       <Slider blogs={blogs} />

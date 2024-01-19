@@ -1,11 +1,9 @@
 import { FaArrowLeft } from "react-icons/fa6";
-import { getCars } from "@/actions/car";
 import Link from "next/link";
 import Slider from "@/components/Slider";
+import { CarType } from "@/types/car.type";
 
-export default async function ChoiceCar() {
-  const cars = await getCars("");
-
+export default async function ChoiceCar({ cars }: { cars: CarType[] }) {
   return (
     <nav className="md:px-8 px-3 xl:container m-auto">
       <div className="flex justify-between items-center">

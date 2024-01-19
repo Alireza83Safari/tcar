@@ -144,13 +144,15 @@ const Header = () => {
           >
             ارتباط با ما
           </Link>
-          <Link
-            replace={true}
-            href="/panel"
-            className="hover:text-orange duration-300"
-          >
-            پنل
-          </Link>
+          {session && (
+            <Link
+              replace={true}
+              href="/panel"
+              className="hover:text-orange duration-300"
+            >
+              پنل
+            </Link>
+          )}
         </div>
 
         {showMenu && (
