@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { apiUrl } from "@/services/apiUrl";
 import moment from "jalali-moment";
 import { CldImage } from "next-cloudinary";
+import Link from "next/link";
 
 const CarDetails = ({ car }: { car: CarType }) => {
   const { data: session } = useSession();
@@ -50,12 +51,14 @@ const CarDetails = ({ car }: { car: CarType }) => {
       </div>
       <div className="grid md:grid-cols-2 grid-cols-1">
         <div className="flex justify-center items-center md:my-0 my-10">
-          <CldImage
-            width="500"
-            height="500"
-            src={String(car?.image)}
-            alt="Description of my image"
-          />
+          <Link href={`/car/${car._id}/photo`}>
+            <CldImage
+              width="500"
+              height="500"
+              src={String(car?.image)}
+              alt="Description of my image"
+            />
+          </Link>
         </div>
 
         <div className="grid grid-cols-2 md:px-7 ">
