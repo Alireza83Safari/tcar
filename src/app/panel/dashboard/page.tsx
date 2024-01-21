@@ -1,15 +1,15 @@
 import Header from "@/app/panel/components/Header";
 import Menu from "@/app/panel/components/Menu";
+import Chart from "./components/Chart";
 import { getPlatforms } from "@/actions/platform";
 import { InfoBar } from "./components/InfoBar";
-import Chart from "./components/Chart";
 import { getCars } from "@/actions/car";
 import { getColors } from "@/actions/color";
 import { getCopmpanies } from "@/actions/company";
 import { getUsers } from "@/actions/user";
 import { UsersTable } from "./components/UsersTable";
 
-export const revalidate = 1;
+export const revalidate = 60 * 60;
 
 interface DataItem {
   name: string;
@@ -24,13 +24,13 @@ export default async function page() {
   const users = await getUsers();
 
   const totalItems =
-    companies.length + colors.length + platforms.length + cars.length;
+    companies?.length + colors?.length + platforms?.length + cars?.length;
 
   const data: DataItem[] = [
-    { name: "کمپانی", value: companies.length },
-    { name: "رنگ", value: colors.length },
-    { name: "پلتفرم", value: platforms.length },
-    { name: "خودرو", value: cars.length },
+    { name: "کمپانی", value: companies?.length },
+    { name: "رنگ", value: colors?.length },
+    { name: "پلتفرم", value: platforms?.length },
+    { name: "خودرو", value: cars?.length },
   ];
 
   const percentages: Record<string, number> = {};

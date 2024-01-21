@@ -1,11 +1,5 @@
-import Header from "./components/Header";
-import Menu from "./components/Menu";
+import { redirect } from "next/navigation";
 
 export default async function page() {
-  return (
-    <div className="w-[84vw] bg-dGray min-h-screen fixed left-0 top-0">
-      <Header />
-      <Menu />
-    </div>
-  );
+  redirect("/panel/dashboard");
 }

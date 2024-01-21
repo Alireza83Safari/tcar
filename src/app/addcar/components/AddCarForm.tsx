@@ -6,12 +6,6 @@ import { LiaInfoSolid } from "react-icons/lia";
 import Input from "../../../components/Form/Input";
 import Select from "../../../components/Form/Select";
 import useSWR from "swr";
-import {
-  carFuelItem,
-  carGearboxItem,
-  carStatusItem,
-  yearsItem,
-} from "@/services/apiRequest/apiRequest";
 import { createCarErrorType } from "@/types/error.type";
 import carSchema from "@/validator/client/car";
 import toast from "react-hot-toast";
@@ -19,6 +13,7 @@ import { initialState } from "./AddCar";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/actions/fetcher";
 import { revalidateWithTag } from "@/actions/revalidateWithTag";
+import { carFuelItem, carGearboxItem, yearsItem, carStatusItem } from '../../../data/data';
 
 const AddCarForm = ({
   setCreateCarInfos,
