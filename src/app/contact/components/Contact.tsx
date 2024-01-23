@@ -1,9 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
-import Input from "../../../components/Form/Input";
-import Button from "../../../components/Form/Button";
+import { useState } from "react";
+import { Input, Button } from "@/components/";
 
 const page = () => {
   const [contactForm, setContactForm] = useState({

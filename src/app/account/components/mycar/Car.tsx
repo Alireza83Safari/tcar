@@ -1,17 +1,17 @@
 "use client";
-
-import CarTemplate from "@/components/Car/CarTemplate";
+import { useEffect } from "react";
+import { CarTemplate } from "@/components";
 import { CarType } from "@/types/car.type";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
-export async function Car({ cars }: { cars: CarType[] }) {
+export default async function Car({ cars }: { cars: CarType[] }) {
   const { data: session } = useSession();
   const router = useRouter();
+
   useEffect(() => {
     if (!session) {
-      router.push("/");
+      router.push("/home");
     }
   }, [session]);
   return (

@@ -1,13 +1,15 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import React from "react";
-import UserInfo from "../components/userinfo/UserInfo";
+import { Footer, Header } from "@/components";
 import { getServerToken } from "@/actions/getServerToken";
 import { getUser } from "@/actions/user";
+import UserInfo from "../components/userinfo/UserInfo";
 import Menu from "../components/Menu";
+import { redirect } from "next/navigation";
 
 export default async function page() {
   const session = await getServerToken();
+  if (!(session as any)?.id) {
+    redirect("/");
+  }
   const user = await getUser((session as any)?.id);
 
   return (
@@ -17,7 +19,6 @@ export default async function page() {
         <Menu user={user} />
         <UserInfo user={user} />
       </main>
-
       <Footer />
     </>
   );

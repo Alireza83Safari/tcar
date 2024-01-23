@@ -1,6 +1,4 @@
-import React from "react";
-import Accordion from "../../../components/Accordion";
-import Button from "../../../components/Form/Button";
+import { Button, Accordion } from "@/components";
 
 const HelpCenter = () => {
   return (

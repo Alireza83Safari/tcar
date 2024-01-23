@@ -1,5 +1,4 @@
-import Button from "@/components/Form/Button";
-import React from "react";
+import { Button } from "@/components";
 
 const Notfound = () => {
   return (

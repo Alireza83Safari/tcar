@@ -34,8 +34,8 @@ export default async function page() {
   ];
 
   const percentages: Record<string, number> = {};
-  data.forEach((category) => {
-    percentages[category.name] = (category.value / totalItems) * 100;
+  data?.forEach((category) => {
+    percentages[category?.name] = (category?.value / totalItems) * 100;
   });
 
   return (

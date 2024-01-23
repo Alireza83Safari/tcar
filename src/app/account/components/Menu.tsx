@@ -1,6 +1,5 @@
 "use client";
 import Link from "next/link";
-import React from "react";
 import { FaMailBulk } from "react-icons/fa";
 import { FaCar, FaOutdent, FaPhone, FaPlus, FaUser } from "react-icons/fa6";
 import { getUserType } from "@/types/user.type";

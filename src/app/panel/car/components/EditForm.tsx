@@ -1,14 +1,13 @@
+import { useState } from "react";
 import { fetcher } from "@/actions/fetcher";
-import Input from "@/components/Form/Input";
-import Select from "@/components/Form/Select";
-import React, { useState } from "react";
-import useSWR from "swr";
+import { Input, Spinner } from "@/components";
 import { useEffect } from "react";
-import Spinner from "@/components/Spinner/Spinner";
-import { yearsItem } from "@/data/data"; 
+import { yearsItem } from "@/data/data";
 import { useFormState } from "react-dom";
 import { editCar } from "@/actions/car";
 import { useSession } from "next-auth/react";
+import Select from "@/components/Form/Select";
+import useSWR from "swr";
 import toast from "react-hot-toast";
 
 const EditForm = ({ editCarId, closeModal }: any) => {

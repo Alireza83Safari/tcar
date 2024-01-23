@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import Select from "../../../components/Form/Select";
-import { yearsItem } from "@/data/data"; 
+import React from "react";
+import { Select } from "@/components/";
+import { yearsItem } from "@/data/data";
 import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import { fetcher } from "@/actions/fetcher";
@@ -11,7 +11,7 @@ const FilterCar = () => {
   const { data: platforms } = useSWR("platform", fetcher);
 
   const router = useRouter();
-  const [filterValue, setFilterValue] = useState({
+  const [filterValue, setFilterValue] = React.useState({
     company: "",
     platform: "",
     year: "",

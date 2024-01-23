@@ -1,4 +1,4 @@
-import LoadingTemplate from "@/components/LoadingTemplate";
+import {LoadingTemplate} from "@/components";
 
 export default function Loading() {
   return <LoadingTemplate />;

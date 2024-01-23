@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
-import Accordion from "../../../components/Accordion";
-import Button from "../../../components/Form/Button";
+import { Accordion, Button } from "@/components";
 import Image from "next/image";
 import { FaAngleLeft } from "react-icons/fa6";
 import Link from "next/link";

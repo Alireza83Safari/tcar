@@ -1,9 +1,7 @@
 "use client";
 
-import Modal from "@/components/Modal";
-import Input from "@/components/Form/Input";
-import Spinner from "@/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
+import { Spinner, Modal, Input } from "@/components";
 import { useFormState } from "react-dom";
 import { editUser } from "@/actions/user";
 import toast from "react-hot-toast";

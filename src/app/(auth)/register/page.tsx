@@ -1,16 +1,13 @@
 "use client";
-import Footer from "@/components/Footer";
-import Input from "@/components/Form/Input";
-import Header from "@/components/Header";
+import React, { useState } from "react";
 import { registerErrorType } from "@/types/error.type";
 import { registerSchema } from "@/validator/client/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { revalidateWithTag } from "@/actions/revalidateWithTag";
-import FormSpinner from "@/components/FormSpinner/FormSpinner";
+import { FormSpinner, Input, Footer, Header } from "@/components";
 
 export default function page() {
   const { push } = useRouter();

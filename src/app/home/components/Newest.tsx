@@ -1,4 +1,4 @@
-import Slider from "@/components/Slider";
+import { Slider } from "@/components";
 import { CarType } from "@/types/car.type";
 
 export default async function Newest({ cars }: { cars: CarType[] }) {

@@ -7,10 +7,6 @@ export const dynamic = "force-dynamic";
 async function getCarss(searchParams: any) {
   const { platform, color, company, years, q, order, page } = searchParams;
 
-  if (!apiUrl) {
-    return false;
-  }
-
   let countQuery: any = {};
 
   if (platform) countQuery.platform = platform;

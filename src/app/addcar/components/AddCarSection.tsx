@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { FaCheck } from "react-icons/fa6";
 import { createCarType } from "@/types/car.type";
 
@@ -18,11 +18,11 @@ const ChecklistItem = ({
 };
 const MemoizedChecklistItem = React.memo(ChecklistItem);
 
-const AddCarSection = ({
-  createCarInfos,
-}: {
+type AddCarSectionProps = {
   createCarInfos: createCarType;
-}) => {
+};
+
+const AddCarSection: React.FC<AddCarSectionProps> = ({ createCarInfos }) => {
   const {
     title,
     carStatus,
@@ -62,7 +62,7 @@ const AddCarSection = ({
       (isContactComplete ? 1 : 0)) *
     20;
 
-  const totalPercent = useMemo(() => {
+  const totalPercent = React.useMemo(() => {
     switch (completionPercentage) {
       case 20:
         return "20";
@@ -95,11 +95,23 @@ const AddCarSection = ({
       </div>
 
       <div className="md:mt-6 sm:mt-0 mt-6">
-        <MemoizedChecklistItem isComplete={isBasicInfoComplete} text="اطلاعات پایه" />
+        <MemoizedChecklistItem
+          isComplete={isBasicInfoComplete}
+          text="اطلاعات پایه"
+        />
         <MemoizedChecklistItem isComplete={isPriceComplete} text="قیمت" />
-        <MemoizedChecklistItem isComplete={isCarSpecsComplete} text="مشخصات خودرو" />
-        <MemoizedChecklistItem isComplete={isCarInfoComplete} text="اطلاعات خودرو" />
-        <MemoizedChecklistItem isComplete={isContactComplete} text="تماس با ما" />
+        <MemoizedChecklistItem
+          isComplete={isCarSpecsComplete}
+          text="مشخصات خودرو"
+        />
+        <MemoizedChecklistItem
+          isComplete={isCarInfoComplete}
+          text="اطلاعات خودرو"
+        />
+        <MemoizedChecklistItem
+          isComplete={isContactComplete}
+          text="تماس با ما"
+        />
       </div>
     </div>
   );

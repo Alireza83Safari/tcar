@@ -1,5 +1,5 @@
 "use client";
-import ErrorTemplate from "@/components/ErrorTemplate";
+import { ErrorTemplate } from "@/components";
 
 export default function Error({
   error,

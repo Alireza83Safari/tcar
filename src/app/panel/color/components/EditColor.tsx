@@ -1,8 +1,6 @@
 "use client";
-import Modal from "@/components/Modal";
-import Input from "@/components/Form/Input";
-import Spinner from "@/components/Spinner/Spinner";
 import { useEffect, useState } from "react";
+import { Modal, Input, Spinner } from "@/components"; 
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import { editColors } from "@/actions/color";

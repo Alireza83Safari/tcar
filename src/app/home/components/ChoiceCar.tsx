@@ -1,6 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
-import Slider from "@/components/Slider";
+import { Slider } from "@/components";
 import { CarType } from "@/types/car.type";
 
 export default async function ChoiceCar({ cars }: { cars: CarType[] }) {

@@ -1,20 +1,26 @@
 "use client";
-import Accordion from "../../../../components/Accordion";
-import Input from "../../../../components/Form/Input";
 import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { Accordion, Input } from "@/components";
 import { getUserType } from "@/types/user.type";
+import toast from "react-hot-toast";
+
+interface UserInfosState {
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: any;
+}
 
 const UserInfo = ({ user }: { user: getUserType }) => {
   const { data: session, update } = useSession();
-  const [userInfos, setUserInfos] = useState({
+  const [userInfos, setUserInfos] = useState<UserInfosState>({
     firstname: "",
     lastname: "",
     email: "",
     phone: 0,
-  }) as any;
+  });
 
   useEffect(() => {
     if (user) {
@@ -28,7 +34,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
     }
   }, [user]);
 
-  const setInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
     setUserInfos({
@@ -45,6 +51,8 @@ const UserInfo = ({ user }: { user: getUserType }) => {
     if (res?.status === 200) {
       update(userInfos);
       toast.success("ویرایش با موفقیت انجام شد");
+    } else {
+      toast.error("Failed to edit user information");
     }
   };
 
@@ -65,7 +73,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
               name="firstname"
               placeholder="نام"
               value={userInfos.firstname}
-              onChange={setInputValue}
+              onChange={handleInputChange}
             />
           </div>
         </Accordion>
@@ -76,7 +84,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
               name="lastname"
               placeholder="نام خانوادگی"
               value={userInfos.lastname}
-              onChange={setInputValue}
+              onChange={handleInputChange}
             />
           </div>
         </Accordion>
@@ -87,7 +95,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
               name="email"
               placeholder="ایمیل"
               value={userInfos.email}
-              onChange={setInputValue}
+              onChange={handleInputChange}
             />
           </div>
         </Accordion>
@@ -98,7 +106,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
               name="phone"
               placeholder="شماره"
               value={userInfos.phone}
-              onChange={setInputValue}
+              onChange={handleInputChange}
             />
           </div>
         </Accordion>

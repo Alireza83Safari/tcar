@@ -1,6 +1,6 @@
 "use client";
-import { companiesType } from "@/types/brand.type";
 import { useState } from "react";
+import { companiesType } from "@/types/brand.type";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import EditBrand from "./EditCompany";
 import { CldImage } from "next-cloudinary";

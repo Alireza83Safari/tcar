@@ -1,11 +1,11 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper/modules";
 import { companyType } from "@/types/company.type";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
+import "swiper/css/pagination";
 
 const Company = ({ companies }: { companies: companyType[] }) => {
   const breakpoints = {

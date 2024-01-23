@@ -1,6 +1,5 @@
 "use client";
-import Modal from "@/components/Modal";
-import Input from "@/components/Form/Input";
+import { Modal, Input } from "@/components";
 import { useState, useEffect } from "react";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";

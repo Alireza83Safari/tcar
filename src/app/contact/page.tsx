@@ -1,6 +1,5 @@
 import Contact from "@/app/contact/components/Contact";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import { Footer, Header } from "@/components";
 
 async function page() {
   return (

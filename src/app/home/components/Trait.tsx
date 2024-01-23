@@ -1,6 +1,5 @@
 "use client";
 import { CldImage } from "next-cloudinary";
-import React from "react";
 import { FaFileAlt, FaSearch } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 

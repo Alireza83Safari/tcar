@@ -1,5 +1,4 @@
 "use client";
-import React, { useEffect } from "react";
 import Highcharts from "highcharts";
 import Highcharts3D from "highcharts/highcharts-3d";
 import HighchartsReact from "highcharts-react-official";
@@ -11,7 +10,7 @@ type HighchartsDataItem = {
   y: number;
 };
 
-const DountChart: React.FC<{ data: Record<string, number> }> = ({ data }) => {
+const Chart: React.FC<{ data: Record<string, number> }> = ({ data }) => {
   const formattedData: HighchartsDataItem[] = Object.entries(data).map(
     ([name, y]) => ({
       name,
@@ -61,4 +60,4 @@ const DountChart: React.FC<{ data: Record<string, number> }> = ({ data }) => {
   );
 };
 
-export default DountChart;
+export default Chart;

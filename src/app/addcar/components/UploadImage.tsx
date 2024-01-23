@@ -7,8 +7,6 @@ import { revalidateWithTag } from "@/actions/revalidateWithTag";
 
 export default function ImageUpload({ id }: { id: string }) {
   const handleUpload = useCallback(async (result: any) => {
-    console.log(result);
-
     const data = {
       scureId: result?.info?.secure_url,
       type: 0,

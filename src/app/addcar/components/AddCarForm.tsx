@@ -1,19 +1,23 @@
 "use client";
 
 import React, { ChangeEvent, useEffect, useState } from "react";
+import useSWR from "swr";
 import { FaCarSide, FaMoneyBill1Wave, FaPhone } from "react-icons/fa6";
 import { LiaInfoSolid } from "react-icons/lia";
-import Input from "../../../components/Form/Input";
-import Select from "../../../components/Form/Select";
-import useSWR from "swr";
+import { Input, Select } from "@/components";
 import { createCarErrorType } from "@/types/error.type";
-import carSchema from "@/validator/client/car";
-import toast from "react-hot-toast";
 import { initialState } from "./AddCar";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/actions/fetcher";
 import { revalidateWithTag } from "@/actions/revalidateWithTag";
-import { carFuelItem, carGearboxItem, yearsItem, carStatusItem } from '../../../data/data';
+import {
+  carFuelItem,
+  carGearboxItem,
+  yearsItem,
+  carStatusItem,
+} from "../../../data/data";
+import carSchema from "@/validator/client/car";
+import toast from "react-hot-toast";
 
 const AddCarForm = ({
   setCreateCarInfos,
@@ -36,7 +40,7 @@ const AddCarForm = ({
   }, [session]);
 
   const [errors, setErrors] = useState<createCarErrorType>();
-  const setInputValue = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     const { value, name, type } = e.target;
 
     setCreateCarInfos({
@@ -107,7 +111,7 @@ const AddCarForm = ({
             label="عنوان"
             name="title"
             placeholder="عنوان را وارد کنید"
-            onChange={setInputValue}
+            onChange={handleInputChange}
             value={createCarInfos.title}
             error={errors?.title}
             onfocus={() => setErrors("" as any)}
@@ -119,7 +123,7 @@ const AddCarForm = ({
             label="وضعیت خودرو"
             name="carStatus"
             options={carStatusItem}
-            onChange={setInputValue}
+            onChange={handleInputChange}
             value={createCarInfos.carStatus}
             error={errors?.carStatus}
           />
@@ -137,7 +141,7 @@ const AddCarForm = ({
             label="قیمت"
             name="price"
             placeholder="قیمت را وارد کنید"
-            onChange={setInputValue}
+            onChange={handleInputChange}
             value={createCarInfos.price}
             error={errors?.price}
           />
@@ -155,7 +159,7 @@ const AddCarForm = ({
               label="سازنده"
               name="company"
               options={companies}
-              onChange={setInputValue}
+              onChange={handleInputChange}
               value={createCarInfos.company}
               error={errors?.company}
             />
@@ -166,7 +170,7 @@ const AddCarForm = ({
               label="سال"
               name="years"
               options={yearsItem}
-              onChange={setInputValue}
+              onChange={handleInputChange}
               value={createCarInfos.years}
               error={errors?.years}
             />
@@ -177,7 +181,7 @@ const AddCarForm = ({
               label="مدل"
               name="model"
               placeholder="مدل"
-              onChange={setInputValue}
+              onChange={handleInputChange}
               value={createCarInfos.model}
               error={errors?.model}
             />
@@ -189,7 +193,7 @@ const AddCarForm = ({
               label="کارکرد"
               name="work"
               placeholder="کارکرد"
-              onChange={setInputValue}
+              onChange={handleInputChange}
               value={createCarInfos.work}
               error={errors?.work}
             />
@@ -207,7 +211,7 @@ const AddCarForm = ({
             label="نوع بدنه"
             name="platform"
             options={platform}
-            onChange={setInputValue}
+            onChange={handleInputChange}
             value={createCarInfos.platform}
             error={errors?.platform}
           />
@@ -218,7 +222,7 @@ const AddCarForm = ({
             label=" نوع سوخت"
             name="fuel"
             options={carFuelItem}
-            onChange={setInputValue}
+            onChange={handleInputChange}
             value={createCarInfos.fuel}
             error={errors?.fuel}
           />
@@ -229,7 +233,7 @@ const AddCarForm = ({
             label="گیربکس"
             name="gearbox"
             options={carGearboxItem}
-            onChange={setInputValue}
+            onChange={handleInputChange}
             value={createCarInfos.gearbox}
             error={errors?.gearbox}
           />
@@ -239,7 +243,7 @@ const AddCarForm = ({
           <Select
             label="رنگ"
             name="color"
-            onChange={setInputValue}
+            onChange={handleInputChange}
             value={createCarInfos.color}
             error={errors?.color}
             options={colors}
@@ -257,7 +261,7 @@ const AddCarForm = ({
             name="description"
             rows={4}
             cols={50}
-            onChange={setInputValue}
+            onChange={handleInputChange}
             value={createCarInfos.description}
           ></textarea>
 
@@ -275,7 +279,7 @@ const AddCarForm = ({
             label="نام"
             placeholder="نام"
             value={createCarInfos.firstname}
-            onChange={setInputValue}
+            onChange={handleInputChange}
             name="firstname"
             error={errors?.firstname}
           />
@@ -286,7 +290,7 @@ const AddCarForm = ({
             label="نام خانوادگی"
             placeholder="نام خانوادگی"
             value={createCarInfos.lastname}
-            onChange={setInputValue}
+            onChange={handleInputChange}
             name="lastname"
             error={errors?.lastname}
           />
@@ -298,7 +302,7 @@ const AddCarForm = ({
             label="شماره تماس"
             placeholder="شماره تماس"
             value={createCarInfos.phone}
-            onChange={setInputValue}
+            onChange={handleInputChange}
             name="phone"
             error={errors?.phone}
           />
