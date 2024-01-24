@@ -5,9 +5,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { IoIosArrowBack } from "react-icons/io";
 import "swiper/css";
 
-const Options = () => {
+export default function page() {
   return (
-    <nav className="xl:container m-auto my-20">
+    <nav
+      className="xl:container m-auto my-20"
+      data-aos="fade-left"
+      data-aos-once="true"
+    >
       <div className="bg-black-100 sm:mx-12 rounded-lg py-4 px-8">
         <Swiper className="mySwiper" loop={true}>
           <SwiperSlide>
@@ -112,6 +116,4 @@ const Options = () => {
       </div>
     </nav>
   );
-};
-
-export default Options;
+}

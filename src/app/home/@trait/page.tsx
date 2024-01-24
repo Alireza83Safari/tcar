@@ -1,14 +1,17 @@
-"use client";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 import { FaFileAlt, FaSearch } from "react-icons/fa";
 import { IoMdSettings } from "react-icons/io";
 
-const Trait = () => {
+export default async function page() {
   return (
     <nav className="my-32 md:px-8 px-3 xl:container m-auto">
       <h2 className="h3">این سایت چه ویژگی هایی دارد؟</h2>
       <div className="grid grid-cols-12">
-        <div className="sm:col-span-5 col-span-12">
+        <div
+          className="sm:col-span-5 col-span-12"
+          data-aos="fade-right"
+          data-aos-once="true"
+        >
           <div className="my-12 md:px-12">
             <div className="flex justify-between mb-2">
               <h3 className="text-lg font-semibold">بیش از 1 میلیون آگهی</h3>
@@ -40,15 +43,23 @@ const Trait = () => {
             </p>
           </div>
         </div>
-        <div className="sm:col-span-2 col-span-12 flex justify-center items-center">
-          <CldImage
+        <div
+          className="sm:col-span-2 col-span-12 flex justify-center items-center"
+          data-aos="fade-up"
+          data-aos-once="true"
+        >
+          <Image
             width="100"
             height="200"
             src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703788233/kzp09lbywq7ttrs2ojcx.png"
             alt="car"
           />
         </div>
-        <div className="sm:col-span-5 col-span-12">
+        <div
+          className="sm:col-span-5 col-span-12"
+          data-aos="fade-left"
+          data-aos-once="true"
+        >
           <div className="my-12 md:px-12">
             <div className="flex items-center mb-2">
               <FaFileAlt className="text-orange ml-4" />
@@ -83,6 +94,4 @@ const Trait = () => {
       </div>
     </nav>
   );
-};
-
-export default Trait;
+}

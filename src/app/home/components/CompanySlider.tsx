@@ -1,13 +1,18 @@
 "use client";
 
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper/modules";
 import { companyType } from "@/types/company.type";
-import Link from "next/link";
-import { CldImage } from "next-cloudinary";
 import "swiper/css/pagination";
 
-const Company = ({ companies }: { companies: companyType[] }) => {
+interface CompanyProps {
+  companies: companyType[];
+}
+
+const CompanySlider: React.FC<CompanyProps> = ({ companies }) => {
   const breakpoints = {
     320: {
       slidesPerView: 6,
@@ -27,7 +32,11 @@ const Company = ({ companies }: { companies: companyType[] }) => {
     },
   };
   return (
-    <nav className="md:px-8 px-3 xl:container m-auto gap-y-10">
+    <nav
+      className="md:px-8 px-3 xl:container m-auto gap-y-10 my-32"
+      data-aos="fade-up"
+      data-aos-once="true"
+    >
       {companies?.length && (
         <Swiper
           freeMode={true}
@@ -40,11 +49,11 @@ const Company = ({ companies }: { companies: companyType[] }) => {
           {companies?.map((company: companyType) => (
             <SwiperSlide key={company?._id}>
               <Link href={`/car?company=${company?._id}`} key={company.name}>
-                <CldImage
-                  width="60"
-                  height="60"
+                <Image
+                  width="600"
+                  height="600"
                   src={String(company?.image)}
-                  sizes="100vw"
+                  className="w-[4rem]"
                   alt="Description of my image"
                 />
               </Link>
@@ -56,4 +65,4 @@ const Company = ({ companies }: { companies: companyType[] }) => {
   );
 };
 
-export default Company;
+export default CompanySlider;

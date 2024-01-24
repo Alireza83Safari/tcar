@@ -1,13 +1,17 @@
-"use client";
-import { CldImage } from "next-cloudinary";
+import React from "react";
+import Image from "next/image";
 
-const Application = () => {
+export default function page() {
   return (
     <nav className="py-16 md:px-8 px-3 xl:container m-auto">
       <div className="grid sm:grid-cols-2">
-        <div className="my-auto sm:pr-10 sm:order-1 order-2 sm:mt-0 mt-10">
+        <div
+          className="my-auto sm:pr-10 sm:order-1 order-2 sm:mt-0 mt-10"
+          data-aos="fade-up"
+          data-aos-once="true"
+        >
           <h3 className="text-3xl">اپلیکیشن همراه مکانیک</h3>
-          <p className="text-gray-200 my-6">
+          <p className="text-gray-200 my-6 lg:pl-20">
             اپلیکیشن را کرده و به جامعه علاقمندان به خودرو بپیوندید. وقتی
             کامپیوتر خود را با برنامه Android و iOS ما ترک می کنید ، جستجوی
             اتومبیل خود را متوقف نکنید!
@@ -91,16 +95,17 @@ const Application = () => {
           </div>
         </div>
         <div>
-          <CldImage
+          <Image
             width="440"
             height="440"
+            className="w-[20rem]"
             src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703788477/ku5jnjqypc1hodx7f1kr.png"
             alt="application"
+            data-aos="fade-up"
+            data-aos-once="true"
           />
         </div>
       </div>
     </nav>
   );
-};
-
-export default Application;
+}

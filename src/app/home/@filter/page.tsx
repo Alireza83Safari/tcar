@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import { fetcher } from "@/actions/fetcher";
 
-const FilterCar = () => {
+export default function page() {
   const { data: companies } = useSWR("company", fetcher);
   const { data: platforms } = useSWR("platform", fetcher);
 
@@ -42,9 +42,12 @@ const FilterCar = () => {
 
     router.push(`/car?${searchParams.toString()}`);
   };
-
   return (
-    <div className="mb-32 sm:px-5 px-2 xl:container m-auto">
+    <div
+      className="mb-32 sm:px-5 px-2 xl:container m-auto"
+      data-aos="fade-up"
+      data-aos-once="true"
+    >
       <div className="grid sm:grid-cols-4 grid-cols-1 border border-gray-100 rounded-lg py-2">
         <div className="relative my-auto min-w full border-l px-5 sm:border-none border-b border-borderColor">
           <Select
@@ -88,6 +91,4 @@ const FilterCar = () => {
       </div>
     </div>
   );
-};
-
-export default FilterCar;
+}

@@ -1,8 +1,10 @@
-"use client";
+import { getAppPics } from "@/actions/appPic";
 import { appPicType } from "@/types/appPic.type";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 
-export default async function Banner({ banners }: { banners: appPicType[] }) {
+export default async function page() {
+  const banners = await getAppPics();
+
   return (
     <div
       className="min-h-full"
@@ -12,8 +14,10 @@ export default async function Banner({ banners }: { banners: appPicType[] }) {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
       }}
+      data-aos="fade-up"
+      data-aos-once="true"
     >
-      {banners?.length &&
+      {!!banners?.length &&
         banners?.map((banner: appPicType) => (
           <nav
             key={banner._id}
@@ -28,11 +32,11 @@ export default async function Banner({ banners }: { banners: appPicType[] }) {
               </p>
             </div>
             <div className="col-span-2 md:mt-0 mt-20">
-              <CldImage
+              <Image
                 width="1000"
                 height="1000"
                 src={String(banner?.image)}
-                sizes="100vw"
+                className="w-[42rem] max-h-[25rem] object-contain"
                 alt="Description of my image"
               />
             </div>
