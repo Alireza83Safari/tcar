@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoIosArrowBack } from "react-icons/io";
 import "swiper/css";
+import { Button } from "@/components";
 
 export default function page() {
   return (
@@ -12,19 +13,19 @@ export default function page() {
       data-aos="fade-left"
       data-aos-once="true"
     >
-      <div className="bg-black-100 sm:mx-12 rounded-lg py-4 px-8">
+      <div className="sm:mx-12">
         <Swiper className="mySwiper" loop={true}>
           <SwiperSlide>
-            <div className="grid sm:grid-cols-4">
+            <div className="grid sm:grid-cols-4 bg-lightPurple rounded-lg py-4 px-8">
               <div className="col-span-1">
                 <h3 className="sm:text-2xl text-xl">فروشگاه ماشین</h3>
                 <p className="text-gray-200 sm:my-8 my-1">
                   بهترین ماشین خود را انتخاب کنید
                 </p>
-                <button className="flex items-center bg-orange px-4 py-2 sm:mb-0 mb-3 rounded-lg">
+                <Button href="/car">
                   <p className="ml-2">مشاهده فروشگاه</p>
                   <IoIosArrowBack className="text-xl" />
-                </button>
+                </Button>
               </div>
               <div className="col-span-3 grid grid-cols-4 my-auto">
                 <div>
@@ -68,17 +69,17 @@ export default function page() {
           </SwiperSlide>
 
           <SwiperSlide>
-            <div className="grid grid-cols-2">
+            <div className="grid grid-cols-2 bg-lightPurple rounded-lg py-4 px-8">
               <div>
                 <h3 className="text-2xl">فروشگاه خودرو در 24 ساعت</h3>
                 <p className="text-gray-200 my-8">
                   ارزش ماشین خود را محاسبه کنید ، سپس نحوه فروش خود را انتخاب
                   کنید.
                 </p>
-                <button className="flex items-center bg-orange px-4 py-2 rounded-lg">
+                <Button href="/addcar">
                   <p className="ml-2">قصد فروش ماشین دارم</p>
                   <IoIosArrowBack className="text-xl" />
-                </button>
+                </Button>
               </div>
 
               <div className="grid grid-cols-3 my-auto">

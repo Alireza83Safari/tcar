@@ -1,14 +1,14 @@
 import { Footer, Header } from "@/components";
 import { getServerToken } from "@/actions/getServerToken";
 import { getUser } from "@/actions/user";
-import UserInfo from "../components/userinfo/UserInfo";
+import UserInfo from "../components/UserInfo";
 import Menu from "../components/Menu";
 import { redirect } from "next/navigation";
 
 export default async function page() {
   const session = await getServerToken();
   if (!(session as any)?.id) {
-    redirect("/");
+    redirect("/home");
   }
   const user = await getUser((session as any)?.id);
 

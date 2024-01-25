@@ -15,7 +15,7 @@ export default async function page() {
           <div className="my-12 md:px-12">
             <div className="flex justify-between mb-2">
               <h3 className="text-lg font-semibold">بیش از 1 میلیون آگهی</h3>
-              <FaFileAlt className="text-orange" />
+              <FaFileAlt className="text-purple" />
             </div>
             <p className="text-gray-200">
               این چیزی است که در سایر بازارهای اصلی آنلاین خودرو در ایالات متحده
@@ -25,7 +25,7 @@ export default async function page() {
           <div className="my-12 md:px-12">
             <div className="flex justify-between mb-2">
               <h3 className="text-lg font-semibold">جستجوی قدرتمند</h3>
-              <FaSearch className="text-orange" />
+              <FaSearch className="text-purple" />
             </div>
             <p className="text-gray-200">
               جستجوی قدرتمند ما ، شخصی سازی نتایج شما را آسان می کند تا تنها
@@ -35,7 +35,7 @@ export default async function page() {
           <div className="my-12 md:px-12">
             <div className="flex justify-between mb-2">
               <h3 className="text-lg font-semibold">نوآوری بدون وقفه</h3>
-              <IoMdSettings className="text-orange text-xl" />
+              <IoMdSettings className="text-purple text-xl" />
             </div>
             <p className="text-gray-200">
               تیم ما دائماً در حال توسعه ویژگی های جدیدی است که روند خرید و فروش
@@ -62,7 +62,7 @@ export default async function page() {
         >
           <div className="my-12 md:px-12">
             <div className="flex items-center mb-2">
-              <FaFileAlt className="text-orange ml-4" />
+              <FaFileAlt className="text-purple ml-4" />
               <h3 className="text-lg font-semibold">بیش از 1 میلیون آگهی</h3>
             </div>
             <p className="text-gray-200">
@@ -72,7 +72,7 @@ export default async function page() {
           </div>
           <div className="my-12 md:px-12">
             <div className="flex items-center mb-2">
-              <FaSearch className="text-orange ml-4" />
+              <FaSearch className="text-purple ml-4" />
               <h3 className="text-lg font-semibold">جستجوی قدرتمند</h3>
             </div>
             <p className="text-gray-200">
@@ -82,7 +82,7 @@ export default async function page() {
           </div>
           <div className="my-12 md:px-12">
             <div className="flex items-center mb-2">
-              <IoMdSettings className="text-orange ml-4" />
+              <IoMdSettings className="text-purple ml-4" />
               <h3 className="text-lg font-semibold">نوآوری بدون وقفه</h3>
             </div>
             <p className="text-gray-200">

@@ -21,7 +21,7 @@ const Input = ({
       <input
         type={type ? type : "text"}
         name={name}
-        className={`w-full py-2 bg-black-100 border border-borderColor rounded-lg px-3 ${className}`}
+        className={`w-full py-2 border border-purple rounded-lg px-3 outline-none focus:border-boldPurple focus:border-2 ${className}`}
         placeholder={placeholder}
         onChange={onChange}
         value={value}

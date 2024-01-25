@@ -102,7 +102,7 @@ const AddCarForm = ({
     >
       <div className="bg-black-100 sm:p-6 p-3 rounded-xl">
         <div className="flex mb-5">
-          <LiaInfoSolid className="text-orange items-center text-xl" />
+          <LiaInfoSolid className="text-purple items-center text-xl" />
           <h2 className="text-lg">اطلاعات پایه</h2>
         </div>
 
@@ -132,7 +132,7 @@ const AddCarForm = ({
 
       <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
         <div className="flex items-center mb-5">
-          <FaMoneyBill1Wave className="text-orange text-xl ml-3" />
+          <FaMoneyBill1Wave className="text-purple text-xl ml-3" />
           <h2 className="text-lg">قیمت</h2>
         </div>
         <div>
@@ -150,7 +150,7 @@ const AddCarForm = ({
 
       <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
         <div className="flex mb-5">
-          <FaCarSide className="text-orange items-center text-xl ml-3" />
+          <FaCarSide className="text-purple items-center text-xl ml-3" />
           <h2 className="text-lg">مشخصات خودرو</h2>
         </div>
         <div className="grid md:grid-cols-2">
@@ -203,7 +203,7 @@ const AddCarForm = ({
 
       <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
         <div className="flex mb-5">
-          <FaCarSide className="text-orange items-center text-xl ml-3" />
+          <FaCarSide className="text-purple items-center text-xl ml-3" />
           <h2 className="text-lg">اطلاعات خودرو</h2>
         </div>
         <div className="mt-5">
@@ -271,7 +271,7 @@ const AddCarForm = ({
 
       <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
         <div className="flex items-center mb-5">
-          <FaPhone className="text-orange text-xl ml-3" />
+          <FaPhone className="text-purple text-xl ml-3" />
           <h2 className="text-lg">تماس با ما</h2>
         </div>
         <div className="mt-4">
@@ -310,7 +310,7 @@ const AddCarForm = ({
       </div>
 
       <button
-        className="w-full bg-orange py-2 rounded-lg mt-8"
+        className="w-full bg-purple py-2 rounded-lg mt-8"
         onClick={createCarHandler}
       >
         اضافه کردن آگهی

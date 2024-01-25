@@ -17,9 +17,9 @@ const Select = ({
       <select
         name={name}
         id={name}
-        className={`${
+        className={` outline-none focus:border-boldPurple focus:border-2 ${
           !className
-            ? `w-full py-2 bg-black-100 border border-borderColor rounded-lg px-3`
+            ? `w-full py-2 border border-purple rounded-lg px-3`
             : className
         }`}
         onChange={onChange}

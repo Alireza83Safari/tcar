@@ -1,8 +1,8 @@
 "use client";
 
-import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import { useState } from "react";
-import Modal from "../../../../components/Modal";
+import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
+import { Modal } from "@/components";
 import EditForm from "./EditForm";
 import { CarType } from "@/types/car.type";
 import { deleteCar } from "@/actions/car";
@@ -55,10 +55,10 @@ export async function Table({ cars }: any) {
                 <td className="py-3 px-2 truncate">
                   {(car?.company as any)?.name}
                 </td>
-                <td className="py-3 px-2 truncate">
+                <td className="py-3 px-2 truncate text-white">
                   <button
                     className={` px-3 py-1 rounded-md ${
-                      car.gearbox === 0 ? "bg-orange" : `bg-green`
+                      car.gearbox === 0 ? "bg-purple" : `bg-green`
                     }`}
                   >
                     {car.gearbox === 0 ? `دنده ای` : `اتومات`}
@@ -68,10 +68,10 @@ export async function Table({ cars }: any) {
                   {car.createdAt?.slice(0, 10)}
                 </td>
 
-                <td className="py-3 px-2 truncate">
+                <td className="py-3 px-2 truncate text-white">
                   <button
                     className={` px-3 py-1 rounded-md ${
-                      car.carStatus === 0 ? "bg-orange" : `bg-green`
+                      car.carStatus === 0 ? "bg-purple" : `bg-green`
                     }`}
                   >
                     {car.carStatus === 0 ? `نو` : `کارکرده`}
@@ -83,7 +83,7 @@ export async function Table({ cars }: any) {
                     onClick={() => deleteCar(car?._id)}
                   />
                   <FaPenAlt
-                    className="text-orange mx-2"
+                    className="text-purple mx-2"
                     onClick={() => openModal(car?._id)}
                   />
                 </td>

@@ -42,7 +42,7 @@ export async function InfoBar({
         <div className="flex justify-center bg-white rounded-xl max-h-[8rem] md:mx-4 my-2 py-3">
           <div className="p-3 text-black-500 font-semibold">
             <h2 className="lg:text-lg md:text-base text-xl">{car?.title}</h2>
-            <p className="text-4xl text-orange font-semibold text-center mt-5">
+            <p className="text-4xl text-purple font-semibold text-center mt-5">
               {car?.lengthData}
             </p>
           </div>

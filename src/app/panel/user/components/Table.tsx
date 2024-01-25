@@ -42,7 +42,7 @@ export async function Table({ users }: { users: any }) {
                   />
 
                   <FaPenAlt
-                    className="text-orange mx-2"
+                    className="text-purple mx-2"
                     onClick={() => {
                       setEditID(user._id);
                       setShowEditModal(true);

@@ -179,7 +179,7 @@ export default function page() {
               error={errors?.confirmPassword}
             />
           </div>
-          <button className="w-full bg-orange py-2 rounded-lg mt-3">
+          <button className="w-full bg-purple py-2 rounded-lg mt-3">
             {isLoading ? <FormSpinner /> : "ساخت حساب کاربری"}
           </button>
           <div className="mt-6 text-center">

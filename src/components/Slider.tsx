@@ -5,16 +5,19 @@ import "swiper/css/pagination";
 import { CarType } from "@/types/car.type";
 import CarTemplate from "@/components/Car/CarTemplate";
 import { FreeMode, Pagination } from "swiper/modules";
+import AOS from "aos";
+import "swiper/css";
+import "swiper/css/bundle";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
-export default function Slider({
-  cars,
-  from,
-  to,
-}: {
-  cars: CarType[];
-  from: number;
-  to: number;
-}) {
+export default function Slider({ cars }: { cars: CarType[] }) {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: "ease-in-out",
+    });
+  }, []);
   const breakpoints = {
     320: {
       slidesPerView: 1,
@@ -46,7 +49,7 @@ export default function Slider({
         >
           {cars?.slice(1, 6)?.map((car) => (
             <SwiperSlide key={car?._id}>
-              <CarTemplate {...car} />
+              <CarTemplate car={car} dataAos="fead-up" />
             </SwiperSlide>
           ))}
         </Swiper>

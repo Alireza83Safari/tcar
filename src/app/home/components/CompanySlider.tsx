@@ -2,11 +2,12 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper/modules";
 import { companyType } from "@/types/company.type";
 import "swiper/css/pagination";
+import Image from "next/image";
+
 
 interface CompanyProps {
   companies: companyType[];

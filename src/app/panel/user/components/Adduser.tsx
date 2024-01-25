@@ -39,7 +39,7 @@ const AddUser = () => {
     <div>
       <div className="w-full mt-10 mb-4">
         <button
-          className=" bg-orange flex items-center py-2 px-4 rounded-md"
+          className=" bg-purple flex items-center py-2 px-4 rounded-md"
           onClick={() => openModal()}
         >
           <p>افزودن کاربر جدید</p>
@@ -78,7 +78,7 @@ const AddUser = () => {
                   className="border bg-black-500"
                 />
               </div>
-              <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+              <button className="bg-purple w-[95%] rounded-lg py-2 mt-5 mx-2">
                 افزودن کاربر
               </button>
             </>

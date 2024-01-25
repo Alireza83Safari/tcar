@@ -64,7 +64,6 @@ const EditBrand = ({ showEditBrand, setShowEditBrand, editId }: any) => {
                   label="برند برند"
                   name="name"
                   placeholder="نام برند"
-                  className="border bg-black-500"
                   defaultValue={initialState.name}
                 />
               </div>
@@ -73,12 +72,11 @@ const EditBrand = ({ showEditBrand, setShowEditBrand, editId }: any) => {
                   label="کد برند"
                   name="code"
                   placeholder="کد برند"
-                  className="border bg-black-500"
                   defaultValue={initialState.code}
                 />
               </div>
 
-              <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+              <button className="bg-purple w-[95%] rounded-lg py-2 mt-5 mx-2 text-white hover:bg-boldPurple duration-300">
                 ویرایش برند
               </button>
             </>

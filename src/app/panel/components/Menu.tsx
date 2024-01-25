@@ -38,15 +38,15 @@ const Menu = () => {
   const path = usePathname();
 
   return (
-    <div className="w-[16vw] min-h-full fixed top-0 right-0 bg-[#181D19] -z-10">
-      <p className="sm:text-xl text-center my-6">Finder Panel</p>
+    <div className="w-[16vw] min-h-full fixed top-0 right-0 bg-[#181D19] text-white -z-10">
+      <p className="sm:text-xl text-center my-6 font-bold">Tcar Panel</p>
       <ul className="block">
         {menuItem.map((item) => (
           <Link
             href={item.href}
             key={item.id}
             className={`px-2 py-4 flex items-center sm:justify-start justify-center sm:text-base text-sm 2xl:text-xl md:pr-6 ${
-              item.href === path ? ` bg-[#353A46]` : ``
+              item.href === path ? `bg-lightPurple text-purple` : ``
             }`}
           >
             <button className="sm:text-base text-xl">{item.icon}</button>

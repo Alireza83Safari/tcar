@@ -7,10 +7,16 @@ const BlogTemplate = ({ image, title, category, _id }: blogType) => {
   return (
     <Link href={`/blog/${_id}`} className=" mx-4 rounded-lg">
       <div>
-        <Image src={image} width={700} height={700} alt="car" />
+        <Image
+          src={image}
+          width={400}
+          height={380}
+          alt="car"
+          className="w-full"
+        />
       </div>
       <div className="px-7 py-4">
-        <p className="text-orange text-sm font-semibold my-2">{category}</p>
+        <p className="text-purple text-sm font-semibold my-2">{category}</p>
         <p className="text-sm text-gray-200 my-2">{title}</p>
       </div>
     </Link>

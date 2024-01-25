@@ -63,7 +63,7 @@ const Header = () => {
         <Link
           replace={true}
           href="/account"
-          className="flex items-center hover:text-orange duration-300"
+          className="flex items-center hover:text-purple duration-300"
         >
           <CiUser className="text-3xl" />
           <p className="text-sm mr-1 sm:block hidden">{session?.user?.email}</p>
@@ -72,7 +72,7 @@ const Header = () => {
         <Link
           replace={true}
           href="/login"
-          className="flex items-center hover:text-orange duration-300"
+          className="flex items-center hover:text-purple duration-300"
         >
           <p className="sm:flex hidden">ورود به حساب کاربری</p>
           <CiUser className="text-xl" />
@@ -87,34 +87,29 @@ const Header = () => {
   };
 
   return (
-    <header className="xl:container mx-auto md:px-8 px-2 sticky top-0 bg-black-200 z-10">
+    <header className="xl:container mx-auto md:px-8 px-2 sticky top-0 z-10 bg-white">
       <div className="flex justify-between items-center h-[4rem]">
         <div className="lg:flex hidden items-center gap-x-6">
-          <Link href="/" replace={true}>
-            <Image
-              src="/img/logo/logo-light.svg"
-              alt="logo"
-              width={120}
-              height={10}
-            />
+          <Link href="/" className="font-black text-purple text-3xl">
+            Tcar
           </Link>
 
           <Link replace={true} href="/car" className="flex items-center">
-            <p className="hover:text-orange duration-300">خرید خودرو</p>
+            <p className="hover:text-purple duration-300">خرید خودرو</p>
           </Link>
 
-          <div className="relaitve group">
+          <div className="relaitve group z-20">
             <button className="flex items-center">
               <FaAngleDown className="font-bold ml-1 text-sm" />
-              <p className="hover:text-orange duration-300">اکانت</p>
+              <p className="hover:text-purple duration-300">اکانت</p>
             </button>
-            <ul className="hidden group-hover:block absolute bg-black-500 px-4 py-2 rounded-xl">
+            <ul className="hidden group-hover:block shadow-2xl absolute bg-white z-20 px-4 py-2 rounded-xl">
               {accountMenu.map((menu, index) => (
                 <li className="my-2 block" key={index}>
                   <Link
                     replace={true}
                     href={menu.href}
-                    className="hover:text-orange duration-300"
+                    className="hover:text-purple duration-300"
                   >
                     {menu.title}
                   </Link>
@@ -133,14 +128,14 @@ const Header = () => {
           <Link
             replace={true}
             href="/about"
-            className="hover:text-orange duration-300"
+            className="hover:text-purple duration-300"
           >
             درباره ما
           </Link>
           <Link
             replace={true}
             href="/help-center"
-            className="hover:text-orange duration-300 lg:hidden xl:flex flex"
+            className="hover:text-purple duration-300 lg:hidden xl:flex flex"
           >
             ارتباط با ما
           </Link>
@@ -148,7 +143,7 @@ const Header = () => {
             <Link
               replace={true}
               href="/panel"
-              className="hover:text-orange duration-300"
+              className="hover:text-purple duration-300"
             >
               پنل
             </Link>
@@ -157,7 +152,7 @@ const Header = () => {
 
         {showMenu && (
           <div className="lg:hidden block min-w-[10rem] min-h-screen pt-2 absolute bg-black-100 border-r border-borderColor z-10 items-center gap-x-8 right-0 top-0 ">
-            <div className="py-2 border-b border-borderColor text-center hover:text-orange duration-300">
+            <div className="py-2 border-b border-borderColor text-center hover:text-purple duration-300">
               <Link
                 replace={true}
                 href="car"
@@ -192,21 +187,21 @@ const Header = () => {
             <Link
               replace={true}
               href="/about"
-              className="text-center py-2 border-b border-borderColor block hover:text-orange duration-300"
+              className="text-center py-2 border-b border-borderColor block hover:text-purple duration-300"
             >
               درباره ما
             </Link>
             <Link
               replace={true}
               href="/panel"
-              className="text-center py-2 border-b border-borderColor block hover:text-orange duration-300"
+              className="text-center py-2 border-b border-borderColor block hover:text-purple duration-300"
             >
               پنل
             </Link>
             <Link
               replace={true}
               href="/addcar"
-              className="text-center py-2 border-b border-borderColor block hover:text-orange duration-300"
+              className="text-center py-2 border-b border-borderColor block text-white hover:text-purple duration-300"
             >
               ثبت خودرو
             </Link>
@@ -224,14 +219,14 @@ const Header = () => {
           <div className="relative">
             <input
               type="text"
-              className="bg-black-100 border border-borderColor rounded-lg py-1 md:w-auto w-[10rem]"
+              className="bg-black-100 border border-purple outline-none rounded-lg py-1 md:w-auto w-[10rem]"
               onChange={(e) => setsearchQuery(e.target.value)}
             />
             <button
               className="absolute top-2 left-2 border-r pr-1"
               onClick={searchHandler}
             >
-              <FaSearch className="text-orange text-xl" />
+              <FaSearch className="text-purple text-xl" />
             </button>
           </div>
         </div>
@@ -242,8 +237,8 @@ const Header = () => {
             href="addcar"
             className="sm:py-2 py-1 sm:px-4 px-2 sm:text-base test-sm"
           >
-            <FiPlus className="sm:block hidden" />
-            <p className="sm:mr-2 font-semibold">ثبت خودرو</p>
+            <FiPlus className="sm:block hidden text-white" />
+            <p className="sm:mr-2 font-semibold text-white">ثبت خودرو</p>
           </Button>
         </div>
       </div>

@@ -20,7 +20,7 @@ const Accordion = ({
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className="w-full border border-borderColor py-4 px-2 rounded-lg">
+    <div className="w-full border border-purple py-4 px-2 rounded-lg my-4">
       <div
         className="accordion-title"
         onClick={() => setIsActive((prevIsActive) => !prevIsActive)}

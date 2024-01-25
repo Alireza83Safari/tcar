@@ -1,11 +1,8 @@
 "use client";
 
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
-import CarTemplate from "../../../components/Car/CarTemplate";
-import FilterCar from "../../../components/Car/FilterCar";
 import { useState } from "react";
-import Pagination from "@/components/Pagination";
+import { Header, Footer, CarTemplate, FilterCar,Pagination } from "@/components";
+import { CarType } from "@/types/car.type";
 
 const Cars = (props: any) => {
   const { cars, total } = props;
@@ -26,7 +23,7 @@ const Cars = (props: any) => {
           <div className="md:col-span-1">
             <FilterCar showFilterMenu={showFilterMenu} page={currentPage} />
             <button
-              className="fixed bottom-0 w-full bg-orange py-2 md:hidden block"
+              className="fixed bottom-0 w-full bg-purple py-2 md:hidden block"
               onClick={() => setShowFilterMenu(!showFilterMenu)}
             >
               فیلتر
@@ -36,7 +33,9 @@ const Cars = (props: any) => {
           <div className="md:col-span-3 col-span-4">
             <div className="grid lg:grid-cols-3 sm:grid-cols-2">
               {cars?.length ? (
-                cars?.map((car: any) => <CarTemplate {...car} />)
+                cars?.map((car: CarType) => (
+                  <CarTemplate car={car} dataAos="fead-up" />
+                ))
               ) : (
                 <p className="text-2xl text-center col-span-2 mt-32">
                   نتیجه ای یافت نشد!

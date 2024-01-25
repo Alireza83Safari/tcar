@@ -62,7 +62,6 @@ const EditAppPic = ({ showEditAppPic, setShowEditAppPic, editId }: any) => {
               <Input
                 label="عنوان بنر"
                 name="title"
-                className="border bg-black-500"
                 defaultValue={editValue.title}
               />
             </div>
@@ -70,12 +69,11 @@ const EditAppPic = ({ showEditAppPic, setShowEditAppPic, editId }: any) => {
               <Input
                 label="توضیحات بنر"
                 name="description"
-                className="border bg-black-500"
                 defaultValue={editValue.description}
               />
             </div>
 
-            <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+            <button className="bg-purple w-[95%] rounded-lg py-2 mt-5 mx-2 text-white hover:bg-boldPurple duration-300">
               ویرایش برند
             </button>
           </>

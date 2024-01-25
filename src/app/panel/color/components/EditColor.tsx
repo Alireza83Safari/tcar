@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Modal, Input, Spinner } from "@/components"; 
+import { Modal, Input, Spinner } from "@/components";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import { editColors } from "@/actions/color";
@@ -66,7 +66,6 @@ const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
                   label="نام رنگ"
                   name="name"
                   placeholder="نام رنگ"
-                  className="border bg-black-500"
                   defaultValue={initialState.name}
                 />
               </div>
@@ -75,7 +74,6 @@ const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
                   label="کد رنگ"
                   name="code"
                   placeholder="کد رنگ"
-                  className="border bg-black-500"
                   defaultValue={initialState.code}
                 />
               </div>
@@ -84,11 +82,10 @@ const EditColor = ({ showColors, setShowEditColor, editId }: any) => {
                   label="هکس کد"
                   name="hex"
                   placeholder="هکس کد"
-                  className="border bg-black-500"
                   defaultValue={initialState.hex}
                 />
               </div>
-              <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+              <button className="bg-purple w-[95%] rounded-lg py-2 mt-5 mx-2 text-white hover:bg-boldPurple duration-300">
                 ویرایش رنگ
               </button>
             </>

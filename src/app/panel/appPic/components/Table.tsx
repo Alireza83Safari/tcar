@@ -53,7 +53,7 @@ export async function Table({ appPics }: { appPics: appPicType[] }) {
                       onClick={() => deleteAppPic(appPic._id)}
                     />
                     <FaPenAlt
-                      className="text-orange mx-2"
+                      className="text-purple mx-2"
                       onClick={() => {
                         setEditID(appPic._id);
                         setShowEditAppPic(true);

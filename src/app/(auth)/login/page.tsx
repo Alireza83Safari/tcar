@@ -146,7 +146,7 @@ export default function page() {
               error={errors?.password}
             />
           </div>
-          <button className="w-full bg-orange py-2 rounded-lg mt-4">
+          <button className="w-full bg-purple py-2 rounded-lg mt-4">
             {isLoading ? <FormSpinner /> : "ورود به حساب کاربری"}
           </button>
           <div className="mt-6 text-center">

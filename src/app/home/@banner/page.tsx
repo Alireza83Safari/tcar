@@ -24,7 +24,7 @@ export default async function page() {
             className="grid md:grid-cols-3 md:py-32 py-20 px-8 xl:container m-auto"
           >
             <div className="col-span-1">
-              <h1 className="text-5xl font-bold" style={{ lineHeight: "60px" }}>
+              <h1 className="text-5xl font-bold text-purple" style={{ lineHeight: "60px" }}>
                 {banner?.title}
               </h1>
               <p className="mt-12 text-gray-200" style={{ lineHeight: "33px" }}>
@@ -33,11 +33,11 @@ export default async function page() {
             </div>
             <div className="col-span-2 md:mt-0 mt-20">
               <Image
-                width="1000"
-                height="1000"
+                width="500"
+                height="500"
                 src={String(banner?.image)}
                 className="w-[42rem] max-h-[25rem] object-contain"
-                alt="Description of my image"
+                alt="car banner"
               />
             </div>
           </nav>

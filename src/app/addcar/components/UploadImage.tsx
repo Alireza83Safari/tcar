@@ -36,7 +36,7 @@ export default function ImageUpload({ id }: { id: string }) {
           onUpload={handleUpload}
           uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_PRESET}
         >
-          <button className=" w-full bg-orange py-3 rounded-lg min-w-[10rem]">
+          <button className=" w-full bg-purple py-3 rounded-lg min-w-[10rem]">
             آپلود
           </button>
         </CldUploadButton>

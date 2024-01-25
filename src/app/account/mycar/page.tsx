@@ -5,7 +5,7 @@ import { getUser } from "@/actions/user";
 import { redirect } from "next/navigation";
 import { Footer, Header } from "@/components";
 import Menu from "../components/Menu";
-import Car from "../components/mycar/Car";
+import MyCar from "../components/MyCar";
 
 export default async function page() {
   const session = await getServerSession(authOptions);
@@ -20,7 +20,7 @@ export default async function page() {
       <Header />
       <main className="grid md:grid-cols-12 grid-cols-1 sm:mt-12 mt-4 xl:container mx-auto md:px-8 relative">
         <Menu user={user} />
-        <Car cars={cars} />
+        <MyCar cars={cars} />
       </main>
       <Footer />
     </>

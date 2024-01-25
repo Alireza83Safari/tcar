@@ -1,0 +1,35 @@
+.card-item::before {
+  content: "";
+  bottom: 0;
+  right: 4;
+  position: absolute;
+  border-bottom: 1px solid #8372bf;
+  border-end-start-radius: 15px;
+  border-right: 1px solid #8372bf;
+  height: 10%;
+  width: 10%;
+  transition: all ease-in 0.6s;
+}
+
+.card-item::after {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  border-top: 1px solid #8372bf;
+  border-top-left-radius: 15px;
+  border-left: 1px solid #8372bf;
+  height: 10%;
+  width: 10%;
+  transition: all ease-in 0.6s;
+}
+
+.parent:hover .card-item::before {
+  height: 70%;
+  width: 70%;
+}
+
+.parent:hover .card-item::after {
+  height: 70%;
+  width: 70%;
+}

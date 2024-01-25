@@ -41,7 +41,7 @@ const AddBlog = () => {
     <div>
       <div className="w-full mt-10 mb-4">
         <button
-          className=" bg-orange flex items-center py-2 px-4 rounded-md md:text-base text-sm mr-4"
+          className=" bg-purple flex items-center py-2 px-4 rounded-md md:text-base text-sm mr-4 text-white"
           onClick={() => openModal()}
         >
           <p>افزودن بنر جدید</p>
@@ -63,36 +63,20 @@ const AddBlog = () => {
                   value={(session as any)?.email}
                 />
                 <div className="mx-2 my-3">
-                  <Input
-                    label="عنوان بلاگ"
-                    name="title"
-                    className="border bg-gradient-to-r from-zinc-900 to-slate-800"
-                  />
+                  <Input label="عنوان بلاگ" name="title" />
                 </div>
                 <div className="mx-2 my-3">
-                  <Input
-                    label="دسته بندی بلاگ"
-                    name="category"
-                    className="border bg-gradient-to-r from-zinc-900 to-slate-800"
-                  />
+                  <Input label="دسته بندی بلاگ" name="category" />
                 </div>
                 <div className="mx-2 my-3">
-                  <Input
-                    label="زمان مطالعه بلاگ"
-                    name="time"
-                    className="border bg-gradient-to-r from-zinc-900 to-slate-800"
-                  />
+                  <Input label="زمان مطالعه بلاگ" name="time" />
                 </div>
 
                 <div className="mx-2 my-3">
-                  <Input
-                    label="توضیحات بنر"
-                    name="description"
-                    className="border bg-gradient-to-r from-zinc-900 to-slate-800"
-                  />
+                  <Input label="توضیحات بنر" name="description" />
                 </div>
 
-                <button className="bg-orange w-[95%] rounded-lg py-2 mt-6 mx-2">
+                <button className="bg-purple w-[95%] rounded-lg py-2 mt-6 mx-2">
                   افزودن بنر
                 </button>
               </>

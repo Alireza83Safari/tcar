@@ -34,7 +34,7 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           key={i}
           className={`px-3 py-1 mx-1 border ${
-            currentPage === i ? "bg-black text-white border-orange" : "bg-black"
+            currentPage === i ? "bg-purple text-white" : "border-purple"
           }`}
           onClick={() => onPageChange(i)}
         >

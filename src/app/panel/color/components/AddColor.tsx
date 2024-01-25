@@ -39,7 +39,7 @@ const AddColor = () => {
     <div>
       <div className="w-full mt-10 mb-4">
         <button
-          className=" bg-orange flex items-center py-2 px-4 rounded-md md:text-base text-sm mr-4"
+          className=" bg-purple flex items-center py-2 px-4 rounded-md md:text-base text-sm mr-4 text-white"
           onClick={() => openModal()}
         >
           <p>افزودن رنگ جدید</p>
@@ -55,27 +55,15 @@ const AddColor = () => {
           ) : (
             <>
               <div className="mx-2 my-3">
-                <Input
-                  label="نام رنگ"
-                  name="name"
-                  className="border bg-gradient-to-r from-zinc-900 to-slate-800"
-                />
+                <Input label="نام رنگ" name="name" />
               </div>
               <div className="mx-2 my-3">
-                <Input
-                  label="کد رنگ"
-                  name="code"
-                  className="border bg-gradient-to-r from-zinc-900 to-slate-800"
-                />
+                <Input label="کد رنگ" name="code" />
               </div>
               <div className="mx-2 my-3">
-                <Input
-                  label="هکس کد"
-                  name="hex"
-                  className="border bg-gradient-to-r from-zinc-900 to-slate-800"
-                />
+                <Input label="هکس کد" name="hex" />
               </div>
-              <button className="bg-orange w-[95%] rounded-lg py-2 mt-6 mx-2">
+              <button className="bg-purple w-[95%] rounded-lg py-2 mt-6 mx-2 text-white hover:bg-boldPurple duration-300">
                 افزودن رنگ
               </button>
             </>

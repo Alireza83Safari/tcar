@@ -21,7 +21,7 @@ export async function InfoBar({ cars }: { cars: CarType[] }) {
         <div className="flex justify-center bg-white rounded-xl max-h-[10rem] mx-4 py-2 lg:mb-0 mb-7" key={info?.title}>
           <div className="p-3 text-black-500">
             <h2 className="text-lg font-semibold">{info?.title}</h2>
-            <p className="text-4xl text-orange font-semibold text-center mt-5">
+            <p className="text-4xl text-purple font-semibold text-center mt-5">
               {info?.dataLength}
             </p>
           </div>

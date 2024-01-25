@@ -48,10 +48,10 @@ export default function page() {
       data-aos="fade-up"
       data-aos-once="true"
     >
-      <div className="grid sm:grid-cols-4 grid-cols-1 border border-gray-100 rounded-lg py-2">
-        <div className="relative my-auto min-w full border-l px-5 sm:border-none border-b border-borderColor">
+      <div className="grid sm:grid-cols-4 grid-cols-1 shadow-lg rounded-lg py-2">
+        <div className="relative my-auto min-w full border-l px-5 sm:border-none border-b border-borerColor">
           <Select
-            className="w-full py-2 rounded-lg px-3 bg-black-200 outline-none"
+            className="w-full py-2 rounded-lg px-3 border border-purple outline-none"
             name="year"
             value={filterValue.year}
             options={yearsItem}
@@ -62,7 +62,7 @@ export default function page() {
 
         <div className="relative my-auto min-w full border-l px-5 sm:border-none border-b border-borderColor">
           <Select
-            className="w-full py-2 rounded-lg px-3 bg-black-200 outline-none"
+            className="w-full py-2 rounded-lg px-3 border border-purple outline-none"
             name="company"
             value={filterValue.company}
             options={companies}
@@ -73,7 +73,7 @@ export default function page() {
 
         <div className="relative my-auto min-w full px-5">
           <Select
-            className="w-full py-2 rounded-lg px-3 bg-black-200 outline-none"
+            className="w-full py-2 rounded-lg px-3 border border-purple outline-none"
             name="platform"
             value={filterValue.platform}
             options={platforms}
@@ -83,7 +83,7 @@ export default function page() {
         </div>
 
         <button
-          className="bg-orange py-2 min-w-[92%] rounded-lg sm:mx-2 mx-3"
+          className="bg-purple py-2 min-w-[92%] rounded-lg sm:mx-2 mx-3 text-white"
           onClick={searchCarHandler}
         >
           جستجو

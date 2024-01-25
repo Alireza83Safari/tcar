@@ -1,17 +1,16 @@
 "use client";
+import Image from "next/image";
 //import { FaHeart, FaShareAlt } from "react-icons/fa";
 import { CarType } from "../../types/car.type";
 import Accordion from "../Accordion";
-import toast from "react-hot-toast";
-import { useSession } from "next-auth/react";
-import { apiUrl } from "@/services/apiUrl";
 import moment from "jalali-moment";
-import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
-const CarDetails = ({ car }: { car: CarType }) => {
-  const { data: session } = useSession();
+interface CarDetailsProps {
+  car: CarType;
+}
 
+const CarDetails: React.FC<CarDetailsProps> = ({ car }) => {
   /*   const addFavorite = async () => {
     if (session) {
       const data = {
@@ -52,7 +51,7 @@ const CarDetails = ({ car }: { car: CarType }) => {
       <div className="grid md:grid-cols-2 grid-cols-1">
         <div className="flex justify-center items-center md:my-0 my-10">
           <Link href={`/car/${car._id}/photo`}>
-            <CldImage
+            <Image
               width="500"
               height="500"
               src={String(car?.image)}
@@ -64,9 +63,13 @@ const CarDetails = ({ car }: { car: CarType }) => {
         <div className="grid grid-cols-2 md:px-7 ">
           <div className="mb-5">
             {car?.carStatus === 0 ? (
-              <button className="px-8 rounded-lg bg-green mx-1">نو</button>
+              <button className="px-8 rounded-lg text-white bg-green mx-1">
+                نو
+              </button>
             ) : (
-              <button className="px-8 rounded-lg bg-blue mx-1">کارکرده</button>
+              <button className="px-8 rounded-lg text-white bg-purple mx-1">
+                کارکرده
+              </button>
             )}
           </div>
           <div className="mb-4 flex sm:text-base text-sm">
@@ -75,11 +78,11 @@ const CarDetails = ({ car }: { car: CarType }) => {
           </div>
           <div className="mb-4 flex sm:text-base text-sm">
             <p className="ml-2  text-gray-200">برند:</p>
-            <p>{(car?.company as any)?.name}</p>
+            <p>{car?.company?.name}</p>
           </div>
           <div className="mb-4 flex sm:text-base text-sm">
             <p className="ml-2  text-gray-200">رنگ:</p>
-            <p> {(car?.color as any)?.name}</p>
+            <p> {car?.color?.name}</p>
           </div>
           <div className="mb-4 flex sm:text-base text-sm">
             <p className="ml-2  text-gray-200">کیلومتر:</p>
@@ -106,7 +109,7 @@ const CarDetails = ({ car }: { car: CarType }) => {
             <p> {persianDate}</p>
           </div>
 
-          <div className="bg-gradient-to-r from-neutral-800 to-slate-800 p-4 rounded-lg mt-8 col-span-2">
+          <div className="border border-purple p-4 rounded-lg mt-8 col-span-2">
             <p className="mb-4 sm:text-base text-sm">مشخصات فروشنده</p>
             <div className="mb-4 flex items-center sm:text-base text-sm">
               <p className="ml-2">نام:</p>
@@ -118,7 +121,7 @@ const CarDetails = ({ car }: { car: CarType }) => {
             </div>
             <div className="mb-4 flex items-center sm:text-base text-sm">
               <p className="ml-4">شماره تماس:</p>
-              <p className="border border-orange px-4 rounded-lg py-1">
+              <p className="border border-purple px-4 rounded-lg py-1">
                 {car?.phone}
               </p>
             </div>
@@ -127,45 +130,43 @@ const CarDetails = ({ car }: { car: CarType }) => {
       </div>
 
       <div>
-        <div className="rounded-lg border-x border-t border-borderColor mt-5">
-          <div className="border-b border-borderColor">
-            <Accordion title="تکنولوژی">
-              <div className="grid grid-cols-2">
-                <div className="text-sm text-gray-200">
-                  <li>کنترل آب و هوا</li>
-                  <li>سیستم ناوبری</li>
-                  <li>بلوتوث</li>
-                  <li>مدیریت از راه دور</li>
-                </div>
-                <div className="text-sm text-gray-200">
-                  <li>کنترل آب و هوا</li>
-                  <li>سیستم ناوبری</li>
-                  <li>بلوتوث</li>
-                  <li>مدیریت از راه دور</li>
-                </div>
+        <div className="rounded-lg- mt-20">
+          <Accordion title="تکنولوژی">
+            <div className="grid grid-cols-2">
+              <div className="text-sm text-gray-200">
+                <li>کنترل آب و هوا</li>
+                <li>سیستم ناوبری</li>
+                <li>بلوتوث</li>
+                <li>مدیریت از راه دور</li>
               </div>
-            </Accordion>
+              <div className="text-sm text-gray-200">
+                <li>کنترل آب و هوا</li>
+                <li>سیستم ناوبری</li>
+                <li>بلوتوث</li>
+                <li>مدیریت از راه دور</li>
+              </div>
+            </div>
+          </Accordion>
 
-            <Accordion title="امنیت">
-              <div className="grid grid-cols-2">
-                <div className="text-sm text-gray-200">
-                  <li>کیسه هوا: راننده</li>
-                  <li>کیسه هوا: مسافر</li>
-                  <li>زنگ هشدار</li>
-                  <li>ترمزهای ضد قفل</li>
-                </div>
-                <div className="text-sm text-gray-200">
-                  <li>کمک ترمز</li>
-                  <li>هشدار خروج از خط</li>
-                  <li>چراغهای مه</li>
-                  <li>قفل درهای برقی</li>
-                </div>
+          <Accordion title="امنیت">
+            <div className="grid grid-cols-2">
+              <div className="text-sm text-gray-200">
+                <li>کیسه هوا: راننده</li>
+                <li>کیسه هوا: مسافر</li>
+                <li>زنگ هشدار</li>
+                <li>ترمزهای ضد قفل</li>
               </div>
-            </Accordion>
-          </div>
+              <div className="text-sm text-gray-200">
+                <li>کمک ترمز</li>
+                <li>هشدار خروج از خط</li>
+                <li>چراغهای مه</li>
+                <li>قفل درهای برقی</li>
+              </div>
+            </div>
+          </Accordion>
         </div>
 
-        <div className="mt-4">
+        <div className="my-20">
           <h3 className="text-lg">توضیحات فروشنده</h3>
           <p className="text-sm text-gray-200">{car?.description}</p>
         </div>

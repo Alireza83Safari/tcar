@@ -18,17 +18,17 @@ export default async function page() {
           platforms?.map((car: getPlatformType) => (
             <Link
               href={`/car?platform=${car._id}`}
-              className="text-center my-3 mx-auto hover:bg-gradient-to-r from-zinc-900 to-slate-900 duration-300 rounded-lg"
+              className="text-center my-3 mx-auto hover:bg-lightPurple duration-300 rounded-lg"
               key={car?._id}
             >
               <Image
-                width="440"
-                height="440"
+                width="130"
+                height="130"
                 src={String(car?.image)}
                 className="w-[14rem]"
                 alt="Description of my image"
               />
-              <p className="text-gray-200 my-2">{car.name}</p>
+              <p className="my-2 text-purple">{car.name}</p>
             </Link>
           ))}
       </div>

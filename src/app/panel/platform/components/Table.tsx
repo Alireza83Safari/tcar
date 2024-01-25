@@ -49,7 +49,7 @@ export async function Table({ platforms }: { platforms: getPlatformType[] }) {
                     />
 
                     <FaPenAlt
-                      className="text-orange mx-2"
+                      className="text-purple mx-2"
                       onClick={() => {
                         setEditID(platform._id);
                         setShowEditModal(true);

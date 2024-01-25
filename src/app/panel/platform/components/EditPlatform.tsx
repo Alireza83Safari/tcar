@@ -63,7 +63,6 @@ const EditPlatform = ({ showModal, setShowEditModal, editId }: any) => {
                 label="نام پلتفرم"
                 name="name"
                 placeholder="نام پلتفرم"
-                className="border bg-black-500"
                 defaultValue={initialState.name}
               />
             </div>
@@ -72,11 +71,10 @@ const EditPlatform = ({ showModal, setShowEditModal, editId }: any) => {
                 label="کد پلتفرم"
                 name="code"
                 placeholder="کد پلتفرم"
-                className="border bg-black-500"
                 defaultValue={initialState.code}
               />
             </div>
-            <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+            <button className="bg-purple w-[95%] rounded-lg py-2 mt-5 mx-2 text-white hover:bg-boldPurple duration-300">
               ویرایش پلتفرم
             </button>
           </>

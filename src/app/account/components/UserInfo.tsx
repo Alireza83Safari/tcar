@@ -111,7 +111,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
           </div>
         </Accordion>
 
-        <button className=" bg-orange w-full my-3 py-2 rounded-lg">
+        <button className="bg-purple text-white w-full my-3 py-2 rounded-lg hover:bg-boldPurple duration-300">
           ثبت تغییرات
         </button>
       </form>

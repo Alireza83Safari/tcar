@@ -10,7 +10,7 @@ const Blog = ({ blog }: { blog: blogType }) => {
           className="min-w-full min-h-[20rem] object-contain"
         />
         <ul className="flex my-5 mr-3 sm:text-base text-sm">
-          <li className="sm:ml-10 ml-5 text-orange">مطلب</li>
+          <li className="sm:ml-10 ml-5 text-purple">مطلب</li>
           <li className="sm:ml-10 ml-5">
             {blog?.createdAt?.slice(0, 10)} میلادی
           </li>

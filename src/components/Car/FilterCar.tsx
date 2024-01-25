@@ -78,14 +78,14 @@ const FilterCar: React.FC<FilterCarProps> = ({ showFilterMenu, page }) => {
 
   return (
     <div
-      className={`border border-borderColor px-4 md:rounded-lg md:block overflow-auto bg-gradient-to-r from-stone-900 to-slate-900 sticky top-20 py-5 ${
+      className={` shadow-xl px-4 md:rounded-lg md:block overflow-auto bg-lightPurple sticky top-20 py-5 ${
         showFilterMenu ? `fixed right-0 top-0 z-10 sm:w-1/4 block` : `hidden`
       }`}
     >
       <Select
         name="platform"
         defaultValue="پلتفرم"
-        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-purple"
         value={platform}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setFilterCarValue({ ...filterCarValue, platform: e.target.value })
@@ -96,7 +96,7 @@ const FilterCar: React.FC<FilterCarProps> = ({ showFilterMenu, page }) => {
       <Select
         defaultValue="سال"
         name="years"
-        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor mt-5"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-purple mt-5"
         value={years}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setFilterCarValue({ ...filterCarValue, years: e.target.value })
@@ -107,7 +107,7 @@ const FilterCar: React.FC<FilterCarProps> = ({ showFilterMenu, page }) => {
       <Select
         defaultValue="رنگ"
         name="color"
-        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor mt-5"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-purple mt-5"
         value={color}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setFilterCarValue({ ...filterCarValue, color: e.target.value })
@@ -118,7 +118,7 @@ const FilterCar: React.FC<FilterCarProps> = ({ showFilterMenu, page }) => {
       <Select
         defaultValue="برند"
         name="company"
-        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor mt-5"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-purple mt-5"
         value={company}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setFilterCarValue({ ...filterCarValue, company: e.target.value })
@@ -129,7 +129,7 @@ const FilterCar: React.FC<FilterCarProps> = ({ showFilterMenu, page }) => {
       <Select
         defaultValue="براساس:"
         name="order"
-        className="bg-black-100 px-4 py-3 rounded-md w-full border border-borderColor mt-5"
+        className="bg-black-100 px-4 py-3 rounded-md w-full border border-purple mt-5"
         value={order}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setFilterCarValue({ ...filterCarValue, order: e.target.value })

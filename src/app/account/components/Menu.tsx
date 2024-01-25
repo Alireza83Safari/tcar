@@ -32,7 +32,7 @@ const Menu = ({ user }: { user: getUserType }) => {
   const params = usePathname();
 
   return (
-    <div className="md:col-span-4 bg-black-500 rounded-lg md:px-6 px-3 py-4 md:mb-0 mb-12">
+    <div className="md:col-span-4 bg-lightPurple rounded-lg md:px-6 px-3 py-4 md:mb-0 mb-12">
       <div className="flex items-center">
         <img
           src="/img/car-finder/about/01.jpg"
@@ -54,7 +54,7 @@ const Menu = ({ user }: { user: getUserType }) => {
       </div>
       <Link
         href="/addcar"
-        className=" w-[96%] py-3 rounded-lg mx-4 bg-orange my-4 flex items-center justify-center"
+        className=" w-[96%] py-3 rounded-lg mx-4 bg-purple hover:bg-boldPurple duration-300 text-white my-4 flex items-center justify-center"
       >
         <FaPlus className="ml-1" />
         <p> ثبت خودرو </p>
@@ -65,7 +65,7 @@ const Menu = ({ user }: { user: getUserType }) => {
           <Link
             href={menu?.href}
             className={`flex items-center border-b border-borderColor py-5 ${
-              menu.href?.includes(params) ? `text-orange` : `text-gray-200`
+              menu.href?.includes(params) ? `text-purple` : `text-gray-200`
             }`}
           >
             {menu?.icon}
@@ -73,7 +73,7 @@ const Menu = ({ user }: { user: getUserType }) => {
           </Link>
         ))}
         <button
-          className="flex items-center border-b border-borderColor py-5"
+          className="flex items-center border-b border-purple py-5 min-w-full"
           onClick={() => signOut()}
         >
           <FaOutdent className="ml-2" />

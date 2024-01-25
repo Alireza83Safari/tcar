@@ -45,7 +45,7 @@ export async function Table({ blogs }: { blogs: blogType[] }) {
                       onClick={() => deleteCompany(brand._id)}
                     />
                     <FaPenAlt
-                      className="text-orange mx-2"
+                      className="text-purple mx-2"
                       onClick={() => {
                         setEditID(brand._id);
                         setShowEditBrand(true);

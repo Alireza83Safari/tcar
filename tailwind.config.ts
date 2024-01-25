@@ -15,12 +15,14 @@ const config: Config = {
       },
       colors: {
         dGray: "#F2F3F5",
-        orange: "#FD5631",
+        purple: "#8372BF",
+        lightPurple: "#EFEFF7",
+        boldPurple: "#7825C6",
         gray: {
           200: "#93929B",
         },
         black: {
-          100: "#282435",
+          100: "#white",
           200: "#1f1b2d",
           500: "#1F1B2D",
         },

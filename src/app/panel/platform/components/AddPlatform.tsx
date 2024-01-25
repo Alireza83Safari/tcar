@@ -40,7 +40,7 @@ const AddPlatform = () => {
     <div>
       <div className="w-full mt-10 mb-4">
         <button
-          className=" bg-orange flex items-center py-2 px-4 rounded-md md:text-base text-sm"
+          className=" bg-purple flex items-center py-2 px-4 rounded-md md:text-base text-sm text-white"
           onClick={() => openModal()}
         >
           <p>افزودن پلتفرم جدید</p>
@@ -51,21 +51,13 @@ const AddPlatform = () => {
         {!showImage ? (
           <form action={formAction} className="grid grid-cols-1 bg-black-00">
             <div className="mx-2 my-3">
-              <Input
-                label="نام پلتفرم"
-                name="name"
-                className="border bg-gradient-to-r from-zinc-900 to-slate-800"
-              />
+              <Input label="نام پلتفرم" name="name" />
             </div>
             <div className="mx-2 my-3">
-              <Input
-                label="کد پلتفرم"
-                name="code"
-                className="border bg-gradient-to-r from-zinc-900 to-slate-800"
-              />
+              <Input label="کد پلتفرم" name="code" />
             </div>
 
-            <button className="bg-orange w-[95%] rounded-lg py-2 mt-6 mx-2">
+            <button className="bg-purple w-[95%] rounded-lg py-2 mt-6 mx-2 text-white hover:bg-boldPurple duration-300">
               افزودن پلتفرم
             </button>
           </form>

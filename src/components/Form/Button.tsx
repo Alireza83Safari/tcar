@@ -12,7 +12,7 @@ const Button = ({ children, onClick, className, href }: buttonPropsType) => {
     <button>
       <Link
         href={href}
-        className={` bg-orange hover:bg-redOrange duration-300 rounded-lg my-8 flex items-center ${
+        className={` bg-purple text-white hover:bg-boldPurple duration-300 rounded-lg my-8 flex items-center ${
           className ? className : `py-3 px-8`
         }`}
         onClick={onClick}

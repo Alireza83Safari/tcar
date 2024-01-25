@@ -1,4 +1,3 @@
-export const dynamicParams = true;
 import { getCar, getCars } from "@/actions/car";
 import CarDetails from "@/components/Car/CarDetails";
 import Footer from "@/components/Footer";
@@ -8,8 +7,8 @@ import { CarType } from "@/types/car.type";
 export async function generateStaticParams() {
   const cars = await getCars("");
 
-  return cars.map((car: CarType) => ({
-    id: car._id,
+  return cars?.map((car: CarType) => ({
+    id: car?._id,
   }));
 }
 

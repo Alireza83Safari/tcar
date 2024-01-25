@@ -68,7 +68,6 @@ const EditUser = ({ showModal, setShowEditModal, editId }: any) => {
                   label="نام "
                   name="firstname"
                   placeholder="نام"
-                  className="border bg-black-500"
                   defaultValue={initialState?.firstname}
                 />
               </div>
@@ -77,7 +76,6 @@ const EditUser = ({ showModal, setShowEditModal, editId }: any) => {
                   label="نام خانوادگی"
                   name="lastname"
                   placeholder="نام خانوادگی"
-                  className="border bg-black-500"
                   defaultValue={initialState?.lastname}
                 />
               </div>
@@ -86,11 +84,10 @@ const EditUser = ({ showModal, setShowEditModal, editId }: any) => {
                   label="ایمیل"
                   name="email"
                   placeholder="ایمیل"
-                  className="border bg-black-500"
                   defaultValue={initialState?.email}
                 />
               </div>
-              <button className="bg-orange w-[95%] rounded-lg py-2 mt-5 mx-2">
+              <button className="bg-purple w-[95%] rounded-lg py-2 mt-5 mx-2 text-white hover:bg-boldPurple duration-300">
                 ویرایش کاربر
               </button>
             </>

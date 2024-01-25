@@ -10,7 +10,7 @@ async function page() {
   const appPics = await getAppPics();
 
   return (
-    <div>
+    <>
       <Header />
       <Menu />
 
@@ -18,7 +18,7 @@ async function page() {
         <AddAppPic />
         <Table appPics={appPics} />
       </div>
-    </div>
+    </>
   );
 }
 
