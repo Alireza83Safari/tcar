@@ -8,6 +8,8 @@ import { getColors } from "@/actions/color";
 import { getCopmpanies } from "@/actions/company";
 import { getUsers } from "@/actions/user";
 import { UsersTable } from "./components/UsersTable";
+import { Suspense } from "react";
+import { LoadingTemplate } from "@/components";
 
 export const revalidate = 60 * 60;
 
@@ -35,17 +37,19 @@ export default async function page() {
       <Header />
       <Menu />
       <div className="md:w-[84vw] w-[84vw] bg-[#F2F3F5] min-h-screen absolute left-0 px-4 mt-10 grid md:grid-cols-4">
-        <InfoBar
-          cars={cars?.length || 0}
-          colors={colors?.length || 0}
-          platforms={platforms?.length || 0}
-          companies={companies?.length || 0}
-          users={users?.length || 0}
-        />
-        <div className="gap-x-10 mb-7 md:col-span-3">
-          <Chart data={data} />
-          <UsersTable users={users} />
-        </div>
+        <Suspense fallback={<LoadingTemplate />}>
+          <InfoBar
+            cars={cars?.length || 0}
+            colors={colors?.length || 0}
+            platforms={platforms?.length || 0}
+            companies={companies?.length || 0}
+            users={users?.length || 0}
+          />
+          <div className="gap-x-10 mb-7 md:col-span-3">
+            <Chart data={data} />
+            <UsersTable users={users} />
+          </div>
+        </Suspense>
       </div>
     </div>
   );
