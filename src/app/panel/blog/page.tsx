@@ -5,6 +5,7 @@ import AddBlog from "./components/AddBlog";
 import { getBlogs } from "@/actions/blog";
 import { LoadingTemplate } from "@/components";
 import { Suspense } from "react";
+import { withAuthPanel } from "@/HOC/withAuthPanel";
 
 async function page() {
   const blogs = await getBlogs();
@@ -24,4 +25,4 @@ async function page() {
   );
 }
 
-export default page;
+export default withAuthPanel(page);

@@ -5,8 +5,9 @@ import { Table } from "./components/Table";
 import { getCars } from "@/actions/car";
 import { Suspense } from "react";
 import { LoadingTemplate } from "@/components";
+import { withAuthPanel } from "@/HOC/withAuthPanel";
 
-export default async function page() {
+async function page() {
   const cars = await getCars("");
 
   return (
@@ -22,3 +23,5 @@ export default async function page() {
     </div>
   );
 }
+
+export default withAuthPanel(page);

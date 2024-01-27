@@ -10,6 +10,7 @@ import { getUsers } from "@/actions/user";
 import { UsersTable } from "./components/UsersTable";
 import { Suspense } from "react";
 import { LoadingTemplate } from "@/components";
+import { withAuthPanel } from "@/HOC/withAuthPanel";
 
 export const revalidate = 60 * 60;
 
@@ -18,7 +19,7 @@ interface DataItem {
   value: number;
 }
 
-export default async function page() {
+async function page() {
   const cars = await getCars("");
   const colors = await getColors();
   const platforms = await getPlatforms("");
@@ -54,3 +55,5 @@ export default async function page() {
     </div>
   );
 }
+
+export default withAuthPanel(page);

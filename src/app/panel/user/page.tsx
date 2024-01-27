@@ -2,10 +2,11 @@ import Menu from "../components/Menu";
 import Header from "../components/Header";
 import { getUsers } from "@/actions/user";
 import { Table } from "./components/Table";
+import { withAuthPanel } from "@/HOC/withAuthPanel";
 
 export const revalidate = 60 * 60;
 
-export default async function page() {
+async function page() {
   const users = await getUsers();
 
   return (
@@ -19,3 +20,5 @@ export default async function page() {
     </div>
   );
 }
+
+export default withAuthPanel(page);

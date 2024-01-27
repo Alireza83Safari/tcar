@@ -5,6 +5,7 @@ import { getCopmpanies } from "@/actions/company";
 import AddBrand from "./components/AddCompany";
 import { Suspense } from "react";
 import { LoadingTemplate } from "@/components";
+import { withAuthPanel } from "@/HOC/withAuthPanel";
 
 export const revalidate = 60 * 60;
 
@@ -25,4 +26,5 @@ async function page() {
   );
 }
 
-export default page;
+export default withAuthPanel(page);
+

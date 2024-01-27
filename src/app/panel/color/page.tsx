@@ -5,6 +5,7 @@ const AddColor = lazy(() => import("./components/AddColor"));
 import { getColors } from "@/actions/color";
 import { Suspense, lazy } from "react";
 import { LoadingTemplate } from "@/components";
+import { withAuthPanel } from "@/HOC/withAuthPanel";
 
 async function page() {
   const colors = await getColors();
@@ -24,4 +25,5 @@ async function page() {
   );
 }
 
-export default page;
+export default withAuthPanel(page);
+

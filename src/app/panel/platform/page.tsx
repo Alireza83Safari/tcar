@@ -5,10 +5,11 @@ import AddPlatform from "./components/AddPlatform";
 import { getPlatforms } from "@/actions/platform";
 import { LoadingTemplate } from "@/components";
 import { Suspense } from "react";
+import { withAuthPanel } from "@/HOC/withAuthPanel";
 
 export const revalidate = 60 * 60;
 
-export default async function page() {
+async function page() {
   const platforms = await getPlatforms("");
   return (
     <div>
@@ -23,3 +24,5 @@ export default async function page() {
     </div>
   );
 }
+
+export default withAuthPanel(page);
