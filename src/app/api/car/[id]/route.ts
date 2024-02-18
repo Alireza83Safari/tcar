@@ -9,6 +9,13 @@ export async function DELETE(
 ) {
   try {
     await connectToDB();
+
+    if (!mongoose.isValidObjectId(params.id)) {
+      return NextResponse.json(
+        { error: "شناسه خودرو معتبر نمی‌باشد" },
+        { status: 422 }
+      );
+    }
     const editCar = await Car.findByIdAndDelete(params.id);
 
     if (!editCar) {
@@ -32,6 +39,14 @@ export async function PUT(
   try {
     await connectToDB();
     const data = await req.json();
+
+    if (!mongoose.isValidObjectId(params.id)) {
+      return NextResponse.json(
+        { error: "شناسه خودرو معتبر نمی‌باشد" },
+        { status: 422 }
+      );
+    }
+
     const findCar = await Car.findById(params.id);
     if (findCar) {
       const editCar = await Car.findOneAndUpdate({ _id: params.id }, data);
@@ -65,9 +80,9 @@ export async function GET(
   try {
     await connectToDB();
 
-    if (!mongoose.Types.ObjectId.isValid(params.id)) {
+    if (!mongoose.isValidObjectId(params.id)) {
       return NextResponse.json(
-        { error: "شناسه خودرو معتبر نیست" },
+        { error: "شناسه خودرو معتبر نمی‌باشد" },
         { status: 422 }
       );
     }

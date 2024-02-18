@@ -22,7 +22,7 @@ export default function page() {
   const [serverError, setServerError] = useState("");
   const [errors, setErrors] = useState<loginErrorType>();
 
-  const setInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserLoginInfos({
       ...userLoginInfos,
@@ -38,11 +38,11 @@ export default function page() {
         body: JSON.stringify(userLoginInfos),
       });
       const data = await res.json();
-      setUserLoginInfos({ ...userLoginInfos, userId: data?._id });
+      const userDatas = { ...userLoginInfos, userId: data?._id };
 
       if (res.status === 200) {
         signIn("credentials", {
-          ...userLoginInfos,
+          ...userDatas,
           redirect: false,
         }).then((callback) => {
           if (callback?.error) {
@@ -92,14 +92,14 @@ export default function page() {
 
   useEffect(() => {
     if (session) {
-      push("/");
+      push("/home");
     }
   }, [session]);
 
   return (
     <>
       <Header />
-      <div className="xl:container mx-auto my-20 px-4 grid grid-cols-2">
+      <div className="xl:container mx-auto sm:my-20 my-8 px-4 grid sm:grid-cols-2">
         <div className="flex justify-center items-center">
           <Image
             src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703830631/dzwuo7bkodnrtkwnfkhw.png"
@@ -111,7 +111,7 @@ export default function page() {
 
         <form
           onSubmit={formIsValid}
-          className="max-w-md mx-auto p-6 bg-black-500 py-8 rounded-lg shadow-md w-full"
+          className="max-w-md mx-auto p-6 py-8 rounded-lg  border border-lightPurple shadow-md w-full"
         >
           <p className="text-red text-center">{serverError}</p>
           <div className="mb-6">
@@ -119,10 +119,9 @@ export default function page() {
               label="ایمیل"
               type="email"
               name="email"
-              onChange={setInputValue}
+              onChange={handleInputChange}
               placeholder="ایمیل"
               value={userLoginInfos.email}
-              className="w-full px-4 py-2 border rounded-md bg-black-100"
               onfocus={() => {
                 setServerError("");
                 setErrors(initialState);
@@ -135,10 +134,9 @@ export default function page() {
               label="رمز عبور"
               type="password"
               name="password"
-              onChange={setInputValue}
+              onChange={handleInputChange}
               placeholder="رمز عبور"
               value={userLoginInfos.password}
-              className="w-full px-4 py-2 border rounded-md bg-black-100"
               onfocus={() => {
                 setServerError("");
                 setErrors(initialState);
@@ -146,13 +144,13 @@ export default function page() {
               error={errors?.password}
             />
           </div>
-          <button className="w-full bg-purple py-2 rounded-lg mt-4">
+          <button className="w-full bg-purple text-white py-2 rounded-lg mt-4">
             {isLoading ? <FormSpinner /> : "ورود به حساب کاربری"}
           </button>
           <div className="mt-6 text-center">
             <Link
               href="/register"
-              className="text-gray-200 hover:text-white duration-300"
+              className="text-gray-200 hover:text-purple duration-300"
             >
               هنوز حساب کاربری ندارید؟
             </Link>

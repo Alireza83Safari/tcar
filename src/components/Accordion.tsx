@@ -4,19 +4,19 @@ import { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { FaAngleLeft } from "react-icons/fa6";
 
-export type AccordionPropsType = {
+interface AccordionPropsType {
   title: string;
   titleValue?: string;
   children?: React.ReactNode;
   content?: string;
-};
+}
 
-const Accordion = ({
+const Accordion: React.FC<AccordionPropsType> = ({
   title,
   titleValue,
   children,
   content,
-}: AccordionPropsType) => {
+}) => {
   const [isActive, setIsActive] = useState(false);
 
   return (

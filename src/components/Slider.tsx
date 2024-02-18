@@ -13,9 +13,12 @@ import { useEffect } from "react";
 
 export default function Slider({ cars }: { cars: CarType[] }) {
   useEffect(() => {
+    const isSmallScreen = window.innerWidth <= 600; // Adjust the screen size as needed
+
     AOS.init({
-      duration: 800,
+      offset: isSmallScreen ? 0 : 400, // Set a different offset for small screens
       easing: "ease-in-out",
+      duration: 800,
     });
   }, []);
   const breakpoints = {

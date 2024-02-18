@@ -7,10 +7,7 @@ import colorValidator from "@/validator/server/color";
 import { revalidateTag } from "next/cache";
 
 export async function getColors() {
-  if (!apiUrl) {
-    return null;
-  }
-  const res = await fetch(`${apiUrl}/api/color`, {
+  const res = await fetch(`${process.env.API_URL}api/color`, {
     next: { tags: ["colors"], revalidate: 60 * 60 },
   });
   const colors = await res.json();
@@ -18,10 +15,6 @@ export async function getColors() {
 }
 
 export async function deleteColor(id: string) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   const res = await fetch(`${apiUrl}/api/color/${id}`, {
     method: "DELETE",
   });
@@ -31,10 +24,6 @@ export async function deleteColor(id: string) {
 }
 
 export async function createColors(prev: any, formData: FormData) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   const data = {
     code: formData.get("code"),
     name: formData.get("name"),
@@ -73,10 +62,6 @@ export async function createColors(prev: any, formData: FormData) {
 }
 
 export async function editColors(prev: any, formData: FormData) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   await connectToDB();
   const id = formData.get("id");
 

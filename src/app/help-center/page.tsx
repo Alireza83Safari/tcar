@@ -1,4 +1,5 @@
 import { Accordion, Button, Footer, Header } from "@/components";
+import Link from "next/link";
 
 async function page() {
   return (
@@ -7,16 +8,24 @@ async function page() {
       <main className="mt-20">
         <div className="xl:container mx-auto sm:px-20">
           <h1 className="text-3xl text-center my-5">سوالات متداول</h1>
-          <div className="grid grid-cols-3">
-            <button className="my-4 bg-white rounded-lg text-black-100 py-2 mx-2">
+          <div className="grid sm:grid-cols-3">
+            <button className="my-4 bg-white rounded-lg text-black-100 py-2 mx-2 2 border border-purple shadow-lg flex justify-center">
               سوالات عمومی
             </button>
-            <button className="my-4 bg-black-100 rounded-lg py-2 mx-2">
-              خرید یا اجاره خودرو
-            </button>
-            <button className="my-4 bg-black-100 rounded-lg py-2 mx-2">
-              فروش خودرو
-            </button>
+            <Link
+              href="/car"
+              replace={true}
+              className="my-4 bg-black-100 rounded-lg py-2 mx-22 border border-purple shadow-lg flex justify-center"
+            >
+              <button>خرید یا اجاره خودرو</button>
+            </Link>
+            <Link
+              href="/addcar"
+              replace={true}
+              className="my-4 bg-black-100 rounded-lg py-2 mx-2 border border-purple shadow-lg flex justify-center"
+            >
+              <button>فروش خودرو</button>
+            </Link>
           </div>
 
           <div className="mt-10">

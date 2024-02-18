@@ -2,29 +2,9 @@ import mongoose from "mongoose";
 
 const blogSchema = new mongoose.Schema(
   {
-    title: {
+    blog: {
       type: String,
       required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
-    user: {
-      type: String,
-      required: true,
-    },
-    time: {
-      type: String,
-
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    image: {
-      type: String,
     },
   },
   {

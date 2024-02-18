@@ -1,14 +1,12 @@
 import React from "react";
 import { FaCheck } from "react-icons/fa6";
 import { createCarType } from "@/types/car.type";
-
-const ChecklistItem = ({
-  isComplete,
-  text,
-}: {
+import { useMemo } from "react";
+interface ChecklistItemProps {
   isComplete: boolean;
   text: string;
-}) => {
+}
+const ChecklistItem: React.FC<ChecklistItemProps> = ({ isComplete, text }) => {
   return (
     <div className="flex items-center my-2">
       <FaCheck className={`ml-2 ${isComplete ? "text-green" : ""}`} />
@@ -41,18 +39,26 @@ const AddCarSection: React.FC<AddCarSectionProps> = ({ createCarInfos }) => {
     phone,
   } = createCarInfos;
 
-  const isBasicInfoComplete = title.length > 0 && carStatus !== null;
+  const isBasicInfoComplete = !!title.length && !!carStatus;
   const isPriceComplete = !!price;
-  const isCarSpecsComplete =
-    company.length > 0 && model.length > 0 && years !== null && work !== null;
-  const isCarInfoComplete =
-    fuel.length > 0 &&
-    color.length > 0 &&
-    description.length > 0 &&
-    platform !== null &&
-    gearbox !== null;
-  const isContactComplete =
-    firstname.length > 0 && lastname.length > 0 && phone !== null;
+
+  const isCarSpecsComplete = useMemo(() => {
+    return !!company.length && !!model.length && !!years!! && !!work;
+  }, [company, model, years]);
+
+  const isCarInfoComplete = useMemo(() => {
+    return (
+      !!fuel.length &&
+      !!color.length &&
+      !!description.length &&
+      !!platform &&
+      !!gearbox
+    );
+  }, [fuel, color, description, platform, gearbox]);
+
+  const isContactComplete = useMemo(() => {
+    return !!firstname.length && !!lastname.length && !!phone;
+  }, [firstname, lastname, phone]);
 
   const completionPercentage =
     ((isBasicInfoComplete ? 1 : 0) +
@@ -89,7 +95,7 @@ const AddCarSection: React.FC<AddCarSectionProps> = ({ createCarInfos }) => {
         <div className="w-64 h-2 bg-gray-200 rounded-full">
           <div
             className="h-full bg-blue-500 rounded-full bg-green"
-            style={{ width: `${completionPercentage}%` }} // Set the width dynamically
+            style={{ width: `${completionPercentage}%` }}
           ></div>
         </div>
       </div>

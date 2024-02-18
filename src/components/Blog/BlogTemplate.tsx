@@ -9,8 +9,8 @@ const BlogTemplate = ({ image, title, category, _id }: blogType) => {
       <div>
         <Image
           src={image}
-          width={400}
-          height={380}
+          width={300}
+          height={300}
           alt="car"
           className="w-full"
         />

@@ -11,7 +11,7 @@ const Header = () => {
     <div className=" bg-[#F2F3F5] fixed top-0 px-4 z-10 w-[84vw] left-0 my-auto">
       <div className="flex items-center justify-between min-h-[4rem] text-black-500 font-semibold">
         <p className="text-xl text-purple">{pathname}</p>
-        <Link href="/dashboard" className="font-black text-purple text-3xl">
+        <Link href="/panel/dashboard" className="font-black text-purple text-3xl">
           Tcar
         </Link>
       </div>

@@ -86,14 +86,32 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(carQuery);
 
       case !!platformQuery:
+        if (!mongoose.isValidObjectId(platformQuery)) {
+          return NextResponse.json(
+            { error: "شناسه پلتفرم معتبر نمی‌باشد" },
+            { status: 422 }
+          );
+        }
         carQuery = await findCars({ platform: platformQuery }, skip, limit);
         return NextResponse.json(carQuery);
 
       case !!colorQuery:
+        if (!mongoose.isValidObjectId(colorQuery)) {
+          return NextResponse.json(
+            { error: "شناسه رنگ معتبر نمی‌باشد" },
+            { status: 422 }
+          );
+        }
         carQuery = await findCars({ color: colorQuery }, skip, limit);
         return NextResponse.json(carQuery);
 
       case !!companyQuery:
+        if (!mongoose.isValidObjectId(companyQuery)) {
+          return NextResponse.json(
+            { error: "شناسه کمپانی معتبر نمی‌باشد" },
+            { status: 422 }
+          );
+        }
         carQuery = await findCars({ company: companyQuery }, skip, limit);
         return NextResponse.json(carQuery);
 
@@ -126,35 +144,35 @@ export async function POST(req: NextRequest) {
   try {
     await connectToDB();
     const data = await req.json();
+
     const validationResult = carValidator(data);
 
-    if (validationResult !== true) {
+    if (!validationResult) {
       return NextResponse.json({ message: validationResult }, { status: 422 });
     }
-    const ObjectId = mongoose.Types.ObjectId;
 
-    if (!ObjectId.isValid(data.color)) {
+    if (!mongoose.isValidObjectId(data.color)) {
       return NextResponse.json(
         { message: "شناسه رنگ معتبر نیست" },
-        { status: 404 }
+        { status: 422 }
       );
     }
-    if (!ObjectId.isValid(data.userId)) {
+    if (!mongoose.isValidObjectId(data.userId)) {
       return NextResponse.json(
         { message: "شناسه کاربر معتبر نیست" },
-        { status: 404 }
+        { status: 422 }
       );
     }
-    if (!ObjectId.isValid(data.company)) {
+    if (!mongoose.isValidObjectId(data.company)) {
       return NextResponse.json(
         { message: "شناسه شرکت معتبر نیست" },
-        { status: 404 }
+        { status: 422 }
       );
     }
-    if (!ObjectId.isValid(data.platform)) {
+    if (!mongoose.isValidObjectId(data.platform)) {
       return NextResponse.json(
         { message: "شناسه بدنه معتبر نیست" },
-        { status: 404 }
+        { status: 422 }
       );
     }
 

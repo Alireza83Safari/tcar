@@ -7,9 +7,6 @@ import mongoose from "mongoose";
 import { revalidateTag } from "next/cache";
 
 export async function getUsers() {
-  if (!apiUrl) {
-    return null;
-  }
   const res = await fetch(`${apiUrl}/api/user`, {
     next: { tags: ["user"] },
   });
@@ -18,10 +15,6 @@ export async function getUsers() {
 }
 
 export async function deleteuser(id: string) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   const res = await fetch(`${apiUrl}/api/user/${id}`, {
     method: "DELETE",
   });
@@ -32,9 +25,6 @@ export async function deleteuser(id: string) {
 }
 
 export async function createUser(prev: any, formData: FormData) {
-  if (!apiUrl) {
-    return null;
-  }
   const data = {
     firstname: formData.get("firstname"),
     lasntname: formData.get("lasntname"),
@@ -57,9 +47,6 @@ export async function createUser(prev: any, formData: FormData) {
 }
 
 export async function editUser(prev: any, formData: FormData) {
-  if (!apiUrl) {
-    return null;
-  }
   const id = formData.get("id");
   const data = {
     firstname: formData.get("firstname"),
@@ -88,10 +75,6 @@ export async function editUser(prev: any, formData: FormData) {
 }
 
 export async function getUser(id: string) {
-  if (!apiUrl) {
-    return null;
-  }
-  ("use server");
   await connectToDB();
   const user = await User.findOne({ _id: id }, "-__v -password");
   return user;

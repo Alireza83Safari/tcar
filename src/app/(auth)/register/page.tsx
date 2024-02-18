@@ -24,7 +24,7 @@ export default function page() {
   const [errors, setErrors] = useState<registerErrorType>();
   const [isLoading, setLoading] = useState(false);
 
-  const setInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserRegisterInfos({
       ...userRegisterInfos,
@@ -83,7 +83,7 @@ export default function page() {
   return (
     <>
       <Header />
-      <div className="xl:container mx-auto my-14 px-4 grid grid-cols-2">
+      <div className="xl:container mx-auto sm:my-14 my-8 px-4 grid sm:grid-cols-2">
         <div className="flex justify-center items-center">
           <Image
             src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703830631/dzwuo7bkodnrtkwnfkhw.png"
@@ -95,7 +95,7 @@ export default function page() {
 
         <form
           onSubmit={formIsValid}
-          className="max-w-md mx-auto p-6 bg-black-500 py-8 shadow-md rounded-md w-full"
+          className="max-w-md mx-auto p-6 border border-lightPurple py-8 shadow-md rounded-md w-full"
         >
           <p className="text-red text-center">{serverError}</p>
           <div className="mb-4">
@@ -103,10 +103,9 @@ export default function page() {
               label="ایمیل"
               type="email"
               name="email"
-              onChange={setInputValue}
+              onChange={handleInputChange}
               placeholder="ایمیل"
               value={userRegisterInfos.email}
-              className="w-full px-4 py-2 border rounded-md bg-black-100"
               onfocus={() => {
                 setServerError("");
                 setErrors(initialState);
@@ -119,10 +118,9 @@ export default function page() {
               label="نام"
               type="text"
               name="firstname"
-              onChange={setInputValue}
+              onChange={handleInputChange}
               placeholder="نام"
               value={userRegisterInfos.firstname}
-              className="w-full px-4 py-2 border rounded-md bg-black-100"
               onfocus={() => {
                 setServerError("");
                 setErrors(initialState);
@@ -135,10 +133,9 @@ export default function page() {
               label="نام خانوادگی"
               type="text"
               name="lastname"
-              onChange={setInputValue}
+              onChange={handleInputChange}
               placeholder="نام خانوادگی"
               value={userRegisterInfos.lastname}
-              className="w-full px-4 py-2 border rounded-md bg-black-100"
               onfocus={() => {
                 setServerError("");
                 setErrors(initialState);
@@ -152,10 +149,9 @@ export default function page() {
               label="رمز عبور"
               type="password"
               name="password"
-              onChange={setInputValue}
+              onChange={handleInputChange}
               placeholder="رمز عبور"
               value={userRegisterInfos.password}
-              className="w-full px-4 py-2 border rounded-md bg-black-100"
               onfocus={() => {
                 setServerError("");
                 setErrors(initialState);
@@ -168,10 +164,9 @@ export default function page() {
               label="تایید رمز عبور"
               type="password"
               name="confirmPassword"
-              onChange={setInputValue}
+              onChange={handleInputChange}
               placeholder="تایید رمز عبور"
               value={userRegisterInfos.confirmPassword}
-              className="w-full px-4 py-2 border rounded-md bg-black-100"
               onfocus={() => {
                 setServerError("");
                 setErrors(initialState);
@@ -179,7 +174,7 @@ export default function page() {
               error={errors?.confirmPassword}
             />
           </div>
-          <button className="w-full bg-purple py-2 rounded-lg mt-3">
+          <button className="w-full bg-purple py-2 text-white rounded-lg mt-3">
             {isLoading ? <FormSpinner /> : "ساخت حساب کاربری"}
           </button>
           <div className="mt-6 text-center">

@@ -1,8 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Header, Footer, CarTemplate, FilterCar,Pagination } from "@/components";
+import {
+  Header,
+  Footer,
+  CarTemplate,
+  FilterCar,
+  Pagination,
+} from "@/components";
 import { CarType } from "@/types/car.type";
+import Head from "next/head";
 
 const Cars = (props: any) => {
   const { cars, total } = props;
@@ -18,6 +25,9 @@ const Cars = (props: any) => {
   return (
     <>
       <Header />
+      <Head>
+        <title>لیست خودرو ها</title>
+      </Head>
       <main className="sm:mt-12 mt-4 xl:container mx-auto md:px-8 relative">
         <div className="grid grid-cols-4 mt-4">
           <div className="md:col-span-1">
@@ -32,7 +42,7 @@ const Cars = (props: any) => {
 
           <div className="md:col-span-3 col-span-4">
             <div className="grid lg:grid-cols-3 sm:grid-cols-2">
-              {cars?.length ? (
+              {!!cars?.length ? (
                 cars?.map((car: CarType) => (
                   <CarTemplate car={car} dataAos="fead-up" />
                 ))

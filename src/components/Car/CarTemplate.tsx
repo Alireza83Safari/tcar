@@ -10,16 +10,16 @@ interface CarTemplateProps {
 const CarTemplate: React.FC<CarTemplateProps> = ({ car, dataAos }) => {
   return (
     <div
-      className="shadow-md sm:w-auto relative parent rounded-xl bg-black-100 m-3"
+      className="sm:w-auto relative m-3 parent"
       data-aos={dataAos}
       data-aos-once="true"
     >
-      <Link href={`car/${car?._id}`} key={car?._id}>
-        <div className="rounded-full card-item">
+      <Link href={`car/${car?._id}`} replace={true} key={car?._id}>
+        <div className="card-item   rounded-xl border border-lightPurple hover:rotate-1 duration-300 shadow-md ">
           <div className="py-7 flex justify-center items-center h-[15rem]">
             <Image
-              width="600"
-              height="600"
+              width="300"
+              height="300"
               src={String(car?.image)}
               className="object-contain min-w-full"
               alt={car?.title}

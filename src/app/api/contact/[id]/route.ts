@@ -10,7 +10,7 @@ export async function GET(
   try {
     await connectToDB();
 
-    if (!mongoose.Types.ObjectId.isValid(params.id)) {
+    if (!mongoose.isValidObjectId(params.id)) {
       return NextResponse.json(
         { error: "شناسه کانتکت معتبر نیست" },
         { status: 422 }
@@ -42,13 +42,12 @@ export async function DELETE(
   try {
     await connectToDB();
 
-    if (!mongoose.Types.ObjectId.isValid(params.id)) {
+    if (!mongoose.isValidObjectId(params.id)) {
       return NextResponse.json(
         { error: "شناسه کانتکت معتبر نیست" },
         { status: 422 }
       );
     }
-
     const deleteContact = await Contact.findOneAndDelete({ _id: params.id });
 
     if (!deleteContact) {

@@ -4,32 +4,30 @@ import { apiUrl } from "@/services/apiUrl";
 import { revalidateTag } from "next/cache";
 
 export async function getCars(url: string) {
-  "use server";
-  if (!apiUrl) {
-    return null;
+  try {
+    const res = await fetch(`${apiUrl}/api/${url?.length ? url : `car`}`, {
+      next: { tags: ["cars"], revalidate: 60 * 60 },
+    });
+    if (!res.ok) {
+      throw new Error(`Server responded with status: ${res.status}`);
+    }
+    const cars = await res.json();
+    return cars;
+  } catch (error) {
+    throw new Error(`Server responded with status: ${error}`);
   }
-
-  const res = await fetch(`${apiUrl}/api/${url?.length ? url : `car`}`, {
-    next: { tags: ["cars"], revalidate: 60 * 60 },
-  });
-  const cars = await res.json();
-  return cars;
 }
 
 export async function getCar(id: string) {
-  "use server";
-  if (!apiUrl) {
-    return null;
+  try {
+    const cars = await fetch(`${apiUrl}/api/car/${id}`);
+    return cars.json();
+  } catch (error) {
+    throw new Error(`Server responded with status: ${error}`);
   }
-  const cars = await fetch(`${apiUrl}/api/car/${id}`);
-  return cars.json();
 }
 
 export async function deleteCar(id: string) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   const res = await fetch(`${apiUrl}/api/car/${id}`, {
     method: "DELETE",
   });
@@ -41,10 +39,6 @@ export async function deleteCar(id: string) {
 
 export async function editCar(prev: any, formData: FormData) {
   "use server";
-  if (!apiUrl) {
-    return null;
-  }
-
   const id = formData.get("id");
 
   const data = {
@@ -82,10 +76,6 @@ export async function editCar(prev: any, formData: FormData) {
 }
 
 export async function getUserCars(id: string) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   const userCar = await fetch(`${apiUrl}/api/profile/car/${id}`, {
     next: { tags: ["userCar"] },
   });

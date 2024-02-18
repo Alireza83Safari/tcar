@@ -6,10 +6,6 @@ import connectToDB from "@/utils/database";
 import { revalidateTag } from "next/cache";
 
 export async function getCopmpanies() {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   const res = await fetch(`${apiUrl}/api/company`, {
     next: { tags: ["company"], revalidate: 60 * 60 },
   });
@@ -33,10 +29,6 @@ export async function deleteCompany(id: string) {
 }
 
 export async function createCompany(prev: any, formData: FormData) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   await connectToDB();
 
   const validatedFields = await Company.create({
@@ -58,10 +50,6 @@ export async function createCompany(prev: any, formData: FormData) {
 }
 
 export async function editCompany(prev: any, formData: FormData) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   await connectToDB();
   const id = formData.get("id");
 

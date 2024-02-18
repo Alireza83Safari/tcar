@@ -1,8 +1,9 @@
+import { withAuth } from "@/HOC/withAuth";
 import AddCar from "@/app/addcar/components/AddCar";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
-export default async function page() {
+async function page() {
   return (
     <>
       <Header />
@@ -11,3 +12,5 @@ export default async function page() {
     </>
   );
 }
+
+export default withAuth(page);

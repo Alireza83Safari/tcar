@@ -19,9 +19,12 @@ interface CarSliderProps {
 
 const CarSlider: React.FC<CarSliderProps> = ({ cars, title, dataAos }) => {
   React.useEffect(() => {
+    const isSmallScreen = window.innerWidth <= 600; 
+
     AOS.init({
-      duration: 800,
+      offset: isSmallScreen ? 0 : 400, 
       easing: "ease-in-out",
+      duration: 800,
     });
   }, []);
 

@@ -6,10 +6,6 @@ import connectToDB from "@/utils/database";
 import { revalidateTag } from "next/cache";
 
 export async function getPlatforms(url: string) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   const res = await fetch(`${apiUrl}/api/${url ? url : `platform`}`, {
     next: { tags: ["platform"], revalidate: 60 * 10 },
   });
@@ -19,10 +15,6 @@ export async function getPlatforms(url: string) {
 }
 
 export async function deletePlatform(platformId: string) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   const res = await fetch(`${apiUrl}/api/platform/${platformId}`, {
     method: "DELETE",
   });
@@ -35,10 +27,6 @@ export async function deletePlatform(platformId: string) {
 }
 
 export async function createPlatform(prev: any, formData: FormData) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   await connectToDB();
 
   const data = {
@@ -66,10 +54,6 @@ export async function createPlatform(prev: any, formData: FormData) {
 }
 
 export async function editPlatform(prev: any, formData: FormData) {
-  "use server";
-  if (!apiUrl) {
-    return null;
-  }
   await connectToDB();
   const id = formData.get("id");
 

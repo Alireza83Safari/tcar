@@ -11,7 +11,7 @@ async function page() {
     comment: "",
   });
 
-  const setFormValue = (e: any) => {
+  const handleInputChange = (e: any) => {
     const { name, value } = e.target;
 
     setContactForm({
@@ -44,7 +44,7 @@ async function page() {
               <div mt-4>
                 <p className="max-w-[20rem] mr-11 text-gray-200">
                   برای سوالات عمومی، از جمله فرصت های مشارکت، لطفا ایمیل کنید
-                  <span className="text-purple">example@email.com</span>
+                  <span className="text-purple">alireza83safarii@gmail.com</span>
                 </p>
               </div>
             </div>
@@ -94,7 +94,7 @@ async function page() {
                 name="username"
                 className="py-4"
                 placeholder=""
-                onChange={setFormValue}
+                onChange={handleInputChange}
                 value={contactForm.username}
               />
             </div>
@@ -105,7 +105,7 @@ async function page() {
                 name="email"
                 className="py-4"
                 placeholder=""
-                onChange={setFormValue}
+                onChange={handleInputChange}
                 value={contactForm.email}
               />
             </div>
@@ -116,7 +116,7 @@ async function page() {
                 name="comment"
                 className="py-10"
                 placeholder=""
-                onChange={setFormValue}
+                onChange={handleInputChange}
                 value={contactForm.comment}
               />
             </div>

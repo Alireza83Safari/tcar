@@ -5,6 +5,7 @@ import { FaCar, FaOutdent, FaPhone, FaPlus, FaUser } from "react-icons/fa6";
 import { getUserType } from "@/types/user.type";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
+import Image from "next/image";
 
 const Menu = ({ user }: { user: getUserType }) => {
   const menuItem = [
@@ -20,13 +21,6 @@ const Menu = ({ user }: { user: getUserType }) => {
       href: "/account/mycar",
       icon: <FaCar className="ml-2" />,
     },
-    /*     {
-      id: 3,
-      name: "موردعلاقه های من",
-      href: "/account/favorite",
-      icon: <FaHeart className="ml-2" />,
-    }, */
-    //{ id: 4, name: "خروج", href: "", icon: <FaOutdent className="ml-2" /> },
   ];
 
   const params = usePathname();
@@ -34,7 +28,10 @@ const Menu = ({ user }: { user: getUserType }) => {
   return (
     <div className="md:col-span-4 bg-lightPurple rounded-lg md:px-6 px-3 py-4 md:mb-0 mb-12">
       <div className="flex items-center">
-        <img
+        <Image
+          width={100}
+          height={100}
+          alt=""
           src="/img/car-finder/about/01.jpg"
           className="w-10 h-10 rounded-full"
         />

@@ -1,9 +1,8 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { CiUser } from "react-icons/ci";
 import { FiPlus } from "react-icons/fi";
-import { FaAngleDown } from "react-icons/fa6";
+import { FaAngleDown, FaX } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -19,8 +18,6 @@ type accountMenuType = {
 const accountMenuItem = [
   { title: "اطلاعات فردی", href: "/account/userinfo" },
   { title: "خودرو های من", href: "/account/mycar" },
-  { title: "لیست مورد علاقه", href: "/account/favorite" },
-  { title: "لیست نظرات", href: "/account/comments" },
   { title: "ثبت نام", href: "/register" },
   { title: "ورود", href: "/login" },
 ];
@@ -57,6 +54,11 @@ const Header = () => {
     }
   };
 
+  const logoutHanlder = () => {
+    signOut();
+    router.push("/");
+  };
+
   const UserInfos = useMemo(
     () =>
       session ? (
@@ -81,13 +83,8 @@ const Header = () => {
     [session]
   );
 
-  const logoutHanlder = () => {
-    signOut();
-    router.push("/");
-  };
-
   return (
-    <header className="xl:container mx-auto md:px-8 px-2 sticky top-0 z-10 bg-white">
+    <header className="xl:container mx-auto md:px-8 px-2 sticky top-0 z-10 bg-white shadow-lg">
       <div className="flex justify-between items-center h-[4rem]">
         <div className="lg:flex hidden items-center gap-x-6">
           <Link href="/" className="font-black text-purple text-3xl">
@@ -151,8 +148,14 @@ const Header = () => {
         </div>
 
         {showMenu && (
-          <div className="lg:hidden block min-w-[10rem] min-h-screen pt-2 absolute bg-black-100 border-r border-borderColor z-10 items-center gap-x-8 right-0 top-0 ">
-            <div className="py-2 border-b border-borderColor text-center hover:text-purple duration-300">
+          <div className="lg:hidden bg-white block min-w-[10rem] min-h-screen pt-2 absolute bg-black-100 border-l border-lightPurple z-10 items-center gap-x-8 right-0 top-0 ">
+            <button
+              className=" absolute top-2 left-2"
+              onClick={() => setShowMenu(false)}
+            >
+              <FaX />
+            </button>
+            <div className="py-2 border-b border-lightPurple text-center hover:text-purple duration-300">
               <Link
                 replace={true}
                 href="car"
@@ -162,19 +165,19 @@ const Header = () => {
               </Link>
             </div>
 
-            <div className="relaitve group py-2 border-b border-borderColor">
+            <div className="relaitve group py-2 border-b border-lightPurple">
               <button
                 className="flex items-center justify-center m-auto"
                 onClick={() => setShowAccount(!showAccount)}
               >
                 <FaAngleDown className="font-bold ml-1 text-sm" />
-                <p className="">اکانت</p>
+                <p>اکانت</p>
               </button>
               <ul className="block">
                 {showAccount && (
                   <>
                     {accountMenu.map((menu, index) => (
-                      <li className=" text-center py-2 border-b border-borderColor">
+                      <li className=" text-center py-2 border-b border-lightPurple">
                         <Link replace={true} href={menu.href} key={index}>
                           {menu.title}
                         </Link>
@@ -187,21 +190,21 @@ const Header = () => {
             <Link
               replace={true}
               href="/about"
-              className="text-center py-2 border-b border-borderColor block hover:text-purple duration-300"
+              className="text-center py-2 border-b border-lightPurple block hover:text-purple duration-300"
             >
               درباره ما
             </Link>
             <Link
               replace={true}
               href="/panel"
-              className="text-center py-2 border-b border-borderColor block hover:text-purple duration-300"
+              className="text-center py-2 border-b border-lightPurple block hover:text-purple duration-300"
             >
               پنل
             </Link>
             <Link
               replace={true}
               href="/addcar"
-              className="text-center py-2 border-b border-borderColor block text-white hover:text-purple duration-300"
+              className="text-center py-2 border-b border-lightPurple block hover:text-purple duration-300"
             >
               ثبت خودرو
             </Link>

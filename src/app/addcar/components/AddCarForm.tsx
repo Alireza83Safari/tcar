@@ -23,7 +23,7 @@ const AddCarForm = ({
   setCreateCarInfos,
   createCarInfos,
   setCarId,
-  setShowImage,
+  setShowUploadImage,
 }: any) => {
   const { data: colors } = useSWR("color", fetcher);
   const { data: companies } = useSWR("company", fetcher);
@@ -73,7 +73,7 @@ const AddCarForm = ({
         const data = await res.json();
 
         if (res.status === 201) {
-          setShowImage(true);
+          setShowUploadImage(true);
           setCreateCarInfos(initialState);
           setCarId(data?._id);
           toast.success("آگهی با موفقیت اضافه شد!");
@@ -100,7 +100,7 @@ const AddCarForm = ({
       onSubmit={(e) => e.preventDefault()}
       className="md:col-span-2 col-span-3 md:order-1 order-2"
     >
-      <div className="bg-black-100 sm:p-6 p-3 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 rounded-xl border border-lightPurple shadow-md">
         <div className="flex mb-5">
           <LiaInfoSolid className="text-purple items-center text-xl" />
           <h2 className="text-lg">اطلاعات پایه</h2>
@@ -130,7 +130,7 @@ const AddCarForm = ({
         </div>
       </div>
 
-      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl border border-lightPurple shadow-md">
         <div className="flex items-center mb-5">
           <FaMoneyBill1Wave className="text-purple text-xl ml-3" />
           <h2 className="text-lg">قیمت</h2>
@@ -148,7 +148,7 @@ const AddCarForm = ({
         </div>
       </div>
 
-      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl border border-lightPurple shadow-md">
         <div className="flex mb-5">
           <FaCarSide className="text-purple items-center text-xl ml-3" />
           <h2 className="text-lg">مشخصات خودرو</h2>
@@ -201,7 +201,7 @@ const AddCarForm = ({
         </div>
       </div>
 
-      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl border border-lightPurple shadow-md">
         <div className="flex mb-5">
           <FaCarSide className="text-purple items-center text-xl ml-3" />
           <h2 className="text-lg">اطلاعات خودرو</h2>
@@ -257,7 +257,7 @@ const AddCarForm = ({
 
           <textarea
             id="textarea"
-            className="w-full py-2 bg-black-100 border border-borderColor rounded-lg px-3"
+            className="w-full py-2 bg-black-100 border border-borderColor rounded-lg px-3 outline-none"
             name="description"
             rows={4}
             cols={50}
@@ -269,7 +269,7 @@ const AddCarForm = ({
         </div>
       </div>
 
-      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl">
+      <div className="bg-black-100 sm:p-6 p-3 mt-7 rounded-xl border border-lightPurple shadow-md">
         <div className="flex items-center mb-5">
           <FaPhone className="text-purple text-xl ml-3" />
           <h2 className="text-lg">تماس با ما</h2>
@@ -310,7 +310,7 @@ const AddCarForm = ({
       </div>
 
       <button
-        className="w-full bg-purple py-2 rounded-lg mt-8"
+        className="w-full bg-purple py-2 rounded-lg mt-8 text-white hover:bg-boldPurple duration-300"
         onClick={createCarHandler}
       >
         اضافه کردن آگهی

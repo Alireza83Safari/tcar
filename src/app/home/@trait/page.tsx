@@ -9,8 +9,8 @@ export default async function page() {
       <div className="grid grid-cols-12">
         <div
           className="sm:col-span-5 col-span-12"
-          data-aos="fade-right"
-          data-aos-once="true"
+       //   data-aos="fade-right"
+       //   data-aos-once="true"
         >
           <div className="my-12 md:px-12">
             <div className="flex justify-between mb-2">
@@ -45,8 +45,8 @@ export default async function page() {
         </div>
         <div
           className="sm:col-span-2 col-span-12 flex justify-center items-center"
-          data-aos="fade-up"
-          data-aos-once="true"
+       //   data-aos="fade-up"
+        //  data-aos-once="true"
         >
           <Image
             width="100"
@@ -57,8 +57,8 @@ export default async function page() {
         </div>
         <div
           className="sm:col-span-5 col-span-12"
-          data-aos="fade-left"
-          data-aos-once="true"
+        //  data-aos="fade-left"
+         // data-aos-once="true"
         >
           <div className="my-12 md:px-12">
             <div className="flex items-center mb-2">

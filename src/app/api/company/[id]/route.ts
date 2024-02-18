@@ -10,7 +10,8 @@ export async function GET(
 ) {
   try {
     await connectToDB();
-    if (!mongoose.Types.ObjectId.isValid(params.id)) {
+
+    if (!mongoose.isValidObjectId(params.id)) {
       return NextResponse.json(
         { error: "شناسه برند معتبر نیست" },
         { status: 422 }
@@ -43,7 +44,7 @@ export async function DELETE(
   try {
     await connectToDB();
 
-    if (!mongoose.Types.ObjectId.isValid(params.id)) {
+    if (!mongoose.isValidObjectId(params.id)) {
       return NextResponse.json(
         { error: "شناسه برند معتبر نیست" },
         { status: 422 }
@@ -80,9 +81,16 @@ export async function PUT(
     await connectToDB();
     const data = await req.json();
 
+    if (!mongoose.isValidObjectId(params.id)) {
+      return NextResponse.json(
+        { error: "شناسه برند معتبر نیست" },
+        { status: 422 }
+      );
+    }
+
     const validationResult = brandValidator(data);
 
-    if (validationResult !== true) {
+    if (!validationResult) {
       return NextResponse.json({ error: validationResult }, { status: 422 });
     }
 

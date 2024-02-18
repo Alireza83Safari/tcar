@@ -23,7 +23,7 @@ export default function Slider({ blogs }: { blogs: blogType[] }) {
   };
   return (
     <>
-      {blogs?.length && (
+      {!!blogs?.length && (
         <Swiper
           freeMode={true}
           loop={true}
@@ -32,7 +32,7 @@ export default function Slider({ blogs }: { blogs: blogType[] }) {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          {blogs?.slice(0, 8)?.map((blog: blogType) => (
+          {blogs?.map((blog: blogType) => (
             <SwiperSlide key={blog?._id}>
               <BlogTemplate {...blog} />
             </SwiperSlide>
