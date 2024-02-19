@@ -3,7 +3,7 @@ import connectToDB from "@/utils/database";
 import Car from "@/models/car";
 import Platform from "@/models/platform";
 import Company from "@/models/company";
-import AppPic from "@/models/appPic";
+import Banner from "@/models/banner";
 import Blog from "@/models/blog";
 
 export async function POST(
@@ -20,7 +20,7 @@ export async function POST(
       : data.type === 2
       ? Company
       : data.type === 3
-      ? AppPic
+      ? Banner
       : Blog
     ).findByIdAndUpdate(params.id, { image: data?.scureId }, { new: true });
 

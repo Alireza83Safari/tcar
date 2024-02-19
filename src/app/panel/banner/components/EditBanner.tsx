@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { Modal, Input, Spinner } from "@/components";
 import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
-import { editAppPic } from "@/actions/appPic";
+import { editBanner } from "@/actions/banner";
 
-const EditAppPic = ({ showEditAppPic, setShowEditAppPic, editId }: any) => {
+const EditBanner = ({ showEditBanner, setShowEditBanner, editId }: any) => {
   const initialState = {
     status: "",
     message: "",
@@ -21,10 +21,10 @@ const EditAppPic = ({ showEditAppPic, setShowEditAppPic, editId }: any) => {
   const findBrand = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/appPic/${editId}`);
+      const res = await fetch(`/api/banner/${editId}`);
 
-      const appPic = await res.json();
-      setEditValue(appPic);
+      const banner = await res.json();
+      setEditValue(banner);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -35,10 +35,10 @@ const EditAppPic = ({ showEditAppPic, setShowEditAppPic, editId }: any) => {
     findBrand();
   }, [editId]);
 
-  const [state, formAction] = useFormState(editAppPic, initialState);
+  const [state, formAction] = useFormState(editBanner, initialState);
 
   const closeModal = () => {
-    setShowEditAppPic(false);
+    setShowEditBanner(false);
   };
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const EditAppPic = ({ showEditAppPic, setShowEditAppPic, editId }: any) => {
   }, [state]);
 
   return (
-    <Modal isOpen={showEditAppPic} onClose={closeModal} title="ویرایش بنر">
+    <Modal isOpen={showEditBanner} onClose={closeModal} title="ویرایش بنر">
       {loading ? (
         <div className="min-w-[16rem] min-h-[16rem]">
           <Spinner />
@@ -83,4 +83,4 @@ const EditAppPic = ({ showEditAppPic, setShowEditAppPic, editId }: any) => {
   );
 };
 
-export default EditAppPic;
+export default EditBanner;

@@ -1,4 +1,4 @@
-export interface appPicType {
+export interface bannerType {
   _id: string;
   title: string;
   description: string;

@@ -5,17 +5,17 @@ import { useFormState } from "react-dom";
 import toast from "react-hot-toast";
 import { FaPlus } from "react-icons/fa6";
 import Upload from "../../components/Upload";
-import { createAppPic } from "@/actions/appPic";
+import { createBanner } from "@/actions/banner";
 import { revalidateWithTag } from "@/actions/revalidateWithTag";
 
-const AddAppPic = () => {
+const AddBanner = () => {
   const [showImage, setShowImage] = useState(false);
   const initialState = {
     message: "",
     status: "",
   } as any;
 
-  const [state, formAction] = useFormState(createAppPic, initialState);
+  const [state, formAction] = useFormState(createBanner, initialState);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -29,7 +29,7 @@ const AddAppPic = () => {
   useEffect(() => {
     if (state?.status === 200) {
       setShowImage(true);
-      revalidateWithTag("appPic");
+      revalidateWithTag("banner");
       toast.success("ساخت بنر موفقت آمیز بود");
     }
   }, [state]);
@@ -80,4 +80,4 @@ const AddAppPic = () => {
   );
 };
 
-export default AddAppPic;
+export default AddBanner;

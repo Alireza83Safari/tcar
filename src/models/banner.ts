@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-export const appPicSchema = new mongoose.Schema(
+export const bannerSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -19,7 +19,7 @@ export const appPicSchema = new mongoose.Schema(
   }
 );
 
-const AppPic =
-  mongoose.models?.AppPic || mongoose.model("AppPic", appPicSchema);
+const Banner =
+  mongoose.models?.Banner || mongoose.model("Banner", bannerSchema);
 
-export default AppPic;
+export default Banner;

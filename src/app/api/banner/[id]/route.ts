@@ -1,4 +1,4 @@
-import AppPic from "@/models/appPic";
+import Banner from "@/models/banner";
 import connectToDB from "@/utils/database";
 import brandValidator from "@/validator/server/brand";
 import mongoose from "mongoose";
@@ -16,17 +16,17 @@ export async function GET(
         { status: 422 }
       );
     }
-    const findAppPic = await AppPic.findOne({ _id: params.id }, "-__v");
+    const findBanner = await Banner.findOne({ _id: params.id }, "-__v");
 
-    if (!findAppPic) {
+    if (!findBanner) {
       return NextResponse.json(
         { error: "شناسه بنر وجود ندارد" },
         { status: 404 }
       );
     }
 
-    if (findAppPic) {
-      return NextResponse.json(findAppPic);
+    if (findBanner) {
+      return NextResponse.json(findBanner);
     }
   } catch (error) {
     return NextResponse.json(
@@ -49,16 +49,16 @@ export async function DELETE(
         { status: 422 }
       );
     }
-    const findAppPic = await AppPic.findOne({ _id: params.id });
-    if (!findAppPic) {
+    const findBanner = await Banner.findOne({ _id: params.id });
+    if (!findBanner) {
       return NextResponse.json(
         { error: "شناسه بنر وجود ندارد" },
         { status: 404 }
       );
     }
-    const deleteAppPic = await AppPic.findOneAndDelete({ _id: params.id });
+    const deleteBanner = await Banner.findOneAndDelete({ _id: params.id });
 
-    if (deleteAppPic) {
+    if (deleteBanner) {
       return NextResponse.json(
         { message: "بنر با موفقیت حذف شد" },
         { status: 200 }
@@ -93,15 +93,15 @@ export async function PUT(
       );
     }
 
-    const findAppPic = await AppPic.findOne({ _id: params.id }, { data });
-    if (!findAppPic) {
+    const findBanner = await Banner.findOne({ _id: params.id }, { data });
+    if (!findBanner) {
       return NextResponse.json(
         { error: "شناسه بنر وجود ندارد" },
         { status: 404 }
       );
     }
 
-    const updateAppPic = await AppPic.findOneAndUpdate(
+    const updateBanner = await Banner.findOneAndUpdate(
       { _id: params.id },
       data,
       {
@@ -109,7 +109,7 @@ export async function PUT(
       }
     );
 
-    if (updateAppPic) {
+    if (updateBanner) {
       return NextResponse.json(
         { message: "بنر با موفقیت ویرایش شد" },
         { status: 200 }

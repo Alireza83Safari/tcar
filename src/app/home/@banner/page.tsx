@@ -1,9 +1,11 @@
-import { getAppPics } from "@/actions/appPic";
-import { appPicType } from "@/types/appPic.type";
+import { getBanners } from "@/actions/banner";
+import { bannerType } from "@/types/banner.type";
 import Image from "next/image";
 
+export const dynamic = "force-dynamic";
+
 export default async function page() {
-  const banners = await getAppPics();
+  const banners = await getBanners();
 
   return (
     <div
@@ -18,13 +20,16 @@ export default async function page() {
       data-aos-once="true"
     >
       {!!banners?.length &&
-        banners?.map((banner: appPicType) => (
+        banners?.map((banner: bannerType) => (
           <nav
             key={banner._id}
             className="grid md:grid-cols-3 md:py-32 py-20 px-8 xl:container m-auto"
           >
             <div className="col-span-1">
-              <h1 className="text-5xl font-bold text-purple" style={{ lineHeight: "60px" }}>
+              <h1
+                className="text-5xl font-bold text-purple"
+                style={{ lineHeight: "60px" }}
+              >
                 {banner?.title}
               </h1>
               <p className="mt-12 text-gray-200" style={{ lineHeight: "33px" }}>

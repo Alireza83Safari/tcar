@@ -1,4 +1,4 @@
-import AppPic from "@/models/appPic";
+import Banner from "@/models/banner";
 import connectToDB from "@/utils/database";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,8 +7,8 @@ export async function POST(req: NextRequest) {
     await connectToDB();
     const data = await req.json();
 
-    const createAppPic = await AppPic.create(data);
-    if (createAppPic) {
+    const createBannr = await Banner.create(data);
+    if (createBannr) {
       return NextResponse.json({ message: "بنر ایجاد شد" }, { status: 201 });
     }
   } catch (error) {
@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
     await connectToDB();
 
     if (params) {
-      const brandQuery = await AppPic.find(
+      const brandQuery = await Banner.find(
         { name: { $regex: params } },
         "-__v"
       );
@@ -36,9 +36,9 @@ export async function GET(req: NextRequest) {
         return NextResponse.json({ message: "هیچ بنر یافت نشد" });
       }
     }
-    const companies = await AppPic.find({}, "-__v");
-    if (companies) {
-      return NextResponse.json(companies);
+    const banners = await Banner.find({}, "-__v");
+    if (banners) {
+      return NextResponse.json(banners);
     }
   } catch (error) {
     return NextResponse.json(
