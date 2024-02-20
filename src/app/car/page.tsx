@@ -1,6 +1,7 @@
 import Cars from "@/app/car/components/CarsContent";
 import Car from "@/models/car";
 import { apiUrl } from "@/services/apiUrl";
+import { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +32,12 @@ async function getCarss(searchParams: any) {
 
   return { cars, total: totalCount };
 }
+
+export const metadata: Metadata = {
+  title: "جستحو در مجموعه ماشین‌های متنوع | نمایندگی خودروی شما",
+  description:
+    "در میان ماشین‌های متنوع ما راه بیافرینید. از سدان‌های شیک تا اس‌یوی‌های پرقدرت، خودروی ایده‌آل برای نیازهای شما در انتظار است. در نمایندگی خودروی شما کیفیت و تنوع را کشف کنید.",
+};
 
 export default async function page({ searchParams }: any) {
   const cars = await getCarss(searchParams);
