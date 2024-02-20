@@ -18,7 +18,7 @@ const Menu = () => {
     },
     { id: 1, title: "خودرو ها", href: "/panel/car", icon: <FaCar /> },
     { id: 2, title: "رنگ ها", href: "/panel/color", icon: <VscSymbolColor /> },
-    { id: 2, title: "بنر ها", href: "/panel/appPic", icon: <GiKnightBanner /> },
+    { id: 2, title: "بنر ها", href: "/panel/banner", icon: <GiKnightBanner /> },
     { id: 2, title: "بلاگ ها", href: "/panel/blog", icon: <FaBlog /> },
     {
       id: 3,

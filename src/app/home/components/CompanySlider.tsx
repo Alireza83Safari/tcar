@@ -38,7 +38,7 @@ const CompanySlider: React.FC<CompanyProps> = ({ companies }) => {
       data-aos="fade-up"
       data-aos-once="true"
     >
-      {companies?.length && (
+      {!!companies?.length && (
         <Swiper
           freeMode={true}
           loop={true}

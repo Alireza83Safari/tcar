@@ -6,7 +6,9 @@ import connectToDB from "@/utils/database";
 import { revalidateTag } from "next/cache";
 
 export async function getBanners() {
-  const res = await fetch(`${apiUrl}/api/banner`);
+  const res = await fetch(`${apiUrl}/api/banner`, {
+    next: { revalidate: 60 * 60 },
+  });
   const banners = await res.json();
   return banners;
 }

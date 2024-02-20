@@ -2,15 +2,13 @@ import Header from "@/app/panel/components/Header";
 import Menu from "@/app/panel/components/Menu";
 import AddBanner from "./components/AddBanner";
 import { Table } from "./components/Table";
-import { getBanners } from "@/actions/banner";
 import { Suspense } from "react";
 import { LoadingTemplate } from "@/components";
 import { withAuthPanel } from "@/HOC/withAuthPanel";
-
-export const revalidate = 60 * 60;
+import Banner from "@/models/banner";
 
 async function page() {
-  const banners = await getBanners();
+  const banners = await Banner.find({});
 
   return (
     <>

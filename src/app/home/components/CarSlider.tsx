@@ -19,10 +19,10 @@ interface CarSliderProps {
 
 const CarSlider: React.FC<CarSliderProps> = ({ cars, title, dataAos }) => {
   React.useEffect(() => {
-    const isSmallScreen = window.innerWidth <= 600; 
+    const isSmallScreen = window.innerWidth <= 600;
 
     AOS.init({
-      offset: isSmallScreen ? 0 : 400, 
+      offset: isSmallScreen ? 0 : 400,
       easing: "ease-in-out",
       duration: 800,
     });
@@ -48,25 +48,27 @@ const CarSlider: React.FC<CarSliderProps> = ({ cars, title, dataAos }) => {
   };
   return (
     <section className="md:px-8 px-3 xl:container m-auto my-32">
-      <p className="text-3xl mb-4 font-semibold">{title}</p>
-      <div>
-        {!!cars?.length && (
-          <Swiper
-            freeMode={true}
-            loop={true}
-            rewind={true}
-            breakpoints={breakpoints}
-            modules={[FreeMode, Pagination]}
-            className="mySwiper"
-          >
-            {cars?.map((car) => (
-              <SwiperSlide key={car?._id}>
-                <CarTemplate car={car} dataAos={dataAos} /> {/*    */}
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        )}
-      </div>
+      {!!cars?.length && (
+        <>
+          <p className="text-3xl mb-4 font-semibold">{title}</p>
+          <div>
+            <Swiper
+              freeMode={true}
+              loop={true}
+              rewind={true}
+              breakpoints={breakpoints}
+              modules={[FreeMode, Pagination]}
+              className="mySwiper"
+            >
+              {cars?.map((car) => (
+                <SwiperSlide key={car?._id}>
+                  <CarTemplate car={car} dataAos={dataAos} /> {/*    */}
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </>
+      )}
     </section>
   );
 };

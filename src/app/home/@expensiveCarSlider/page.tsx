@@ -8,7 +8,7 @@ export default async function page() {
     <CarSlider
       cars={expensiveCar}
       title="گران ترین خودروها"
-       dataAos="fade-up"
+      dataAos="fade-up"
     />
   );
 }

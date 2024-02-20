@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
-import { CiUser } from "react-icons/ci";
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiUser } from "react-icons/fi";
 import { FaAngleDown, FaX } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { useEffect, useMemo, useState } from "react";
@@ -67,7 +66,7 @@ const Header = () => {
           href="/account"
           className="flex items-center hover:text-purple duration-300"
         >
-          <CiUser className="text-3xl" />
+          <FiUser className="text-3xl" />
           <p className="text-sm mr-1 sm:block hidden">{session?.user?.email}</p>
         </Link>
       ) : (
@@ -76,8 +75,10 @@ const Header = () => {
           href="/login"
           className="flex items-center hover:text-purple duration-300"
         >
-          <p className="sm:flex hidden">ورود به حساب کاربری</p>
-          <CiUser className="text-xl" />
+          <p className="sm:flex hidden xl:text-base text-sm">
+            ورود به حساب کاربری
+          </p>
+          <FiUser className="text-xl" />
         </Link>
       ),
     [session]
@@ -86,7 +87,7 @@ const Header = () => {
   return (
     <header className="xl:container mx-auto md:px-8 px-2 sticky top-0 z-10 bg-white shadow-lg">
       <div className="flex justify-between items-center h-[4rem]">
-        <div className="lg:flex hidden items-center gap-x-6">
+        <div className="lg:flex hidden items-center xl:gap-x-6 gap-x-4 xl:text-base text-sm">
           <Link href="/" className="font-black text-purple text-3xl">
             Tcar
           </Link>
@@ -132,14 +133,14 @@ const Header = () => {
           <Link
             replace={true}
             href="/help-center"
-            className="hover:text-purple duration-300 lg:hidden xl:flex flex"
+            className="hover:text-purple duration-300"
           >
             ارتباط با ما
           </Link>
           <Link
             replace={true}
             href="/contact"
-            className="hover:text-purple duration-300 lg:hidden xl:flex flex"
+            className="hover:text-purple duration-300"
           >
             تماس با ما
           </Link>
@@ -235,14 +236,15 @@ const Header = () => {
           <div className="relative">
             <input
               type="text"
-              className="bg-black-100 border border-purple outline-none rounded-lg py-1 md:w-auto w-[10rem]"
+              className="bg-black-100 border border-purple outline-none rounded-lg py-1 md:w-auto w-[10rem] placeholder:text-xs pr-8"
+              placeholder="جستجو"
               onChange={(e) => setsearchQuery(e.target.value)}
             />
             <button
-              className="absolute top-2 left-2 border-r pr-1"
+              className="absolute top-2 right-2 pl-1"
               onClick={searchHandler}
             >
-              <FaSearch className="text-purple text-xl" />
+              <FaSearch className="text-purple text-lg" />
             </button>
           </div>
         </div>

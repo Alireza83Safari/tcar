@@ -308,7 +308,7 @@ const About = () => {
             <FaAngleLeft />
           </Button>
           <Image
-            src="https://res.cloudinary.com/dmywzd0yw/image/upload/…uto/v1703763039/ppfknymlc1lgjfvc9n6v?_a=BAVAZFAO0"
+            src="/img/banner/hero-img.png"
             alt="car"
             height={500}
             width={500}

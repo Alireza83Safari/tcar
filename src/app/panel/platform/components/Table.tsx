@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import EditPlatform from "./EditPlatform";
 import { deletePlatform } from "@/actions/platform";
-import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 
 export async function Table({ platforms }: { platforms: getPlatformType[] }) {
   const [editId, setEditID] = useState("");
@@ -32,11 +32,11 @@ export async function Table({ platforms }: { platforms: getPlatformType[] }) {
                   <td className="py-3 px-2">{platform.name}</td>
                   <td className="py-3 px-2">{platform.code}</td>
                   <td className="py-3 px-2 flex justify-center">
-                    <CldImage
+                    <Image
                       width="60"
                       height="60"
                       src={String(platform.image)}
-                      alt="Description of my image"
+                      alt={platform?.name}
                     />
                   </td>
                   <td className="py-3 px-2 truncate">

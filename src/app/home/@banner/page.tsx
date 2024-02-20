@@ -2,8 +2,6 @@ import { getBanners } from "@/actions/banner";
 import { bannerType } from "@/types/banner.type";
 import Image from "next/image";
 
-export const dynamic = "force-dynamic";
-
 export default async function page() {
   const banners = await getBanners();
 
@@ -36,7 +34,7 @@ export default async function page() {
                 {banner?.description}
               </p>
             </div>
-            <div className="col-span-2 md:mt-0 mt-20">
+            <div className="col-span-2 md:mt-0 mt-20 lg:pr-24 md:pr-4">
               <Image
                 width="500"
                 height="500"

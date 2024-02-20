@@ -48,7 +48,7 @@ export default function page() {
       data-aos="fade-up"
       data-aos-once="true"
     >
-      <div className="grid sm:grid-cols-4 grid-cols-1 shadow-lg rounded-lg py-2">
+      <div className="grid sm:grid-cols-4 grid-cols-1 shadow-xl rounded-lg py-2">
         <div className="relative min-w full sm:my-0 my-3 px-5">
           <Select
             className="w-full py-2 rounded-lg px-3 border border-purple outline-none"
