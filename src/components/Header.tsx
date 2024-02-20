@@ -136,6 +136,13 @@ const Header = () => {
           >
             ارتباط با ما
           </Link>
+          <Link
+            replace={true}
+            href="/contact"
+            className="hover:text-purple duration-300 lg:hidden xl:flex flex"
+          >
+            تماس با ما
+          </Link>
           {session && (
             <Link
               replace={true}
@@ -162,6 +169,12 @@ const Header = () => {
                 onClick={() => setShowBuy(!showBuy)}
               >
                 خرید خودرو
+              </Link>
+            </div>
+
+            <div className="py-2 border-b border-lightPurple text-center hover:text-purple duration-300">
+              <Link replace={true} href="/contact">
+                تماس با ما
               </Link>
             </div>
 
