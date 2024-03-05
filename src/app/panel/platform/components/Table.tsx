@@ -11,27 +11,27 @@ export async function Table({ platforms }: { platforms: getPlatformType[] }) {
   const [showModal, setShowEditModal] = useState(false);
 
   return (
-    <div className="mt-5 overflow-x-auto min-h-screen">
-      <table className="min-w-full px-4 rounded-lg bg-white text-black-500">
+    <div className="overflow-x-auto min-h-screen mt-5">
+      <table className="min-w-full rounded-lg bg-white text-black-500">
         {platforms?.length ? (
           <>
             <thead>
-              <tr className="md:text-sm text-xs text-center border-b">
-                <th className="py-3 px-2">#</th>
-                <th className="py-3 px-2">پلتفرم</th>
-                <th className="py-3 px-2">کد پلتفرم</th>
-                <th className="py-3 px-2">عکس</th>
-                <th className="py-3 px-2">عضویت</th>
-                <th className="py-3 px-2">#</th>
+              <tr className="lg:text-base sm:text-sm text-xs border-b">
+                <th className="py-3 min-w-[3rem]">#</th>
+                <th className="py-3 min-w-[5rem]">پلتفرم</th>
+                <th className="py-3 min-w-[5rem]">کد پلتفرم</th>
+                <th className="py-3 min-w-[5rem]">عکس</th>
+                <th className="py-3 min-w-[5rem]">عضویت</th>
+                <th className="py-3 min-w-[5rem]">#</th>
               </tr>
             </thead>
             <tbody>
               {platforms?.map((platform: any, index: number) => (
-                <tr className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center my-3">
-                  <td className="py-3 px-2">{index + 1}</td>
-                  <td className="py-3 px-2">{platform.name}</td>
-                  <td className="py-3 px-2">{platform.code}</td>
-                  <td className="py-3 px-2 flex justify-center">
+                <tr className="lg:text-base sm:text-sm text-xs text-center">
+                  <td className="py-3 min-w-[3rem]">{index + 1}</td>
+                  <td className="py-3 min-w-[5rem]">{platform.name}</td>
+                  <td className="py-3 min-w-[5rem]">{platform.code}</td>
+                  <td className="py-3 min-w-[5rem] flex justify-center">
                     <Image
                       width="60"
                       height="60"
@@ -39,7 +39,7 @@ export async function Table({ platforms }: { platforms: getPlatformType[] }) {
                       alt={platform?.name}
                     />
                   </td>
-                  <td className="py-3 px-2 truncate">
+                  <td className="py-3 min-w-[5rem] truncate">
                     {platform.createdAt?.slice(0, 10)}
                   </td>
                   <td className="flex items-center justify-center">

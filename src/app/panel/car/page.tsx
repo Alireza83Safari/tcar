@@ -1,27 +1,16 @@
-import Header from "@/app/panel/components/Header";
-import Menu from "@/app/panel/components/Menu";
 import { InfoBar } from "./components/InfoBar";
-import { Table } from "./components/Table";
+import { CarTable } from "./components/CarTable";
 import { getCars } from "@/actions/car";
-import { Suspense } from "react";
-import { LoadingTemplate } from "@/components";
-import { withAuthPanel } from "@/HOC/withAuthPanel";
 
 async function page() {
   const cars = await getCars("");
 
   return (
-    <div>
-      <Header />
-      <Menu />
-      <div className="w-[84vw] bg-dGray absolute left-0 mt-10">
-        <Suspense fallback={<LoadingTemplate />}>
-          <InfoBar cars={cars} />
-          <Table cars={cars} />
-        </Suspense>
-      </div>
-    </div>
+    <>
+      <InfoBar cars={cars} />
+      <CarTable cars={cars} />
+    </>
   );
 }
 
-export default withAuthPanel(page);
+export default page;

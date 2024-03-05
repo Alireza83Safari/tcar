@@ -7,7 +7,7 @@ import { revalidateTag } from "next/cache";
 
 export async function getBanners() {
   const res = await fetch(`${apiUrl}/api/banner`, {
-    next: { revalidate: 60 * 60 },
+    cache: "no-cache",
   });
   const banners = await res.json();
   return banners;

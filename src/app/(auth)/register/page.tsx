@@ -12,7 +12,7 @@ import { FormSpinner, Input, Footer, Header } from "@/components";
 export default function page() {
   const { push } = useRouter();
   const initialState = {
-    email: "",
+    username: "",
     firstname: "",
     lastname: "",
     role: "",
@@ -86,7 +86,7 @@ export default function page() {
       <div className="xl:container mx-auto sm:my-14 my-8 px-4 grid sm:grid-cols-2">
         <div className="flex justify-center items-center">
           <Image
-            src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703830631/dzwuo7bkodnrtkwnfkhw.png"
+            src="/img/banner/auth.WEBP"
             alt="login"
             width={400}
             height={400}
@@ -100,17 +100,17 @@ export default function page() {
           <p className="text-red text-center">{serverError}</p>
           <div className="mb-4">
             <Input
-              label="ایمیل"
-              type="email"
-              name="email"
+              label="نام کاربری"
+              type="username"
+              name="username"
               onChange={handleInputChange}
-              placeholder="ایمیل"
-              value={userRegisterInfos.email}
+              placeholder="نام کاربری"
+              value={userRegisterInfos.username}
               onfocus={() => {
                 setServerError("");
                 setErrors(initialState);
               }}
-              error={errors?.email}
+              error={errors?.username}
             />
           </div>
           <div className="mb-4">

@@ -30,7 +30,7 @@ export default function page() {
               <div className="col-span-3 grid grid-cols-4 my-auto">
                 <div>
                   <Image
-                    src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789497/mmkcpvdklfclalptqmjj.png"
+                    src="/img/hlkg2zyw2jvvplgkl0hi.png"
                     width={100}
                     height={100}
                     alt="car"
@@ -39,30 +39,30 @@ export default function page() {
                 </div>
                 <div>
                   <Image
-                    src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789594/hwjs7lzsaohdhwwekrnm.png"
+                    src="/img/je4xwl0m4zqwlcfojpxv.png"
                     width={100}
                     height={100}
                     alt="car"
                   />
-                  <p>صندلی کودک</p>
+                  <p>رینگ خودرو</p>
                 </div>
                 <div>
                   <Image
-                    src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789620/je4xwl0m4zqwlcfojpxv.png"
+                    src="/img/hwjs7lzsaohdhwwekrnm.png"
                     width={100}
                     height={100}
                     alt="car"
                   />
-                  <p>صندلی کودک</p>
+                  <p>رینگ خودرو</p>
                 </div>
                 <div>
                   <Image
-                    src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703789638/hlkg2zyw2jvvplgkl0hi.png"
+                    src="/img/mmkcpvdklfclalptqmjj.png"
                     width={100}
                     height={100}
                     alt="car"
                   />
-                  <p>صندلی کودک</p>
+                  <p>صندلی خودرو</p>
                 </div>
               </div>
             </div>
@@ -85,7 +85,7 @@ export default function page() {
               <div className="grid grid-cols-3 my-auto">
                 <div>
                   <Image
-                    src={"/img/car-finder/icons/handshake.svg"}
+                    src={"/img/handshake.svg"}
                     width={100}
                     height={100}
                     alt="car"
@@ -94,7 +94,7 @@ export default function page() {
                 </div>
                 <div>
                   <Image
-                    src={"/img/car-finder/icons/tools.svg"}
+                    src={"/img/tools.svg"}
                     width={100}
                     height={100}
                     alt="car"
@@ -103,7 +103,7 @@ export default function page() {
                 </div>
                 <div>
                   <Image
-                    src={"/img/car-finder/icons/buyers.svg"}
+                    src={"/img/buyers.svg"}
                     width={100}
                     height={100}
                     alt="car"

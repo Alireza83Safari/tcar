@@ -81,10 +81,10 @@ const EditUser = ({ showModal, setShowEditModal, editId }: any) => {
               </div>
               <div className="mx-2 my-1">
                 <Input
-                  label="ایمیل"
-                  name="email"
-                  placeholder="ایمیل"
-                  defaultValue={initialState?.email}
+                  label="نام کاربری"
+                  name="username"
+                  placeholder="نام کاربری"
+                  defaultValue={initialState?.username}
                 />
               </div>
               <button className="bg-purple w-[95%] rounded-lg py-2 mt-5 mx-2 text-white hover:bg-boldPurple duration-300">

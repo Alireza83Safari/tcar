@@ -7,7 +7,6 @@ import Image from "next/image";
 const contact = () => {
   const [contactForm, setContactForm] = useState({
     username: "",
-    email: "",
     comment: "",
   });
 
@@ -98,11 +97,11 @@ const contact = () => {
           <div className="mt-5">
             <Input
               label="پست الکترونیکی"
-              name="email"
+              name="username"
               className="py-4"
               placeholder=""
               onChange={handleInputChange}
-              value={contactForm.email}
+              value={contactForm.username}
             />
           </div>
 

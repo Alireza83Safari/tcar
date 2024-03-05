@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-//import { FaHeart, FaShareAlt } from "react-icons/fa";
 import { CarType } from "../../types/car.type";
 import Accordion from "../Accordion";
 import moment from "jalali-moment";
@@ -11,51 +10,21 @@ interface CarDetailsProps {
 }
 
 const CarDetails: React.FC<CarDetailsProps> = ({ car }) => {
-  /*   const addFavorite = async () => {
-    if (session) {
-      const data = {
-        carId: car._id,
-        user: (session as any)?.id,
-      };
-
-      try {
-        if (!apiUrl) {
-          return null;
-        }
-        const res = await fetch(`${apiUrl}/api/favorite`, {
-          method: "POST",
-          body: JSON.stringify(data),
-        });
-        if (res.status === 201) {
-          toast.success("با موفقیت اضاقه شد");
-        }
-      } catch (error) {
-        toast.error(String(error));
-      }
-    } else {
-      toast.error("لطفا وارد حساب شوید");
-    }
-  }; */
-
   const persianDate = moment(car.createdAt).locale("fa").format("YYYY/MM/DD");
 
   return (
     <section className="sm:px-4 px-1 mt-10">
       <div className="flex justify-between pb-5">
         <p className="sm:text-3xl text-xl text-center">{car?.title}</p>
-        {/*  <div className="flex">
-          <FaHeart className="text-xl mx-3" onClick={addFavorite} />
-          <FaShareAlt className="text-xl mx-3" />
-        </div> */}
       </div>
       <div className="grid md:grid-cols-2 grid-cols-1">
         <div className="flex justify-center items-center md:my-0 my-10">
           <Link href={`/car/${car._id}/photo`}>
             <Image
-              width="500"
-              height="500"
+              width={500}
+              height={500}
               src={String(car?.image)}
-              alt="Description of my image"
+              alt={car?.title}
             />
           </Link>
         </div>

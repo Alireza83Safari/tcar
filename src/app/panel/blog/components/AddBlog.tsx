@@ -60,7 +60,7 @@ const AddBlog = () => {
                 <input
                   type="hidden"
                   name="user"
-                  value={(session as any)?.email}
+                  value={(session as any)?.username}
                 />
                 <div className="mx-2 my-3">
                   <Input label="عنوان بلاگ" name="title" />
@@ -85,7 +85,6 @@ const AddBlog = () => {
         ) : (
           <Upload
             id={state?.message?._id}
-            closeModal={closeModal}
             setShowImage={setShowImage}
             type={4}
           />

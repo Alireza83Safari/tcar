@@ -67,7 +67,7 @@ const Header = () => {
           className="flex items-center hover:text-purple duration-300"
         >
           <FiUser className="text-3xl" />
-          <p className="text-sm mr-1 sm:block hidden">{session?.user?.email}</p>
+          <p className="text-sm mr-1 sm:block hidden">{(session as any)?.username}</p>
         </Link>
       ) : (
         <Link

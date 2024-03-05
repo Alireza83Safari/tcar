@@ -8,10 +8,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     await connectToDB();
-    const { email, password, firstname, lastname, role } = await req.json();
+    const { username, password, firstname, lastname, role } = await req.json();
 
     const validationResult = registerValidator({
-      email,
+      username,
       password,
       firstname,
       lastname,
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     if (validationResult !== true) {
       return NextResponse.json({ message: validationResult }, { status: 422 });
     } else {
-      const userExist = await User.findOne({ email });
+      const userExist = await User.findOne({ username });
 
       if (userExist) {
         return NextResponse.json(
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       const hashedPassword = await hash(password, 12);
 
       const newUser = await User.create({
-        email,
+        username,
         firstname,
         lastname,
         role: "USER",

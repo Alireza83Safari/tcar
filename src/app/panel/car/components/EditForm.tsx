@@ -80,15 +80,15 @@ const EditForm = ({ editCarId, closeModal }: any) => {
   return (
     <div>
       {isLoading ? (
-        <div className="min-w-[27rem] min-h-[27rem] flex justify-center items-center">
+        <div className="xs:min-w-[27rem] min-w-[100vw] min-h-[25rem] flex justify-center items-center">
           <Spinner />
         </div>
       ) : (
-        <form className="grid grid-cols-2" action={formAction}>
+        <form className="grid grid-cols-2 gap-x-2" action={formAction}>
           <input type="hidden" name="userId" value={(session as any)?.id} />
           <input type="hidden" name="id" value={editCarId} />
 
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Input
               label="عنوان"
               name="title"
@@ -97,7 +97,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               value={editCarValue?.title}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Input
               type="number"
               label="قیمت"
@@ -107,7 +107,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               value={editCarValue?.price}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Input
               label="مدل"
               name="model"
@@ -116,7 +116,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               value={editCarValue?.model}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Input
               label="کارکرد"
               name="work"
@@ -125,7 +125,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               value={editCarValue?.work}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Input
               label="توضیخات"
               name="description"
@@ -134,7 +134,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               value={editCarValue?.description}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Input
               label="نام"
               name="firstname"
@@ -143,7 +143,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               value={editCarValue?.firstname}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Input
               label="نام خانوادگی"
               name="lastname"
@@ -152,7 +152,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               value={editCarValue?.lastname}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Input
               label="شماره تماس"
               name="phone"
@@ -161,7 +161,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               value={editCarValue?.phone}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Select
               label="رنگ"
               name="color"
@@ -170,7 +170,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               options={colors}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Select
               label="کمپانی"
               name="company"
@@ -179,7 +179,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               options={companies}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Select
               label="پلتفرم"
               name="platform"
@@ -188,7 +188,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               options={platform}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Select
               label="سال"
               name="years"
@@ -197,7 +197,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               options={yearsItem}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Select
               label="گیربکس"
               name="gearbox"
@@ -206,7 +206,7 @@ const EditForm = ({ editCarId, closeModal }: any) => {
               options={[0, 1]}
             />
           </div>
-          <div className="mx-2 my-1">
+          <div className="my-1">
             <Select
               label="وضعیت"
               name="carStatus"

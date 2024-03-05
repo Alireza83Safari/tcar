@@ -72,9 +72,9 @@ const AddUser = () => {
               </div>
               <div className="mx-2 my-1">
                 <Input
-                  label="ایمیل"
-                  name="email"
-                  placeholder="ایمیل"
+                  label="نام کاربری"
+                  name="username"
+                  placeholder="نام کاربری"
                   className="border bg-black-500"
                 />
               </div>

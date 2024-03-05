@@ -11,11 +11,11 @@ export async function Table({ banners }: { banners: bannerType[] }) {
   const [editId, setEditID] = useState("");
   const [showEditBanner, setShowEditBanner] = useState(false);
   return (
-    <div className="mt-5 overflow-x-auto min-h-screen">
+    <div className="overflow-x-auto mt-5">
       {!!banners?.length ? (
-        <table className="min-w-full px-4 rounded-lg bg-white text-black-500 mr-4">
+        <table className="min-w-full rounded-lg bg-white text-black-500">
           <thead>
-            <tr className="sm:text-xs text-[12px] 2xl:text-lg border-b">
+            <tr className="lg:text-base sm:text-sm text-xs 2xl:text-lg border-b">
               <th className="py-3 px-2">#</th>
               <th className="py-3 px-2">عنوان</th>
               <th className="py-3 px-2">توضیحات</th>
@@ -27,7 +27,7 @@ export async function Table({ banners }: { banners: bannerType[] }) {
           <tbody>
             {banners?.map((banner: bannerType, index: number) => (
               <tr
-                className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center"
+                className="lg:text-base sm:text-sm text-xs 2xl:text-sm sm:px-4 text-center"
                 key={banner?._id}
               >
                 <td className="py-3 px-2">{index + 1}</td>
@@ -45,9 +45,11 @@ export async function Table({ banners }: { banners: bannerType[] }) {
                     alt={banner?.title}
                   />
                 </td>
-                <td className="py-3 px-2">{banner.createdAt?.slice(0, 10)} </td>
                 <td className="py-3 px-2">
-                  <td className="flex items-center justify-center">
+                  {/* {banner.createdAt?.slice(0, 10)} */}{" "}
+                </td>
+                <td className="py-3 px-2">
+                  <div className="flex items-center justify-center">
                     <FaTrashAlt
                       className="text-red mx-2"
                       onClick={() => deleteBanner(banner._id)}
@@ -59,7 +61,7 @@ export async function Table({ banners }: { banners: bannerType[] }) {
                         setShowEditBanner(true);
                       }}
                     />
-                  </td>
+                  </div>
                 </td>
               </tr>
             ))}

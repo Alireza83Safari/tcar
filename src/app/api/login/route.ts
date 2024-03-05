@@ -9,15 +9,15 @@ export async function POST(req: NextRequest) {
   connectToDB();
 
   try {
-    const { email, password } = await req.json();
+    const { username, password } = await req.json();
 
-    const validationResult = loginValidator({ email, password });
+    const validationResult = loginValidator({ username, password });
 
     if (validationResult !== true) {
       return NextResponse.json({ error: validationResult }, { status: 422 });
     }
 
-    const foundUser = await User.findOne({ email });
+    const foundUser = await User.findOne({ username });
 
     if (!foundUser) {
       return NextResponse.json({ message: "ایمیل یافت نشد" }, { status: 404 });

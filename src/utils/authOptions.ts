@@ -10,18 +10,18 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "email", type: "email" },
+        username: { label: "username", type: "username" },
         password: { label: "password", type: "password" },
       },
 
       async authorize(credentials) {
         try {
-          if (!credentials?.email || !credentials?.password) {
+          if (!credentials?.username || !credentials?.password) {
             throw new Error("Invalid Credentials");
           }
 
           await connectToDB();
-          const user = await User.findOne({ email: credentials?.email });
+          const user = await User.findOne({ username: credentials?.username });
 
           if (!user) {
             throw new Error("Invalid Credentials");
@@ -54,7 +54,7 @@ export const authOptions: AuthOptions = {
         return {
           ...token,
           id: user?.id,
-          email: user?.email,
+          username: (user as any)?.username,
           accessToken: token.accessToken,
         };
       }
@@ -64,7 +64,7 @@ export const authOptions: AuthOptions = {
       return {
         ...session,
         id: token?.id,
-        email: token?.email,
+        username: token?.username,
         accessToken: token.accessToken,
       };
     },

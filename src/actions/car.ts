@@ -6,7 +6,8 @@ import { revalidateTag } from "next/cache";
 export async function getCars(url: string) {
   try {
     const res = await fetch(`${apiUrl}/api/${url?.length ? url : `car`}`, {
-      next: { tags: ["cars"], revalidate: 60 * 60 },
+      next: { tags: ["cars"] },
+      cache: "no-cache",
     });
     if (!res.ok) {
       throw new Error(`Server responded with status: ${res.status}`);

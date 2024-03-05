@@ -7,7 +7,7 @@ import EditForm from "./EditForm";
 import { CarType } from "@/types/car.type";
 import { deleteCar } from "@/actions/car";
 
-export async function Table({ cars }: any) {
+export async function CarTable({ cars }: any) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editCarId, setEditCarId] = useState("");
 
@@ -21,16 +21,16 @@ export async function Table({ cars }: any) {
   };
 
   return (
-    <div className="md:mt-5 overflow-x-auto min-h-screen">
+    <div className="mt-5 overflow-x-auto rounded-lg bg-white text-black-500">
       <Modal isOpen={isModalOpen} onClose={closeModal} title="ویرایش خودرو">
         <EditForm editCarId={editCarId} closeModal={closeModal} />
       </Modal>
 
-      {cars?.length ? (
-        <table className="min-w-full px-4 rounded-lg bg-white text-black-500 mx-4">
+      {!!cars?.length ? (
+        <table className="min-w-full">
           <thead>
             <tr className="md:text-sm text-xs text-center border-b">
-              <th className="py-3 px-2">#</th>
+              <th className="py-3 px-2">ردیف</th>
               <th className="py-3 px-2">عنوان</th>
               <th className="py-3 px-2">قیمت</th>
               <th className="py-3 px-2">رنگ</th>

@@ -10,12 +10,12 @@ const schema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    email: {
+    username: {
       type: String,
       unique: true,
       /*     match: [
         /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-        "Please provide a valid email address",
+        "Please provide a valid username address",
       ], */
     },
     password: {

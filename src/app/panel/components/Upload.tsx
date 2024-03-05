@@ -6,12 +6,10 @@ import { revalidateWithTag } from "@/actions/revalidateWithTag";
 
 export default async function Upload({
   id,
-  closeModal,
   setShowImage,
   type,
 }: {
   id: string;
-  closeModal: any;
   setShowImage: any;
   type: number;
 }) {
@@ -27,19 +25,18 @@ export default async function Upload({
       });
 
       if (response.status === 200) {
-        closeModal();
         setShowImage(false);
         toast.success("آپلود عکس با موفقیت انجام شد");
         revalidateWithTag(
           data?.type === 0
             ? "cars"
             : data?.type === 1
-            ? "platform"
-            : data?.type === 2
-            ? "company"
-            : data?.type === 3
-            ? "appPic"
-            : "blogs"
+              ? "platform"
+              : data?.type === 2
+                ? "company"
+                : data?.type === 3
+                  ? "appPic"
+                  : "blogs"
         );
       }
     }

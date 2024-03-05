@@ -16,9 +16,9 @@ export async function InfoBar({ cars }: { cars: CarType[] }) {
     { title: "تعداد خودرو ها", dataLength: cars?.length  },
   ];
   return (
-    <div className="grid lg:grid-cols-4 sm:grid-cols-2 mt-12">
+    <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-x-5 gap-y-5">
       {datas?.map((info) => (
-        <div className="flex justify-center bg-white rounded-xl max-h-[10rem] mx-4 py-2 lg:mb-0 mb-7" key={info?.title}>
+        <div className="flex justify-center bg-white rounded-xl max-h-[10rem] py-2 lg:mb-0" key={info?.title}>
           <div className="p-3 text-black-500">
             <h2 className="text-lg font-semibold">{info?.title}</h2>
             <p className="text-4xl text-purple font-semibold text-center mt-5">

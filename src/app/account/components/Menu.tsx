@@ -46,7 +46,7 @@ const Menu = ({ user }: { user: getUserType }) => {
         </div>
         <div className="text-sm my-1 flex items-center ">
           <FaMailBulk className="ml-1" />
-          <p>{user?.email}</p>
+          <p>{(user as any)?.username}</p>
         </div>
       </div>
       <Link

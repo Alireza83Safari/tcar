@@ -1,5 +1,3 @@
-import Header from "@/app/panel/components/Header";
-import Menu from "@/app/panel/components/Menu";
 import { getPlatforms } from "@/actions/platform";
 import { InfoBar } from "./components/InfoBar";
 import Chart from "./components/Chart";
@@ -8,9 +6,6 @@ import { getColors } from "@/actions/color";
 import { getCopmpanies } from "@/actions/company";
 import { getUsers } from "@/actions/user";
 import { UsersTable } from "./components/UsersTable";
-import { Suspense } from "react";
-import { LoadingTemplate } from "@/components";
-import { withAuthPanel } from "@/HOC/withAuthPanel";
 
 export const revalidate = 60 * 60;
 
@@ -34,26 +29,20 @@ async function page() {
   ];
 
   return (
-    <div>
-      <Header />
-      <Menu />
-      <div className="md:w-[84vw] w-[84vw] bg-[#F2F3F5] min-h-screen absolute left-0 px-4 mt-10 grid md:grid-cols-4">
-        <Suspense fallback={<LoadingTemplate />}>
-          <InfoBar
-            cars={cars?.length || 0}
-            colors={colors?.length || 0}
-            platforms={platforms?.length || 0}
-            companies={companies?.length || 0}
-            users={users?.length || 0}
-          />
-          <div className="gap-x-10 mb-7 md:col-span-3">
-            <Chart data={data} />
-            <UsersTable users={users} />
-          </div>
-        </Suspense>
+    <div className="md:grid md:grid-cols-4 pb-5">
+      <InfoBar
+        cars={cars?.length || 0}
+        colors={colors?.length || 0}
+        platforms={platforms?.length || 0}
+        companies={companies?.length || 0}
+        users={users?.length || 0}
+      />
+      <div className="xs:gap-x-10 mb-7 md:col-span-3">
+        <Chart data={data} />
+        <UsersTable users={users} />
       </div>
     </div>
   );
 }
 
-export default withAuthPanel(page);
+export default page;

@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     await connectToDB();
 
     if (params) {
-      const userQuery = await User.find({ email: { $regex: params } })
+      const userQuery = await User.find({ username: { $regex: params } })
         .skip(skip)
         .limit(limit);
 

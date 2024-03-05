@@ -1,5 +1,5 @@
 export interface loginErrorType {
-  email: string;
+  username: string;
   password: string;
 }
 

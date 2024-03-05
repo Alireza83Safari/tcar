@@ -14,7 +14,7 @@ export default function page() {
   const { data: session } = useSession();
   const [isLoading, setLoading] = useState(false);
   const initialState = {
-    email: "",
+    username: "",
     password: "",
     userId: "",
   };
@@ -38,8 +38,8 @@ export default function page() {
         body: JSON.stringify(userLoginInfos),
       });
       const data = await res.json();
-      const userDatas = { ...userLoginInfos, userId: data?._id };
-
+      const userDatas = { ...userLoginInfos, userId: data?._id };console.log(res);
+      
       if (res.status === 200) {
         signIn("credentials", {
           ...userDatas,
@@ -102,7 +102,7 @@ export default function page() {
       <div className="xl:container mx-auto sm:my-20 my-8 px-4 grid sm:grid-cols-2">
         <div className="flex justify-center items-center">
           <Image
-            src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703830631/dzwuo7bkodnrtkwnfkhw.png"
+            src="/img/banner/auth.WEBP"
             alt="login"
             width={400}
             height={400}
@@ -116,17 +116,17 @@ export default function page() {
           <p className="text-red text-center">{serverError}</p>
           <div className="mb-6">
             <Input
-              label="ایمیل"
-              type="email"
-              name="email"
+              label="نام کاربری"
+              type="username"
+              name="username"
               onChange={handleInputChange}
-              placeholder="ایمیل"
-              value={userLoginInfos.email}
+              placeholder="نام کاربری"
+              value={userLoginInfos.username}
               onfocus={() => {
                 setServerError("");
                 setErrors(initialState);
               }}
-              error={errors?.email}
+              error={errors?.username}
             />
           </div>
           <div className="mb-6">

@@ -37,9 +37,9 @@ export async function InfoBar({
   ];
 
   return (
-    <div className="grid grid-cols-1 mt-10 col-span-1">
+    <div className="grid grid-cols-1 col-span-1 gap-y-5">
       {cartData?.map((car) => (
-        <div className="flex justify-center bg-white rounded-xl max-h-[8rem] md:mx-4 my-2 py-3">
+        <div className="flex justify-center bg-white rounded-xl max-h-[8rem] md:ml-4 py-3">
           <div className="p-3 text-black-500 font-semibold">
             <h2 className="lg:text-lg md:text-base text-xl">{car?.title}</h2>
             <p className="text-4xl text-purple font-semibold text-center mt-5">

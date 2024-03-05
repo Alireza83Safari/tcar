@@ -32,18 +32,18 @@ const CarTemplate: React.FC<CarTemplateProps> = ({ car, dataAos }) => {
             </p>
             <div className="flex items-center text-sm my-4">
               <p className="text-gray-200 my-2 ml-2">وضعیت:</p>
-              <p className="text-white">
-                {car?.carStatus === 0 ? "نو" : "دست دوم"}
+              <p className="font-semibold text-purple">
+                {car?.carStatus == 0 ? "نو" : "دست دوم"}
               </p>
             </div>
             <div className="flex items-center text-sm my-4">
               <p className="text-sm text-gray-200 my-2 ml-2">گیربکس:</p>
-              <p className="text-white">
+              <p className=" text-purple font-semibold">
                 {car?.gearbox === 0 ? "دستی" : "اتومات"}
               </p>
             </div>
 
-            <p className="text-purple text-center 2xl:text-base text-sm font-semibold col-span-2">
+            <p className="text-purple text-center 2xl:text-base text-sm font-bold col-span-2">
               {car?.price?.toLocaleString()} تومان
             </p>
           </div>

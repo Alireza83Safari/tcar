@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
 
     if (params) {
       const contactQuery = await Contact.find(
-        { email: { $regex: params } },
+        { username: { $regex: params } },
         "-__v"
       );
       if (contactQuery.length) {

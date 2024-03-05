@@ -99,7 +99,7 @@ export default function page() {
             width="440"
             height="440"
             className="w-[20rem]"
-            src="https://res.cloudinary.com/dmywzd0yw/image/upload/v1703788477/ku5jnjqypc1hodx7f1kr.png"
+            src="/img/banner/application.WEBP"
             alt="application"
             data-aos="fade-up"
             data-aos-once="true"

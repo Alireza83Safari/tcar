@@ -9,33 +9,33 @@ export async function Table({ users }: { users: any }) {
   const [showModal, setShowEditModal] = useState(false);
 
   return (
-    <div className="overflow-x-auto mt-24 min-h-screen">
+    <div className="overflow-x-auto">
       <table className="min-w-full overflow-x-auto rounded-lg bg-white text-black-500">
         <thead>
-          <tr className="sm:text-xs text-[12px] 2xl:text-lg border-b">
-            <th className="py-3 px-2">#</th>
-            <th className="py-3 px-2">نام</th>
-            <th className="py-3 px-2">نام خانوادگی</th>
-            <th className="py-3 px-2">ایمیل</th>
-            <th className="py-3 px-2">عضویت</th>
-            <th className="py-3 px-2">#</th>
+          <tr className="lg:text-base sm:text-sm text-xs border-b">
+            <th className="py-3 min-w-[3rem]">#</th>
+            <th className="py-3 min-w-[5rem]">نام</th>
+            <th className="py-3 min-w-[5rem]">نام خانوادگی</th>
+            <th className="py-3 min-w-[5rem]">نام کاربری</th>
+            <th className="py-3 min-w-[5rem]">عضویت</th>
+            <th className="py-3 min-w-[5rem]">#</th>
           </tr>
         </thead>
         {users?.length ? (
           <tbody>
             {users?.map((user: any, index: number) => (
               <tr
-                className="sm:text-xs text-[10px] 2xl:text-sm sm:px-4 text-center"
+                className="lg:text-base sm:text-sm text-xs text-center"
                 key={user?._id}
               >
-                <td className="py-3 px-2 truncate">{index + 1}</td>
-                <td className="py-3 px-2 truncate">{user.firstname}</td>
-                <td className="py-3 px-2 truncate">{user.lastname}</td>
-                <td className="py-3 px-2 truncate">{user.email}</td>
-                <td className="py-3 px-2 truncate">
+                <td className="py-3 min-w-[3rem] truncate">{index + 1}</td>
+                <td className="py-3 min-w-[5rem] truncate">{user.firstname}</td>
+                <td className="py-3 min-w-[5rem] truncate">{user.lastname}</td>
+                <td className="py-3 min-w-[5rem] truncate">{user.username}</td>
+                <td className="py-3 min-w-[5rem] truncate">
                   {user.createdAt?.slice(0, 10)}
                 </td>
-                <td className="py-3 px-2 flex items-center justify-center mt-4">
+                <td className="py-3 min-w-[5rem] flex items-center justify-center mt-4">
                   <FaTrashAlt
                     className="text-red mx-2"
                     onClick={() => deleteuser(user?._id)}

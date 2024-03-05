@@ -6,10 +6,7 @@ export const contactSchema = new mongoose.Schema({
     min: 2,
     required: true,
   },
-  email: {
-    type: String,
-    required: true,
-  },
+
   comment: {
     type: String,
     required: true,

@@ -38,19 +38,19 @@ const Menu = () => {
   const path = usePathname();
 
   return (
-    <div className="w-[16vw] min-h-full fixed top-0 right-0 bg-[#181D19] text-white -z-10">
-      <p className="sm:text-xl text-center my-6 font-bold">Tcar Panel</p>
+    <div className="lg:w-[9rem] md:w-[8rem] xs:w-[5rem] w-[4rem] min-h-full fixed top-0 right-0 bottom-0 bg-[#181D19] text-white z-10">
+      <p className="md:text-xl text-center xs:my-6 my-3 font-bold">Tcar Panel</p>
       <ul className="block">
         {menuItem.map((item) => (
           <Link
             href={item.href}
             key={item.id}
-            className={`px-2 py-4 flex items-center sm:justify-start justify-center sm:text-base text-sm 2xl:text-xl md:pr-6 ${
+            className={`px-2 py-4 flex items-center md:justify-start justify-center md:text-base text-sm 2xl:text-xl md:pr-6 ${
               item.href === path ? `bg-lightPurple text-purple` : ``
             }`}
           >
-            <button className="sm:text-base text-xl">{item.icon}</button>
-            <p className="mr-2 sm:block hidden">{item.title}</p>
+            <button className="md:text-base text-xl">{item.icon}</button>
+            <p className="mr-2 md:block hidden">{item.title}</p>
           </Link>
         ))}
       </ul>

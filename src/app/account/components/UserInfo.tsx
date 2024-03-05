@@ -26,7 +26,7 @@ const UserInfo = ({ user }: { user: getUserType }) => {
     if (user) {
       setUserInfos({
         ...userInfos,
-        email: user.email,
+        email: (user as any).email,
         firstname: user.firstname,
         lastname: user.lastname,
         phone: user.phone,

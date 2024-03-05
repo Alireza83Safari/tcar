@@ -26,14 +26,15 @@ const Select = ({
         value={value}
       >
         {defaultValue && <option value="">{String(defaultValue)}</option>}
-        {options?.map((item: any) => (
-          <option
-            key={item?._id || item?.value}
-            value={item?._id || item?.value}
-          >
-            {item?.name || item?.code}
-          </option>
-        ))}
+        {!!options?.length &&
+          options?.map((item: any) => (
+            <option
+              key={item?._id || item?.value}
+              value={item?._id || item?.value}
+            >
+              {item?.name || item?.code}
+            </option>
+          ))}
       </select>
       <p className="text-red">{error}</p>
     </>
