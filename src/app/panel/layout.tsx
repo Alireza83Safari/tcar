@@ -13,12 +13,12 @@ export default async function layout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  var isAuthenticated = true;
+  var isAuthenticated = false;
 
-  /*  if ((session as any)?.id) {
+  if ((session as any)?.id) {
     const user = await User.findOne({ _id: (session as any)?.id });
     isAuthenticated = user?.role === "ADMIN" ? true : false;
-  } */
+  }
 
   return (
     <>
@@ -26,9 +26,9 @@ export default async function layout({
         <>
           <Header />
           <Menu />
-          <div className="lg:pr-[10rem] md:pr-[9rem] xs:pr-[6rem] pr-[4.6rem] bg-[#F2F3F5] min-h-screen pt-20 pl-3 min-w-full -z-10">
+          <main className="lg:pr-[10rem] md:pr-[9rem] xs:pr-[6rem] pr-[4.6rem] bg-[#F2F3F5] min-h-screen pt-20 pl-3 min-w-full -z-10">
             <Suspense fallback={<LoadingTemplate />}>{children}</Suspense>
-          </div>
+          </main>
         </>
       ) : (
         redirect("/login")

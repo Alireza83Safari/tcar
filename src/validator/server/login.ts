@@ -3,7 +3,7 @@ const Validator = require("fastest-validator");
 const v = new Validator();
 
 const loginSchema = {
-  email: { type: "email", convert: true, max: 30 },
+  username: { type: "string", max: 30 },
   password: { type: "string" },
 };
 

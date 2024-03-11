@@ -3,7 +3,7 @@ const Validator = require("fastest-validator");
 const v = new Validator();
 
 const registerSchema = {
-  email: { type: "email" },
+  username: { type: "username" },
   firstname: { type: "string", min: 2, max: 20 },
   lastname: { type: "string", min: 2, max: 20 },
   password: {

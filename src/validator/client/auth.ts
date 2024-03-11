@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 
 const loginSchema = Yup.object().shape({
-  user: Yup.string()
-    .min(3, "حداقل طول ایمیل باید 3 کاراکتر باشد")
+  username: Yup.string()
+    .min(3, "حداقل طول نام کاربری باید 3 کاراکتر باشد")
     .max(40, "حداکثر طول نام کاربری باید 40 کاراکتر باشد")
     .required("ایمیل الزامی است"),
   password: Yup.string()
@@ -14,8 +14,8 @@ const loginSchema = Yup.object().shape({
 ////////////////////////////////////////////////////
 
 const registerSchema = Yup.object().shape({
-  user: Yup.string()
-    .min(3, "حداقل طول ایمیل باید 3 کاراکتر باشد")
+  username: Yup.string()
+    .min(3, "حداقل طول نام کاربری باید 3 کاراکتر باشد")
     .max(40, "حداکثر طول نام کاربری باید 40 کاراکتر باشد")
     .required("ایمیل الزامی است"),
   firstname: Yup.string()
