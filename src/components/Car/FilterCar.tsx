@@ -78,7 +78,7 @@ const FilterCar: React.FC<FilterCarProps> = ({ showFilterMenu, page }) => {
 
   return (
     <div
-      className={` shadow-xl px-4 md:rounded-lg md:block overflow-auto bg-lightPurple sticky top-20 py-5 ${
+      className={` shadow-xl px-4 md:rounded-lg md:block overflow-auto bg-lightPurple md:sticky fixed top-0 bottom-0 md:top-20 py-5 ${
         showFilterMenu ? `fixed right-0 top-0 z-10 sm:w-1/4 block` : `hidden`
       }`}
     >

@@ -33,7 +33,7 @@ const Cars = (props: any) => {
           <div className="md:col-span-1">
             <FilterCar showFilterMenu={showFilterMenu} page={currentPage} />
             <button
-              className="fixed bottom-0 w-full bg-purple py-2 md:hidden block"
+              className="fixed bottom-0 w-full bg-purple py-2 md:hidden block z-50 text-white text-lg font-bold"
               onClick={() => setShowFilterMenu(!showFilterMenu)}
             >
               فیلتر

@@ -37,9 +37,10 @@ export default function page() {
         method: "POST",
         body: JSON.stringify(userLoginInfos),
       });
+
       const data = await res.json();
-      const userDatas = { ...userLoginInfos, userId: data?._id };console.log(res);
-      
+      const userDatas = { ...userLoginInfos, userId: data?._id };
+
       if (res.status === 200) {
         signIn("credentials", {
           ...userDatas,
@@ -54,8 +55,8 @@ export default function page() {
             push("/");
           }
         });
-        setLoading(false);
       }
+
       if (res.status !== 200) {
         setServerError(data?.message);
         setLoading(false);
@@ -85,6 +86,7 @@ export default function page() {
         }),
         {}
       );
+
       setErrors(errors);
       setLoading(false);
     }
@@ -144,7 +146,7 @@ export default function page() {
               error={errors?.password}
             />
           </div>
-          <button className="w-full bg-purple text-white py-2 rounded-lg mt-4">
+          <button className="w-full bg-purple text-white py-2 rounded-lg mt-4 outline-none">
             {isLoading ? <FormSpinner /> : "ورود به حساب کاربری"}
           </button>
           <div className="mt-6 text-center">

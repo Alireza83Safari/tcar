@@ -180,7 +180,7 @@ export default function page() {
           <div className="mt-6 text-center">
             <Link
               href="/login"
-              className="text-gray-200 hover:text-white duration-300"
+              className="text-gray-200 hover:text-purple duration-300"
             >
               حساب کاربری دارید؟
             </Link>
