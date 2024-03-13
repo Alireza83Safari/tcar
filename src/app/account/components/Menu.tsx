@@ -2,12 +2,17 @@
 import Link from "next/link";
 import { FaMailBulk } from "react-icons/fa";
 import { FaCar, FaOutdent, FaPhone, FaPlus, FaUser } from "react-icons/fa6";
-import { getUserType } from "@/types/user.type";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
+import { User } from "@/types/user";
+import React from "react";
 
-const Menu = ({ user }: { user: getUserType }) => {
+type MenuProps = {
+  user: User;
+};
+
+const Menu: React.FC<MenuProps> = ({ user }) => {
   const menuItem = [
     {
       id: 1,
@@ -40,10 +45,6 @@ const Menu = ({ user }: { user: getUserType }) => {
         </p>
       </div>
       <div className="mr-14 my-4">
-        <div className="text-sm my-1 flex items-center ">
-          <FaPhone className="ml-1" />
-          <p>{user?.phone?.valueOf() ? user?.phone : "ثبت نشده"}</p>
-        </div>
         <div className="text-sm my-1 flex items-center ">
           <FaMailBulk className="ml-1" />
           <p>{(user as any)?.username}</p>

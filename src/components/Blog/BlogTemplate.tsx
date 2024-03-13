@@ -1,9 +1,9 @@
-import { blogType } from "@/types/blog.type";
+import { Blog } from "@/types/blog";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const BlogTemplate = ({ image, title, category, _id }: blogType) => {
+const BlogTemplate = ({ image, title, category, _id }: Blog) => {
   return (
     <Link href={`/blog/${_id}`} className=" mx-4 rounded-lg">
       <div>

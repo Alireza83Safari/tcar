@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper/modules";
 import BlogTemplate from "@/components/Blog/BlogTemplate";
-import { blogType } from "@/types/blog.type";
+import { Blog } from "@/types/blog";
 
-export default function Slider({ blogs }: { blogs: blogType[] }) {
+export default function Slider({ blogs }: { blogs: Blog[] }) {
   const breakpoints = {
     320: {
       slidesPerView: 1,
@@ -32,7 +32,7 @@ export default function Slider({ blogs }: { blogs: blogType[] }) {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          {blogs?.map((blog: blogType) => (
+          {blogs?.map((blog) => (
             <SwiperSlide key={blog?._id}>
               <BlogTemplate {...blog} />
             </SwiperSlide>

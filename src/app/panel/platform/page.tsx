@@ -1,6 +1,6 @@
-import { Table } from "./components/Table";
 import AddPlatform from "./components/AddPlatform";
 import { getPlatforms } from "@/actions/platform";
+import PlatformTable from "./components/PlatformTable";
 
 export const revalidate = 60 * 60;
 
@@ -9,7 +9,7 @@ async function page() {
   return (
     <>
       <AddPlatform />
-      <Table platforms={platforms} />
+      <PlatformTable platforms={platforms} />
     </>
   );
 }

@@ -4,10 +4,10 @@ import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import { CldImage } from "next-cloudinary";
 import "../../components/Style.css";
 import { deleteCompany } from "@/actions/company";
-import { blogType } from "@/types/blog.type";
+import { Blog } from "@/types/blog";
 
-export async function Table({ blogs }: { blogs: blogType[] }) {
-/*   const [editId, setEditID] = useState("");
+export async function Table({ blogs }: { blogs: Blog[] }) {
+  /*   const [editId, setEditID] = useState("");
   const [showEditBrand, setShowEditBrand] = useState(false); */
   return (
     <div className="mt-5 overflow-x-auto min-h-screen text-black-500">

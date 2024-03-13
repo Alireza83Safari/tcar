@@ -1,4 +1,4 @@
-export interface companiesType {
+export interface Company {
   _id: string;
   name: string;
   code: string;

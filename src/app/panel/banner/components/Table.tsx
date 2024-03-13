@@ -3,11 +3,11 @@ import { useState } from "react";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import "../../components/Style.css";
 import EditBanner from "./EditBanner";
-import { bannerType } from "@/types/banner.type";
 import { deleteBanner } from "@/actions/banner";
 import Image from "next/image";
+import { Banner } from "@/types/banner";
 
-export async function Table({ banners }: { banners: bannerType[] }) {
+export async function Table({ banners }: { banners: Banner[] }) {
   const [editId, setEditID] = useState("");
   const [showEditBanner, setShowEditBanner] = useState(false);
   return (
@@ -25,7 +25,7 @@ export async function Table({ banners }: { banners: bannerType[] }) {
             </tr>
           </thead>
           <tbody>
-            {banners?.map((banner: bannerType, index: number) => (
+            {banners?.map((banner, index) => (
               <tr
                 className="lg:text-base sm:text-sm text-xs 2xl:text-sm sm:px-4 text-center"
                 key={banner?._id}

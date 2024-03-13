@@ -1,5 +1,5 @@
 import { getPlatforms } from "@/actions/platform";
-import { getPlatformType } from "@/types/platform";
+import { Platform } from "@/types/platform";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,7 +16,7 @@ export default async function page() {
             data-aos="fade-up"
             data-aos-once="true"
           >
-            {platforms?.map((platform: getPlatformType) => (
+            {platforms?.map((platform: Platform) => (
               <Link
                 href={`/car?platform=${platform._id}`}
                 className="text-center my-3 mx-auto hover:bg-lightPurple duration-300 rounded-lg"

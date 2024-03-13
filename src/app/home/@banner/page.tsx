@@ -1,5 +1,5 @@
 import { getBanners } from "@/actions/banner";
-import { bannerType } from "@/types/banner.type";
+import { Banner } from "@/types/banner";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";
@@ -20,7 +20,7 @@ export default async function page() {
       data-aos-once="true"
     >
       {!!banners?.length &&
-        banners?.map((banner: bannerType) => (
+        banners?.map((banner: Banner) => (
           <nav
             key={banner._id}
             className="grid md:grid-cols-3 md:py-32 py-20 px-8 xl:container m-auto"

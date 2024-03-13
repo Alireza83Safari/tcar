@@ -1,10 +1,10 @@
-export interface platformType {
+export interface CreatePlatform {
   name: string;
   code: string;
   image: string;
 }
 
-export interface getPlatformType extends platformType {
+export interface Platform extends CreatePlatform {
   _id: string;
   createdAt: string;
   updatedAt: string;

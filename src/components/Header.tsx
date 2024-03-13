@@ -153,7 +153,7 @@ const Header = () => {
             <Link
               replace={true}
               href="/about"
-              className="hover:text-purple duration-300 lg:flex block lg:py-0 py-3"
+              className={`hover:text-purple duration-300 lg:flex block lg:py-0 py-3 ${isActiveMenu("about") ? "text-purple" : ""}`}
             >
               درباره ما
             </Link>

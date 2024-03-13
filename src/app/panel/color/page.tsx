@@ -1,5 +1,5 @@
 import AddColor from "./components/AddColor";
-import { Table } from "./components/Table";
+import ColorTable from "./components/ColorTable";
 import { getColors } from "@/actions/color";
 
 async function page() {
@@ -8,7 +8,7 @@ async function page() {
   return (
     <>
       <AddColor />
-      <Table colors={colors} />
+      <ColorTable colors={colors} />
     </>
   );
 }

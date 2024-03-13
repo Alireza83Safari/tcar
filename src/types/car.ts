@@ -1,6 +1,6 @@
-import { colorType } from "./color.type";
-import { companyType } from "./company.type";
-import { platformType } from "./platform";
+import { Color } from "./color";
+import { Company } from "./company";
+import { Platform } from "./platform";
 
 export interface createCarType {
   title: string;
@@ -28,14 +28,14 @@ export interface CarType {
   title: string;
   carStatus: number | null;
   price: number | null;
-  company: companyType;
+  company: Company;
   model: string;
   years: number | null;
   work: number | null;
-  platform: platformType;
+  platform: Platform;
   fuel: string;
   gearbox: number | null;
-  color: colorType;
+  color: Color;
   description: string;
   firstname: string;
   lastname: string;

@@ -1,6 +1,6 @@
-import { blogType } from "@/types/blog.type";
+import { Blog as BlogType } from "@/types/blog";
 
-const Blog = ({ blog }: { blog: blogType }) => {
+const Blog = ({ blog }: { blog: BlogType }) => {
   return (
     <div className="xl:container mx-auto">
       <div>

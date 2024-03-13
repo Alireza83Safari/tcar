@@ -4,13 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper/modules";
-import { companyType } from "@/types/company.type";
 import "swiper/css/pagination";
 import Image from "next/image";
+import { Company } from "@/types/company";
 
 
 interface CompanyProps {
-  companies: companyType[];
+  companies: Company[];
 }
 
 const CompanySlider: React.FC<CompanyProps> = ({ companies }) => {
@@ -47,7 +47,7 @@ const CompanySlider: React.FC<CompanyProps> = ({ companies }) => {
           modules={[FreeMode, Pagination]}
           className="mySwiper"
         >
-          {companies?.map((company: companyType) => (
+          {companies?.map((company: Company) => (
             <SwiperSlide key={company?._id}>
               <Link href={`/car?company=${company?._id}`} key={company.name}>
                 <Image

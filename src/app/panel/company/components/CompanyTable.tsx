@@ -1,36 +1,39 @@
 "use client";
 import { useState } from "react";
-import { companiesType } from "@/types/brand.type";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import EditBrand from "./EditCompany";
 import { CldImage } from "next-cloudinary";
 import "../../components/Style.css";
 import { deleteCompany } from "@/actions/company";
+import { Company } from "@/types/company";
 
-export async function Table({ brands }: { brands: companiesType[] }) {
+type CompanyTableProps = {
+  companies: Company[];
+};
+const CompanyTable: React.FC<CompanyTableProps> = ({ companies }) => {
   const [editId, setEditID] = useState("");
   const [showEditBrand, setShowEditBrand] = useState(false);
   return (
     <div className="mt-5 overflow-x-auto min-h-screen">
-      {brands?.length ? (
+      {companies?.length ? (
         <table className="min-w-full rounded-lg bg-white text-black-500">
           <thead>
-            <tr className="lg:text-base sm:text-sm text-xs border-b">
-              <th className="py-3 min-w-[3rem]">#</th>
-              <th className="py-3 min-w-[5rem]">برند</th>
-              <th className="py-3 min-w-[5rem]">کد برند</th>
-              <th className="py-3 min-w-[5rem]">عکس برند</th>
-              <th className="py-3 min-w-[5rem]">عضویت</th>
-              <th className="py-3 min-w-[5rem]">#</th>
+            <tr className="lg:text-base sm:text-sm text-xs border-b [&>th]:py-3 [&>th]:px-3 [&>th]:truncate">
+              <th>#</th>
+              <th>برند</th>
+              <th>کد برند</th>
+              <th>عکس برند</th>
+              <th>عضویت</th>
+              <th>#</th>
             </tr>
           </thead>
           <tbody>
-            {brands?.map((brand: companiesType, index: number) => (
-              <tr className="lg:text-base sm:text-sm text-xs sm:px-4 text-center">
-                <td className="py-3 min-w-[3rem]">{index + 1}</td>
-                <td className="py-3 min-w-[5rem]">{brand.name}</td>
-                <td className="py-3 min-w-[5rem]">{brand.code}</td>
-                <td className="flex justify-center items-center py-3 min-w-[5rem]">
+            {companies?.map((brand, index) => (
+              <tr className="lg:text-base sm:text-sm text-xs text-center [&>td]:py-3 [&>td]:px-3 [&>td]:truncate">
+                <td>{index + 1}</td>
+                <td>{brand.name}</td>
+                <td>{brand.code}</td>
+                <td className="flex justify-center items-center">
                   <CldImage
                     width="50"
                     height="50"
@@ -38,10 +41,8 @@ export async function Table({ brands }: { brands: companiesType[] }) {
                     alt="Description of my image"
                   />
                 </td>
-                <td className="py-3 min-w-[5rem]">
-                  {brand.createdAt?.slice(0, 10)}
-                </td>
-                <td className="py-3 min-w-[5rem]">
+                <td>{brand.createdAt?.slice(0, 10)}</td>
+                <td>
                   <td className="flex items-center justify-center">
                     <FaTrashAlt
                       className="text-red mx-2"
@@ -72,4 +73,6 @@ export async function Table({ brands }: { brands: companiesType[] }) {
       />
     </div>
   );
-}
+};
+
+export default CompanyTable;

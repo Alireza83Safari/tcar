@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Accordion, Input } from "@/components";
-import { getUserType } from "@/types/user.type";
 import toast from "react-hot-toast";
+import { User } from "@/types/user";
 
 interface UserInfosState {
   firstname: string;
@@ -13,7 +13,7 @@ interface UserInfosState {
   phone: any;
 }
 
-const UserInfo = ({ user }: { user: getUserType }) => {
+const UserInfo = ({ user }: { user: User }) => {
   const { data: session, update } = useSession();
   const [userInfos, setUserInfos] = useState<UserInfosState>({
     firstname: "",

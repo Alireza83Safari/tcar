@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
 import { CarType } from "@/types/car.type";
@@ -9,14 +10,13 @@ import AOS from "aos";
 import "swiper/css";
 import "swiper/css/bundle";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
 
 export default function Slider({ cars }: { cars: CarType[] }) {
   useEffect(() => {
-    const isSmallScreen = window.innerWidth <= 600; // Adjust the screen size as needed
+    const isSmallScreen = window.innerWidth <= 600;
 
     AOS.init({
-      offset: isSmallScreen ? 0 : 400, // Set a different offset for small screens
+      offset: isSmallScreen ? 0 : 400,
       easing: "ease-in-out",
       duration: 800,
     });
