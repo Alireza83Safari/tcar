@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { createCarType } from "@/types/car.type";
+import { createCarType } from "@/types/car";
 import AddCarSection from "./AddCarSection";
 import AddCarForm from "./AddCarForm";
 import ImageUpload from "./UploadImage";

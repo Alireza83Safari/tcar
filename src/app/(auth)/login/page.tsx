@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import { loginErrorType } from "@/types/error.type";
+import { loginErrorType } from "@/types/error";
 import { loginSchema } from "@/validator/client/auth";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";

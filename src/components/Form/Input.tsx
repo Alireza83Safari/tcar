@@ -1,4 +1,4 @@
-import { inputProps } from "@/types/form.type";
+import { inputProps } from "@/types/form";
 import React from "react";
 
 const Input = ({

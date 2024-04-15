@@ -5,7 +5,7 @@ import useSWR from "swr";
 import { FaCarSide, FaMoneyBill1Wave, FaPhone } from "react-icons/fa6";
 import { LiaInfoSolid } from "react-icons/lia";
 import { Input, Select } from "@/components";
-import { createCarErrorType } from "@/types/error.type";
+import { createCarErrorType } from "@/types/error";
 import { initialState } from "./AddCar";
 import { useSession } from "next-auth/react";
 import { fetcher } from "@/actions/fetcher";

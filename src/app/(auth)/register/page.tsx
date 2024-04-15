@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { registerErrorType } from "@/types/error.type";
+import { registerErrorType } from "@/types/error";
 import { registerSchema } from "@/validator/client/auth";
 import Image from "next/image";
 import Link from "next/link";

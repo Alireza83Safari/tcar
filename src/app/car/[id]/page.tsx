@@ -2,7 +2,7 @@ import { getCar, getCars } from "@/actions/car";
 import CarDetails from "@/components/Car/CarDetails";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import { CarType } from "@/types/car.type";
+import { CarType } from "@/types/car";
 import { Metadata } from "next";
 
 export async function generateStaticParams() {

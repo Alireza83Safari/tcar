@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { CarType } from "@/types/car.type";
+import { CarType } from "@/types/car";
 import "./CarTemplate.css";
 import Image from "next/image";
 interface CarTemplateProps {

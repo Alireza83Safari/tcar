@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FaMailBulk } from "react-icons/fa";
-import { FaCar, FaOutdent, FaPhone, FaPlus, FaUser } from "react-icons/fa6";
+import { FaCar, FaOutdent, FaPlus, FaUser } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import Image from "next/image";

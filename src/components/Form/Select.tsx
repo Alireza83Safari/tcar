@@ -1,4 +1,4 @@
-import { selectProps } from "@/types/form.type";
+import { selectProps } from "@/types/form";
 import React from "react";
 
 const Select = ({

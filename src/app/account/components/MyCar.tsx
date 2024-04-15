@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { CarTemplate } from "@/components";
-import { CarType } from "@/types/car.type";
+import { CarType } from "@/types/car";
 
 interface MyCarProps {
   cars: CarType[];

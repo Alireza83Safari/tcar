@@ -4,7 +4,7 @@ import { useState } from "react";
 import { FaPenAlt, FaTrashAlt } from "react-icons/fa";
 import { Modal } from "@/components";
 import EditForm from "./EditForm";
-import { CarType } from "@/types/car.type";
+import { CarType } from "@/types/car";
 import { deleteCar } from "@/actions/car";
 
 export async function CarTable({ cars }: any) {

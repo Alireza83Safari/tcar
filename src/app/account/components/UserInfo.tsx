@@ -29,7 +29,7 @@ const UserInfo = ({ user }: { user: User }) => {
         email: (user as any).email,
         firstname: user.firstname,
         lastname: user.lastname,
-        phone: user.phone,
+        phone: (user as any).phone,
       });
     }
   }, [user]);

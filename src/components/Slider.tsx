@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/pagination";
-import { CarType } from "@/types/car.type";
+import { CarType } from "@/types/car";
 import CarTemplate from "@/components/Car/CarTemplate";
 import { FreeMode, Pagination } from "swiper/modules";
 import AOS from "aos";

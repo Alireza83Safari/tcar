@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { CarType } from "../../types/car.type";
+import { CarType } from "../../types/car";
 import Accordion from "../Accordion";
 import moment from "jalali-moment";
 import Link from "next/link";

@@ -8,7 +8,7 @@ import {
   FilterCar,
   Pagination,
 } from "@/components";
-import { CarType } from "@/types/car.type";
+import { CarType } from "@/types/car";
 import Head from "next/head";
 
 const Cars = (props: any) => {

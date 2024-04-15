@@ -1,4 +1,4 @@
-import { CarType } from "@/types/car.type";
+import { CarType } from "@/types/car";
 
 export async function InfoBar({ cars }: { cars: CarType[] }) {
   const newCarLength = cars?.filter(
